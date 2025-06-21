@@ -1,4 +1,5 @@
 import mongoose from "mongoose"
+
 let connected = false;
 
 const connectDB = async () => {
@@ -13,7 +14,12 @@ const connectDB = async () => {
 
     try {
         await mongoose.connect(process.env.MONGODB_URI)
+        connected = true;
+        console.log('Database connected successfully')
     } catch (error) {
         console.log(error)
+        connected = false;
     }
 }
+
+export default connectDB

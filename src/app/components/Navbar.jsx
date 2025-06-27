@@ -1,7 +1,8 @@
+"use client";
 import Link from "next/link";
 import { FaGoogle } from "react-icons/fa";
 import { useState } from "react";
-import { signInWithEmail } from "../utils/supabaseAuth";
+import { signInWithEmail } from "../../../utils/supabaseAuth";
 
 const Navbar = () => {
   const [errorMsg, setErrorMsg] = useState("");
@@ -19,7 +20,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="bg-white text-black h-[10vh] sticky top-0 z-50 flex flex-col justify-center items-center">
+    <div className="bg-zinc-900 text-black h-[10vh] sticky top-0 z-50 flex flex-col justify-center items-center">
       <ul className="flex justify-center gap-18 items-center text-blue-400 text-xl">
         <li className="hover:text-blue-800">
           <Link href="/">Home</Link>

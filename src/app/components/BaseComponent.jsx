@@ -1,10 +1,16 @@
 import { useState, useEffect } from "react";
+import { BsEye } from "react-icons/bs";
 
 const BaseComponent = ({ onSubmit, children }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     onSubmit(formData);
   };
+
+  const inputClass =
+    "block w-full px-4 py-2 pr-10 mb-4 border border-gray-300 bg-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500";
+
+  const [passHidden, setPassHidden] = useState(true);
 
   const [form, setForm] = useState({
     first_name: "",

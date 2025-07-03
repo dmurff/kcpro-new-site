@@ -1,44 +1,33 @@
-import { useState, useEffect } from "react";
+import { useForm } from "react-hook-form";
 import { BsEye } from "react-icons/bs";
+import { useState } from "react";
 
 const BaseComponent = ({ onSubmit, children }) => {
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    onSubmit(formData);
-  };
-
   const inputClass =
     "block w-full px-4 py-2 pr-10 mb-4 border border-gray-300 bg-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500";
 
   const [passHidden, setPassHidden] = useState(true);
 
-  const [form, setForm] = useState({
-    first_name: "",
-    last_name: "",
-    email: "",
-    phone: "",
-    password: "",
-    confirm: "",
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    defaultValues: {
+      first_name: "",
+      last_name: "",
+      email: "",
+      phone: "",
+      password: "",
+      confirm: "",
+    },
   });
-
-  useEffect(() => {
-    console.log("Form value changed", form), [form];
-  });
-
-  const changeForm = (e) => {
-    const { name, value } = e.target;
-
-    setForm((prevForm) => ({
-      ...prevForm,
-      [name]: value,
-    }));
-  };
 
   return (
     <section className="bg-zinc-300 p-20">
       <form
         className="text-black text-lg font-mono font-bold tracking-wide flex flex-col gap-4 max-w-lg w-full mx-auto p-10 bg-white my-10 rounded-md shadow-xl"
-        onSubmit={handleSubmit}
+        onSubmit={handleSubmit(onSubmit)}
       >
         <label className="mr-4" htmlFor="first_name">
           First Name
@@ -47,53 +36,42 @@ const BaseComponent = ({ onSubmit, children }) => {
           className={inputClass}
           type="text"
           id="first_name"
-          name="first_name"
-          value={form.first_name}
-          onChange={changeForm}
-        ></input>
+          {...register("first_name")}
+        />
 
         <label htmlFor="last_name">Last Name</label>
         <input
           className={inputClass}
           type="text"
           id="last_name"
-          name="last_name"
-          value={form.last_name}
-          onChange={changeForm}
-        ></input>
+          {...register("last_name")}
+        />
 
         <label htmlFor="email">Email</label>
         <input
           className={inputClass}
-          type="text"
+          type="email"
           id="email"
-          name="email"
-          value={form.email}
-          onChange={changeForm}
-        ></input>
+          {...register("email")}
+        />
 
         <label htmlFor="phone">Phone</label>
         <input
           className={inputClass}
-          type="text"
+          type="tel"
           id="phone"
-          name="phone"
-          value={form.phone}
-          onChange={changeForm}
-        ></input>
+          {...register("phone")}
+        />
 
         <label htmlFor="password">Password</label>
 
         <div className="relative">
           <input
             className={inputClass}
-            type={passHidden ? "password" : "text"}
+            type="password"
             id="password"
-            name="password"
-            placeholder="enter password"
-            value={form.password}
-            onChange={changeForm}
-          ></input>
+            {...register("password")}
+          />
           <BsEye
             className="absolute top-1/2 right-3 transform -translate-y-1/2 text-blue-500 text-xl cursor-pointer"
             onClick={() => setPassHidden(!passHidden)}
@@ -104,13 +82,10 @@ const BaseComponent = ({ onSubmit, children }) => {
         <div className="relative">
           <input
             className={inputClass}
-            type={passHidden ? "password" : "text"}
+            type="confirm"
             id="confirm"
-            name="confirm"
-            placeholder="confirm password"
-            value={form.confirm}
-            onChange={changeForm}
-          ></input>
+            {...register("confirm")}
+          />
           <BsEye
             className="absolute top-1/2 right-3 transform -translate-y-1/2 text-blue-500 text-xl cursor-pointer"
             onClick={() => setPassHidden(!passHidden)}

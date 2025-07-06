@@ -68,7 +68,7 @@ const BaseComponent = ({ onSubmit, children }) => {
         <div className="relative">
           <input
             className={inputClass}
-            type="password"
+            type={passHidden ? "password" : "text"}
             id="password"
             {...register("password")}
           />
@@ -82,7 +82,7 @@ const BaseComponent = ({ onSubmit, children }) => {
         <div className="relative">
           <input
             className={inputClass}
-            type="confirm"
+            type={passHidden ? "password" : "text"}
             id="confirm"
             {...register("confirm")}
           />

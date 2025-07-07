@@ -1,6 +1,6 @@
 "use client";
 
-import BaseComponent from "./BaseComponent";
+import BaseForm from "./BaseForm";
 
 const LeadSubmitForm = () => {
   const handleLeadForm = async (formData) => {
@@ -8,11 +8,11 @@ const LeadSubmitForm = () => {
   };
 
   return (
-    <BaseComponent onSubmit={handleLeadForm}>
+    <BaseForm onSubmit={handleLeadForm}>
       <label htmlFor="image">Image Upload</label>
       <input type="file" name="image" id="image"></input>
       <button className="bg-zinc-300">Add Image</button>
-    </BaseComponent>
+    </BaseForm>
   );
 };
 

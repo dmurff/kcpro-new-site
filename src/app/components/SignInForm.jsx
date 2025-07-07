@@ -26,7 +26,7 @@ const SignInForm = () => {
           onClick={() => setPassHidden(!passHidden)}
         />
       </div>
-      <label htmlFor="confirm">Confirm assword</label>
+      <label htmlFor="confirm">Confirm Password</label>
       <div className="relative">
         <input
           className={inputClass}

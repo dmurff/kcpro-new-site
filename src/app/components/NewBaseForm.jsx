@@ -2,7 +2,7 @@
 
 import { useForm, FormProvider } from "react-hook-form";
 
-const BaseForm = ({ onSubmit, children }) => {
+const NewBaseForm = ({ onSubmit, children }) => {
   const inputClass =
     "block w-full px-4 py-2 pr-10 mb-4 border border-gray-300 bg-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500";
 
@@ -23,7 +23,7 @@ const BaseForm = ({ onSubmit, children }) => {
           onSubmit={methods.handleSubmit(onSubmit)}
         >
           <label className="mr-4" htmlFor="first_name">
-            First ame
+            First Name
           </label>
           <input
             className={inputClass}
@@ -55,6 +55,7 @@ const BaseForm = ({ onSubmit, children }) => {
             id="phone"
             {...methods.register("phone")}
           />
+
           {children}
           <button
             type="submit"
@@ -68,4 +69,4 @@ const BaseForm = ({ onSubmit, children }) => {
   );
 };
 
-export default BaseForm;
+export default NewBaseForm;

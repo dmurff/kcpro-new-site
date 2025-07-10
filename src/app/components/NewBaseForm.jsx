@@ -17,7 +17,7 @@ const NewBaseForm = ({ onSubmit, children }) => {
 
   return (
     <FormProvider {...methods}>
-      <section className="bg-zinc-300 p-20">
+      <section className="bg-zinc-100 p-20">
         <form
           className="text-black text-lg font-mono font-bold tracking-wide flex flex-col gap-4 max-w-lg w-full mx-auto p-10 bg-white my-10 rounded-md shadow-xl"
           onSubmit={methods.handleSubmit(onSubmit)}

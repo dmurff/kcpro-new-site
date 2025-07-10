@@ -20,8 +20,8 @@ const Navbar = () => {
   };
 
   return (
-    <div className="bg-zinc-900 text-black h-[10vh] sticky top-0 z-50 flex flex-col justify-center items-center">
-      <ul className="flex justify-center gap-18 items-center text-blue-400 text-xl">
+    <div className="bg-zinc-300 text-black h-[10vh] sticky top-0 z-50 flex flex-row justify-between items-center px-12">
+      <ul className="flex justify-center gap-18 items-center text-blue-600 text-xl">
         <li className="hover:text-blue-800">
           <Link href="/">Home</Link>
         </li>
@@ -32,7 +32,7 @@ const Navbar = () => {
           <Link href="/contact">Contact</Link>
         </li>
       </ul>
-      <div>
+      <div className="flex gap-4 items-center">
         <button
           className="flex items-center bg-gray-700 hover:bg-gray-900 rounded-md p-2"
           onClick={handleLogin}

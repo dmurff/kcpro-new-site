@@ -3,7 +3,6 @@
 import Hero from "@/app/components/Hero";
 import InfoBox from "@/app/components/InfoBox";
 import NewBaseForm from "@/app/components/NewBaseForm";
-import SignInForm from "@/app/components/SignInForm";
 import LeadForm from "@/app/components/LeadForm";
 import { useRouter } from "next/navigation";
 
@@ -30,7 +29,6 @@ export default function Home() {
 
   return (
     <section>
-      <div className="text-3xl bg-white text-blue-500">Hello Kansas City</div>
       <Hero />
       <NewBaseForm onSubmit={handleSubmit}>
         <LeadForm />

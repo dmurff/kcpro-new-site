@@ -1,5 +1,5 @@
 "use server";
-import supabase from "/utils/supabaseClient";
+import supabase from "/utils/supabaseServer";
 import { NextResponse } from "next/server";
 
 export async function POST(req) {
@@ -33,7 +33,10 @@ export async function POST(req) {
   if (error) {
     console.error("insert error", error);
 
-    return NextResponse.json({ success: false, error }, { status: 500 });
+    return NextResponse.json(
+      { success: false, error: error.message || "Insert failed" },
+      { status: 500 }
+    );
   }
 
   return NextResponse.json({ success: true });

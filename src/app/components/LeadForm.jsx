@@ -21,6 +21,9 @@ const LeadForm = () => {
 
   return (
     <>
+      <h2 className="text-2xl font-bold font-sans mb-4">
+        What can we help you with?
+      </h2>
       <div className="bg-zinc-100 mb-4 flex flex-col gap-4 p-5 rounded-md">
         <label htmlFor="basketball_hoop">Basketball hoop</label>
         <input

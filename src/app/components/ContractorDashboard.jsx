@@ -24,7 +24,7 @@ const ContractorDashBoard = () => {
 
   return (
     <section>
-      <div className="bg-white text-black text-md p-20">
+      <div className="bg-white text-white text-md p-20">
         <h1 className="text-white mb-5">Contractor Dashboard</h1>
         {loading && <div>Loading leads...</div>}
         <ul>

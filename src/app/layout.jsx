@@ -1,6 +1,8 @@
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Inter } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/app/components/Navbar"
+import Navbar from "@/app/components/Navbar";
+
+const inter = Inter({ subsets: ["latin"] });
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -20,12 +22,8 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <head>
-      <script src="https://cdn.tailwindcss.com"></script>
-      </head>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <head>{/* <script src="https://cdn.tailwindcss.com"></script> */}</head>
+      <body className={`${inter.className} antialiased`}>
         <Navbar />
         {children}
       </body>

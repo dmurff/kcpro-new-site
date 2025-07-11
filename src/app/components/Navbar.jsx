@@ -20,16 +20,20 @@ const Navbar = () => {
   };
 
   return (
-    <div className="bg-zinc-300 text-black h-[10vh] sticky top-0 z-50 flex flex-row justify-between items-center px-12">
-      <ul className="flex justify-center gap-18 items-center text-blue-600 text-xl">
+    <nav className="bg-transparent text-white fixed top-0 w-full z-50 flex flex-row justify-between items-center px-12 h-24">
+      <ul className="flex justify-center gap-18 items-center text-xl">
         <li className="hover:text-blue-800">
           <Link href="/">Home</Link>
         </li>
+
         <li className="hover:text-blue-800">
           <Link href="/about">About</Link>
         </li>
         <li className="hover:text-blue-800">
           <Link href="/contact">Contact</Link>
+        </li>
+        <li className="hover:text-blue-800">
+          <Link href="/contractor-dashboard">Contractor</Link>
         </li>
       </ul>
       <div className="flex gap-4 items-center">
@@ -39,8 +43,11 @@ const Navbar = () => {
         >
           <FaGoogle className="text-white" />
         </button>
+        <button className="text-cream items-center bg-orange-500 hover:bg-orange-100 hover:text-slate-950 hover:border-2 border-slate-950 rounded-md p-2">
+          get a quote
+        </button>
       </div>
-    </div>
+    </nav>
   );
 };
 

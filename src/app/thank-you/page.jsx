@@ -1,6 +1,6 @@
 const ThankYou = () => {
   return (
-    <section className="bg-black min-h-screen flex items-center justify-center">
+    <section className="bg-white min-h-screen flex items-center justify-center">
       <div className="block bg-blue-500 text-white text-lg p-3">
         <h2 className="text-center mb-2 mt-1">Thank You!</h2>
         <div className="max-w-md mx-auto my-6 rounded text-center bg-gray-200 text-black p-4">

@@ -17,9 +17,9 @@ const NewBaseForm = ({ onSubmit, children }) => {
 
   return (
     <FormProvider {...methods}>
-      <section className="bg-zinc-100 p-20">
+      <section className="p-20">
         <form
-          className="text-black text-lg font-mono font-bold tracking-wide flex flex-col gap-4 max-w-lg w-full mx-auto p-10 bg-white my-10 rounded-md shadow-xl"
+          className="text-black text-lg font-mono font-bold tracking-wide flex flex-col gap-4 max-w-lg w-full mx-auto p-10 bg-white my-4 rounded-md shadow-xl"
           onSubmit={methods.handleSubmit(onSubmit)}
         >
           <label className="mr-4" htmlFor="first_name">
@@ -59,9 +59,9 @@ const NewBaseForm = ({ onSubmit, children }) => {
           {children}
           <button
             type="submit"
-            className="block text-white bg-blue-500 text-lg font-bold font-mono tracking-wide flex justify-center rounded-md p-3 hover:bg-blue-900"
+            className="block text-white bg-orange-500 text-lg font-bold font-mono tracking-wide flex justify-center rounded-md p-3 hover:bg-amber-700"
           >
-            Submit
+            Get Quote
           </button>
         </form>
       </section>

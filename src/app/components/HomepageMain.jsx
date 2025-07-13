@@ -22,10 +22,10 @@ export default function HomepageMain() {
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto max-w-2xl lg:mx-0">
           <p className="text-base/7 font-semibold text-indigo-600">
-            Deploy faster
+            We install faster
           </p>
           <h1 className="mt-2 text-4xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-5xl">
-            A better workflow
+            Basketball Goals
           </h1>
           <p className="mt-6 text-xl/8 text-gray-700">
             Aliquet nec orci mattis amet quisque ullamcorper neque, nibh sem. At
@@ -60,23 +60,39 @@ export default function HomepageMain() {
             <figure className="border-l border-blue-600 pl-8">
               <blockquote className="text-xl/8 font-semibold tracking-tight text-gray-900">
                 <p>
-                  "Vel ultricies morbi odio facilisi ultrices accumsan donec
-                  lacus purus. Lectus nibh ullamcorper ac dictum justo in
-                  euismod. Risus aenean ut elit massa. In amet aliquet eget
-                  cras. Sem volutpat enim tristique."
+                  "We were really impressed with just about every aspect of KC
+                  Pro Assembly. We found KC Pro and David after the basketball
+                  goal we had had for several years rusted and was about to fall
+                  over in the driveway. With a college student and a high school
+                  varsity basketball player needing to stay-at-home, we needed a
+                  new goal as soon as possible to help keep them enjoying
+                  themselves when they weren't working on their studies. I
+                  contacted KC Pro Assembly and met David and was very impressed
+                  with his knowledge about our needs regarding a goal. We ended
+                  up purchasing the Ironclad Triple Threat 553, and it is
+                  perfect. It is incredibly sturdy, and no bouncing around with
+                  this backboard. Also the backboard can easily be lowered from
+                  10 feet to 5 feet and back again. The guys love it and say
+                  it's performance is very efficient. Dunking is no problem, and
+                  the parts have a lifetime warranty. David's work setting up
+                  the goal was very professional, and the concrete work was
+                  masterful. Fortunately for us, David expedited installing the
+                  goal after ours fell over a few days after we agreed to the
+                  purchase. I know for sure that we will be using this goal for
+                  many years to come."
                 </p>
               </blockquote>
               <figcaption className="mt-8 flex gap-x-4">
                 <img
                   alt=""
-                  src="https://images.unsplash.com/photo-1502685104226-ee32379fefbe?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                  src="/images/karen-dillon.jpg"
                   className="mt-1 size-10 flex-none rounded-full bg-gray-50"
                 />
                 <div className="text-sm/6">
                   <div className="font-semibold text-gray-900">
-                    Brenna Goyette
+                    Karen Dillon
                   </div>
-                  <div className="text-gray-600">@brenna</div>
+                  <div className="text-gray-600">Local Guide Level 4</div>
                 </div>
               </figcaption>
             </figure>

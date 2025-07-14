@@ -39,13 +39,12 @@ export default function Example() {
             KC Pro Assembly
           </p>
           <h1 className="mt-2 text-4xl font-semibold tracking-tight text-white sm:text-5xl">
-            Transform your space into the basketball court with an in ground
+            Transform your space into a basketball court with an in ground
             hoop.
           </h1>
           <p className="mt-6 text-base/7 text-gray-300">
             Visit our store and easily set up a full service package from
-            purchase to installation. Or if you have a hoop already, simply
-            select install quote to tell us more about your job.
+            hoop purchase to installation.  
           </p>
           <div className="mt-8 flex gap-6">
             <a

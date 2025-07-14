@@ -24,9 +24,9 @@ export default function HomepageMain() {
           <p className="text-base/7 font-semibold text-indigo-600">
             We install faster
           </p>
-          <h1 className="mt-2 text-4xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-5xl">
+          <h2 className="mt-2 text-4xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-5xl">
             Basketball Goals
-          </h1>
+          </h2>
           <p className="mt-6 text-xl/8 text-gray-700">
             Aliquet nec orci mattis amet quisque ullamcorper neque, nibh sem. At
             arcu, sit dui mi, nibh dui, diam eget aliquam. Quisque id at vitae
@@ -59,28 +59,9 @@ export default function HomepageMain() {
             </svg>
             <figure className="border-l border-blue-600 pl-8">
               <blockquote className="text-xl/8 font-semibold tracking-tight text-gray-900">
-                <p>
-                  "We were really impressed with just about every aspect of KC
-                  Pro Assembly. We found KC Pro and David after the basketball
-                  goal we had had for several years rusted and was about to fall
-                  over in the driveway. With a college student and a high school
-                  varsity basketball player needing to stay-at-home, we needed a
-                  new goal as soon as possible to help keep them enjoying
-                  themselves when they weren't working on their studies. I
-                  contacted KC Pro Assembly and met David and was very impressed
-                  with his knowledge about our needs regarding a goal. We ended
-                  up purchasing the Ironclad Triple Threat 553, and it is
-                  perfect. It is incredibly sturdy, and no bouncing around with
-                  this backboard. Also the backboard can easily be lowered from
-                  10 feet to 5 feet and back again. The guys love it and say
-                  it's performance is very efficient. Dunking is no problem, and
-                  the parts have a lifetime warranty. David's work setting up
-                  the goal was very professional, and the concrete work was
-                  masterful. Fortunately for us, David expedited installing the
-                  goal after ours fell over a few days after we agreed to the
-                  purchase. I know for sure that we will be using this goal for
-                  many years to come."
-                </p>
+                <p>"We were really impressed with every aspect of KC Pro Assembly. After our old basketball goal rusted and fell, we needed a replacement fast for our college and high school players at home. David quickly understood our needs and recommended the Ironclad Triple Threat 553 — it’s incredibly sturdy, easy to adjust, and built to last. The installation was professional, the concrete work was excellent, and David expedited everything after our old goal collapsed. We’re thrilled with the result and expect to use this goal for many years to come."
+
+</p>
               </blockquote>
               <figcaption className="mt-8 flex gap-x-4">
                 <img

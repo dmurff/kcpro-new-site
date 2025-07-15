@@ -35,7 +35,7 @@ export default function HomepageMain() {
             and installation. We have been in business since 2011 and are very
             passionate about delivering premium hoops along with seamless
             installations. Take the stress out of your project and trust us to
-            handle it with precision. 
+            handle it with precision.
           </p>
         </div>
         <div className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 lg:mx-0 lg:mt-10 lg:max-w-none lg:grid-cols-12">

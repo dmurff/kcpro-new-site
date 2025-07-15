@@ -39,12 +39,11 @@ export default function Example() {
             KC Pro Assembly
           </p>
           <h1 className="mt-2 text-4xl font-semibold tracking-tight text-white sm:text-5xl">
-            Transform your space into a basketball court with an in ground
-            hoop.
+            Transform your space into a basketball court with an in ground hoop.
           </h1>
           <p className="mt-6 text-base/7 text-gray-300">
-            Visit our store and easily set up a full service package from
-            hoop purchase to installation.  
+            Visit our store and easily set up a full service hoop purchase,
+            delivery, and installation.
           </p>
           <div className="mt-8 flex gap-6">
             <a
@@ -55,7 +54,7 @@ export default function Example() {
               Shop hoops + install
             </a>
             <a
-              href="#"
+              href="#our-process"
               className="inline-flex rounded-md bg-transparent border-2 outline-indigo-500 px-3.5 py-2.5 text-sm font-semibold text-white hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 hover:border-indigo-500"
             >
               {" "}

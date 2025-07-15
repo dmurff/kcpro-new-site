@@ -1,8 +1,11 @@
 import {
-  CloudArrowUpIcon,
-  LockClosedIcon,
-  ServerIcon,
+  ChatBubbleLeftIcon,
+  WrenchScrewdriverIcon,
+  ClockIcon,
+  PhoneIcon,
+  StarIcon,
 } from "@heroicons/react/20/solid";
+import { FaGoogle } from "react-icons/fa";
 
 export default function HomepageMain() {
   return (
@@ -22,16 +25,17 @@ export default function HomepageMain() {
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto max-w-2xl lg:mx-0">
           <p className="text-base/7 font-semibold text-indigo-600">
-            We install faster
+            Are you ready to ball?
           </p>
           <h2 className="mt-2 text-4xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-5xl">
             Basketball Goals
           </h2>
           <p className="mt-6 text-xl/8 text-gray-700">
-            Aliquet nec orci mattis amet quisque ullamcorper neque, nibh sem. At
-            arcu, sit dui mi, nibh dui, diam eget aliquam. Quisque id at vitae
-            feugiat egestas ac. Diam nulla orci at in viverra scelerisque eget.
-            Eleifend egestas fringilla sapien.
+            One of our specialties at KC Pro Assembly is basketball goal sales
+            and installation. We have been in business since 2011 and are very
+            passionate about delivering premium hoops along with seamless
+            installations. Take the stress out of your project and trust us to
+            handle it with precision.
           </p>
         </div>
         <div className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 lg:mx-0 lg:mt-10 lg:max-w-none lg:grid-cols-12">
@@ -59,9 +63,18 @@ export default function HomepageMain() {
             </svg>
             <figure className="border-l border-blue-600 pl-8">
               <blockquote className="text-xl/8 font-semibold tracking-tight text-gray-900">
-                <p>"We were really impressed with every aspect of KC Pro Assembly. After our old basketball goal rusted and fell, we needed a replacement fast for our college and high school players at home. David quickly understood our needs and recommended the Ironclad Triple Threat 553 — it’s incredibly sturdy, easy to adjust, and built to last. The installation was professional, the concrete work was excellent, and David expedited everything after our old goal collapsed. We’re thrilled with the result and expect to use this goal for many years to come."
-
-</p>
+                <p>
+                  "We were really impressed with every aspect of KC Pro
+                  Assembly. After our old basketball goal rusted and fell, we
+                  needed a replacement fast for our college and high school
+                  players at home. David quickly understood our needs and
+                  recommended the Ironclad Triple Threat 553 — it’s incredibly
+                  sturdy, easy to adjust, and built to last. The installation
+                  was professional, the concrete work was excellent, and David
+                  expedited everything after our old goal collapsed. We’re
+                  thrilled with the result and expect to use this goal for many
+                  years to come."
+                </p>
               </blockquote>
               <figcaption className="mt-8 flex gap-x-4">
                 <img
@@ -70,84 +83,94 @@ export default function HomepageMain() {
                   className="mt-1 size-10 flex-none rounded-full bg-gray-50"
                 />
                 <div className="text-sm/6">
-                  <div className="font-semibold text-gray-900">
+                  <div className="flex items-center gap-x-4 font-semibold text-gray-900">
                     Karen Dillon
+                    <FaGoogle className="text-indigo-500 h-4 w-4" />
                   </div>
-                  <div className="text-gray-600">Local Guide Level 4</div>
+                  <div className="flex items-center">
+                    <StarIcon className="text-yellow-400" />
+                    <StarIcon className="text-yellow-400" />
+                    <StarIcon className="text-yellow-400" />
+                    <StarIcon className="text-yellow-400" />
+                    <StarIcon className="text-yellow-400" />
+                  </div>
                 </div>
               </figcaption>
             </figure>
           </div>
-          <div className="max-w-xl text-base/7 text-gray-600 lg:col-span-7">
-            <p>
-              Faucibus commodo massa rhoncus, volutpat. Dignissim sed eget risus
-              enim. Mattis mauris semper sed amet vitae sed turpis id. Id dolor
-              praesent donec est. Odio penatibus risus viverra tellus varius sit
-              neque erat velit. Faucibus commodo massa rhoncus, volutpat.
-              Dignissim sed eget risus enim. Mattis mauris semper sed amet vitae
-              sed turpis id.
+          <section
+            className="max-w-xl text-base/7 text-gray-600 lg:col-span-7"
+            id="our-process"
+          >
+            <p className="text-base/7 font-semibold text-indigo-600">
+              Fast and efficient
             </p>
+            <h2 className="mt-2 text-4xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-5xl">
+              Our Install Process
+            </h2>
             <ul role="list" className="mt-8 max-w-xl space-y-8 text-gray-600">
               <li className="flex gap-x-3">
-                <CloudArrowUpIcon
+                <ChatBubbleLeftIcon
                   aria-hidden="true"
                   className="mt-1 size-5 flex-none text-indigo-600"
                 />
                 <span>
                   <strong className="font-semibold text-gray-900">
-                    Push to deploy.
+                    We learn your space.
                   </strong>{" "}
-                  Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                  Maiores impedit perferendis suscipit eaque, iste dolor
-                  cupiditate blanditiis ratione.
+                  Whether you already bought a hoop and only need installation
+                  or bought form our store, the first step is to learn about
+                  your space and your needs. Our experience helps us ask the
+                  right questions.
                 </span>
               </li>
               <li className="flex gap-x-3">
-                <LockClosedIcon
+                <WrenchScrewdriverIcon
                   aria-hidden="true"
                   className="mt-1 size-5 flex-none text-indigo-600"
                 />
                 <span>
                   <strong className="font-semibold text-gray-900">
-                    SSL certificates.
+                    We do it right.
                   </strong>{" "}
-                  Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure
-                  qui lorem cupidatat commodo.
+                  We hold ourselves to the highest standards and strive for
+                  perfection. Upon job confirmation we will handle everything
+                  including underground utility markings. Safety is a top
+                  priority.
                 </span>
               </li>
               <li className="flex gap-x-3">
-                <ServerIcon
+                <ClockIcon
                   aria-hidden="true"
                   className="mt-1 size-5 flex-none text-indigo-600"
                 />
                 <span>
                   <strong className="font-semibold text-gray-900">
-                    Database backups.
+                    We do it fast.
                   </strong>{" "}
-                  Ac tincidunt sapien vehicula erat auctor pellentesque rhoncus.
-                  Et magna sit morbi lobortis.
+                  We've seen it all and this translates to speed. We aim for a
+                  two-week turnaround from purchase. This includes an industry
+                  standard 4-7 day concrete curing period.
+                </span>
+              </li>
+              <li className="flex gap-x-3">
+                <PhoneIcon
+                  aria-hidden="true"
+                  className="mt-1 size-5 flex-none text-indigo-600"
+                />
+                <span>
+                  <strong className="font-semibold text-gray-900">
+                    We keep you in the loop.
+                  </strong>{" "}
+                  Our business is built on communication. You are busy, so we do
+                  our best to work with your schedule. We notify you of arrivals
+                  and completed work so you always know where your project
+                  stands.
                 </span>
               </li>
             </ul>
-            <p className="mt-8">
-              Et vitae blandit facilisi magna lacus commodo. Vitae sapien duis
-              odio id et. Id blandit molestie auctor fermentum dignissim. Lacus
-              diam tincidunt ac cursus in vel. Mauris varius vulputate et
-              ultrices hac adipiscing egestas. Iaculis convallis ac tempor et
-              ut. Ac lorem vel integer orci.
-            </p>
-            <h2 className="mt-16 text-2xl font-bold tracking-tight text-gray-900">
-              No server? No problem.
-            </h2>
-            <p className="mt-6">
-              Id orci tellus laoreet id ac. Dolor, aenean leo, ac etiam
-              consequat in. Convallis arcu ipsum urna nibh. Pharetra, euismod
-              vitae interdum mauris enim, consequat vulputate nibh. Maecenas
-              pellentesque id sed tellus mauris, ultrices mauris. Tincidunt enim
-              cursus ridiculus mi. Pellentesque nam sed nullam sed diam turpis
-              ipsum eu a sed convallis diam.
-            </p>
-          </div>
+            {/* {Product cards} */}
+          </section>
         </div>
       </div>
     </div>

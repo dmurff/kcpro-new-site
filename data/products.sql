@@ -1,3 +1,27 @@
+CREATE TABLE hoops (
+id UUID PRIMARY KEY gen_random_uuid(),
+name TEXT,
+brand TEXT NOT NULL,
+model TEXT NOT NULL,
+price DECIMAL(10, 2) NOT NULL,
+description TEXT,
+install_price DECIMAL,
+can_sell BOOLEAN DEFAULT false,
+can_install_only BOOLEAN,
+backboard_size TEXT,
+backboard_material TEXT,
+post_size TEXT,
+adjustment_range TEXT,
+anchor_type TEXT,
+description TEXT,
+is_featured BOOLEAN DEFAULT false,
+created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+
+
+
+
 [
   {
     "brand": "Ironclad",
@@ -7,6 +31,7 @@
     "canSell": true,
     "canInstallOnly": false,
     "backboardSize": 60,
+    "backboardMaterial": "Tempered glass",
     "postSize": "5 x 5",
     "adjustmentRange": "7.5-10",
     "anchorType": "Bolt-down",
@@ -20,6 +45,7 @@
     "canSell": true,
     "canInstallOnly": false,
     "backboardSize": 60,
+    "backboardMaterial": "Tempered glass",
     "postSize": "5 x 5",
     "adjustmentRange": "5.5-10",
     "anchorType": "Bolt-down",
@@ -34,6 +60,7 @@
     "canSell": true,
     "canInstallOnly": false,
     "backboardSize": 60,
+    "backboardMaterial": "Tempered glass",
     "postSize": "6 x 6",
     "adjustmentRange": "5.5-10",
     "anchorType": "Bolt-down",
@@ -47,6 +74,7 @@
     "canSell": true,
     "canInstallOnly": false,
     "backboardSize": 72,
+    "backboardMaterial": "Tempered glass",
     "postSize": "6 x 8",
     "adjustmentRange": "5.5-10",
     "anchorType": "Bolt-down",

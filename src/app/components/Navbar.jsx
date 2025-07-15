@@ -20,7 +20,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-transparent text-white fixed top-0 w-full z-50 flex flex-row justify-between items-center px-12 h-24 backdrop-blur-xs">
+    <nav className="bg-transparent text-white fixed top-0 w-full z-50 flex flex-row justify-between items-center px-12 h-24">
       <ul className="flex justify-center gap-18 items-center text-xl">
         <li className="hover:text-blue-800">
           <Link href="/">Home</Link>

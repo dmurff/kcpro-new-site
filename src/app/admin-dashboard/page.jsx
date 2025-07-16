@@ -10,6 +10,7 @@ import {
 } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import AddHoopForm from "../components/AddHoopForm";
+import FormCheckbox from "../components/FormCheckbox";
 
 const user = {
   name: "Tom Cook",
@@ -33,6 +34,28 @@ const userNavigation = [
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
+
+const handleSubmit = async (formData) => {
+  const response = await fetch(
+    "/api/hoops",
+
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    }
+  );
+
+  const result = await response.json();
+
+  if (result.success) {
+    console.log("Success: hoop uploaded");
+  } else {
+    console.error("Failed to submit hoop", result.error);
+  }
+};
 
 export default function Example() {
   return (
@@ -206,7 +229,9 @@ export default function Example() {
         <main>
           <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
             {/* Your content */}
-            <AddHoopForm />
+            <AddHoopForm onSubmit={handleSubmit}>
+              <FormCheckbox />
+            </AddHoopForm>
           </div>
         </main>
       </div>

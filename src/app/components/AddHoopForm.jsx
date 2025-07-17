@@ -17,16 +17,20 @@ const AddHoopForm = ({ onSubmit, children }) => {
       backboard_size: "",
       backboard_material: "",
       post_size: "",
-      adjustment_range: "",
       anchor_type: "",
+      adjustment_range: "",
+      can_sell: false,
+      can_install_only: false,
+      is_featured: false,
       description: "",
+      product_images: "",
     },
   });
 
   return (
     <>
       <FormProvider {...methods}>
-        <form onSubmit={methods.handleSubmit(onSubmit)} className="w-150">
+        <form onSubmit={methods.handleSubmit(onSubmit)} className="max-w-3/4">
           <label htmlFor="name" className={labelStyle}>
             Hoop name
           </label>
@@ -89,8 +93,61 @@ const AddHoopForm = ({ onSubmit, children }) => {
             {...methods.register("backboard_material")}
             className={inputStyle}
           />
+          <label htmlFor="post_size" className={labelStyle}>
+            Post Size
+          </label>
+          <input
+            id="post_size"
+            {...methods.register("post_size")}
+            className={inputStyle}
+          />
+          <label htmlFor="anchor_type" className={labelStyle}>
+            Anchor Type
+          </label>
+          <input
+            id="anchor_type"
+            {...methods.register("anchor_type")}
+            className={inputStyle}
+          />
+          <label htmlFor="adjustment_range" className={labelStyle}>
+            Adjustment Range
+          </label>
+          <input
+            id="adjustment_range"
+            {...methods.register("adjustment_range")}
+            className={inputStyle}
+          />
 
           {children}
+          <label htmlFor="product_images" className={labelStyle}>
+            Images
+          </label>
+          <input
+            className={inputStyle}
+            type="file"
+            accept="image/*"
+            multiple
+            {...methods.register("product_images")}
+          ></input>
+          <label className={`mt-6 ${labelStyle}`} htmlFor="description">
+            Product Description
+          </label>
+          <textarea
+            className={inputStyle}
+            id="description"
+            type="text"
+            {...methods.register("description")}
+          ></textarea>
+          <button
+            type="submit"
+            className="inline-flex rounded-md bg-indigo-600 px-3.5
+            py-2.5 text-sm font-semibold text-white hover:bg-indigo-500
+            focus-visible:outline-2 focus-visible:outline-offset-2
+            focus-visible:outline-indigo-600"
+          >
+            {" "}
+            Upload Hoop
+          </button>
         </form>
       </FormProvider>
     </>

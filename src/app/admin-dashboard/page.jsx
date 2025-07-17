@@ -35,25 +35,34 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-const handleSubmit = async (formData) => {
-  const response = await fetch(
+const handleSubmit = async (data) => {
+  const formData = new FormData();
+
+  Object.entries(data).forEach(([key, value]) => {
+    if (key !== "product_images") {
+      formData.append(key, value);
+    }
+  });
+
+  if (data.product_images && data.product_images.length > 0) {
+    Array.from(data.product_images).forEach((img) => {
+      formData.append("product_images", img);
+    });
+  }
+
+  const res = await fetch(
     "/api/hoops",
 
     {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
+      body: formData,
     }
   );
 
-  const result = await response.json();
-
-  if (result.success) {
+  if (res.success) {
     console.log("Success: hoop uploaded");
   } else {
-    console.error("Failed to submit hoop", result.error);
+    console.error("Failed to submit hoop", res.error);
   }
 };
 
@@ -230,7 +239,9 @@ export default function Example() {
           <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
             {/* Your content */}
             <AddHoopForm onSubmit={handleSubmit}>
-              <FormCheckbox />
+              <FormCheckbox title="Can Sell" name="can_sell" />
+              <FormCheckbox title="Install Only" name="can_install_only" />
+              <FormCheckbox title="Is Featured" name="is_featured" />
             </AddHoopForm>
           </div>
         </main>

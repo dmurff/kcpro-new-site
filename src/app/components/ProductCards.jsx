@@ -52,7 +52,7 @@ export default function ProductCards() {
     const fetchHoops = async () => {
       const { data, error } = await supabase
         .from("hoops")
-        .select("id, name, brand, model, price, is_featured");
+        .select("id, name, brand, model, price, is_featured, product_images");
 
       if (error) {
         console.error("Fetch error", error);
@@ -72,11 +72,11 @@ export default function ProductCards() {
         <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
           {products.map((product) => (
             <div key={product.id} className="group relative">
-              {/* <img
-                alt={product.imageAlt}
-                src={product.imageSrc}
+              <img
+                // alt={product.imageAlt}
+                src={product.product_images?.[0]}
                 className="aspect-square w-full rounded-md bg-gray-200 object-cover group-hover:opacity-75 lg:aspect-auto lg:h-80"
-              /> */}
+              />
               <div className="mt-4 flex justify-between">
                 <div>
                   <h3 className="text-sm text-gray-700">

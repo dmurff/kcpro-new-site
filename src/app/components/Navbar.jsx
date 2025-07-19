@@ -33,29 +33,19 @@ const Navbar = () => {
   };
 
   return (
-    <nav
-      className={` fixed top-0 w-full z-50 flex flex-row justify-between items-center px-12 h-24 bg-transparent${
-        scrolled ? "bg-white text-black" : "bg-trasparent text-white"
-      }`}
-    >
-      <ul
-        className={`flex justify-center gap-x-8 items-center text-l mx-auto p-2 ${
-          scrolled
-            ? "bg-white/70 text-black outline-1 outline-black/20"
-            : "bg transparent text-white outline-1 outline-white/30"
-        }`}
-      >
-        <li className="hover:bg-blue-800 hover:text-white">
+    <nav className="fixed top-0 w-full z-50 flex flex-row justify-between items-center px-12 h-24 bg-indigo-950/70 text-white">
+      <ul className="flex justify-center gap-x-8 items-center text-2xl mx-auto p-2">
+        <li className="hover:text-orange-500 hover:scale-1.5">
           <Link href="/">Home</Link>
         </li>
 
-        <li className="hover:bg-blue-800">
+        <li className="hover:text-orange-500">
           <Link href="/about">About</Link>
         </li>
-        <li className="hover:text-blue-800">
-          <Link href="/contact">Contact</Link>
+        <li className="hover:text-orange-500">
+          <Link href="/contact">Products</Link>
         </li>
-        <li className="hover:text-blue-800">
+        <li className="hover:text-orange-500">
           <Link href="/contractor-dashboard">Contractor</Link>
         </li>
       </ul>

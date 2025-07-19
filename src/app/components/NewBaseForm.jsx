@@ -4,7 +4,7 @@ import { useForm, FormProvider } from "react-hook-form";
 
 const NewBaseForm = ({ onSubmit, children }) => {
   const inputClass =
-    "block w-full px-4 py-2 pr-10 mb-4 border border-gray-300 bg-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500";
+    "block w-full px-4 py-2 pr-10 mb-4 border border-gray-300 bg-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500";
 
   const methods = useForm({
     defaultValues: {
@@ -17,7 +17,7 @@ const NewBaseForm = ({ onSubmit, children }) => {
 
   return (
     <FormProvider {...methods}>
-      <section className="p-20">
+      <section className="p-20 mt-24 bg-indigo-950/20">
         <form
           className="text-black text-lg font-mono font-bold tracking-wide flex flex-col gap-4 max-w-lg w-full mx-auto p-10 bg-white my-4 rounded-md shadow-xl"
           onSubmit={methods.handleSubmit(onSubmit)}

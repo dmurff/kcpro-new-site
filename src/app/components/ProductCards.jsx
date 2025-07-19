@@ -52,7 +52,10 @@ export default function ProductCards() {
     const fetchHoops = async () => {
       const { data, error } = await supabase
         .from("hoops")
-        .select("id, name, brand, model, price, is_featured, product_images");
+        .select(
+          "id, name, brand, model, price, is_featured, product_images, backboard_size, anchor_type, post_size, adjustment_range"
+        )
+        .order("price", { ascending: true });
 
       if (error) {
         console.error("Fetch error", error);
@@ -63,7 +66,7 @@ export default function ProductCards() {
   }, []);
 
   return (
-    <div id="product-wrapper" className="bg-white">
+    <div id="product-wrapper" className="bg-white mb-24">
       <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
         <h2 className="text-2xl font-bold tracking-tight text-gray-900">
           Our most popular hoops
@@ -71,29 +74,32 @@ export default function ProductCards() {
 
         <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
           {products.map((product) => (
-            <div key={product.id} className="group relative shadow-lg">
+            <div
+              key={product.id}
+              className="group relative shadow-lg border-4 border-transparent hover:border-orange-500 hover:shadow-xl transition-all duration-200 cursor-pointer"
+            >
               <Image
                 src={product.product_images?.[0]}
                 alt={product.name}
                 height={300}
                 width={300}
-                className="block w-full h-full rounded-sm object-cover object-top transition duration-300 ease-in-out group-hover:scale-105"
+                className="block w-full h-full object-cover object-top"
               />
               <div className="mt-4 flex justify-between">
                 <div>
-                  <h3 className="text-sm text-gray-700">
+                  <h3 className="text-xl font-medium text-gray-700">
                     {product.name}
                     {/* <a href={product.href}>
                       <span aria-hidden="true" className="absolute inset-0" />
                       {product.name}
                     </a> */}
                   </h3>
-                  <p className="mt-1 text-sm text-gray-500"></p>
-                  <p className="mt-1 text-sm text-gray-500">
-                    {product.backboard}
+                  <p className="mt-1 text-lg text-gray-500">{`Backboard Size ${product.backboard_size?.trim()}"`}</p>
+                  <p className="mt-1 text-lg text-gray-500">
+                    Height Range {product.adjustment_range}
                   </p>
                 </div>
-                <p className="text-sm font-medium text-gray-900">
+                <p className="text-sm font-bold text-gray-900">
                   {`$ ${product.price}`}
                 </p>
               </div>

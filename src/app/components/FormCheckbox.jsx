@@ -13,7 +13,7 @@ export default function FormCheckbox({ title, name }) {
       <div className="divide-y divide-gray-200">
         <div className="relative flex gap-3 pt-3.5 pb-4">
           <div className="min-w-0 flex-1 text-lg">
-            <label htmlFor={name} className="font-medium text-gray-900">
+            <label htmlFor={name} className="font-medium text-white">
               {title}
             </label>
           </div>

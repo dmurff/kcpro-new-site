@@ -2,7 +2,7 @@
 import { useFormContext } from "react-hook-form";
 
 const checkboxStyle =
-  "h-5 w-5 accent-blue-500 rounded border-gray-300 focus:ring-2 focus:ring-blue-500";
+  "h-5 w-5 accent-indigo-600 rounded border-gray-300 focus:ring-2 focus:ring-indigo-600";
 
 const LeadForm = () => {
   const {
@@ -58,7 +58,7 @@ const LeadForm = () => {
         <>
           <select
             {...register("hoop_job_details")}
-            className="block w-full px-4 py-2 pr-10 mb-4 border border-gray-300 bg-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="appearance-none block w-full px-4 py-2 pr-10 mb-4 border border-gray-300 bg-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-600"
           >
             <option>Select one that applies...</option>
             <option>I need help buying and installing a hoop</option>
@@ -78,7 +78,7 @@ const LeadForm = () => {
           <>
             <label>Details</label>
             <textarea
-              className="block w-full px-4 py-2 pr-10 mb-4 border border-gray-300 bg-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="block w-full px-4 py-2 pr-10 mb-4 border border-gray-300 bg-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-600"
               {...register("misc_job_details")}
               placeholder="Tell us more about the product you need help installing..."
             ></textarea>

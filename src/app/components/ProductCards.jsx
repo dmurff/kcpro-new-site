@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import supabase from "/utils/supabaseClient";
 import Image from "next/image";
+import Link from "next/link";
 
 // const products = [
 //   {
@@ -78,13 +79,15 @@ export default function ProductCards() {
               key={product.id}
               className="group relative shadow-lg border-4 border-transparent hover:border-orange-500 hover:shadow-xl transition-all duration-200 cursor-pointer"
             >
-              <Image
-                src={product.product_images?.[0]}
-                alt={product.name}
-                height={300}
-                width={300}
-                className="block w-full h-full object-cover object-top"
-              />
+              <Link href={`/hoops/${product.id}`}>
+                <Image
+                  src={product.product_images?.[0]}
+                  alt={product.name}
+                  height={300}
+                  width={300}
+                  className="block w-full h-full object-cover object-top"
+                />
+              </Link>
               <div className="mt-4 flex justify-between">
                 <div>
                   <h3 className="text-xl font-medium text-gray-700">

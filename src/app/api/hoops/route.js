@@ -1,4 +1,3 @@
-"use server";
 import { NextResponse } from "next/server";
 import supabase from "/utils/supabaseServer";
 import cloudinary from "../../../../utils/cloudinary";
@@ -76,6 +75,7 @@ export async function POST(req) {
 // get data
 
 export async function GET(req) {
+  console.log(req);
   const { data, error } = await supabase.from("hoops").select("*");
 
   if (error) {

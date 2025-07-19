@@ -12,16 +12,20 @@ const ProductPage = () => {
     const fetchHoop = async () => {
       const { id } = params;
       const res = await fetch(`/api/hoops/${id}`);
-      const data = await res.json();
+      const json = await res.json();
 
-      setHoop(data);
+      setHoop(json.data);
     };
     fetchHoop();
   }, [params?.id]);
 
   if (!hoop) return <div>Loading...</div>;
 
-  return <div>{hoop.image}</div>;
+  return (
+    <div className="p-8 bg-white text-black rounded shadow-md">
+      <h2 className="text-black text-2xl">{hoop.name}</h2>
+    </div>
+  );
 };
 
 export default ProductPage;

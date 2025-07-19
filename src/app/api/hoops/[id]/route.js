@@ -1,21 +1,30 @@
-import supabase from "../../../utils/supabaseServer";
+import supabase from "../../../../../utils/supabaseServer";
 import { NextResponse } from "next/server";
 
-export async function GET(req, params) {
-  const { id } = params;
+export async function GET(req, { params }) {
+  try {
+    const { id } = params;
 
-  const { data, error } = await supabase
-    .from("hoops")
-    .select("*")
-    .eq("id", id)
-    .single();
+    const { data, error } = await supabase
+      .from("hoops")
+      .select("*")
+      .eq("id", id)
+      .single();
 
-  if (error) {
+    if (error) {
+      return NextResponse.json(
+        { success: false, error: error.message },
+        { status: 500 }
+      );
+    }
+    console.log(data);
+
+    return NextResponse.json({ success: true, data });
+  } catch (err) {
+    console.error("route error", err);
     return NextResponse.json(
-      { success: false, error: error.message },
+      { error: "internal Server error" },
       { status: 500 }
     );
   }
-
-  return NextResponse.json({ success: true, data });
 }

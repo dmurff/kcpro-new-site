@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import supabase from "/utils/supabaseClient";
-import { NextResponse } from "next/server";
+import Image from "next/image";
 
 // const products = [
 //   {
@@ -72,20 +72,23 @@ export default function ProductCards() {
         <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
           {products.map((product) => (
             <div key={product.id} className="group relative">
-              <img
-                // alt={product.imageAlt}
+              <Image
                 src={product.product_images?.[0]}
-                className="aspect-square w-full rounded-md bg-gray-200 object-cover group-hover:opacity-75 lg:aspect-auto lg:h-80"
+                alt={product.name}
+                height={300}
+                width={300}
+                className="block w-full h-full rounded-sm object-cover object-top transition duration-300 ease-in-out group-hover:scale-105"
               />
               <div className="mt-4 flex justify-between">
                 <div>
                   <h3 className="text-sm text-gray-700">
+                    {product.name}
                     {/* <a href={product.href}>
                       <span aria-hidden="true" className="absolute inset-0" />
                       {product.name}
                     </a> */}
                   </h3>
-                  <p className="mt-1 text-sm text-gray-500">{product.name}</p>
+                  <p className="mt-1 text-sm text-gray-500"></p>
                   <p className="mt-1 text-sm text-gray-500">
                     {product.backboard}
                   </p>

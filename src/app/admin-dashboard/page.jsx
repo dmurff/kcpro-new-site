@@ -23,7 +23,7 @@ const navigation = [
   { name: "Team", href: "#", current: false },
   { name: "Projects", href: "#", current: false },
   { name: "Calendar", href: "#", current: false },
-  { name: "Reports", href: "#", current: false },
+  { name: "Home", href: "/", current: false },
 ];
 const userNavigation = [
   { name: "Your Profile", href: "#" },
@@ -59,10 +59,12 @@ const handleSubmit = async (data) => {
     }
   );
 
-  if (res.success) {
+  const result = await res.json();
+
+  if (result.success) {
     console.log("Success: hoop uploaded");
   } else {
-    console.error("Failed to submit hoop", res.error);
+    console.error("Failed to submit hoop", result.error);
   }
 };
 

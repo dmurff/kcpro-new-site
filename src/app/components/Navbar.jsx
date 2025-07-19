@@ -66,9 +66,12 @@ const Navbar = () => {
         >
           <FaGoogle className="text-white" />
         </button>
-        <button className="text-cream items-center bg-orange-500 hover:bg-orange-100 hover:text-slate-950 hover:border-2 border-slate-950 rounded-md p-2">
+        <Link
+          href="/admin-dashboard"
+          className="text-cream items-center bg-orange-500 hover:bg-orange-100 hover:text-slate-950 hover:border-2 border-slate-950 rounded-md p-2"
+        >
           get a quote
-        </button>
+        </Link>
       </div>
     </nav>
   );

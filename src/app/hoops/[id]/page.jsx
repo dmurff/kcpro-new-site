@@ -1,11 +1,14 @@
 "use client";
 import { useState, useEffect } from "react";
 import { useParams } from "next/navigation";
-import Image from "next/image";
+import Navbar from "@/app/components/Navbar";
+import HoopCard from "@/app/components/HoopCard";
 
 const ProductPage = () => {
   const params = useParams();
   const [hoop, setHoop] = useState(null);
+
+  console.log("params:✅", params);
 
   useEffect(() => {
     if (!params?.id) return;
@@ -34,27 +37,10 @@ const ProductPage = () => {
     //     </div>
     //   </div>
     // </div>
-    <div className="p-8 text-black bg-white rounded shadow-md grid grid-cols-2 gap-x-8 mx-16">
-      {/* LEFT COLUMN: Image */}
-      <div className="col-start-1 flex justify-center items-start">
-        <div className="relative w-[600px] h-[600px] bg-white">
-          <Image
-            src={hoop.product_images[0]}
-            fill
-            className="object-contain"
-            alt={hoop.name}
-          />
-        </div>
-      </div>
-
-      {/* RIGHT COLUMN: Title */}
-      <div className="col-start-2 flex items-start justify-start">
-        <h2 className="text-black text-4xl">{hoop.name}</h2>
-      </div>
-      <p className="col-start-2 text-red-500 text-3xl line-through">
-        $ {hoop.price}
-      </p>
-    </div>
+    <>
+      <Navbar />
+      <HoopCard hoop={hoop} />
+    </>
   );
 };
 

@@ -54,7 +54,7 @@ export default function ProductCards() {
       const { data, error } = await supabase
         .from("hoops")
         .select(
-          "id, name, brand, model, price, is_featured, product_images, backboard_size, anchor_type, post_size, adjustment_range"
+          "id, name, brand, model, price, is_featured, product_images, backboard_size, anchor_type, post_size, adjustment_range, install_price"
         )
         .order("price", { ascending: true });
 
@@ -73,35 +73,33 @@ export default function ProductCards() {
           Our most popular hoops
         </h2>
 
-        <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+        <div className="mt-6 grid grid-cols-1 grid-rows-3 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8 w-full h-[600px]">
           {products.map((product) => (
             <div
               key={product.id}
-              className="group relative shadow-lg border-4 border-transparent hover:border-orange-500 hover:shadow-xl transition-all duration-200 cursor-pointer"
+              className="group relative h-[650px] w-full border-4 shadow-xl border-transparent hover:border-indigo-500 hover:shadow-xl transition-all duration-200 cursor-pointer"
             >
               <Link href={`/hoops/${product.id}`}>
                 <Image
-                  src={product.product_images?.[0]}
+                  src={product.product_images?.[5]}
                   alt={product.name}
-                  height={300}
-                  width={300}
+                  fill
                   className="block w-full h-full object-cover object-top"
                 />
               </Link>
-              <div className="mt-4 flex justify-between">
-                <div>
-                  <h3 className="text-xl font-medium text-gray-700">
-                    {product.name}
-                    {/* <a href={product.href}>
+              <div className="absolute w-full bottom-0 mt-4 flex flex-col gap-6 justify-between bg-gray-800 p-6 rounded-t-sm">
+                <h3 className="text-xl font-medium text-white">
+                  {product.name}
+                  {/* <a href={product.href}>
                       <span aria-hidden="true" className="absolute inset-0" />
                       {product.name}
                     </a> */}
-                  </h3>
-                  <p className="mt-1 text-lg text-gray-500">{`Backboard Size ${product.backboard_size?.trim()}"`}</p>
-                  <p className="mt-1 text-lg text-gray-500">
-                    Height Range {product.adjustment_range}
-                  </p>
-                </div>
+                </h3>
+                <p className="mt-1 text-lg text-white">{`Backboard Size ${product.backboard_size?.trim()}"`}</p>
+                <p className="mt-1 text-lg text-white">
+                  Height Range {product.adjustment_range}
+                </p>
+
                 <p className="text-sm font-bold text-gray-900">
                   {`$ ${product.price}`}
                 </p>

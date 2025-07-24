@@ -33,7 +33,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="fixed top-0 w-full z-50 flex flex-row justify-between items-center px-12 h-24 bg-indigo-950/70 text-white">
+    <nav className="fixed top-0 w-full z-50 flex flex-row justify-between items-center px-12 h-24 bg-gray-900 text-white">
       <ul className="flex justify-center gap-x-8 items-center text-2xl mx-auto p-2">
         <li className="hover:text-orange-500 hover:scale-1.5">
           <Link href="/">Home</Link>

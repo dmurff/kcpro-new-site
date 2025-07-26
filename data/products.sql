@@ -60,6 +60,7 @@ created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     "canInstallOnly": false,
     "backboardSize": 60,
     "backboardMaterial": "Tempered glass",
+    
     "postSize": "6 x 6",
     "adjustmentRange": "5.5-10",
     "anchorType": "Bolt-down",

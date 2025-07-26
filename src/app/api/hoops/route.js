@@ -30,7 +30,7 @@ export async function POST(req) {
   }
   console.log("📦 Incoming data:", formData);
 
-  const images = formData.getAll("product_images");
+  const images = formData.getAll("feature_image");
 
   const imageUrls = [];
 
@@ -55,8 +55,8 @@ export async function POST(req) {
     can_sell: !!formData.get("can_sell"),
     can_install_only: !!formData.get("can_install_only"),
     is_featured: !!formData.get("is_featured"),
-    description: formData.getAll("description"),
-    product_images: imageUrls,
+    description: formData.get("description"),
+    feature_image: imageUrls,
   };
 
   const { error } = await supabase.from("hoops").insert(hoopData);

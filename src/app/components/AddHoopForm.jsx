@@ -1,12 +1,13 @@
 "use client";
 import { FormProvider, useForm } from "react-hook-form";
+import { useEffect } from "react";
 
 const labelStyle = "block text-lg/6 font-medium text-gray-900";
 
 const inputStyle =
   "block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 mb-8";
 
-const AddHoopForm = ({ onSubmit, children }) => {
+const AddHoopForm = ({ onSubmit, children, initialValues }) => {
   const methods = useForm({
     defaultValues: {
       name: "",
@@ -23,9 +24,15 @@ const AddHoopForm = ({ onSubmit, children }) => {
       can_install_only: false,
       is_featured: false,
       description: "",
-      product_images: "",
+      feature_image: "",
     },
   });
+
+  useEffect(() => {
+    if (initialValues) {
+      methods.reset(initialValues);
+    }
+  }, [initialValues, methods]);
 
   return (
     <>
@@ -119,7 +126,7 @@ const AddHoopForm = ({ onSubmit, children }) => {
           />
 
           {children}
-          <label htmlFor="product_images" className={labelStyle}>
+          <label htmlFor="feature_image" className={labelStyle}>
             Images
           </label>
           <input
@@ -127,7 +134,7 @@ const AddHoopForm = ({ onSubmit, children }) => {
             type="file"
             accept="image/*"
             multiple
-            {...methods.register("product_images")}
+            {...methods.register("feature_image")}
           ></input>
           <label className={`mt-6 ${labelStyle}`} htmlFor="description">
             Product Description

@@ -15,7 +15,23 @@ const updateHoopPage = () => {
     }
   }, [showEditForm]);
 
-  const updateHoop = async (model) => {
+  const updateHoop = async (formData) => {
+    const res = await fetch("/api/updateHoop", {
+      method: "POST",
+      body: JSON.stringify(formData),
+      headers: { "Content-Type": "application/json" },
+    });
+
+    const result = await res.json();
+
+    if (result.success) {
+      console.log("✅ Hoop Updated");
+    } else {
+      console.error("❌ Failed to update hoop", result.error);
+    }
+  };
+
+  const fetchHoop = async (model) => {
     console.log("Hoop Update ✅", model);
     const { data, error } = await supabase
       .from("hoops")
@@ -42,19 +58,19 @@ const updateHoopPage = () => {
 
       <div className="flex items-center justify-around mb-16">
         <button
-          onClick={() => updateHoop("GC-55-LG")}
+          onClick={() => fetchHoop("GC-55-LG")}
           className="border-2 p-2 bg-white text-gray-900 font-semibold hover:bg-blue-900 hover:text-white hover:border-white transition duration-200 ease-in"
         >
           GC-55-LG
         </button>
         <button
-          onClick={() => updateHoop("TPT-553-LG")}
+          onClick={() => fetchHoop("TPT-553-LG")}
           className="border-2 p-2 bg-white text-gray-900 font-semibold hover:bg-blue-900 hover:text-white hover:border-white transition duration-200 ease-in"
         >
           TPT-553-LG
         </button>
         <button
-          onClick={() => updateHoop("FCH-664-XL")}
+          onClick={() => fetchHoop("FCH-664-XL")}
           className="border-2 p-2 bg-white text-gray-900 font-semibold hover:bg-blue-900 hover:text-white hover:border-white transition duration-200 ease-in"
         >
           FCH-664-XL
@@ -62,7 +78,7 @@ const updateHoopPage = () => {
       </div>
       {showEditForm && selectedHoop && (
         <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8 bg-gray-300">
-          <AddHoopForm initialValues={selectedHoop} /*onSubmit={handleSubmit}*/>
+          <AddHoopForm initialValues={selectedHoop} onSubmit={updateHoop}>
             <FormCheckbox title="Can Sell" name="can_sell" />
             <FormCheckbox title="Install Only" name="can_install_only" />
             <FormCheckbox title="Is Featured" name="is_featured" />

@@ -20,7 +20,7 @@ export default function FormCheckbox({ title, name }) {
           <div className="flex h-6 shrink-0 items-center">
             <div className="group grid size-4 grid-cols-1">
               <input
-                {...register(name)}
+                {...register(name, { valueAsBoolean: true })}
                 id={name}
                 type="checkbox"
                 aria-describedby="comments-description"

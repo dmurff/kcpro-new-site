@@ -1,9 +1,16 @@
+"use client";
+
 import AddHoopImages from "../components/AddHoopImages";
+import { useSearchParams } from "next/navigation";
+import supabase from "../../../utils/supabaseClient";
 
 const hoopImageUploader = () => {
+  const searchParams = useSearchParams();
+  const fromId = searchParams.get("from");
+
   return (
     <section>
-      <AddHoopImages />
+      <AddHoopImages id={fromId} />
     </section>
   );
 };

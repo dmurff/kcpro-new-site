@@ -26,9 +26,11 @@ const updateHoopPage = () => {
 
     const result = await res.json();
 
+    const { id } = result.data;
+
     if (result.success) {
       console.log("✅ Hoop Updated");
-      router.push("/hoop-image-uploader");
+      router.push(`/hoop-image-uploader?from=${id}`);
     } else {
       console.error("❌ Failed to update hoop", result.error);
     }

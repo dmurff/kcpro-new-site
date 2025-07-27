@@ -1,9 +1,7 @@
-import InfoBox from "../components/InfoBox";
-
 const AboutPage = () => {
   return (
     <section>
-      <InfoBox title="About Our Company" />
+      <div></div>
     </section>
   );
 };

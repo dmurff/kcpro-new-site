@@ -19,12 +19,12 @@ export default function HomepageMain() {
             clipPath:
               "polygon(63.1% 29.6%, 100% 17.2%, 76.7% 3.1%, 48.4% 0.1%, 44.6% 4.8%, 54.5% 25.4%, 59.8% 49.1%, 55.3% 57.9%, 44.5% 57.3%, 27.8% 48%, 35.1% 81.6%, 0% 97.8%, 39.3% 100%, 35.3% 81.5%, 97.2% 52.8%, 63.1% 29.6%)",
           }}
-          className="aspect-801/1036 w-200.25 bg-linear-to-tr from-[#ff80b5] to-[#9089fc] opacity-30"
+          className="aspect-801/1036 w-200.25 bg-linear-to-tr from-[#eb4019ff] to-[#d8aa2bff] opacity-20"
         />
       </div>
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto max-w-2xl lg:mx-0">
-          <p className="text-base/7 font-semibold text-indigo-600">
+          <p className="text-base/7 font-semibold text-gray-500">
             Are you ready to ball?
           </p>
           <h2 className="mt-2 text-4xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-5xl">
@@ -102,7 +102,7 @@ export default function HomepageMain() {
             className="max-w-xl text-base/7 text-gray-600 lg:col-span-7"
             id="our-process"
           >
-            <p className="text-base/7 font-semibold text-indigo-600">
+            <p className="text-base/7 font-semibold text-gray-500 mt-16">
               Fast and efficient
             </p>
             <h2 className="mt-2 text-4xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-5xl">

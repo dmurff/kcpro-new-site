@@ -3,9 +3,11 @@ import supabase from "./../../../utils/supabaseClient";
 import { useState, useEffect } from "react";
 import AddHoopForm from "../components/AddHoopForm";
 import FormCheckbox from "../components/FormCheckbox";
-import AddHoopImages from "../components/AddHoopImages";
+import { useRouter } from "next/navigation";
 
 const updateHoopPage = () => {
+  const router = useRouter();
+
   const [showEditForm, setShowEditForm] = useState(false);
   const [selectedHoop, setSelectedHoop] = useState(null);
 
@@ -26,6 +28,7 @@ const updateHoopPage = () => {
 
     if (result.success) {
       console.log("✅ Hoop Updated");
+      router.push("/hoop-image-uploader");
     } else {
       console.error("❌ Failed to update hoop", result.error);
     }
@@ -83,7 +86,6 @@ const updateHoopPage = () => {
             <FormCheckbox title="Install Only" name="can_install_only" />
             <FormCheckbox title="Is Featured" name="is_featured" />
           </AddHoopForm>
-          <AddHoopImages />
         </div>
       )}
     </div>

@@ -12,6 +12,7 @@ import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import AddHoopForm from "../components/AddHoopForm";
 import FormCheckbox from "../components/FormCheckbox";
 import AddHoopImages from "../components/AddHoopImages";
+import { useRouter } from "next/navigation";
 
 const user = {
   name: "Tom Cook",
@@ -36,40 +37,43 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-const handleSubmit = async (data) => {
-  const formData = new FormData();
-
-  Object.entries(data).forEach(([key, value]) => {
-    if (key !== "feature_image") {
-      formData.append(key, value);
-    }
-  });
-
-  if (data.feature_image && data.feature_image.length > 0) {
-    Array.from(data.feature_image).forEach((img) => {
-      formData.append("feature_image", img);
-    });
-  }
-
-  const res = await fetch(
-    "/api/hoops",
-
-    {
-      method: "POST",
-      body: formData,
-    }
-  );
-
-  const result = await res.json();
-
-  if (result.success) {
-    console.log("Success: hoop uploaded");
-  } else {
-    console.error("Failed to submit hoop", result.error);
-  }
-};
-
 export default function Example() {
+  const router = useRouter();
+
+  const handleSubmit = async (data) => {
+    const formData = new FormData();
+
+    Object.entries(data).forEach(([key, value]) => {
+      if (key !== "feature_image") {
+        formData.append(key, value);
+      }
+    });
+
+    if (data.feature_image && data.feature_image.length > 0) {
+      Array.from(data.feature_image).forEach((img) => {
+        formData.append("feature_image", img);
+      });
+    }
+
+    const res = await fetch(
+      "/api/hoops",
+
+      {
+        method: "POST",
+        body: formData,
+      }
+    );
+
+    const result = await res.json();
+
+    if (result.success) {
+      console.log("Success: hoop uploaded");
+      router.push("/hoop-image-uploader");
+    } else {
+      console.error("Failed to submit hoop", result.error);
+    }
+  };
+
   return (
     <>
       {/*

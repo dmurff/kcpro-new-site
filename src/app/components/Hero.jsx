@@ -59,7 +59,7 @@ export default function Example() {
           </defs>
         </svg>
         <div className="pr-6 pl-6 md:ml-auto md:w-2/3 md:pl-16 lg:w-1/2 lg:pr-0 lg:pl-24 xl:pl-32">
-          <p className="text-base/7 font-semibold text-indigo-400">
+          <p className="text-base/7 font-semibold text-gray-400">
             KC Pro Assembly
           </p>
           <h1 className="mt-2 text-4xl font-semibold tracking-tight text-white sm:text-5xl">
@@ -72,14 +72,14 @@ export default function Example() {
           <div className="mt-8 flex gap-6">
             <a
               href="#"
-              className="inline-flex rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              className="inline-flex rounded-md bg-orange-500 px-3.5 py-2.5 text-sm font-semibold text-white hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >
               {" "}
               Shop hoops + install
             </a>
             <a
               href="#our-process"
-              className="inline-flex rounded-md bg-transparent border-2 outline-indigo-500 px-3.5 py-2.5 text-sm font-semibold text-white hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 hover:border-indigo-500"
+              className="inline-flex rounded-md bg-transparent border-2 outline-blue-100 px-3.5 py-2.5 text-sm font-semibold text-white hover:bg-blue-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 hover:border-blue-100 hover:text-slate-800 transition duration-300 ease-in-out"
             >
               {" "}
               Not sure? Learn our process

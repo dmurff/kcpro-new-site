@@ -17,9 +17,9 @@ const NewBaseForm = ({ onSubmit, children }) => {
 
   return (
     <FormProvider {...methods}>
-      <section className="p-20 mt-24 bg-indigo-950/20">
+      <section className="grid grid-cols-1 lg:grid-cols-12 lg:mx-0 lg:mt-10 lg:max-w-none">
         <form
-          className="text-black text-lg font-mono font-bold tracking-wide flex flex-col gap-4 max-w-lg w-full mx-auto p-10 bg-white my-4 rounded-md shadow-xl"
+          className="text-black text-lg font-mono font-bold tracking-wide flex flex-col gap-4 max-w-lg mx-auto w-full p-10 bg-white my-4 rounded-md shadow-xl lg:col-span-6 lg:col-start-4"
           onSubmit={methods.handleSubmit(onSubmit)}
         >
           <label className="mr-4" htmlFor="first_name">

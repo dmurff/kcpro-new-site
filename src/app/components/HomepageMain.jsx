@@ -6,6 +6,7 @@ import {
   StarIcon,
 } from "@heroicons/react/20/solid";
 import { FaGoogle } from "react-icons/fa";
+import Image from "next/image";
 
 export default function HomepageMain() {
   return (
@@ -61,20 +62,10 @@ export default function HomepageMain() {
                 strokeWidth={0}
               />
             </svg>
-            <figure className="border-l border-blue-600 pl-8">
+
+            {/* <figure className="border border-slate-800 p-8">
               <blockquote className="text-xl/8 font-semibold tracking-tight text-gray-900">
-                <p>
-                  "We were really impressed with every aspect of KC Pro
-                  Assembly. After our old basketball goal rusted and fell, we
-                  needed a replacement fast for our college and high school
-                  players at home. David quickly understood our needs and
-                  recommended the Ironclad Triple Threat 553 — it’s incredibly
-                  sturdy, easy to adjust, and built to last. The installation
-                  was professional, the concrete work was excellent, and David
-                  expedited everything after our old goal collapsed. We’re
-                  thrilled with the result and expect to use this goal for many
-                  years to come."
-                </p>
+                <p>See what our customer's say about us!</p>
               </blockquote>
               <figcaption className="mt-8 flex gap-x-4">
                 <img
@@ -85,7 +76,7 @@ export default function HomepageMain() {
                 <div className="text-sm/6">
                   <div className="flex items-center gap-x-4 font-semibold text-gray-900">
                     Karen Dillon
-                    <FaGoogle className="text-indigo-500 h-4 w-4" />
+                    <FaGoogle className="text-orange-500 h-4 w-4" />
                   </div>
                   <div className="flex items-center">
                     <StarIcon className="text-yellow-400" />
@@ -96,7 +87,14 @@ export default function HomepageMain() {
                   </div>
                 </div>
               </figcaption>
-            </figure>
+            </figure> */}
+
+            <Image
+              className="rounded-md"
+              src="/images/t60-3.jpeg"
+              alt="In ground basketball hoop on driveway"
+              fill
+            />
           </div>
           <section
             className="max-w-xl text-base/7 text-gray-600 lg:col-span-7"
@@ -105,14 +103,14 @@ export default function HomepageMain() {
             <p className="text-base/7 font-semibold text-gray-500 mt-16">
               Fast and efficient
             </p>
-            <h2 className="mt-2 text-4xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-5xl">
+            <h2 className="-ml-1 mt-2 text-4xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-5xl">
               Our Install Process
             </h2>
             <ul role="list" className="mt-8 max-w-xl space-y-8 text-gray-600">
               <li className="flex gap-x-3">
                 <ChatBubbleLeftIcon
                   aria-hidden="true"
-                  className="mt-1 size-5 flex-none text-indigo-600"
+                  className="mt-1 size-5 flex-none text-orange-500"
                 />
                 <span>
                   <strong className="font-semibold text-gray-900">
@@ -127,7 +125,7 @@ export default function HomepageMain() {
               <li className="flex gap-x-3">
                 <WrenchScrewdriverIcon
                   aria-hidden="true"
-                  className="mt-1 size-5 flex-none text-indigo-600"
+                  className="mt-1 size-5 flex-none text-orange-500"
                 />
                 <span>
                   <strong className="font-semibold text-gray-900">
@@ -142,7 +140,7 @@ export default function HomepageMain() {
               <li className="flex gap-x-3">
                 <ClockIcon
                   aria-hidden="true"
-                  className="mt-1 size-5 flex-none text-indigo-600"
+                  className="mt-1 size-5 flex-none text-orange-500"
                 />
                 <span>
                   <strong className="font-semibold text-gray-900">
@@ -156,7 +154,7 @@ export default function HomepageMain() {
               <li className="flex gap-x-3">
                 <PhoneIcon
                   aria-hidden="true"
-                  className="mt-1 size-5 flex-none text-indigo-600"
+                  className="mt-1 size-5 flex-none text-orange-500"
                 />
                 <span>
                   <strong className="font-semibold text-gray-900">

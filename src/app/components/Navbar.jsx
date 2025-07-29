@@ -3,10 +3,12 @@ import Link from "next/link";
 import { FaGoogle } from "react-icons/fa";
 import { useState, useEffect } from "react";
 import { signInWithEmail } from "../../../utils/supabaseAuth";
+import Image from "next/image";
 
 const Navbar = () => {
   const [errorMsg, setErrorMsg] = useState("");
   const [scrolled, setScrolled] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -33,22 +35,39 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="fixed top-0 w-full z-50 flex flex-row justify-between items-center px-12 h-24 bg-gray-900 text-white">
-      <ul className="flex justify-center gap-x-8 items-center text-2xl mx-auto p-2">
-        <li className="hover:text-orange-500 hover:scale-1.5">
-          <Link href="/">Home</Link>
-        </li>
+    <nav className="fixed top-0 w-full z-40 flex flex-row justify-between pr-12 items-center h-24 bg-gray-900 text-white">
+      <div className="flex gap-x-8 ml-1">
+        <div>
+          <Image
+            src="/images/nav-logo.png"
+            alt="KC Pro Assembly logo"
+            width={120}
+            height={40}
+          />
+        </div>
+        <ul className="hidden lg:flex justify-center gap-x-8 items-center text-2xl mx-auto p-2">
+          <li className="hover:text-orange-500 hover:scale-1.5">
+            <Link href="/">Home</Link>
+          </li>
 
-        <li className="hover:text-orange-500">
-          <Link href="/about">About</Link>
-        </li>
-        <li className="hover:text-orange-500">
-          <Link href="/contact">Products</Link>
-        </li>
-        <li className="hover:text-orange-500">
-          <Link href="/contractor-dashboard">Contractor</Link>
-        </li>
-      </ul>
+          <li className="hover:text-orange-500">
+            <Link href="/about">About</Link>
+          </li>
+          <li className="hover:text-orange-500">
+            <Link href="/contact">Products</Link>
+          </li>
+          <li className="hover:text-orange-500">
+            <Link href="/contractor-dashboard">Contractor</Link>
+          </li>
+        </ul>
+        <button
+          className="lg:hidden text-2xl text-white"
+          onClick={() => (!isOpen ? setIsOpen(true) : setIsOpen(false))}
+        >
+          {isOpen ? "✕" : "☰"}
+        </button>
+      </div>
+
       <div className="flex gap-4 items-center ml-10">
         <button
           className="flex items-center bg-gray-700 hover:bg-gray-900 rounded-md p-2"

@@ -32,6 +32,7 @@ const HoopCard = ({ hoop }) => {
           </defs>
         </svg> */}
         {/* LEFT COLUMN: Image */}
+
         <div className="col-start-1 flex justify-center items-start">
           <div className="relative w-[600px] h-[600px]">
             <Image
@@ -77,6 +78,11 @@ const HoopCard = ({ hoop }) => {
             {hoop.install_price}
           </p>
           <hr className="my-4 border-t border-gray-300" />
+          <div>
+            <button className="bg-orange-500 p-2 text-white hover:bg-orange-400 hover:text-slate-200 hover:cursor-pointer">
+              Add to cart
+            </button>
+          </div>
         </div>
       </div>
       <div className="w-full m-16 mt-8">

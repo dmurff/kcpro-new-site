@@ -6,7 +6,7 @@ const HoopCard = ({ hoop }) => {
 
   return (
     <section>
-      <div className="relative p-8 text-black rounded shadow-md grid grid-cols-2 gap-x-8 m-16 mt-24 bg-white">
+      <div className="relative p-8 text-black rounded shadow-md grid lg:mx-16 lg:grid-cols-2 gap-x-8 mt-24 lg:mt-40 bg-white">
         {/* <svg
           viewBox="0 0 926 676"
           aria-hidden="true"
@@ -33,8 +33,8 @@ const HoopCard = ({ hoop }) => {
         </svg> */}
         {/* LEFT COLUMN: Image */}
 
-        <div className="col-start-1 flex justify-center items-start">
-          <div className="relative w-[600px] h-[600px]">
+        <div className="lg:col-start-1 flex justify-center items-start mb-8">
+          <div className="relative w-[300px] h-[300px] object-scale-down lg:w-[600px] lg:h-[600px]">
             <Image
               src={hoop.feature_image[0]}
               fill
@@ -45,7 +45,7 @@ const HoopCard = ({ hoop }) => {
         </div>
 
         {/* RIGHT COLUMN: Title */}
-        <div className="col-start-2 flex flex-col gap-y-4 w-[600px]">
+        <div className="lg:col-start-2 flex flex-col gap-y-4 w-full lg:w-[600px]">
           <div className="flex items-center justify-between">
             <h2 className="text-black text-4xl -ml-2">{hoop.name}</h2>
           </div>
@@ -85,7 +85,7 @@ const HoopCard = ({ hoop }) => {
           </div>
         </div>
       </div>
-      <div className="w-full m-16 mt-8">
+      <div className="w-full mt-8">
         <p className="text-md text-gray-900">{hoop.description}</p>
       </div>
     </section>

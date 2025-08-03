@@ -88,16 +88,17 @@ export default function HomepageMain() {
                 </div>
               </figcaption>
             </figure> */}
-
-            <Image
-              className="rounded-md"
-              src="/images/t60-3.jpeg"
-              alt="In ground basketball hoop on driveway"
-              fill
-            />
+            <div className="relative h-[800px] lg:order-last lg:col-span-5">
+              <Image
+                className="rounded-md overflow-hidden object-cover"
+                src="/images/t60-3.jpeg"
+                alt="In ground basketball hoop on driveway"
+                fill
+              />
+            </div>
           </div>
           <section
-            className="max-w-xl text-base/7 text-gray-600 lg:col-span-7"
+            className="max-w-xl text-base/7 text-gray-600 lg:col-span-7 scroll-mt-24"
             id="our-process"
           >
             <p className="text-base/7 font-semibold text-gray-500 mt-16">

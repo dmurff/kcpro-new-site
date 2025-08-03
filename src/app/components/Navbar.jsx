@@ -69,7 +69,7 @@ const Navbar = () => {
 
       <nav className="fixed top-0 w-full z-40 flex flex-row justify-between pr-12 items-center h-24 bg-gray-900 text-white">
         <div className="flex gap-x-8 ml-1">
-          <div>
+          <div className="hidden lg:block">
             <Image
               src="/images/nav-logo.png"
               alt="KC Pro Assembly logo"
@@ -81,7 +81,6 @@ const Navbar = () => {
             <li className="hover:text-orange-500 hover:scale-1.5">
               <Link href="/">Home</Link>
             </li>
-
             <li className="hover:text-orange-500">
               <Link href="/about">About</Link>
             </li>
@@ -93,13 +92,17 @@ const Navbar = () => {
             </li>
           </ul>
           <button
-            className="lg:hidden text-2xl text-white"
+            className="lg:hidden text-2xl text-white p-4"
             onClick={() => (!isOpen ? setIsOpen(true) : setIsOpen(false))}
           >
             {isOpen ? "✕" : "☰"}
           </button>
         </div>
-
+        <div className="lg:hidden">
+          <p className="text-white font-semibold text-xl tracking-wide">
+            KC PRO ASSEMBLY
+          </p>
+        </div>
         <div className="flex gap-4 items-center ml-10">
           <button
             className="flex items-center bg-gray-700 hover:bg-gray-900 rounded-md p-2"

@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { StarIcon, FireIcon, ArrowRightIcon } from "@heroicons/react/20/solid";
 
-const HoopCard = ({ hoop }) => {
+const HoopCard = ({ hoop, onCheckout }) => {
   if (!hoop) return null; // or a fallback?
 
   return (
@@ -79,7 +79,10 @@ const HoopCard = ({ hoop }) => {
           </p>
           <hr className="my-4 border-t border-gray-300" />
           <div>
-            <button className="bg-orange-500 p-2 text-white hover:bg-orange-400 hover:text-slate-200 hover:cursor-pointer">
+            <button
+              onClick={onCheckout}
+              className="bg-orange-500 p-2 text-white hover:bg-orange-400 hover:text-slate-200 hover:cursor-pointer"
+            >
               Add to cart
             </button>
           </div>

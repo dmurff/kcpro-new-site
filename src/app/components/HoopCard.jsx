@@ -1,5 +1,7 @@
 import Image from "next/image";
+import Link from "next/link";
 import { StarIcon, FireIcon, ArrowRightIcon } from "@heroicons/react/20/solid";
+import OrderNow from "../components/OrderNow";
 
 const HoopCard = ({ hoop, onCheckout }) => {
   if (!hoop) return null; // or a fallback?
@@ -79,12 +81,7 @@ const HoopCard = ({ hoop, onCheckout }) => {
           </p>
           <hr className="my-4 border-t border-gray-300" />
           <div>
-            <button
-              onClick={onCheckout}
-              className="bg-orange-500 p-2 text-white hover:bg-orange-400 hover:text-slate-200 hover:cursor-pointer"
-            >
-              Add to cart
-            </button>
+            <OrderNow id={hoop.id} type="hoops" />
           </div>
         </div>
       </div>

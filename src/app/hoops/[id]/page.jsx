@@ -8,31 +8,13 @@ const ProductPage = () => {
   const params = useParams();
   const [hoop, setHoop] = useState(null);
 
-  const handleStartCheckout = async () => {
-    const res = await fetch("/api/create-payment-intent", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        amount: hoop.price * 100, // Stripe uses cents
-        id: hoop.id,
-        job_id: "abc123",
-        customer_id: "xyz456",
-      }),
-    });
-
-    const data = await res.json();
-    console.log("Client Secret:", data.clientSecret);
-  };
-
   console.log("params:✅", params);
 
   useEffect(() => {
     if (!params?.id) return;
 
     const fetchHoop = async () => {
-      const { id } = params;
+      const { id } = context.params;
       const res = await fetch(`/api/hoops/${id}`);
       const json = await res.json();
 
@@ -57,7 +39,7 @@ const ProductPage = () => {
     // </div>
     <>
       <Navbar />
-      <HoopCard hoop={hoop} onCheckout={handleStartCheckout} />
+      <HoopCard hoop={hoop} />
     </>
   );
 };

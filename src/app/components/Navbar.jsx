@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import { FaGoogle } from "react-icons/fa";
+import { ShoppingCartIcon } from "@heroicons/react/24/outline";
 import { useState, useEffect } from "react";
 import { signInWithEmail } from "../../../utils/supabaseAuth";
 import Image from "next/image";
@@ -104,6 +105,9 @@ const Navbar = () => {
           </p>
         </div>
         <div className="flex gap-4 items-center ml-10">
+          <Link href="/">
+            <ShoppingCartIcon className="text-white w-[30px]" />
+          </Link>
           <button
             className="flex items-center bg-gray-700 hover:bg-gray-900 rounded-md p-2"
             onClick={handleLogin}

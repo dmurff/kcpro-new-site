@@ -9,7 +9,7 @@ const OrderNow = ({ id, type }) => {
         query: { id, type },
       }}
     >
-      <button className="bg-orange-500 p-2 text-white hover:bg-orange-400 hover:text-slate-200 hover:cursor-pointer">
+      <button className="bg-orange-500 p-2 text-white hover:bg-orange-400 rounded-md hover:text-slate-200 hover:cursor-pointer">
         Add to cart
       </button>
     </Link>

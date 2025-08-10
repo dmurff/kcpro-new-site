@@ -1,5 +1,5 @@
 import HoopCard from "../components/HoopCard";
-import { supabaseServer as supabase } from "@/lib/supabase/server";
+import { supabaseServer as supabase } from "../../../lib/supabase/server";
 
 const Products = () => {
   return (

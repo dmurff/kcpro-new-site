@@ -1,7 +1,6 @@
 import Checkout from "@/app/components/Checkout";
 // import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
-// import { useSearchParams } from "next/navigation";
 import { fetchHoop } from "../../../lib/data/hoops";
 import CheckoutWrapper from "@/app/components/CheckoutWrapper";
 

@@ -1,36 +1,43 @@
 "use client";
 
-import { useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import {
+  useStripe,
+  useElements,
+  PaymentElement,
+} from "@stripe/react-stripe-js";
+import { useState } from "react";
 
-const Checkout = ({ id, type, onCheckout }) => {
-  console.log(id, type);
+export default function Checkout({ id, type }) {
+  const stripe = useStripe();
+  const elements = useElements();
+  const [loading, setLoading] = useState(false);
+  const [msg, setMsg] = useState("");
 
-  const [data, setData] = useState(null);
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    if (!stripe || !elements) return;
 
-  useEffect(() => {
-    if (!id || !type) return;
+    setLoading(true);
+    const { error } = await stripe.confirmPayment({
+      elements,
+      confirmParams: {
+        return_url: `${window.location.origin}/checkout/success?id=${id}&type=${
+          type ?? ""
+        }`,
+      },
+    });
 
-    const fetchData = async () => {
-      const res = await fetch(`api/hoops/${id}`);
-      const json = await res.json();
-      setData(json.data);
-    };
-
-    fetchData();
-    console.log("✅", data);
-  }, [id, type]);
-
-  if (!data) return <div className="text-black">Loading checkout...</div>;
+    if (error) setMsg(error.message || "Payment failed");
+    setLoading(false);
+  };
 
   return (
-    <div>
-      <h1 className="text-black">Hi</h1>
-      <button className="bg-black text-white text-2xl" onClick={onCheckout}>
-        Order now
+    <form onSubmit={onSubmit}>
+      <PaymentElement />
+      <button disabled={!stripe || loading}>
+        {loading ? "Processing..." : "Pay"}
       </button>
-    </div>
+      {msg && <p>{msg}</p>}
+    </form>
   );
-};
-
-export default Checkout;
+}

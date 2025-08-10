@@ -1,6 +1,5 @@
-"use client";
-
 import HoopCard from "../components/HoopCard";
+import { supabaseServer as supabase } from "@/lib/supabase/server";
 
 const Products = () => {
   return (

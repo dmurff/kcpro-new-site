@@ -1,40 +1,23 @@
-"use client";
 import Checkout from "@/app/components/Checkout";
-import { Elements } from "@stripe/react-stripe-js";
+// import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
-import { useSearchParams } from "next/navigation";
+// import { useSearchParams } from "next/navigation";
+import { fetchHoop } from "../../../lib/data/hoops";
+import CheckoutWrapper from "@/app/components/CheckoutWrapper";
 
-const stripePromise = loadStripe(
-  process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
-);
+export default async function CheckoutPage({ searchParams }) {
+  const { id, type } = searchParams;
 
-const CheckoutPage = () => {
-  const searchParams = useSearchParams();
-  const id = searchParams.get("id");
-  const type = searchParams.get("type");
+  const hoop = await fetchHoop(id);
 
-  const handleStartCheckout = async () => {
-    const res = await fetch("/api/create-payment-intent", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        id,
-      }),
-    });
-
-    const data = await res.json();
-    console.log("Client Secret:", data.clientSecret);
-  };
+  console.log(hoop);
 
   return (
     <div>
-      <Elements stripe={stripePromise}>
+      {/* <Elements stripe={stripePromise}>
         <Checkout id={id} type={type} onCheckout={handleStartCheckout} />
-      </Elements>
+      </Elements> */}
+      <CheckoutWrapper hoop={hoop} id={hoop.id} type={type}></CheckoutWrapper>
     </div>
   );
-};
-
-export default CheckoutPage;
+}

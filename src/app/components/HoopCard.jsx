@@ -3,7 +3,7 @@ import Link from "next/link";
 import { StarIcon, FireIcon, ArrowRightIcon } from "@heroicons/react/20/solid";
 import OrderNow from "../components/OrderNow";
 
-const HoopCard = ({ hoop, onCheckout }) => {
+const HoopCard = ({ hoop, onCheckout, children }) => {
   if (!hoop) return null; // or a fallback?
 
   return (
@@ -81,6 +81,7 @@ const HoopCard = ({ hoop, onCheckout }) => {
           </p>
           <hr className="my-4 border-t border-gray-300" />
           <div>
+            {children}
             <OrderNow id={hoop.id} type="hoops" />
           </div>
         </div>

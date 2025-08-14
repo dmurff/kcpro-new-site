@@ -1,11 +1,11 @@
 export default function Example() {
   return (
     <div className="relative bg-gray-900">
-      <div className="relative h-80 overflow-hidden bg-indigo-600 md:absolute md:left-0 md:h-full md:w-1/3 lg:w-1/2">
+      <div className="relative aspect-[3/4] overflow-hidden bg-indigo-600 md:absolute md:left-0 md:h-full md:w-1/3 lg:w-1/2">
         <div className="bg-indigo-900/10 inset-0 absolute z-10" />
         <div
           className="absolute inset-0 bg-cover bg-center z-0"
-          style={{ backgroundImage: "url('/images/hero-product.jpg')" }}
+          style={{ backgroundImage: "url('/images/tpt-render.png')" }}
         ></div>
 
         <svg
@@ -15,7 +15,7 @@ export default function Example() {
         >
           <path
             d="m254.325 516.708-90.89 158.331L0 436.427l254.325 80.281 163.691-285.15c1.048 131.759 36.144 345.144 168.149 144.613C751.171 125.508 707.17-93.823 826.603 41.15c95.546 107.978 104.766 294.048 97.432 373.585L685.481 297.694l16.974 360.474-448.13-141.46Z"
-            fill="url(#60c3c621-93e0-4a09-a0e6-4c228a0116d8)"
+            fill="url(#60c3c623-93e0-4a09-a0e6-4c228a0116d8)"
             fillOpacity=".4"
           />
           <defs>
@@ -63,11 +63,13 @@ export default function Example() {
             KC Pro Assembly
           </p>
           <h1 className="mt-2 text-4xl font-semibold tracking-tight text-white sm:text-5xl">
-            Transform your space into a basketball court with an in ground hoop.
+            Your driveway is about to become the best part of your home.
           </h1>
           <p className="mt-6 text-base/7 text-gray-300">
-            Visit our store and easily set up a full service hoop purchase,
-            delivery, and installation.
+            We offer a line of premium in ground hoops that will transform your
+            space and create memories. Join hundreds of satisfied customers in
+            the Kansas City area and trust us to handle your project with speed
+            and precision.
           </p>
           <div className="mt-8 flex gap-6">
             <a

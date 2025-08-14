@@ -26,7 +26,7 @@ export default function ProductCards() {
   }, []);
 
   return (
-    <div id="product-wrapper" className="bg-gray-100/20 mb-24">
+    <div id="product-wrapper" className="bg-gray-100 mb-24">
       <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
         <h2 className="text-2xl font-bold tracking-tight text-gray-900">
           Our most popular hoops
@@ -36,7 +36,7 @@ export default function ProductCards() {
           {products.map((product) => (
             <div
               key={product.id}
-              className="group relative h-[650px] w-full rounded-md border-4 shadow-xl border-transparent hover:border-indigo-500 hover:shadow-xl transition-all duration-200 cursor-pointer"
+              className="group relative h-[650px] w-full rounded-md border-4 shadow-xl border-transparent hover:border-orange-500 hover:shadow-xl transition-all duration-200 cursor-pointer"
             >
               <Link href={`/hoops/${product.id}`}>
                 <Image

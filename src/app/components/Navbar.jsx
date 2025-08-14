@@ -68,7 +68,7 @@ const Navbar = () => {
         </>
       )}
 
-      <nav className="fixed top-0 w-full z-40 flex flex-row justify-between pr-12 items-center h-24 bg-gray-900 text-white">
+      <nav className="fixed top-0 w-full z-40 flex flex-row justify-between pr-12 items-center h-18 bg-gray-900 text-white">
         <div className="flex gap-x-8 ml-1">
           <div className="hidden lg:block">
             <Image

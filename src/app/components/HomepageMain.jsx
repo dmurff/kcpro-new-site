@@ -10,7 +10,7 @@ import Image from "next/image";
 
 export default function HomepageMain() {
   return (
-    <div className="relative isolate overflow-hidden bg-white py-24 sm:py-32">
+    <div className="relative isolate overflow-hidden bg-linear-to-b from-gray-300 via-gray-100 to-white py-24 sm:py-32">
       <div
         aria-hidden="true"
         className="absolute -top-80 left-[max(6rem,33%)] -z-10 transform-gpu blur-3xl sm:left-1/2 md:top-20 lg:ml-20 xl:top-3 xl:ml-56"
@@ -88,7 +88,7 @@ export default function HomepageMain() {
                 </div>
               </figcaption>
             </figure> */}
-            <div className="relative h-[800px] lg:order-last lg:col-span-5">
+            <div className="relative h-[800px] lg:order-last lg:col-span-5 shadow-lg">
               <Image
                 className="rounded-md overflow-hidden object-cover"
                 src="/images/t60-3.jpeg"
@@ -102,16 +102,16 @@ export default function HomepageMain() {
             id="our-process"
           >
             <p className="text-base/7 font-semibold text-gray-500 mt-16">
-              Fast and efficient
+              Why us?
             </p>
             <h2 className="-ml-1 mt-2 text-4xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-5xl">
-              Our Install Process
+              Professional Service
             </h2>
-            <ul role="list" className="mt-8 max-w-xl space-y-8 text-gray-600">
+            <ul role="list" className="mt-8 max-w-xl space-y-14 text-gray-600">
               <li className="flex gap-x-3">
                 <ChatBubbleLeftIcon
                   aria-hidden="true"
-                  className="mt-1 size-5 flex-none text-orange-500"
+                  className="mt-1 size-5 flex-none text-slate-800"
                 />
                 <span>
                   <strong className="font-semibold text-gray-900">
@@ -126,7 +126,7 @@ export default function HomepageMain() {
               <li className="flex gap-x-3">
                 <WrenchScrewdriverIcon
                   aria-hidden="true"
-                  className="mt-1 size-5 flex-none text-orange-500"
+                  className="mt-1 size-5 flex-none text-slate-800"
                 />
                 <span>
                   <strong className="font-semibold text-gray-900">
@@ -141,7 +141,7 @@ export default function HomepageMain() {
               <li className="flex gap-x-3">
                 <ClockIcon
                   aria-hidden="true"
-                  className="mt-1 size-5 flex-none text-orange-500"
+                  className="mt-1 size-5 flex-none text-slate-800"
                 />
                 <span>
                   <strong className="font-semibold text-gray-900">
@@ -155,7 +155,7 @@ export default function HomepageMain() {
               <li className="flex gap-x-3">
                 <PhoneIcon
                   aria-hidden="true"
-                  className="mt-1 size-5 flex-none text-orange-500"
+                  className="mt-1 size-5 flex-none text-slate-800"
                 />
                 <span>
                   <strong className="font-semibold text-gray-900">

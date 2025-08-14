@@ -1,6 +1,7 @@
 import Navbar from "@/app/components/Navbar";
 import HoopCard from "@/app/components/HoopCard";
 import { fetchHoop } from "../../../../lib/data/hoops";
+import TotalBox from "@/app/components/TotalBox";
 
 export const revalidate = 60; // Page will re-generate in the background every 60 seconds
 
@@ -15,7 +16,9 @@ export default async function ProductPage({ params }) {
   return (
     <>
       <Navbar />
-      <HoopCard hoop={hoop} />
+      <HoopCard hoop={hoop}>
+        <TotalBox />
+      </HoopCard>
     </>
   );
 }

@@ -1,32 +1,59 @@
 import Image from "next/image";
+import Link from "next/link";
+import OrderNow from "./OrderNow";
 
 export default function SalesSection() {
   return (
-    <section className="bg-gradient-to-b from-gray-100 to-gray-300 to-90% h-[800px]">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8 h-full">
-        <div className="grid grid-cols-1 md:grid-cols-2 h-full">
-          {/* Left Text Column */}
-          <div className="flex flex-col justify-center">
-            <p className="text-orange-300 font-black text-2xl">01.</p>
+    <section className="bg-white">
+      <div className="mx-auto max-w-7xl px-6 py-6 lg:px-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-y-0 md:gap-x-8 md:min-h-[800px]">
+          {/* Block 1 */}
+          <div className="p-6 pt-0 md:col-start-1 md:row-start-1">
+            <p className="text-blue-100 font-black text-2xl">01.</p>
             <h2 className="text-3xl lg:text-4xl text-slate-800 font-bold">
-              Select your hoop
+              Purchase your hoop
             </h2>
             <p className="text-lg/7 text-slate-600 font-light mt-8">
-              Kansas City's top hoop installers partnered with the best in
-              ground hoop manufacturer to bring you double the quality. For 30
-              years Ironclad Sports has innovated and defined the modern era of
-              home basketball systems.
+              Kansas City's top hoop installers partnered with Ironclad Sports
+              to bring you the most durable in ground basketball goals on the
+              market. With unmatched curb appeal and time tested designs you
+              will love your new hoop.
             </p>
           </div>
 
-          {/* Right Image Column */}
-          <div className="relative flex items-end justify-center">
-            <Image
-              src="/images/tpt-render.png"
-              alt="Hoops"
-              width={900}
-              height={900}
-              className="object-contain"
+          {/* Block 2 — goes to column 2, vertically centered */}
+          <div className="p-6 md:col-start-2 md:row-start-2 flex items-center justify-center">
+            <div>
+              <p className="text-blue-100 font-black text-2xl">02.</p>
+              <h2 className="text-3xl lg:text-4xl text-slate-800 font-bold">
+                Select installation options
+              </h2>
+              <p className="text-lg/7 text-slate-600 font-light mt-8">
+                When checking out you will see a list of services we offer
+                ranging from current hoop removal to in ground assembly. Select
+                the options that you need and proceed to checkout.
+              </p>
+            </div>
+          </div>
+
+          {/* Block 3 */}
+          <div className="p-6 md:col-start-1 md:row-start-3">
+            <p className="text-blue-100 font-black text-2xl">03.</p>
+            <h2 className="text-3xl lg:text-4xl text-slate-800 font-bold">
+              Schedule your service
+            </h2>
+            <p className="text-lg/7 text-slate-600 font-light mt-8">
+              After checkout you will be emailed a receipt and clear
+              instructions for next steps. Then you will be prompted to choose
+              an installation date that works for you.
+            </p>
+          </div>
+          <div className="p-6 md:col-start-1 md:row-start-4">
+            <OrderNow
+              styling={
+                "bg-green-500 font-semibold text-white p-2 rounded-lg hover:bg-green-950 "
+              }
+              text={"Browse Hoops"}
             />
           </div>
         </div>

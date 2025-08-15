@@ -39,7 +39,7 @@ const Navbar = () => {
     <>
       {isOpen && (
         <>
-          <div className="fixed inset-0 z-50 bg-white flex flex-col">
+          <div className="fixed inset-0 z-50 bg-gradient-to-b from-gray-300 via-gray-100 to-white flex flex-col">
             <div className="flex justify-end">
               <button
                 className="text-3xl text-slate-800"

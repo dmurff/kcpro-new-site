@@ -26,7 +26,8 @@ export default function ProductCards() {
   }, []);
 
   return (
-    <div id="product-wrapper" className="bg-gray-100 mb-24">
+    <div id="product-wrapper" className="bg-white mb-24">
+      <div className="h-px bg-gray-100 w-[90%]" />
       <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
         <h2 className="text-2xl font-bold tracking-tight text-gray-900">
           Our most popular hoops

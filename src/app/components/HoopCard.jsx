@@ -47,7 +47,7 @@ const HoopCard = ({ hoop, onCheckout, children }) => {
         </div>
 
         {/* RIGHT COLUMN: Title */}
-        <div className="lg:col-start-2 flex flex-col gap-y-4 w-full lg:w-[600px]">
+        <div className="lg:col-start-2 flex flex-col w-full gap-y-4 min-w-0">
           <div className="flex items-center justify-between">
             <h2 className="text-black text-4xl -ml-2">{hoop.name}</h2>
           </div>
@@ -67,7 +67,7 @@ const HoopCard = ({ hoop, onCheckout, children }) => {
           </div>
           <div
             id="hoop_price"
-            className="flex flex-row items-center gap-x-2 w-full"
+            className="flex flex-row items-center gap-x-2 w-full min-w-0"
           >
             <p className="text-xl">Hoop Price: </p>
             <p className="text-red-500 text-sm line-through">
@@ -80,13 +80,13 @@ const HoopCard = ({ hoop, onCheckout, children }) => {
             {hoop.install_price}
           </p>
           <hr className="my-4 border-t border-gray-300" />
-          <div>
+          <div className="flex flex-start gap-16 items-center">
             {children}
             <OrderNow id={hoop.id} type="hoops" />
           </div>
         </div>
       </div>
-      <div className="w-full mt-8">
+      <div className="w-full mt-8 p-12">
         <p className="text-md text-gray-900">{hoop.description}</p>
       </div>
     </section>

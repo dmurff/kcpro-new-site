@@ -1,96 +1,297 @@
 import Image from "next/image";
 import Link from "next/link";
-import { StarIcon, FireIcon, ArrowRightIcon } from "@heroicons/react/20/solid";
+// import { StarIcon, FireIcon, ArrowRightIcon } from "@heroicons/react/20/solid";
 import OrderNow from "../components/OrderNow";
+import Toggle from "../components/Toggle";
 
-const HoopCard = ({ hoop, onCheckout, children }) => {
-  if (!hoop) return null; // or a fallback?
+import {
+  Disclosure,
+  DisclosureButton,
+  DisclosurePanel,
+  Tab,
+  TabGroup,
+  TabList,
+  TabPanel,
+  TabPanels,
+} from "@headlessui/react";
+import { StarIcon } from "@heroicons/react/20/solid";
+import { HeartIcon, MinusIcon, PlusIcon } from "@heroicons/react/24/outline";
 
-  return (
-    <section>
-      <div className="relative p-8 text-black rounded shadow-md grid lg:mx-16 lg:grid-cols-2 gap-x-8 mt-24 lg:mt-40 bg-white">
-        {/* <svg
-          viewBox="0 0 926 676"
-          aria-hidden="true"
-          className="absolute -bottom-24 left-24 w-231.5 transform-gpu blur-[118px]"
-        >
-          <path
-            d="m254.325 516.708-90.89 158.331L0 436.427l254.325 80.281 163.691-285.15c1.048 131.759 36.144 345.144 168.149 144.613C751.171 125.508 707.17-93.823 826.603 41.15c95.546 107.978 104.766 294.048 97.432 373.585L685.481 297.694l16.974 360.474-448.13-141.46Z"
-            fill="url(#60c3c621-93e0-4a09-a0e6-4c228a0116d8)"
-            fillOpacity=".4"
-          />
-          <defs>
-            <linearGradient
-              id="60c3c621-93e0-4a09-a0e6-4c228a0116d8"
-              x1="926.392"
-              x2="-109.635"
-              y1=".176"
-              y2="321.024"
-              gradientUnits="userSpaceOnUse"
-            >
-              <stop stopColor="#e7480eff" />
-              <stop offset={1} stopColor="#e80a0aff" />
-            </linearGradient>
-          </defs>
-        </svg> */}
-        {/* LEFT COLUMN: Image */}
-
-        <div className="lg:col-start-1 flex justify-center items-start mb-8">
-          <div className="relative w-[300px] h-[300px] object-scale-down lg:w-[600px] lg:h-[600px]">
-            <Image
-              src={hoop.feature_image[0]}
-              fill
-              className="object-contain"
-              alt={hoop.name}
-            />
-          </div>
-        </div>
-
-        {/* RIGHT COLUMN: Title */}
-        <div className="lg:col-start-2 flex flex-col w-full gap-y-4 min-w-0">
-          <div className="flex items-center justify-between">
-            <h2 className="text-black text-4xl -ml-2">{hoop.name}</h2>
-          </div>
-          <div className="flex flex-col items-start justify-between gap-y-6">
-            <p className="text-black text-sm">{hoop.description}</p>
-            <div className="flex items-center gap-x-2">
-              <FireIcon className="h-[30px] w-[30px] text-orange-400 shrink-0 -ml-1" />
-              <p className="text-black text-sm leading-none">
-                One of the most popular hoops sold in Kansas City in 2024!
-              </p>
-            </div>
-          </div>
-          <div className="flex flex-row items-center gap-x-2">
-            <p className="text-sm text-orange-600 font-semibold">5.0</p>
-            <StarIcon className="w-[15px] h-[15px] mb-1 text-orange-600 ml-0" />
-            <p className="inline text-gray-600 text-xs"> 49 reviews</p>
-          </div>
-          <div
-            id="hoop_price"
-            className="flex flex-row items-center gap-x-2 w-full min-w-0"
-          >
-            <p className="text-xl">Hoop Price: </p>
-            <p className="text-red-500 text-sm line-through">
-              ${Number(`${hoop.price}`) + 500}
-            </p>{" "}
-            <ArrowRightIcon className="h-[15px] w-[15px]" />${hoop.price}
-          </div>
-          <p className="text-black text-md">
-            <span className="text-xl">Installation fee:</span> $
-            {hoop.install_price}
-          </p>
-          <hr className="my-4 border-t border-gray-300" />
-          <div className="flex flex-start gap-16 items-center">
-            {children}
-            <OrderNow id={hoop.id} type="hoops" />
-          </div>
-        </div>
-      </div>
-      <div className="w-full mt-8 p-12">
-        <p className="text-md text-gray-900">{hoop.description}</p>
-      </div>
-    </section>
-  );
+const product = {
+  name: "",
+  price: "$140",
+  rating: 4,
+  images: [
+    {
+      id: 1,
+      name: "Angled view",
+      src: "https://tailwindcss.com/plus-assets/img/ecommerce-images/product-page-03-product-01.jpg",
+      alt: "Angled front view with bag zipped and handles upright.",
+    },
+    {
+      id: 2,
+      name: "Front view",
+      src: "https://tailwindcss.com/plus-assets/img/ecommerce-images/product-page-03-product-02.jpg",
+      alt: "Front view with bag zipped and handles upright.",
+    },
+    {
+      id: 3,
+      name: "Back view",
+      src: "https://tailwindcss.com/plus-assets/img/ecommerce-images/product-page-03-product-03.jpg",
+      alt: "Back view with bag zipped and straps hanging down.",
+    },
+    {
+      id: 4,
+      name: "Back angle open view",
+      src: "https://tailwindcss.com/plus-assets/img/ecommerce-images/product-page-03-product-04.jpg",
+      alt: "Back angled view with bag open and handles to the side.",
+    },
+  ],
+  colors: [
+    {
+      id: "washed-black",
+      name: "Washed Black",
+      classes: "bg-gray-700 checked:outline-gray-700",
+    },
+    {
+      id: "white",
+      name: "White",
+      classes: "bg-white checked:outline-gray-400",
+    },
+    {
+      id: "washed-gray",
+      name: "Washed Gray",
+      classes: "bg-gray-500 checked:outline-gray-500",
+    },
+  ],
+  description: `
+    <p>The Zip Tote Basket is the perfect midpoint between shopping tote and comfy backpack. With convertible straps, you can hand carry, should sling, or backpack this convenient and spacious bag. The zip top and durable canvas construction keeps your goods protected for all-day use.</p>
+  `,
+  details: [
+    {
+      name: "Features",
+      items: [
+        "Multiple strap configurations",
+        "Spacious interior with top zip",
+        "Leather handle and tabs",
+        "Interior dividers",
+        "Stainless strap loops",
+        "Double stitched construction",
+        "Water-resistant",
+      ],
+    },
+    {
+      name: "Care",
+      items: [
+        "Spot clean as needed",
+        "Hand wash with mild soap",
+        "Machine wash interior dividers",
+        "Treat handle and tabs with leather conditioner",
+      ],
+    },
+    {
+      name: "Shipping",
+      items: [
+        "Free shipping on orders over $300",
+        "International shipping available",
+        "Expedited shipping options",
+        "Signature required upon delivery",
+      ],
+    },
+    {
+      name: "Returns",
+      items: [
+        "Easy return requests",
+        "Pre-paid shipping label included",
+        "10% restocking fee for returns",
+        "60 day return window",
+      ],
+    },
+  ],
 };
 
-export default HoopCard;
+function classNames(...classes) {
+  return classes.filter(Boolean).join(" ");
+}
+
+export default function HoopCard({ hoop, onCheckout, children }) {
+  if (!hoop) return null;
+
+  console.log("🚀", hoop.id, hoop.name);
+  return (
+    <div className="bg-white">
+      <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
+        <div className="lg:grid lg:grid-cols-2 lg:items-start lg:gap-x-8">
+          {/* Image gallery */}
+          <TabGroup className="flex flex-col-reverse">
+            {/* Image selector */}
+            <div className="mx-auto mt-6 hidden w-full max-w-2xl sm:block lg:max-w-none">
+              <TabList className="grid grid-cols-4 gap-6">
+                {product.images.map((image) => (
+                  <Tab
+                    key={image.id}
+                    className="group relative flex h-24 cursor-pointer items-center justify-center rounded-md bg-white text-sm font-medium text-gray-900 uppercase hover:bg-gray-50 focus:ring-3 focus:ring-indigo-500/50 focus:ring-offset-4 focus:outline-hidden"
+                  >
+                    <span className="sr-only">{hoop.model}</span>
+                    <span className="absolute inset-0 overflow-hidden rounded-md">
+                      <img
+                        alt=""
+                        src={image.src}
+                        className="size-full object-cover"
+                      />
+                    </span>
+                    <span
+                      aria-hidden="true"
+                      className="pointer-events-none absolute inset-0 rounded-md ring-2 ring-transparent ring-offset-2 group-data-selected:ring-indigo-500"
+                    />
+                  </Tab>
+                ))}
+              </TabList>
+            </div>
+
+            <TabPanels>
+              {product.images.map((image) => (
+                <TabPanel key={image.id}>
+                  <img
+                    alt={image.alt}
+                    src={hoop.feature_image?.[0]}
+                    className="aspect-square w-full object-fit sm:rounded-lg"
+                  />
+                </TabPanel>
+              ))}
+            </TabPanels>
+          </TabGroup>
+
+          {/* Product info */}
+          <div className="mt-10 px-4 sm:mt-16 sm:px-0 lg:mt-0">
+            <h1 className="text-3xl font-bold tracking-tight text-gray-900">
+              {hoop.name}
+            </h1>
+
+            <div className="mt-3 flex flex-row gap-8 justify-start items-center">
+              <h2 className="sr-only">Product information</h2>
+              <p className="text-3xl tracking-tight text-gray-900">
+                $ {hoop.price}
+              </p>
+              <p className="text-sm text-gray-900">was</p>
+              <span className="text-red-800 text-3xl font-light line-through">
+                {`$${hoop.price + 500}`}
+              </span>
+            </div>
+
+            {/* Reviews */}
+            <div className="mt-3">
+              <h3 className="sr-only">Reviews</h3>
+              <div className="flex items-center">
+                <div className="flex items-center">
+                  {[0, 1, 2, 3, 4].map((rating) => (
+                    <StarIcon
+                      key={rating}
+                      aria-hidden="true"
+                      className="text-orange-500 size-5 shrink-0"
+                    />
+                  ))}
+                </div>
+                <p className="sr-only">{product.rating} out of 5 stars</p>
+              </div>
+            </div>
+
+            <div className="mt-6">
+              <h3 className="sr-only">Description</h3>
+
+              <div
+                dangerouslySetInnerHTML={{ __html: hoop.description }}
+                className="space-y-6 text-base text-gray-700"
+              />
+            </div>
+
+            <form className="mt-6">
+              {/* Colors */}
+              <div className="flex flex-col gap-4">
+                {/* <h3 className="text-sm font-medium text-gray-600">
+                  Add a service
+                </h3> */}
+                <h3 className="text-gray-900 text-md">Add a service</h3>
+                <p className="text-gray-900">
+                  (requires 50% deposit at checkout)
+                </p>
+                <Toggle service_name={"installation"} service_cost={800} />
+                <Toggle service_name={"hoop removal"} service_cost={350} />
+
+                {/* <fieldset aria-label="Choose a color" className="mt-2">
+                  <div className="flex items-center gap-x-3">
+                    {product.colors.map((color) => (
+                      <div
+                        key={color.id}
+                        className="flex rounded-full outline -outline-offset-1 outline-black/10"
+                      ></div>
+                    ))}
+                  </div>
+                </fieldset> */}
+              </div>
+
+              <div className="mt-10 flex">
+                <button
+                  type="submit"
+                  className="flex max-w-xs flex-1 items-center justify-center rounded-md border border-transparent bg-orange-500 px-8 py-3 text-base font-medium text-white hover:bg-orange-600 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50 focus:outline-hidden sm:w-full"
+                >
+                  Add to cart
+                </button>
+
+                <button
+                  type="button"
+                  className="ml-4 flex items-center justify-center rounded-md px-3 py-3 text-gray-400 hover:bg-gray-100 hover:text-gray-500"
+                >
+                  <HeartIcon aria-hidden="true" className="size-6 shrink-0" />
+                  <span className="sr-only">Add to favorites</span>
+                </button>
+              </div>
+            </form>
+
+            <section aria-labelledby="details-heading" className="mt-12">
+              <h2 id="details-heading" className="sr-only">
+                Additional details
+              </h2>
+
+              <div className="divide-y divide-gray-200 border-t border-gray-200">
+                {product.details.map((detail) => (
+                  <Disclosure key={detail.name} as="div">
+                    <h3>
+                      <DisclosureButton className="group relative flex w-full items-center justify-between py-6 text-left">
+                        <span className="text-sm font-medium text-gray-900 group-data-open:text-indigo-600">
+                          {detail.name}
+                        </span>
+                        <span className="ml-6 flex items-center">
+                          <PlusIcon
+                            aria-hidden="true"
+                            className="block size-6 text-gray-400 group-hover:text-gray-500 group-data-open:hidden"
+                          />
+                          <MinusIcon
+                            aria-hidden="true"
+                            className="hidden size-6 text-indigo-400 group-hover:text-indigo-500 group-data-open:block"
+                          />
+                        </span>
+                      </DisclosureButton>
+                    </h3>
+                    <DisclosurePanel className="pb-6">
+                      <ul
+                        role="list"
+                        className="list-disc space-y-1 pl-5 text-sm/6 text-gray-700 marker:text-gray-300"
+                      >
+                        {detail.items.map((item) => (
+                          <li key={item} className="pl-2">
+                            {item}
+                          </li>
+                        ))}
+                      </ul>
+                    </DisclosurePanel>
+                  </Disclosure>
+                ))}
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}

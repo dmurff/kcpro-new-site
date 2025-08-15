@@ -188,7 +188,7 @@ export default function HoopCard({ hoop, onCheckout, children }) {
                     <StarIcon
                       key={rating}
                       aria-hidden="true"
-                      className="text-orange-500 size-5 shrink-0"
+                      className="text-yellow-500 size-5 shrink-0"
                     />
                   ))}
                 </div>
@@ -211,10 +211,10 @@ export default function HoopCard({ hoop, onCheckout, children }) {
                 {/* <h3 className="text-sm font-medium text-gray-600">
                   Add a service
                 </h3> */}
-                <h3 className="text-gray-900 text-md">Add a service</h3>
-                <p className="text-gray-900">
-                  (requires 50% deposit at checkout)
-                </p>
+                <div className="border-b-1 border-gray-900 p-2 mb-6">
+                  <h3 className="text-gray-900 text-md">Add a service</h3>
+                  <p className="text-gray-900">(50% deposit at checkout)</p>
+                </div>
                 <Toggle service_name={"installation"} service_cost={800} />
                 <Toggle service_name={"hoop removal"} service_cost={350} />
 

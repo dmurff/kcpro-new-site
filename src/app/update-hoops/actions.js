@@ -1,5 +1,7 @@
-import supabase from "../../../../utils/supabaseServer";
-import { imageUpload } from "../../../../lib/cloudinary/upload";
+"use server";
+
+import supabase from "../../../lib/supabase/server";
+import { imageUpload } from "../../../lib/cloudinary/upload";
 
 export async function POST(req) {
   const formData = await req.json();

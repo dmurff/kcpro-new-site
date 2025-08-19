@@ -1,13 +1,17 @@
 "use client";
 
+import { useState, useEffect } from "react";
+
 const labelStyle = "block text-lg/6 font-medium text-gray-900";
 const inputStyle =
   "block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 mb-8";
 
 export default function AddHoopForm({ initialValues = {}, action }) {
+  const [formValues, setFormValues] = useState(initialValues);
+
   return (
     <form action={action} className="max-w-3/4">
-      <input type="hidden" name="id" defaultValue={initialValues.id || ""} />
+      <input type="hidden" name="id" defaultValue={formValues.id || ""} />
 
       <label htmlFor="name" className={labelStyle}>
         Hoop name
@@ -15,7 +19,7 @@ export default function AddHoopForm({ initialValues = {}, action }) {
       <input
         id="name"
         name="name"
-        defaultValue={initialValues.name || ""}
+        defaultValue={formValues.name || ""}
         className={inputStyle}
       />
 
@@ -25,7 +29,7 @@ export default function AddHoopForm({ initialValues = {}, action }) {
       <input
         id="brand"
         name="brand"
-        defaultValue={initialValues.brand || ""}
+        defaultValue={formValues.brand || ""}
         className={inputStyle}
       />
 
@@ -35,7 +39,7 @@ export default function AddHoopForm({ initialValues = {}, action }) {
       <input
         id="model"
         name="model"
-        defaultValue={initialValues.model || ""}
+        defaultValue={formValues.model || ""}
         className={inputStyle}
       />
 
@@ -45,7 +49,7 @@ export default function AddHoopForm({ initialValues = {}, action }) {
       <input
         id="price"
         name="price"
-        defaultValue={initialValues.price || ""}
+        defaultValue={formValues.price || ""}
         className={inputStyle}
       />
 
@@ -55,7 +59,7 @@ export default function AddHoopForm({ initialValues = {}, action }) {
       <input
         id="install_price"
         name="install_price"
-        defaultValue={initialValues.install_price || ""}
+        defaultValue={formValues.install_price || ""}
         className={inputStyle}
       />
 
@@ -65,7 +69,7 @@ export default function AddHoopForm({ initialValues = {}, action }) {
       <input
         id="backboard_size"
         name="backboard_size"
-        defaultValue={initialValues.backboard_size || ""}
+        defaultValue={formValues.backboard_size || ""}
         className={inputStyle}
       />
 
@@ -75,7 +79,7 @@ export default function AddHoopForm({ initialValues = {}, action }) {
       <input
         id="backboard_material"
         name="backboard_material"
-        defaultValue={initialValues.backboard_material || ""}
+        defaultValue={formValues.backboard_material || ""}
         className={inputStyle}
       />
 
@@ -85,7 +89,7 @@ export default function AddHoopForm({ initialValues = {}, action }) {
       <input
         id="post_size"
         name="post_size"
-        defaultValue={initialValues.post_size || ""}
+        defaultValue={formValues.post_size || ""}
         className={inputStyle}
       />
 
@@ -95,7 +99,7 @@ export default function AddHoopForm({ initialValues = {}, action }) {
       <input
         id="anchor_type"
         name="anchor_type"
-        defaultValue={initialValues.anchor_type || ""}
+        defaultValue={formValues.anchor_type || ""}
         className={inputStyle}
       />
 
@@ -105,7 +109,7 @@ export default function AddHoopForm({ initialValues = {}, action }) {
       <input
         id="adjustment_range"
         name="adjustment_range"
-        defaultValue={initialValues.adjustment_range || ""}
+        defaultValue={formValues.adjustment_range || ""}
         className={inputStyle}
       />
 
@@ -116,7 +120,7 @@ export default function AddHoopForm({ initialValues = {}, action }) {
         <input
           type="checkbox"
           name="can_sell"
-          defaultChecked={!!initialValues.can_sell}
+          defaultChecked={!!formValues.can_sell}
           value="true"
           className="mr-2"
         />
@@ -128,7 +132,7 @@ export default function AddHoopForm({ initialValues = {}, action }) {
         <input
           type="checkbox"
           name="can_install_only"
-          defaultChecked={!!initialValues.can_install_only}
+          defaultChecked={!!formValues.can_install_only}
           value="true"
           className="mr-2"
         />
@@ -140,7 +144,7 @@ export default function AddHoopForm({ initialValues = {}, action }) {
         <input
           type="checkbox"
           name="is_featured"
-          defaultChecked={!!initialValues.is_featured}
+          defaultChecked={!!formValues.is_featured}
           value="true"
           className="mr-2"
         />
@@ -166,7 +170,7 @@ export default function AddHoopForm({ initialValues = {}, action }) {
       <textarea
         id="description"
         name="description"
-        defaultValue={initialValues.description || ""}
+        defaultValue={formValues.description || ""}
         className={inputStyle}
       />
 

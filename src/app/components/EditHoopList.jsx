@@ -4,34 +4,9 @@ import { supabase } from "../../../lib/supabase/client";
 import AddHoopForm from "./AddHoopForm";
 import FormCheckbox from "./FormCheckbox";
 
-export default function EditHoopList({ hoops, handler }) {
+export default function EditHoopList({ hoops, action }) {
   const [showEditForm, setShowEditForm] = useState(false);
   const [selectedHoop, setSelectedHoop] = useState(null);
-
-  useEffect(() => {
-    if (showEditForm) {
-      console.log("edit changed");
-    }
-  }, [showEditForm]);
-
-  const fetchHoop = async (model) => {
-    console.log("Hoop Update ✅", model);
-    const { data, error } = await supabase
-      .from("hoops")
-      .select("*")
-      .eq("model", model)
-      .single();
-
-    if (data) {
-      console.log("hoop data received! ✅", data);
-
-      setSelectedHoop(data);
-      setShowEditForm(true);
-
-      return;
-    }
-    return console.log("No hoop pulled 💥", error.message);
-  };
 
   return (
     <div className="bg-gray-900 w-full">
@@ -42,7 +17,10 @@ export default function EditHoopList({ hoops, handler }) {
       {hoops.map((h) => (
         <div key={h.id} className="flex items-center justify-around mb-16">
           <button
-            onClick={() => fetchHoop(h.model)}
+            onClick={() => {
+              setShowEditForm(true);
+              setSelectedHoop(h);
+            }}
             className="border-2 p-2 bg-white text-gray-900 font-semibold hover:bg-blue-900 hover:text-white hover:border-white transition duration-200 ease-in"
           >
             {h.model}
@@ -69,9 +47,14 @@ export default function EditHoopList({ hoops, handler }) {
           FCH-664-XL
         </button>
       </div> */}
-      {showEditForm && selectedHoop && (
+      {selectedHoop && (
         <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8 bg-gray-300">
-          <AddHoopForm initialValues={selectedHoop} action={handler}>
+          <AddHoopForm
+            key={selectedHoop.id}
+            initialValues={selectedHoop}
+            action={action}
+            hoops={hoops}
+          >
             <FormCheckbox title="Can Sell" name="can_sell" />
             <FormCheckbox title="Install Only" name="can_install_only" />
             <FormCheckbox title="Is Featured" name="is_featured" />

@@ -10,7 +10,7 @@ const updateHoopPage = async () => {
   console.log(data);
   return (
     <>
-      <EditHoopList hoops={data} handler={updateHoop} />
+      <EditHoopList hoops={data} action={updateHoop} />
     </>
   );
   // return <EditHoopList model={model} />;

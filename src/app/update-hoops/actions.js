@@ -6,7 +6,11 @@ import { imageUpload } from "../../../lib/cloudinary/upload";
 console.log("💶💶💶💶💶💶💶💶");
 
 export async function updateHoop(formData) {
-  const raw = Object.fromEntries(formData.entries());
+  const hoopData = {};
+  console.log("✅✅✅✅✅", formData);
+  const id = formData.get("id");
+
+  console.log("🚀🚀🚀🚀🚀🚀", id);
 
   for (const [key, value] of formData.entries()) {
     if (key !== "feature_image") {
@@ -28,12 +32,7 @@ export async function updateHoop(formData) {
     .single();
 
   if (error) {
-    return new Response(
-      JSON.stringify({ success: false, error: error.message }),
-      { status: 500 }
-    );
+    return { ok: false }, { error: error.message };
   }
-  return new Response(JSON.stringify({ success: true, data }), {
-    status: 200,
-  });
+  return { ok: true, data };
 }

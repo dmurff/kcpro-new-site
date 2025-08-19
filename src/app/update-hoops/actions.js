@@ -1,14 +1,12 @@
 "use server";
 
-import supabase from "../../../lib/supabase/server";
+import { supabaseServer as supabase } from "../../../lib/supabase/server";
 import { imageUpload } from "../../../lib/cloudinary/upload";
 
 console.log("💶💶💶💶💶💶💶💶");
 
 export async function updateHoop(formData) {
   const raw = Object.fromEntries(formData.entries());
-
-  const hoopData = { ...raw };
 
   for (const [key, value] of formData.entries()) {
     if (key !== "feature_image") {

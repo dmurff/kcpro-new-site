@@ -3,15 +3,28 @@
 import supabase from "../../../lib/supabase/server";
 import { imageUpload } from "../../../lib/cloudinary/upload";
 
-export async function POST(req) {
-  const formData = await req.json();
-  const { id, feature_image, ...updates } = formData;
+console.log("💶💶💶💶💶💶💶💶");
 
-  imageUpload(feature_image);
+export async function updateHoop(formData) {
+  const raw = Object.fromEntries(formData.entries());
+
+  const hoopData = { ...raw };
+
+  for (const [key, value] of formData.entries()) {
+    if (key !== "feature_image") {
+      hoopData[key] = value;
+    }
+  }
+
+  const feature_image = formData.getAll("feature_image");
+
+  console.log("💶💶💶", hoopData);
+
+  await imageUpload(feature_image);
 
   const { data, error } = await supabase
     .from("hoops")
-    .update(updates)
+    .update(hoopData)
     .select("*")
     .eq("id", id)
     .single();

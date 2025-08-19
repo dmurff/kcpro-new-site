@@ -2,11 +2,6 @@
 import { useFormContext } from "react-hook-form";
 
 export default function FormCheckbox({ title, name }) {
-  const {
-    register,
-    formState: { errors },
-  } = useFormContext();
-
   return (
     <fieldset className="border-t border-b border-gray-200">
       <legend className="sr-only">Notifications</legend>
@@ -20,7 +15,7 @@ export default function FormCheckbox({ title, name }) {
           <div className="flex h-6 shrink-0 items-center">
             <div className="group grid size-4 grid-cols-1">
               <input
-                {...register(name, { valueAsBoolean: true })}
+                // {...register(name, { valueAsBoolean: true })}
                 id={name}
                 type="checkbox"
                 aria-describedby="comments-description"

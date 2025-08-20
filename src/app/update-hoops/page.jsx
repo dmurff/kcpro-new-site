@@ -1,6 +1,6 @@
 import supabase from "./../../../utils/supabaseServer";
 import EditHoopList from "../components/EditHoopList";
-import { updateHoop } from "./actions";
+import updateHoop from "./actions";
 
 const updateHoopPage = async () => {
   const { data, error } = await supabase.from("hoops").select("*");

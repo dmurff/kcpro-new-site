@@ -5,7 +5,7 @@ import { imageUpload } from "../../../lib/cloudinary/upload";
 
 console.log("💶💶💶💶💶💶💶💶");
 
-export async function updateHoop(formData) {
+export default async function updateHoop(formData) {
   const hoopData = {};
   console.log("✅✅✅✅✅", formData);
   const id = formData.get("id");
@@ -22,7 +22,9 @@ export async function updateHoop(formData) {
 
   console.log("💶💶💶", hoopData);
 
-  await imageUpload(feature_image);
+  const imgUrl = await imageUpload(feature_image);
+
+  console.log("📈📈📈🐦🐦🐦", imgUrl);
 
   const { data, error } = await supabase
     .from("hoops")

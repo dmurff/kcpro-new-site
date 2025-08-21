@@ -56,7 +56,7 @@ export default function Example() {
     }
 
     const res = await fetch(
-      "/api/hoops",
+      "/api/hoops/upload",
 
       {
         method: "POST",

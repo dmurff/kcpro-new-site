@@ -6,11 +6,25 @@ const labelStyle = "block text-lg/6 font-medium text-gray-900";
 const inputStyle =
   "block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 mb-8";
 
-export default function AddHoopForm({ initialValues = {}, action }) {
+export default function AddHoopForm({ initialValues = {}, onSubmit }) {
   const [formValues, setFormValues] = useState(initialValues);
 
+  // const uploadHoop = async () => {
+  //   console.log("Hi from function👋👋👋👋");
+  // const res = await fetch("/hoops/upload");
+
+  // if (!res) return { ok: "false" }, { error: error.message };
+
+  // return { ok: true }, { status: 200 };
+  // };
+
+  // useEffect(() => {
+
+  //   };
+  // }, []);
+
   return (
-    <form action={action} className="max-w-3/4">
+    <form onSubmit={onSubmit} className="max-w-3/4">
       <input type="hidden" name="id" defaultValue={formValues.id || ""} />
 
       <label htmlFor="name" className={labelStyle}>

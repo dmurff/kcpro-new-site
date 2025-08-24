@@ -115,7 +115,7 @@ const Navbar = () => {
             <FaGoogle className="text-white" />
           </button>
           <Link
-            href="/admin-dashboard"
+            href="/admin-dashboard/hoops"
             className="text-cream items-center bg-orange-500 hover:bg-orange-100 hover:text-slate-950 hover:border-2 border-slate-950 rounded-md p-2"
           >
             get a quote

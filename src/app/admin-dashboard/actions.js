@@ -1,9 +1,18 @@
 "use server";
+
 import { createClient } from "@supabase/supabase-js";
 
-export async function saveHoop(formData) {
-  const base = {
-    id: formData.get("id") || null,
+function supabaseServer() {
+  return createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL,
+    process.env.SUPABASE_SERVICE_ROLE_KEY // server-only
+  );
+}
+
+export async function createHoop(formData) {
+  const sb = supabaseServer();
+
+  const row = {
     name: formData.get("name") || null,
     brand: formData.get("brand") || null,
     model: formData.get("model") || null,
@@ -17,29 +26,12 @@ export async function saveHoop(formData) {
     can_sell: formData.get("can_sell") === "true",
     can_install_only: formData.get("can_install_only") === "true",
     is_featured: formData.get("is_featured") === "true",
+    feature_img: formData.get("feature_img") || null, // Cloudinary URL
     description: formData.get("description") || null,
   };
 
-  // Only include feature_img if the client actually sent it
-  if (formData.has("feature_img")) {
-    base.feature_img = formData.get("feature_img");
-  }
-
-  const supabase = createClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL,
-    process.env.SUPABASE_SERVICE_ROLE_KEY
-  );
-
-  if (base.id) {
-    const { error } = await supabase
-      .from("hoops")
-      .update(base)
-      .eq("id", base.id);
-    if (error) throw new Error(error.message);
-  } else {
-    const { error } = await supabase.from("hoops").insert(base);
-    if (error) throw new Error(error.message);
-  }
+  const { error } = await sb.from("hoops").insert(row);
+  if (error) throw new Error(error.message);
 
   return { success: true };
 }

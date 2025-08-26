@@ -1,5 +1,6 @@
 import AddHoopForm from "@/app/components/AddHoopForm";
 import { supabaseServer as supabase } from "../../../../../../lib/supabase/server";
+import { updateHoop } from "../../../actions";
 
 export default async function EditHoop({ params }) {
   const { id } = params;
@@ -16,7 +17,7 @@ export default async function EditHoop({ params }) {
 
   return (
     <>
-      <AddHoopForm initialValues={hoop} />;
+      <AddHoopForm initialValues={hoop} mode="edit" id={id} />;
     </>
   );
 }

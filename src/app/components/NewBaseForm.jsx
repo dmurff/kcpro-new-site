@@ -1,11 +1,12 @@
 "use client";
 
 import { useForm, FormProvider } from "react-hook-form";
+import { useRouter } from "next/navigation";
 
-const NewBaseForm = ({ onSubmit, children }) => {
+const NewBaseForm = ({ children }) => {
   const inputClass =
     "block w-full px-4 py-2 pr-10 mb-4 border border-gray-300 bg-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500";
-
+  const router = useRouter();
   const methods = useForm({
     defaultValues: {
       first_name: "",
@@ -14,6 +15,21 @@ const NewBaseForm = ({ onSubmit, children }) => {
       phone: "",
     },
   });
+
+  const onSubmit = async (data) => {
+    const response = await fetch("/api/leads", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    });
+
+    const result = await response.json();
+    if (result.success) {
+      router.push("/thank-you");
+    } else {
+      console.error("Failed to submit lead:", result.error);
+    }
+  };
 
   return (
     <FormProvider {...methods}>

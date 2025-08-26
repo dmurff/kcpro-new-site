@@ -155,7 +155,7 @@ export default function HoopCard({ hoop, onCheckout, children }) {
                   <img
                     alt={image.alt}
                     src={hoop.feature_image?.[0]}
-                    className="aspect-square w-full object-fit sm:rounded-lg"
+                    className="max-h-full max-w-full object-contain sm:rounded-lg"
                   />
                 </TabPanel>
               ))}

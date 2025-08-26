@@ -1,11 +1,20 @@
-export default function Example() {
+// import { supabaseServer as supabase } from "../../../lib/supabase/server";
+
+export default async function Example() {
+  //   const { data, error } = await supabase
+  //     .from("hoops")
+  //     .select("*")
+  //     .eq("name", "Full Court 60")
+  //     .single();
+
   return (
     <div className="relative bg-gray-900">
       <div className="relative aspect-[3/4] overflow-hidden bg-indigo-600 md:absolute md:left-0 md:h-full md:w-1/3 lg:w-1/2">
         <div className="bg-indigo-900/10 inset-0 absolute z-10" />
         <div
           className="absolute inset-0 bg-cover bg-center z-0"
-          style={{ backgroundImage: "url('/images/tpt-render.png')" }}
+          style={{ backgroundImage: "url('/images/hero-image.png')" }}
+          // style={{ backgroundImage: data.feature_image[0] }}
         ></div>
 
         <svg

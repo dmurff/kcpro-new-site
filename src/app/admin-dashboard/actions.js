@@ -9,28 +9,59 @@ function supabaseServer() {
   );
 }
 
-export async function createHoop(formData) {
+export async function createHoop(data) {
   const sb = supabaseServer();
 
   const row = {
-    name: formData.get("name") || null,
-    brand: formData.get("brand") || null,
-    model: formData.get("model") || null,
-    price: formData.get("price") || null,
-    install_price: formData.get("install_price") || null,
-    backboard_size: formData.get("backboard_size") || null,
-    backboard_material: formData.get("backboard_material") || null,
-    post_size: formData.get("post_size") || null,
-    anchor_type: formData.get("anchor_type") || null,
-    adjustment_range: formData.get("adjustment_range") || null,
-    can_sell: formData.get("can_sell") === "true",
-    can_install_only: formData.get("can_install_only") === "true",
-    is_featured: formData.get("is_featured") === "true",
-    feature_img: formData.get("feature_img") || null, // Cloudinary URL
-    description: formData.get("description") || null,
+    name: data.name,
+    brand: data.brand,
+    model: data.model,
+    price: data.price ? Number(data.price) : undefined,
+    install_price: data.install_price ? Number(data.install_price) : undefined,
+    backboard_size: data.backboard_size,
+    backboard_material: data.backboard_material,
+    post_size: data.post_size,
+    anchor_type: data.anchor_type,
+    adjustment_range: data.adjustment_range,
+    can_sell: data.can_sell === "true" || data.can_sell === true,
+    can_install_only:
+      data.can_install_only === "true" || data.can_install_only === true,
+    is_featured: data.is_featured === "true" || data.is_featured === true,
+    feature_image: [].concat(data.feature_image || []),
+    description: data.description,
   };
 
   const { error } = await sb.from("hoops").insert(row);
+  if (error) throw new Error(error.message);
+
+  return { success: true };
+}
+
+export async function updateHoop(id, data) {
+  const sb = supabaseServer();
+
+  console.log(id, data);
+
+  const row = {
+    name: data.name,
+    brand: data.brand,
+    model: data.model,
+    price: data.price ? Number(data.price) : undefined,
+    install_price: data.install_price ? Number(data.install_price) : undefined,
+    backboard_size: data.backboard_size,
+    backboard_material: data.backboard_material,
+    post_size: data.post_size,
+    anchor_type: data.anchor_type,
+    adjustment_range: data.adjustment_range,
+    can_sell: data.can_sell === "true" || data.can_sell === true,
+    can_install_only:
+      data.can_install_only === "true" || data.can_install_only === true,
+    is_featured: data.is_featured === "true" || data.is_featured === true,
+    feature_image: [].concat(data.feature_image || []),
+    description: data.description,
+  };
+
+  const { error } = await sb.from("hoops").update(row).eq("id", id);
   if (error) throw new Error(error.message);
 
   return { success: true };

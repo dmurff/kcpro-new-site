@@ -1,30 +1,93 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { createHoop } from "@/app/admin-dashboard/actions";
+import { updateHoop } from "@/app/admin-dashboard/actions";
 
 const labelStyle = "block text-lg/6 font-medium text-gray-900";
 const inputStyle =
   "block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6 mb-8";
 
-export default function AddHoopForm({ initialValues = {}, onSubmit }) {
+export default function AddHoopForm({ initialValues = {}, mode, id = null }) {
   const [formValues, setFormValues] = useState(initialValues);
+  const [loading, setLoading] = useState(false);
 
-  // const uploadHoop = async () => {
-  //   console.log("Hi from function👋👋👋👋");
-  // const res = await fetch("/hoops/upload");
+  async function handleSubmit(e) {
+    e.preventDefault();
+    setLoading(true);
 
-  // if (!res) return { ok: "false" }, { error: error.message };
+    const formData = new FormData(e.currentTarget);
 
-  // return { ok: true }, { status: 200 };
-  // };
+    // 1. Convert to object
+    const submitted = Object.fromEntries(formData.entries());
 
-  // useEffect(() => {
+    // --- 2. Grab file(s) ---
+    const files = formData.getAll("feature_image");
+    let secureUrls = [];
 
-  //   };
-  // }, []);
+    if (files && files.length > 0) {
+      for (const file of files) {
+        if (file.size > 0) {
+          const uploadData = new FormData();
+          uploadData.append("file", file);
+          uploadData.append(
+            "upload_preset",
+            `${process.env.NEXT_PUBLIC_CLOUDINARY_PRESET}`
+          );
+
+          const res = await fetch(
+            `https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/upload`,
+            { method: "POST", body: uploadData }
+          );
+          const data = await res.json();
+          secureUrls.push(data.secure_url);
+        }
+      }
+    }
+
+    // --- 3. Replace file field with Cloudinary URLs ---
+    if (secureUrls.length > 0) {
+      submitted.feature_image = secureUrls;
+    }
+
+    let updates = submitted;
+
+    // If editing, only keep changed values
+    let payload = submitted;
+    if (mode === "edit") {
+      payload = {};
+      for (const key in submitted) {
+        const newVal = submitted[key];
+        const oldVal = initialValues[key] ?? "";
+
+        // Skip unchanged
+        if (String(newVal) === String(oldVal)) continue;
+
+        if (key === "feature_image" && secureUrls.length > 0) {
+          // Always include the uploaded images
+          payload[key] = secureUrls;
+          continue;
+        } else {
+          payload[key] = newVal;
+        }
+        // Skip empty values for required fields (don’t wipe DB!)
+      }
+    }
+
+    console.log("💶💶", payload);
+
+    // Call the right action
+    if (mode === "edit") {
+      await updateHoop(id, payload);
+    } else {
+      await createHoop(payload);
+    }
+
+    setLoading(false);
+  }
 
   return (
-    <form onSubmit={onSubmit} className="max-w-3/4">
+    <form onSubmit={handleSubmit} className="max-w-3/4">
       <input type="hidden" name="id" defaultValue={initialValues.id || ""} />
 
       <label htmlFor="name" className={labelStyle}>

@@ -69,30 +69,30 @@ const product = {
   `,
   details: [
     {
-      name: "Features",
+      name: "Specs",
       items: [
-        "Multiple strap configurations",
-        "Spacious interior with top zip",
-        "Leather handle and tabs",
-        "Interior dividers",
-        "Stainless strap loops",
-        "Double stitched construction",
-        "Water-resistant",
+        `60" tempered glass backboard`,
+        `5" x 5" one-piece steel post`,
+        "Bolt-down anchor design for easy relocation",
+        "Adjustable between 7.5 and 10ft",
+        `Weather and UV resistant padding`,
+        "Removable handle to lock height settings",
+        "20 plus year lifespan guaratee",
       ],
     },
     {
-      name: "Care",
+      name: "Install details",
       items: [
-        "Spot clean as needed",
-        "Hand wash with mild soap",
-        "Machine wash interior dividers",
-        "Treat handle and tabs with leather conditioner",
+        "On-site hoop placement assistance",
+        "We handle underground utility markings",
+        "All materials provided by us",
+        "2 week turnaround for standard installs",
       ],
     },
     {
-      name: "Shipping",
+      name: "Delivery",
       items: [
-        "Free shipping on orders over $300",
+        "Free delivery in the Greater Kansas City area",
         "International shipping available",
         "Expedited shipping options",
         "Signature required upon delivery",
@@ -230,7 +230,8 @@ export default function HoopCard({ hoop, onCheckout, children }) {
                 </fieldset> */}
               </div>
 
-              <div className="mt-10 flex">
+              <div className="mt-10 flex items-end gap-6">
+                {children}
                 <button
                   type="submit"
                   className="flex max-w-xs flex-1 items-center justify-center rounded-md border border-transparent bg-orange-500 px-8 py-3 text-base font-medium text-white hover:bg-orange-600 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50 focus:outline-hidden sm:w-full"

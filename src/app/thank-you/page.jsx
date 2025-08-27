@@ -6,7 +6,7 @@ const ThankYou = () => {
         <div className="max-w-md mx-auto my-6 rounded text-center bg-gray-200 text-black p-4">
           <p>
             Your request has been submitted succesfully and we will contact you
-            shortly to get a quote and more details about your project. Thank
+            shortly to with a quote and more details about your project. Thank
             you for choosing KC Pro Assembly and we look forward to helping you
             with your project!
           </p>

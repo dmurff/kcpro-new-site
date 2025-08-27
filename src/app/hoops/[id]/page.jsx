@@ -15,7 +15,7 @@ export default async function ProductPage({ params }) {
 
   return (
     <>
-      <Navbar />
+      {/* <Navbar /> */}
       <HoopCard hoop={hoop}>
         <TotalBox />
       </HoopCard>

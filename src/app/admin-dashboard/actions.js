@@ -31,10 +31,14 @@ export async function createHoop(data) {
     description: data.description,
   };
 
-  const { error } = await sb.from("hoops").insert(row);
+  const { data: inserted, error } = await sb
+    .from("hoops")
+    .insert(row)
+    .select()
+    .single();
   if (error) throw new Error(error.message);
 
-  return { success: true };
+  return { success: true, inserted };
 }
 
 export async function updateHoop(id, data) {
@@ -65,4 +69,19 @@ export async function updateHoop(id, data) {
   if (error) throw new Error(error.message);
 
   return { success: true };
+}
+
+export async function addHoopGallery(hoopId, urls) {
+  const sb = supabaseServer();
+
+  const { data, error } = await sb.from("hoop_images").insert(
+    urls.map((url, i) => ({
+      hoop_id: hoopId,
+      image_url: url,
+      order_index: i,
+    }))
+  );
+
+  if (error) throw new Error(error.message);
+  return data;
 }

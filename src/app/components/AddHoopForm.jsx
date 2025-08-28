@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { createHoop } from "@/app/admin-dashboard/actions";
 import { updateHoop } from "@/app/admin-dashboard/actions";
+import { addHoopGallery } from "@/app/admin-dashboard/actions";
 
 const labelStyle = "block text-lg/6 font-medium text-gray-900";
 const inputStyle =
@@ -45,6 +46,31 @@ export default function AddHoopForm({ initialValues = {}, mode, id = null }) {
       }
     }
 
+    // 2.5. get files from image gallery
+    const galleryFiles = formData.getAll("image_gallery");
+    let galleryUrls = [];
+    if (galleryFiles && galleryFiles.length > 0) {
+      for (const galleryFile of galleryFiles) {
+        if (galleryFile.size > 0) {
+          const uploadImages = new FormData();
+          uploadImages.append("file", galleryFile);
+          uploadImages.append(
+            "upload_preset",
+            `${process.env.NEXT_PUBLIC_CLOUDINARY_PRESET}`
+          );
+
+          const res = await fetch(
+            `https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/upload`,
+            { method: "POST", body: uploadImages }
+          );
+          const imagesData = await res.json();
+          console.log("Cloudinary gallery response:", imagesData);
+
+          galleryUrls.push(imagesData.secure_url);
+        }
+      }
+    }
+
     // --- 3. Replace file field with Cloudinary URLs ---
     if (secureUrls.length > 0) {
       submitted.feature_image = secureUrls;
@@ -80,7 +106,10 @@ export default function AddHoopForm({ initialValues = {}, mode, id = null }) {
     if (mode === "edit") {
       await updateHoop(id, payload);
     } else {
-      await createHoop(payload);
+      const hoop = await createHoop(payload);
+      if (galleryUrls.length > 0) {
+        await addHoopGallery(hoop.id, galleryUrls);
+      }
     }
 
     setLoading(false);
@@ -229,7 +258,7 @@ export default function AddHoopForm({ initialValues = {}, mode, id = null }) {
       </label>
 
       <label htmlFor="feature_image" className={labelStyle}>
-        Images
+        Feature Image
       </label>
       <input
         id="feature_image"
@@ -239,6 +268,17 @@ export default function AddHoopForm({ initialValues = {}, mode, id = null }) {
         multiple
         className={inputStyle}
       />
+      <label htmlFor="feature_image" className={labelStyle}>
+        Image Gallery
+      </label>
+      <input
+        id="image_gallery"
+        name="image_gallery"
+        className={inputStyle}
+        type="file"
+        accept="image/*"
+        multiple
+      ></input>
       {/* Note: You can’t prefill files. To clear the file input on selection change, rely on the key remount. */}
 
       <label htmlFor="description" className={`mt-6 ${labelStyle}`}>

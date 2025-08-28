@@ -21,32 +21,7 @@ const product = {
   name: "",
   price: "$140",
   rating: 4,
-  images: [
-    {
-      id: 1,
-      name: "Angled view",
-      src: "https://tailwindcss.com/plus-assets/img/ecommerce-images/product-page-03-product-01.jpg",
-      alt: "Angled front view with bag zipped and handles upright.",
-    },
-    {
-      id: 2,
-      name: "Front view",
-      src: "https://tailwindcss.com/plus-assets/img/ecommerce-images/product-page-03-product-02.jpg",
-      alt: "Front view with bag zipped and handles upright.",
-    },
-    {
-      id: 3,
-      name: "Back view",
-      src: "https://tailwindcss.com/plus-assets/img/ecommerce-images/product-page-03-product-03.jpg",
-      alt: "Back view with bag zipped and straps hanging down.",
-    },
-    {
-      id: 4,
-      name: "Back angle open view",
-      src: "https://tailwindcss.com/plus-assets/img/ecommerce-images/product-page-03-product-04.jpg",
-      alt: "Back angled view with bag open and handles to the side.",
-    },
-  ],
+  images: [],
   colors: [
     {
       id: "washed-black",
@@ -114,7 +89,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function HoopCard({ hoop, onCheckout, children }) {
+export default function HoopCard({ hoop, onCheckout, children, gallery }) {
   if (!hoop) return null;
 
   console.log("🚀", hoop.id, hoop.name);
@@ -127,16 +102,16 @@ export default function HoopCard({ hoop, onCheckout, children }) {
             {/* Image selector */}
             <div className="mx-auto mt-6 hidden w-full max-w-2xl sm:block lg:max-w-none">
               <TabList className="grid grid-cols-4 gap-6">
-                {product.images.map((image) => (
+                {gallery.map((g) => (
                   <Tab
-                    key={image.id}
+                    key={g.id}
                     className="group relative flex h-24 cursor-pointer items-center justify-center rounded-md bg-white text-sm font-medium text-gray-900 uppercase hover:bg-gray-50 focus:ring-3 focus:ring-indigo-500/50 focus:ring-offset-4 focus:outline-hidden"
                   >
                     <span className="sr-only">{hoop.model}</span>
                     <span className="absolute inset-0 overflow-hidden rounded-md">
                       <img
                         alt=""
-                        src={image.src}
+                        src={g.url}
                         className="size-full object-cover"
                       />
                     </span>

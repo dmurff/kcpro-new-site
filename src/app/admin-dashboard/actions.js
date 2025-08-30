@@ -38,7 +38,7 @@ export async function createHoop(data) {
     .single();
   if (error) throw new Error(error.message);
 
-  return { success: true, inserted };
+  return inserted;
 }
 
 export async function updateHoop(id, data) {

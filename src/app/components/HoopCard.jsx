@@ -102,16 +102,16 @@ export default function HoopCard({ hoop, onCheckout, children, gallery }) {
             {/* Image selector */}
             <div className="mx-auto mt-6 hidden w-full max-w-2xl sm:block lg:max-w-none">
               <TabList className="grid grid-cols-4 gap-6">
-                {gallery.map((g) => (
+                {gallery.map((image) => (
                   <Tab
-                    key={g.id}
+                    key={image.id}
                     className="group relative flex h-24 cursor-pointer items-center justify-center rounded-md bg-white text-sm font-medium text-gray-900 uppercase hover:bg-gray-50 focus:ring-3 focus:ring-indigo-500/50 focus:ring-offset-4 focus:outline-hidden"
                   >
                     <span className="sr-only">{hoop.model}</span>
                     <span className="absolute inset-0 overflow-hidden rounded-md">
                       <img
-                        alt=""
-                        src={g.url}
+                        alt={image.alt_text || `Image of ${hoop.model}`}
+                        src={image.image_url}
                         className="size-full object-cover"
                       />
                     </span>
@@ -125,11 +125,11 @@ export default function HoopCard({ hoop, onCheckout, children, gallery }) {
             </div>
 
             <TabPanels>
-              {product.images.map((image) => (
+              {gallery.map((image) => (
                 <TabPanel key={image.id}>
                   <img
-                    alt={image.alt}
-                    src={hoop.feature_image?.[0]}
+                    alt={`image of ${hoop.model}`}
+                    src={image.image_url}
                     className="max-h-full max-w-full object-contain sm:rounded-lg"
                   />
                 </TabPanel>

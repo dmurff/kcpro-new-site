@@ -1,7 +1,6 @@
 import AddHoopForm from "@/app/components/AddHoopForm";
 import { supabaseServer as supabase } from "../../../../../../lib/supabase/server";
 import { updateHoop } from "../../../actions";
-import AddHoopImages from "@/app/components/AddHoopImages";
 
 export default async function EditHoop({ params }) {
   const { id } = params;

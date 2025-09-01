@@ -50,7 +50,8 @@ export default function AddHoopForm({ initialValues = {}, mode, id = null }) {
     const galleryFiles = formData.getAll("image_gallery");
     let galleryUrls = [];
     if (galleryFiles && galleryFiles.length > 0) {
-      for (const galleryFile of galleryFiles) {
+      for (let i = 0; i < galleryFiles.length; i++) {
+        const galleryFile = galleryFiles[i];
         if (galleryFile.size > 0) {
           const uploadImages = new FormData();
           uploadImages.append("file", galleryFile);
@@ -66,7 +67,8 @@ export default function AddHoopForm({ initialValues = {}, mode, id = null }) {
           const imagesData = await res.json();
           console.log("Cloudinary gallery response:", imagesData);
 
-          galleryUrls.push(imagesData.secure_url);
+          // galleryUrls.push(imagesData.secure_url);
+          galleryUrls.push({ url: imagesData.secure_url, index: i });
         }
       }
     }
@@ -108,7 +110,10 @@ export default function AddHoopForm({ initialValues = {}, mode, id = null }) {
     } else {
       const hoop = await createHoop(payload);
       if (galleryUrls.length > 0) {
-        await addHoopGallery(hoop.id, galleryUrls);
+        await addHoopGallery(
+          hoop.id,
+          galleryUrls.map((g) => ({ url: g.url, order_index: g.index }))
+        );
       }
     }
 

@@ -75,10 +75,10 @@ export async function addHoopGallery(hoopId, urls) {
   const sb = supabaseServer();
 
   const { data, error } = await sb.from("hoop_images").insert(
-    urls.map((url, i) => ({
+    urls.map(({ url, order_index }) => ({
       hoop_id: hoopId,
       image_url: url,
-      order_index: i,
+      order_index,
     }))
   );
 

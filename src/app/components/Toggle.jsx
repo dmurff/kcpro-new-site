@@ -1,4 +1,9 @@
+"use client";
+import { useState, useEffect } from "react";
+
 export default function Toggle({ service_cost, service_name }) {
+  const [installAdd, setInstallAdd] = useState(false);
+
   return (
     <>
       <p className="text-sm font-medium text-gray-600">

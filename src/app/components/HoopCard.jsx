@@ -105,7 +105,7 @@ export default function HoopCard({ hoop, onCheckout, children, gallery }) {
                 {gallery.map((image) => (
                   <Tab
                     key={image.id}
-                    className="group relative flex h-24 cursor-pointer items-center justify-center rounded-md bg-white text-sm font-medium text-gray-900 uppercase hover:bg-gray-50 focus:ring-3 focus:ring-indigo-500/50 focus:ring-offset-4 focus:outline-hidden"
+                    className="group relative flex h-24 cursor-pointer items-center justify-center rounded-md bg-white text-sm font-medium text-gray-900 uppercase hover:bg-gray-50 focus:ring-3 focus:ring-orange-500/50 focus:ring-offset-4 focus:outline-hidden"
                   >
                     <span className="sr-only">{hoop.model}</span>
                     <span className="absolute inset-0 overflow-hidden rounded-md">
@@ -117,7 +117,7 @@ export default function HoopCard({ hoop, onCheckout, children, gallery }) {
                     </span>
                     <span
                       aria-hidden="true"
-                      className="pointer-events-none absolute inset-0 rounded-md ring-2 ring-transparent ring-offset-2 group-data-selected:ring-indigo-500"
+                      className="pointer-events-none absolute inset-0 rounded-md ring-2 ring-transparent ring-offset-2 group-data-selected:ring-orange-500"
                     />
                   </Tab>
                 ))}
@@ -190,7 +190,10 @@ export default function HoopCard({ hoop, onCheckout, children, gallery }) {
                   <h3 className="text-gray-900 text-md">Add a service</h3>
                   <p className="text-gray-900">(50% deposit at checkout)</p>
                 </div>
-                <Toggle service_name={"installation"} service_cost={800} />
+                <Toggle
+                  service_name={"installation"}
+                  service_cost={hoop.install_price}
+                />
                 <Toggle service_name={"hoop removal"} service_cost={350} />
 
                 {/* <fieldset aria-label="Choose a color" className="mt-2">
@@ -213,14 +216,7 @@ export default function HoopCard({ hoop, onCheckout, children, gallery }) {
                 >
                   Add to cart
                 </button>
-
-                <button
-                  type="button"
-                  className="ml-4 flex items-center justify-center rounded-md px-3 py-3 text-gray-400 hover:bg-gray-100 hover:text-gray-500"
-                >
-                  <HeartIcon aria-hidden="true" className="size-6 shrink-0" />
-                  <span className="sr-only">Add to favorites</span>
-                </button>
+                {/* {here is where the total box will go} */}
               </div>
             </form>
 

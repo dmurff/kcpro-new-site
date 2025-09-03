@@ -3,6 +3,7 @@ import Link from "next/link";
 // import { StarIcon, FireIcon, ArrowRightIcon } from "@heroicons/react/20/solid";
 import OrderNow from "../components/OrderNow";
 import Toggle from "../components/Toggle";
+import TotalBox from "./TotalBox";
 
 import {
   Disclosure,
@@ -89,7 +90,14 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function HoopCard({ hoop, onCheckout, children, gallery }) {
+export default function HoopCard({
+  hoop,
+  onCheckout,
+  children,
+  gallery,
+  onToggle,
+  total,
+}) {
   if (!hoop) return null;
 
   console.log("🚀", hoop.id, hoop.name);
@@ -193,8 +201,13 @@ export default function HoopCard({ hoop, onCheckout, children, gallery }) {
                 <Toggle
                   service_name={"installation"}
                   service_cost={hoop.install_price}
+                  onToggle={onToggle}
                 />
-                <Toggle service_name={"hoop removal"} service_cost={350} />
+                <Toggle
+                  service_name={"hoop removal"}
+                  service_cost={350}
+                  onToggle={onToggle}
+                />
 
                 {/* <fieldset aria-label="Choose a color" className="mt-2">
                   <div className="flex items-center gap-x-3">
@@ -208,8 +221,8 @@ export default function HoopCard({ hoop, onCheckout, children, gallery }) {
                 </fieldset> */}
               </div>
 
-              <div className="mt-10 flex items-end gap-6">
-                {children}
+              <div className="mt-10 flex items-end justify-between gap-6">
+                {/* {children} */}
                 <button
                   type="submit"
                   className="flex max-w-xs flex-1 items-center justify-center rounded-md border border-transparent bg-orange-500 px-8 py-3 text-base font-medium text-white hover:bg-orange-600 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50 focus:outline-hidden sm:w-full"
@@ -217,6 +230,7 @@ export default function HoopCard({ hoop, onCheckout, children, gallery }) {
                   Add to cart
                 </button>
                 {/* {here is where the total box will go} */}
+                <TotalBox total={total} />
               </div>
             </form>
 

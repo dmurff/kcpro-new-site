@@ -20,9 +20,21 @@ export default function HoopCardWrapper({ hoop, gallery }) {
   );
   //   const total = serviceTotal + hoop.price;
 
+  // Handle checkout function
+  const handleCheckout = async () => {
+    const data = { hoop: hoop.id, services: selectedServices, total };
+
+    const createPaymentIntent = await fetch("/api/payments/create-intent", {
+      method: "POST",
+      headers: { "Content-type": "application/json" },
+      body: JSON.stringify(data),
+    });
+  };
+
   return (
     <>
       <HoopCard
+        handleCheckout={handleCheckout}
         hoop={hoop}
         gallery={gallery}
         onToggle={handleToggle}

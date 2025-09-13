@@ -90,6 +90,17 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
+// const handleCheckout = async () => {
+
+//   const data = {hoop.id, serviceName, total}
+
+//   const createPaymentIntent = await fetch("api/checkout", {
+//     method: 'POST',
+//     headers: {'Content-type': 'application/json'},
+//     body: JSON.stringify(data),
+//   });
+// };
+
 export default function HoopCard({
   hoop,
   onCheckout,
@@ -97,6 +108,7 @@ export default function HoopCard({
   gallery,
   onToggle,
   total,
+  handleCheckout,
 }) {
   if (!hoop) return null;
 
@@ -188,7 +200,7 @@ export default function HoopCard({
               />
             </div>
 
-            <form className="mt-6">
+            <div className="mt-6">
               {/* Colors */}
               <div className="flex flex-col gap-4">
                 {/* <h3 className="text-sm font-medium text-gray-600">
@@ -224,15 +236,16 @@ export default function HoopCard({
               <div className="mt-10 flex items-end justify-between gap-6">
                 {/* {children} */}
                 <button
-                  type="submit"
+                  onClick={handleCheckout}
+                  type="button"
                   className="flex max-w-xs flex-1 items-center justify-center rounded-md border border-transparent bg-orange-500 px-8 py-3 text-base font-medium text-white hover:bg-orange-600 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50 focus:outline-hidden sm:w-full"
                 >
-                  Add to cart
+                  Buy now
                 </button>
                 {/* {here is where the total box will go} */}
                 <TotalBox total={total} />
               </div>
-            </form>
+            </div>
 
             <section aria-labelledby="details-heading" className="mt-12">
               <h2 id="details-heading" className="sr-only">

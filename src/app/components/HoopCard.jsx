@@ -109,6 +109,7 @@ export default function HoopCard({
   onToggle,
   total,
   handleCheckout,
+  selectedServices,
 }) {
   if (!hoop) return null;
 
@@ -213,11 +214,13 @@ export default function HoopCard({
                 <Toggle
                   service_name={"installation"}
                   service_cost={hoop.install_price}
+                  checked={selectedServices["installation"] > 0}
                   onToggle={onToggle}
                 />
                 <Toggle
                   service_name={"hoop removal"}
                   service_cost={350}
+                  checked={selectedServices["hoop removal"] > 0}
                   onToggle={onToggle}
                 />
 

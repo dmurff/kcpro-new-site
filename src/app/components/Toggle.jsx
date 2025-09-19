@@ -1,12 +1,17 @@
 "use client";
-import { useState, useEffect } from "react";
+// import { useState, useEffect } from "react";
 
-export default function Toggle({ service_cost, service_name, onToggle }) {
-  const [checked, setChecked] = useState(false);
+export default function Toggle({
+  service_cost,
+  service_name,
+  onToggle,
+  checked,
+}) {
+  // const [checked, setChecked] = useState(false);
 
   const handleChange = (e) => {
     const newChecked = e.target.checked; // true/false
-    setChecked(newChecked);
+
     onToggle(service_name, service_cost, newChecked); // sends info up
   };
 
@@ -53,6 +58,7 @@ export default function Toggle({ service_cost, service_name, onToggle }) {
 
           <input
             onChange={handleChange}
+            checked={checked}
             name="setting"
             type="checkbox"
             aria-label="Use setting"

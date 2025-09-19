@@ -24,7 +24,7 @@ export default function HoopCardWrapper({ hoop, gallery }) {
   const handleCheckout = async () => {
     const data = { hoop: hoop.id, services: selectedServices, total };
 
-    const createPaymentIntent = await fetch("/api/payments/create-intent", {
+    const res = await fetch("/api/payments/create-intent", {
       method: "POST",
       headers: { "Content-type": "application/json" },
       body: JSON.stringify(data),
@@ -34,6 +34,7 @@ export default function HoopCardWrapper({ hoop, gallery }) {
   return (
     <>
       <HoopCard
+        selectedServices={selectedServices}
         handleCheckout={handleCheckout}
         hoop={hoop}
         gallery={gallery}

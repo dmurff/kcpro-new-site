@@ -9,6 +9,8 @@ export async function POST(req) {
   console.log("💶💶💶❤️", body);
   const id = body.hoop;
 
+  console.log(id);
+
   const hoopServices = Object.entries(body.services);
 
   for (const [service, cost] of hoopServices) {

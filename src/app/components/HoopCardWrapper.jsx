@@ -8,10 +8,14 @@ export default function HoopCardWrapper({ hoop, gallery }) {
 
   // toggle update state handler
   const handleToggle = (serviceName, cost, checked) => {
-    setSelectedServices((prev) => ({
-      ...prev,
-      [serviceName]: checked ? cost : 0,
-    }));
+    setSelectedServices((prev) => {
+      if (checked) {
+        return { ...prev, [serviceName]: cost };
+      } else {
+        const { [serviceName]: _, ...rest } = prev;
+        return rest;
+      }
+    });
   };
 
   const total = Object.values(selectedServices).reduce(

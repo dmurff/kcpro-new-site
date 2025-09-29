@@ -37,6 +37,8 @@ export async function POST(req) {
 
   console.log("🍷🍷🍷🍷🍷", serviceTotal);
 
+  const serviceAmount = Math.round(Number(serviceTotal * 100));
+
   const { data, error } = await supabase
     .from("hoops")
     .select("*")
@@ -61,9 +63,12 @@ export async function POST(req) {
 
   console.log("Stripe secret key is:", process.env.STRIPE_SECRET_KEY);
 
+  const finalSale = Math.round(Number(price + serviceAmount));
+  console.log("💳💳💳", finalSale);
+
   try {
     const paymentIntent = await stripe.paymentIntents.create({
-      amount: price,
+      amount: finalSale,
       currency: "usd",
       metadata: {
         hoopId,

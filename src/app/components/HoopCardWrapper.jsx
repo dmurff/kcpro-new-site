@@ -29,6 +29,9 @@ export default function HoopCardWrapper({ hoop, gallery }) {
       headers: { "Content-type": "application/json" },
       body: JSON.stringify(data),
     });
+
+    const clientSecret = await res.json();
+    console.log(clientSecret);
   };
 
   return (

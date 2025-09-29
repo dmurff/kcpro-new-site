@@ -13,7 +13,9 @@ export async function POST(req) {
 
   const hoopServices = Object.entries(body.services);
 
+  console.log(hoopServices);
   for (const [service, cost] of hoopServices) {
+    console.log(service, ":", cost);
   }
 
   const { data, error } = await supabase
@@ -48,6 +50,8 @@ export async function POST(req) {
         id,
       },
     });
+
+    console.log(paymentIntent.client_secret);
 
     return NextResponse.json({
       clientSecret: paymentIntent.client_secret,

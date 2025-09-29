@@ -6,20 +6,21 @@ export default function Toggle({
   service_name,
   onToggle,
   checked,
+  service,
 }) {
   // const [checked, setChecked] = useState(false);
 
   const handleChange = (e) => {
     const newChecked = e.target.checked; // true/false
 
-    onToggle(service_name, service_cost, newChecked); // sends info up
+    onToggle(service.name, service.price, newChecked); // sends info up
   };
 
   return (
     <>
       <p className="text-sm font-medium text-gray-600">
-        Add {service_name}{" "}
-        <span className="ml-4 font-semibold">${service_cost}</span>
+        Add {service.name.replace(/_/g, " ")}{" "}
+        <span className="ml-4 font-semibold">${service.price}</span>
       </p>
       <div className="flex flex-row items-center gap-8">
         <div className="group relative inline-flex w-11 shrink-0 rounded-full bg-gray-200 p-0.5 inset-ring inset-ring-gray-900/5 outline-offset-2 outline-green-500 transition-colors duration-200 ease-in-out has-checked:bg-green-500 has-focus-visible:outline-2">

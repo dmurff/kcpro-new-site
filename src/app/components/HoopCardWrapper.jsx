@@ -3,7 +3,7 @@ import { useState } from "react";
 import HoopCard from "./HoopCard";
 import OrderNow from "./OrderNow";
 
-export default function HoopCardWrapper({ hoop, gallery }) {
+export default function HoopCardWrapper({ hoop, gallery, services }) {
   const [selectedServices, setSelectedServices] = useState({});
 
   // toggle update state handler
@@ -26,7 +26,10 @@ export default function HoopCardWrapper({ hoop, gallery }) {
 
   // Handle checkout function
   const handleCheckout = async () => {
-    const data = { hoop: hoop.id, services: selectedServices, total };
+    const serviceNames = Object.keys(selectedServices);
+    const data = { hoop: hoop.id, services: serviceNames };
+
+    console.log(serviceNames);
 
     const res = await fetch("/api/payments/create-intent", {
       method: "POST",
@@ -47,6 +50,7 @@ export default function HoopCardWrapper({ hoop, gallery }) {
         gallery={gallery}
         onToggle={handleToggle}
         total={total} // pass computed total from state down
+        services={services}
       />
     </>
   );

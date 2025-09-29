@@ -110,6 +110,7 @@ export default function HoopCard({
   total,
   handleCheckout,
   selectedServices,
+  services,
 }) {
   if (!hoop) return null;
 
@@ -211,18 +212,21 @@ export default function HoopCard({
                   <h3 className="text-gray-900 text-md">Add a service</h3>
                   <p className="text-gray-900">(50% deposit at checkout)</p>
                 </div>
-                <Toggle
+
+                {services.map((service) => (
+                  <Toggle
+                    key={service.id}
+                    service={service}
+                    onToggle={onToggle}
+                    checked={!!selectedServices[service.name]}
+                  />
+                ))}
+                {/* <Toggle
                   service_name={"installation"}
                   service_cost={hoop.install_price}
                   checked={selectedServices["installation"] > 0}
                   onToggle={onToggle}
-                />
-                <Toggle
-                  service_name={"hoop removal"}
-                  service_cost={350}
-                  checked={selectedServices["hoop removal"] > 0}
-                  onToggle={onToggle}
-                />
+                /> */}
 
                 {/* <fieldset aria-label="Choose a color" className="mt-2">
                   <div className="flex items-center gap-x-3">

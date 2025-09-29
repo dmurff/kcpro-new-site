@@ -7,21 +7,40 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 export async function POST(req) {
   const body = await req.json();
   console.log("💶💶💶❤️", body);
-  const id = body.hoop;
+  const hoopId = body.hoop;
+  const selectedServices = body.services;
 
-  console.log(id);
+  const serviceRows = await Promise.all(
+    selectedServices.map(async (s) => {
+      const { data, error } = await supabase
+        .from("services")
+        .select("*")
+        .eq("name", s)
+        .single();
 
-  const hoopServices = Object.entries(body.services);
+      return data;
+    })
+  );
 
-  console.log(hoopServices);
-  for (const [service, cost] of hoopServices) {
-    console.log(service, ":", cost);
-  }
+  console.log("🕰️🕰️", serviceRows);
+
+  // Filter out nulls if any query failed
+
+  const validServices = serviceRows.filter(Boolean);
+
+  // Add up the service prices
+
+  const serviceTotal = validServices.reduce(
+    (sum, service) => sum + service.price,
+    0
+  );
+
+  console.log("🍷🍷🍷🍷🍷", serviceTotal);
 
   const { data, error } = await supabase
     .from("hoops")
     .select("*")
-    .eq("id", id)
+    .eq("id", hoopId)
     .single();
 
   if (error) {
@@ -47,7 +66,7 @@ export async function POST(req) {
       amount: price,
       currency: "usd",
       metadata: {
-        id,
+        hoopId,
       },
     });
 

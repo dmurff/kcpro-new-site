@@ -18,16 +18,27 @@ export default function HoopCardWrapper({ hoop, gallery, services }) {
     });
   };
 
-  const total = Object.values(selectedServices).reduce(
-    (a, b) => a + b,
-    hoop.price
+  const servicesTotal = Object.values(selectedServices).reduce(
+    (sum, v) => sum + v,
+    0
   );
-  //   const total = serviceTotal + hoop.price;
+
+  // Calculate service fee (deposit amount capped at 200 or 25%)
+  const depositDue = Math.min(servicesTotal * 0.25, 200);
+
+  const remainder = servicesTotal - depositDue;
+
+  console.log("💳📈", depositDue, remainder);
+
+  const total = hoop.price + depositDue;
 
   // Handle checkout function
   const handleCheckout = async () => {
     const serviceNames = Object.keys(selectedServices);
-    const data = { hoop: hoop.id, services: serviceNames };
+    const data = {
+      hoop: hoop.id,
+      services: serviceNames,
+    };
 
     console.log(serviceNames);
 

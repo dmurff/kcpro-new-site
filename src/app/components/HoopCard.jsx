@@ -210,7 +210,7 @@ export default function HoopCard({
                 </h3> */}
                 <div className="border-b-1 border-gray-900 p-2 mb-6">
                   <h3 className="text-gray-900 text-md">Add a service</h3>
-                  <p className="text-gray-900">(50% deposit at checkout)</p>
+                  <p className="text-gray-900">(25% deposit at checkout)</p>
                 </div>
 
                 {services.map((service) => (

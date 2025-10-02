@@ -10,34 +10,31 @@ export async function POST(req) {
   const hoopId = body.hoop;
   const selectedServices = body.services;
 
-  const serviceRows = await Promise.all(
-    selectedServices.map(async (s) => {
-      const { data, error } = await supabase
-        .from("services")
-        .select("*")
-        .eq("name", s)
-        .single();
+  const { data: services, error: serviceError } = await supabase
+    .from("services")
+    .select("*")
+    .in("name", selectedServices);
 
-      return data;
-    })
-  );
-
-  console.log("🕰️🕰️", serviceRows);
+  // console.log("🕰️🕰️", serviceRows);
 
   // Filter out nulls if any query failed
 
-  const validServices = serviceRows.filter(Boolean);
-
   // Add up the service prices
 
-  const serviceTotal = validServices.reduce(
+  const serviceTotal = services.reduce(
     (sum, service) => sum + service.price,
     0
   );
 
   console.log("🍷🍷🍷🍷🍷", serviceTotal);
 
-  const serviceAmount = Math.round(Number(serviceTotal * 100));
+  // service deposit at 25%
+  const deposit = Math.round(Number(Math.min(serviceTotal * 0.25, 200)) * 100);
+
+  const remainder = serviceTotal * 100 - deposit;
+
+  // const serviceAmount = Math.round(Number(serviceTotal * 0.25 * 100));
+  console.log("SERVICE TOTAL:", deposit);
 
   const { data, error } = await supabase
     .from("hoops")
@@ -63,7 +60,7 @@ export async function POST(req) {
 
   console.log("Stripe secret key is:", process.env.STRIPE_SECRET_KEY);
 
-  const finalSale = Math.round(Number(price + serviceAmount));
+  const finalSale = Math.round(Number(price + deposit));
   console.log("💳💳💳", finalSale);
 
   try {
@@ -72,10 +69,11 @@ export async function POST(req) {
       currency: "usd",
       metadata: {
         hoopId,
+        remainder,
       },
     });
 
-    console.log(paymentIntent.client_secret);
+    console.log(paymentIntent.client_secret, paymentIntent);
 
     return NextResponse.json({
       clientSecret: paymentIntent.client_secret,

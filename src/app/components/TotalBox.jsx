@@ -3,7 +3,7 @@
 export default function TotalBox({ total }) {
   return (
     <div>
-      <h1 className="text-white text-2xl border-1 p-2 bg-green-700 border-green-500">
+      <h1 className="text-slate-800 text-2xl font-bold border-1 p-2 shadow-md rounded-md">
         ${total}
       </h1>
     </div>

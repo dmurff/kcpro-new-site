@@ -18,7 +18,7 @@ export default async function EditHoop({ params }) {
   return (
     <>
       <AddHoopForm initialValues={hoop} mode="edit" id={id} />;
-      <AddHoopImages hoop={hoop} />
+      {/* <AddHoopImages hoop={hoop} /> */}
     </>
   );
 }

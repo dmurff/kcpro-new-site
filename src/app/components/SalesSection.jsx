@@ -29,9 +29,9 @@ export default function SalesSection() {
                 Select installation options
               </h2>
               <p className="text-lg/7 text-slate-600 font-light mt-8">
-                When checking out you will see a list of services we offer
-                ranging from current hoop removal to in ground assembly. Select
-                the options that you need and proceed to checkout.
+                At checkout you will see a list of services we offer ranging
+                from current hoop removal to in ground assembly. Select the
+                options that you need and proceed to checkout.
               </p>
             </div>
           </div>

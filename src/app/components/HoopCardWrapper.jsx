@@ -30,7 +30,9 @@ export default function HoopCardWrapper({ hoop, gallery, services }) {
 
   console.log("💳📈", depositDue, remainder);
 
-  const total = hoop.price + depositDue;
+  const orderTotal = hoop.price + depositDue;
+
+  const total = orderTotal.toFixed(2);
 
   // Handle checkout function
   const handleCheckout = async () => {
@@ -49,7 +51,9 @@ export default function HoopCardWrapper({ hoop, gallery, services }) {
     });
 
     const clientSecret = await res.json();
-    console.log(clientSecret);
+
+    // Never expose the client secret or log it in the browser accessible code
+    // console.log(clientSecret);
   };
 
   return (

@@ -103,8 +103,8 @@ function classNames(...classes) {
 
 export default function HoopCard({
   hoop,
-  onCheckout,
-  children,
+  // onCheckout,
+  // children,
   gallery,
   onToggle,
   total,
@@ -116,8 +116,9 @@ export default function HoopCard({
 
   console.log("🚀", hoop.id, hoop.name);
   return (
-    <div className="bg-white">
-      <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
+    <div className="w-full bg-white py-20">
+      {/* <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8"> */}
+      <div className="mx-auto w-full max-w-[1600px] px-4 sm:px-6 lg:px-8">
         <div className="lg:grid lg:grid-cols-2 lg:items-start lg:gap-x-8">
           {/* Image gallery */}
           <TabGroup className="flex flex-col-reverse">
@@ -198,7 +199,7 @@ export default function HoopCard({
 
               <div
                 dangerouslySetInnerHTML={{ __html: hoop.description }}
-                className="space-y-6 text-base text-gray-700"
+                className="space-y-6 text-xl text-gray-700"
               />
             </div>
 
@@ -208,8 +209,8 @@ export default function HoopCard({
                 {/* <h3 className="text-sm font-medium text-gray-600">
                   Add a service
                 </h3> */}
-                <div className="border-b-1 border-gray-900 p-2 mb-6">
-                  <h3 className="text-gray-900 text-md">Add a service</h3>
+                <div className=" p-2 mb-6">
+                  <h3 className="text-gray-900 text-xl">Add a service</h3>
                   <p className="text-gray-900">(25% deposit at checkout)</p>
                 </div>
 
@@ -245,7 +246,7 @@ export default function HoopCard({
                 <button
                   onClick={handleCheckout}
                   type="button"
-                  className="flex max-w-xs flex-1 items-center justify-center rounded-md border border-transparent bg-orange-500 px-8 py-3 text-base font-medium text-white hover:bg-orange-600 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50 focus:outline-hidden sm:w-full"
+                  className="flex max-w-xs flex-1 items-center justify-center rounded-md border border-transparent bg-orange-500 px-8 py-3 text-base font-medium text-white hover:bg-orange-600 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50 focus:outline-hidden sm:w-full shadow-lg"
                 >
                   Buy now
                 </button>

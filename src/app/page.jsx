@@ -7,6 +7,7 @@ import HomepageMain from "@/app/components/HomepageMain";
 import ProductCards from "@/app/components/ProductCards";
 import Navbar from "@/app/components/Navbar";
 import SalesSection from "@/app/components/SalesSection";
+import Footer from "@/app/components/Footer";
 
 // import Link from "next/link";
 
@@ -23,6 +24,7 @@ export default function Home() {
         <NewBaseForm>
           <LeadForm />
         </NewBaseForm>
+        <Footer />
       </section>
     </>
   );

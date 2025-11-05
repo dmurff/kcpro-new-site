@@ -7,7 +7,7 @@ import {
 } from "@stripe/react-stripe-js";
 import { useState } from "react";
 
-export default function Checkout({ id, type }) {
+export default function Checkout({ pi }) {
   const stripe = useStripe();
   const elements = useElements();
   const [loading, setLoading] = useState(false);
@@ -21,9 +21,7 @@ export default function Checkout({ id, type }) {
     const { error } = await stripe.confirmPayment({
       elements,
       confirmParams: {
-        return_url: `${window.location.origin}/checkout/success?id=${id}&type=${
-          type ?? ""
-        }`,
+        return_url: `${window.location.origin}/checkout/success`,
       },
     });
 
@@ -34,7 +32,7 @@ export default function Checkout({ id, type }) {
   return (
     <form onSubmit={onSubmit}>
       <PaymentElement />
-      <button disabled={!stripe || loading}>
+      <button className="bg-orange-500 w-[200px]" disabled={!stripe || loading}>
         {loading ? "Processing..." : "Pay"}
       </button>
       {msg && <p>{msg}</p>}

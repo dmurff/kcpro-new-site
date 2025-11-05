@@ -2,8 +2,11 @@
 import { useState } from "react";
 import HoopCard from "./HoopCard";
 import OrderNow from "./OrderNow";
+import { useRouter } from "next/navigation";
 
 export default function HoopCardWrapper({ hoop, gallery, services }) {
+  const router = useRouter();
+
   const [selectedServices, setSelectedServices] = useState({});
 
   // toggle update state handler
@@ -50,10 +53,12 @@ export default function HoopCardWrapper({ hoop, gallery, services }) {
       body: JSON.stringify(data),
     });
 
-    const clientSecret = await res.json();
+    const { clientSecret, paymentIntentId } = await res.json();
 
     // Never expose the client secret or log it in the browser accessible code
     // console.log(clientSecret);
+    // Redirect client-side
+    router.push(`/checkout?pi=${paymentIntentId}&secret=${clientSecret}`);
   };
 
   return (

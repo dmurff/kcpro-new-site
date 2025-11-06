@@ -29,9 +29,8 @@ export default function HoopCardWrapper({ hoop, gallery, services }) {
   // Calculate service fee (deposit amount capped at 200 or 25%)
   const depositDue = Math.min(servicesTotal * 0.25, 200);
 
+  // Need to attach the remainder into the job table in supabase and add to the data payload
   const remainder = servicesTotal - depositDue;
-
-  console.log("💳📈", depositDue, remainder);
 
   const orderTotal = hoop.price + depositDue;
 
@@ -43,9 +42,8 @@ export default function HoopCardWrapper({ hoop, gallery, services }) {
     const data = {
       hoop: hoop.id,
       services: serviceNames,
+      total_due: remainder,
     };
-
-    console.log(serviceNames);
 
     const res = await fetch("/api/payments/create-intent", {
       method: "POST",
@@ -53,12 +51,12 @@ export default function HoopCardWrapper({ hoop, gallery, services }) {
       body: JSON.stringify(data),
     });
 
-    const { clientSecret, paymentIntentId } = await res.json();
+    const { clientSecret } = await res.json();
 
     // Never expose the client secret or log it in the browser accessible code
     // console.log(clientSecret);
     // Redirect client-side
-    router.push(`/checkout?pi=${paymentIntentId}&secret=${clientSecret}`);
+    router.push(`/checkout?payment_intent_client_secret=${clientSecret}`);
   };
 
   return (

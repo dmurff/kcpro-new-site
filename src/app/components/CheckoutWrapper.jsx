@@ -7,12 +7,12 @@ const stripePromise = loadStripe(
   process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
 );
 
-export default function CheckoutWrapper({ clientSecret, pi }) {
+export default function CheckoutWrapper({ clientSecret }) {
   if (!clientSecret) return "Preparing checkout...";
 
   return (
     <Elements stripe={stripePromise} options={{ clientSecret }}>
-      <Checkout pi={pi} />
+      <Checkout />
     </Elements>
   );
 }

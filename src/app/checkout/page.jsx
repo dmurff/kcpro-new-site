@@ -8,20 +8,16 @@ export default async function CheckoutPage({ searchParams }) {
   // const { id, type } = searchParams;
 
   const params = await searchParams;
-  const { secret, pi } = params;
+  console.log("client:", params);
+  const { payment_intent_client_secret } = params;
 
-  console.log("💶💶😂😂🤣🤣🤣", secret, pi);
+  console.log("💶💶", payment_intent_client_secret);
 
-  // const hoop = await fetchHoop(id);
-
-  // console.log(hoop);
+  const clientSecret = payment_intent_client_secret;
 
   return (
     <div>
-      {/* <Elements stripe={stripePromise}>
-        <Checkout id={id} type={type} onCheckout={handleStartCheckout} />
-      </Elements> */}
-      <CheckoutWrapper clientSecret={secret} pi={pi}></CheckoutWrapper>
+      <CheckoutWrapper clientSecret={clientSecret}></CheckoutWrapper>
     </div>
   );
 }

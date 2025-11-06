@@ -35,7 +35,7 @@ export default function ProductCards() {
           {products.map((product) => (
             <div
               key={product.id}
-              className="flex items-center group relative h-[650px] max-w-sm sm:w-full rounded-md shadow-xl border-4 border-transparent hover:border-orange-500 hover:shadow-xl transition-all duration-500 cursor-pointer hover:scale-[1.1]"
+              className="flex items-center group relative h-[650px] max-w-sm sm:w-full rounded-md shadow-xl border-4 border-transparent hover:border-orange-500 hover:shadow-xl transition-all duration-500 cursor-pointer"
             >
               <Link href={`/hoops/${product.id}`}>
                 <Image

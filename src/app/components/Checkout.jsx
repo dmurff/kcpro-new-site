@@ -7,7 +7,7 @@ import {
 } from "@stripe/react-stripe-js";
 import { useState } from "react";
 
-export default function Checkout({ pi }) {
+export default function Checkout() {
   const stripe = useStripe();
   const elements = useElements();
   const [loading, setLoading] = useState(false);

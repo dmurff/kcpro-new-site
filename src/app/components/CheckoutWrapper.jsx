@@ -11,7 +11,20 @@ export default function CheckoutWrapper({ clientSecret }) {
   if (!clientSecret) return "Preparing checkout...";
 
   return (
-    <Elements stripe={stripePromise} options={{ clientSecret }}>
+    <Elements
+      stripe={stripePromise}
+      options={{
+        clientSecret,
+        appearance: {},
+        fields: {
+          billingDetails: {
+            name: "always",
+            email: "always",
+            phone: "always",
+          },
+        },
+      }}
+    >
       <Checkout />
     </Elements>
   );

@@ -2,18 +2,18 @@ import React from "react";
 import Stripe from "stripe";
 import { fetchHoop } from "../../../../lib/data/hoops";
 import { fetchImages } from "../../../../lib/data/hoops";
+import SuccessClient from "@/app/components/SuccessClient";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
-export default async function SuccessPage({ searchParams: data }) {
-  //   const params = await searchParams;
+export default async function SuccessPage({ searchParams }) {
+  const params = searchParams;
   //   console.log("🍕:", params);
 
   //   const data = searchParams;
+  const { payment_intent } = params;
 
-  console.log("✅✅✅", data);
-
-  const { payment_intent } = data;
+  // console.log("✅✅✅", params);
 
   const paymentIntent = await stripe.paymentIntents.retrieve(payment_intent);
   console.log(paymentIntent);
@@ -34,23 +34,6 @@ export default async function SuccessPage({ searchParams: data }) {
   console.log(hoopImage);
 
   return (
-    <>
-      <div className="flex flex-col w-full text-xl font-md text-black">
-        <h1 className="text-3xl mb-8 mx-auto pt-8">
-          Your hoop order was placed!
-        </h1>
-        <img
-          className={"mx-auto mb-16"}
-          width={300}
-          src={mainImage}
-          alt={hoop.name}
-        />
-        <p className="text-black text-center text-lg w-[50%] mx-auto">
-          {`Congratulations! Your order for the ${hoop.name} has been
-          successfully placed. You will recieve an email with scheduling
-          instructions. Upon completion the final installation fee of ${totalDue} will be due.`}
-        </p>
-      </div>
-    </>
+    <SuccessClient hoop={hoop} mainImage={mainImage} totalDue={totalDue} />
   );
 }

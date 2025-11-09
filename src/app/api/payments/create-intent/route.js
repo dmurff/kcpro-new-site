@@ -67,6 +67,7 @@ export async function POST(req) {
     const paymentIntent = await stripe.paymentIntents.create({
       amount: finalSale,
       currency: "usd",
+      payment_method_types: ["card", "link"],
       metadata: {
         hoopId,
         remainder,

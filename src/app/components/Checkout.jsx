@@ -8,7 +8,7 @@ import {
 import { useState } from "react";
 import CustomerFields from "@/app/components/CustomerFields";
 
-export default function Checkout() {
+export default function Checkout({ paymentIntentId }) {
   const stripe = useStripe();
   const elements = useElements();
   const [loading, setLoading] = useState(false);
@@ -29,10 +29,25 @@ export default function Checkout() {
     e.preventDefault();
     if (!stripe || !elements) return;
 
+    // customer data check
+    if (!form.name || !form.email || !form.phone || !form.address) {
+      setMsg("Please fill in all the customer details before proceeding.");
+      return;
+    }
+
     setLoading(true);
 
     // Preserve state in localStorage for use after payment confirm and redirect
-    localStorage.setItem("checkoutCustomerData", JSON.stringify(form));
+    console.log("form state:", form);
+
+    await fetch("/api/save-checkout-metadata", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        paymentIntentId,
+        ...form,
+      }),
+    });
 
     const { error } = await stripe.confirmPayment({
       elements,
@@ -53,7 +68,14 @@ export default function Checkout() {
         <PaymentElement className="lg:col-start-2 lg:col-end-3" />
         <button
           className="bg-orange-500 w-[200px]"
-          disabled={!stripe || loading}
+          disabled={
+            !stripe ||
+            loading ||
+            !form.name ||
+            !form.email ||
+            !form.phone ||
+            !form.address
+          }
         >
           {loading ? "Processing..." : "Pay"}
         </button>

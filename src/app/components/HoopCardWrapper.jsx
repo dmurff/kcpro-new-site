@@ -51,12 +51,14 @@ export default function HoopCardWrapper({ hoop, gallery, services }) {
       body: JSON.stringify(data),
     });
 
-    const { clientSecret } = await res.json();
+    const { clientSecret, paymentIntentId } = await res.json();
 
     // Never expose the client secret or log it in the browser accessible code
     // console.log(clientSecret);
     // Redirect client-side
-    router.push(`/checkout?payment_intent_client_secret=${clientSecret}`);
+    router.push(
+      `/checkout?payment_intent_client_secret=${clientSecret}&pi=${paymentIntentId}`
+    );
   };
 
   return (

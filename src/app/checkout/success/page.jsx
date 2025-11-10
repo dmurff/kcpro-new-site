@@ -3,27 +3,29 @@ import Stripe from "stripe";
 import { fetchHoop } from "../../../../lib/data/hoops";
 import { fetchImages } from "../../../../lib/data/hoops";
 import SuccessClient from "@/app/components/SuccessClient";
+import { upsertCustomer } from "../../../../lib/db/customers";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 export default async function SuccessPage({ searchParams }) {
-  const params = searchParams;
-  //   console.log("🍕:", params);
+  const params = await searchParams;
 
-  //   const data = searchParams;
+  console.log("📈📈📈📈📈📈📈📈", params);
+
   const { payment_intent } = params;
 
-  // console.log("✅✅✅", params);
-
   const paymentIntent = await stripe.paymentIntents.retrieve(payment_intent);
-  console.log(paymentIntent);
+  console.log("XXXXXXXXXXXXXXXX", paymentIntent.metadata);
 
-  const { hoopId, remainder } = paymentIntent.metadata;
+  const { hoopId, remainder, name, email, phone, address } =
+    paymentIntent.metadata;
 
-  const [hoop, hoopImage] = await Promise.all([
-    fetchHoop(hoopId),
-    fetchImages(hoopId),
-  ]);
+  console.log("💳💳💳💳💳💳:", name, email, phone, address);
+
+  const hoop = await fetchHoop(hoopId);
+  const hoopImage = await fetchImages(hoopId);
+  await upsertCustomer({ name, email, phone, address });
+
   //   const hoop = await fetchHoop(hoopId);
   //   const hoopImage = await fetchImages(hoopId);
 

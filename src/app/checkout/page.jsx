@@ -9,7 +9,7 @@ export default async function CheckoutPage({ searchParams }) {
 
   const params = await searchParams;
   console.log("client:", params);
-  const { payment_intent_client_secret } = params;
+  const { payment_intent_client_secret, pi } = params;
 
   console.log("💶💶", payment_intent_client_secret);
 
@@ -17,7 +17,10 @@ export default async function CheckoutPage({ searchParams }) {
 
   return (
     <div>
-      <CheckoutWrapper clientSecret={clientSecret}></CheckoutWrapper>
+      <CheckoutWrapper
+        clientSecret={clientSecret}
+        paymentIntentId={pi}
+      ></CheckoutWrapper>
     </div>
   );
 }

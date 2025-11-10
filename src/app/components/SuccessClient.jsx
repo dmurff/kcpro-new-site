@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import { useState, useEffect } from "react";
+import { createJob } from "../../../lib/api";
 
 export default function SuccessClient({ hoop, mainImage, totalDue }) {
   const [customer, setCustomer] = useState(null);
@@ -8,10 +9,13 @@ export default function SuccessClient({ hoop, mainImage, totalDue }) {
   useEffect(() => {
     const stored = localStorage.getItem("checkoutCustomerData");
     setCustomer(JSON.parse(stored));
+
+    console.log("Customer:", customer);
+
+    createJob(customer);
   }, []);
   // const customer = localStorage.getItem("checkoutCustomerData");
 
-  console.log("Customer:", customer);
   return (
     <>
       <div className="flex flex-col w-full text-xl font-md text-black">

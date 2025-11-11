@@ -15,7 +15,7 @@ export async function POST(req) {
     .select("*")
     .in("name", selectedServices);
 
-  // console.log("🕰️🕰️", serviceRows);
+  console.log("🕰️🕰️", services);
 
   // Filter out nulls if any query failed
 
@@ -71,6 +71,7 @@ export async function POST(req) {
       metadata: {
         hoopId,
         remainder,
+        services: JSON.stringify(services.map((s) => s.id)),
       },
     });
 

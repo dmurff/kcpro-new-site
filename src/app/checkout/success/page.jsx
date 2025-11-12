@@ -8,7 +8,7 @@ import { createCustomerAndJob } from "../../../../lib/db/createCustomerAndJob";
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 export default async function SuccessPage({ searchParams }) {
-  const params = searchParams;
+  const params = await searchParams;
 
   console.log("📈📈📈📈📈📈📈📈", params);
 

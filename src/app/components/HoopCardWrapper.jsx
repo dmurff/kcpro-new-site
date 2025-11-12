@@ -3,9 +3,15 @@ import { useState } from "react";
 import HoopCard from "./HoopCard";
 import OrderNow from "./OrderNow";
 import { useRouter } from "next/navigation";
+import { v4 as uuidv4 } from "uuid";
 
 export default function HoopCardWrapper({ hoop, gallery, services }) {
   const router = useRouter();
+
+  // must generate the idempotency key on the client before sending to the payment intent api
+  const generateIdempotencyKey = () => {
+    return uuidv4();
+  };
 
   const [selectedServices, setSelectedServices] = useState({});
 
@@ -44,10 +50,13 @@ export default function HoopCardWrapper({ hoop, gallery, services }) {
       services: serviceNames,
       total_due: remainder,
     };
-
+    const idempotencyKey = generateIdempotencyKey();
     const res = await fetch("/api/payments/create-intent", {
       method: "POST",
-      headers: { "Content-type": "application/json" },
+      headers: {
+        "Content-type": "application/json",
+        "Idempotency-Key": idempotencyKey,
+      },
       body: JSON.stringify(data),
     });
 

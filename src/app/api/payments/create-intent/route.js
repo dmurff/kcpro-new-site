@@ -10,6 +10,9 @@ export async function POST(req) {
   const hoopId = body.hoop;
   const selectedServices = body.services;
 
+  // Idempotency key extraction
+  const idempotencyKey = req.headers.get("idempotency-key");
+
   const { data: services, error: serviceError } = await supabase
     .from("services")
     .select("*")
@@ -64,16 +67,19 @@ export async function POST(req) {
   console.log("💳💳💳", finalSale);
 
   try {
-    const paymentIntent = await stripe.paymentIntents.create({
-      amount: finalSale,
-      currency: "usd",
-      payment_method_types: ["card", "link"],
-      metadata: {
-        hoopId,
-        remainder,
-        services: JSON.stringify(services.map((s) => s.id)),
+    const paymentIntent = await stripe.paymentIntents.create(
+      {
+        amount: finalSale,
+        currency: "usd",
+        payment_method_types: ["card", "link"],
+        metadata: {
+          hoopId,
+          remainder,
+          services: JSON.stringify(services.map((s) => s.id)),
+        },
       },
-    });
+      { idempotencyKey }
+    );
 
     console.log(paymentIntent.client_secret, paymentIntent);
 

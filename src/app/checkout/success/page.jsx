@@ -28,7 +28,8 @@ export default async function SuccessPage({ searchParams }) {
   const hoop = await fetchHoop(hoopId);
   const hoopImage = await fetchImages(hoopId);
   //   await upsertCustomer({ name, email, phone, address, services });
-  const { customer, job } = await createCustomerAndJob(
+  // use customer and job values as props to create a visual reinforcement of the service to be rendered or to pass data via email
+  const { customer, job, message } = await createCustomerAndJob(
     {
       name,
       email,
@@ -42,6 +43,8 @@ export default async function SuccessPage({ searchParams }) {
       selectedServiceIds,
     }
   );
+
+  console.log("🏀💶✅", customer, job, message);
 
   //   const hoop = await fetchHoop(hoopId);
   //   const hoopImage = await fetchImages(hoopId);

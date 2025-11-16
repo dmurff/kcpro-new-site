@@ -10,8 +10,6 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 export default async function SuccessPage({ searchParams }) {
   const params = await searchParams;
 
-  console.log("📈📈📈📈📈📈📈📈", params);
-
   const { payment_intent } = params;
 
   const paymentIntent = await stripe.paymentIntents.retrieve(payment_intent);
@@ -22,8 +20,6 @@ export default async function SuccessPage({ searchParams }) {
 
   const selectedServiceIds = JSON.parse(services);
   const remainder_cents = Number(remainder);
-
-  console.log("💳💳💳💳💳💳:", name, email, phone, address);
 
   const hoop = await fetchHoop(hoopId);
   const hoopImage = await fetchImages(hoopId);
@@ -44,16 +40,12 @@ export default async function SuccessPage({ searchParams }) {
     }
   );
 
-  console.log("🏀💶✅", customer, job, message);
-
   //   const hoop = await fetchHoop(hoopId);
   //   const hoopImage = await fetchImages(hoopId);
 
   const totalDue = (remainder / 100).toFixed(2);
 
   const mainImage = hoopImage?.[1]?.image_url;
-
-  console.log(hoopImage);
 
   return (
     <SuccessClient hoop={hoop} mainImage={mainImage} totalDue={totalDue} />

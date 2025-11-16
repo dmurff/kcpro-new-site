@@ -2,7 +2,9 @@
 // import { Elements } from "@stripe/react-stripe-js";
 // import { loadStripe } from "@stripe/stripe-js";
 import { fetchHoop } from "../../../lib/data/hoops";
+import { fetchServices } from "../../../lib/data/service";
 import CheckoutWrapper from "@/app/components/CheckoutWrapper";
+import { getPIMetadata } from "../../../lib/payment-intent/handlePI";
 
 export default async function CheckoutPage({ searchParams }) {
   // const { id, type } = searchParams;
@@ -11,6 +13,25 @@ export default async function CheckoutPage({ searchParams }) {
   console.log("client:", params);
   const { payment_intent_client_secret, pi } = params;
 
+  const orderData = await getPIMetadata(pi);
+  console.log("💳💥💳", orderData);
+
+  const { hoopId, remainder, services } = orderData;
+
+  console.log("📈📈📈📈📈📈📈📈", services);
+
+  const parsedServices = JSON.parse(services);
+
+  console.log("🚀🚀🚀🚀🚀", parsedServices);
+
+  const selectedServices = await await Promise.all(
+    parsedServices.map((s) => fetchServices(s)).flat()
+  );
+  console.log("🚀🚀🚀🚀🚀", selectedServices);
+
+  // fetch hoop to render order details
+  const hoop = await fetchHoop(hoopId);
+
   console.log("💶💶", payment_intent_client_secret);
 
   const clientSecret = payment_intent_client_secret;
@@ -18,6 +39,8 @@ export default async function CheckoutPage({ searchParams }) {
   return (
     <div>
       <CheckoutWrapper
+        remainder={remainder}
+        hoop={hoop}
         clientSecret={clientSecret}
         paymentIntentId={pi}
       ></CheckoutWrapper>

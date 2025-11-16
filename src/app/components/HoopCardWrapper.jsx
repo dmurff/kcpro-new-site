@@ -48,7 +48,7 @@ export default function HoopCardWrapper({ hoop, gallery, services }) {
     const data = {
       hoop: hoop.id,
       services: serviceNames,
-      total_due: remainder,
+      remainder_due: remainder,
     };
     const idempotencyKey = generateIdempotencyKey();
     const res = await fetch("/api/payments/create-intent", {

@@ -1,4 +1,4 @@
-import Checkout from "@/app/components/Checkout";
+// import Checkout from "@/app/components/Checkout";
 // import { Elements } from "@stripe/react-stripe-js";
 // import { loadStripe } from "@stripe/stripe-js";
 import { fetchHoop } from "../../../lib/data/hoops";

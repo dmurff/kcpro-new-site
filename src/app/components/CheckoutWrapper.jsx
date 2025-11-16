@@ -7,7 +7,13 @@ const stripePromise = loadStripe(
   process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
 );
 
-export default function CheckoutWrapper({ clientSecret, paymentIntentId }) {
+export default function CheckoutWrapper({
+  clientSecret,
+  paymentIntentId,
+  services,
+  remainder,
+  hoop,
+}) {
   if (!clientSecret) return "Preparing checkout...";
 
   console.log("clientSecret:", clientSecret);
@@ -28,7 +34,12 @@ export default function CheckoutWrapper({ clientSecret, paymentIntentId }) {
           },
         }}
       >
-        <Checkout paymentIntentId={paymentIntentId} />
+        <Checkout
+          paymentIntentId={paymentIntentId}
+          services={services}
+          remainder={remainder}
+          hoop={hoop}
+        />
       </Elements>
     </>
   );

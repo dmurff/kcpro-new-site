@@ -24,7 +24,7 @@ export default async function CheckoutPage({ searchParams }) {
 
   console.log("🚀🚀🚀🚀🚀", parsedServices);
 
-  const selectedServices = await await Promise.all(
+  const selectedServices = await Promise.all(
     parsedServices.map((s) => fetchServices(s)).flat()
   );
   console.log("🚀🚀🚀🚀🚀", selectedServices);
@@ -39,6 +39,7 @@ export default async function CheckoutPage({ searchParams }) {
   return (
     <div>
       <CheckoutWrapper
+        services={selectedServices}
         remainder={remainder}
         hoop={hoop}
         clientSecret={clientSecret}

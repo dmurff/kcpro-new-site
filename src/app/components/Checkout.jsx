@@ -7,8 +7,14 @@ import {
 } from "@stripe/react-stripe-js";
 import { useState } from "react";
 import CustomerFields from "@/app/components/CustomerFields";
+import TotalBox from "./TotalBox";
 
-export default function Checkout({ paymentIntentId }) {
+export default function Checkout({
+  paymentIntentId,
+  services,
+  remainder,
+  hoop,
+}) {
   const stripe = useStripe();
   const elements = useElements();
   const [loading, setLoading] = useState(false);
@@ -20,6 +26,8 @@ export default function Checkout({ paymentIntentId }) {
     phone: "",
     address: "",
   });
+
+  console.log("SERVICES:", services, "REMAINDER:", remainder, "HOOP:", hoop);
 
   function handleChange(e) {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -62,7 +70,16 @@ export default function Checkout({ paymentIntentId }) {
 
   return (
     <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-8">
-      <form onSubmit={onSubmit}>
+      <div id="orderSumarry" className="col-start-1 lg:col-start-2">
+        <img src={`${hoop.feature_image}`} width={500} />
+        <div className="w-[full]">
+          <TotalBox
+            total={50}
+            className={"text-black font-bold border-none mt-8"}
+          />
+        </div>
+      </div>
+      <form className="row-start-2 lg:row-start-1" onSubmit={onSubmit}>
         <CustomerFields form={form} handleChange={handleChange} />
 
         <PaymentElement className="lg:col-start-2 lg:col-end-3" />

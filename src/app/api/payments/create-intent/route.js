@@ -76,6 +76,8 @@ export async function POST(req) {
           hoopId,
           remainder,
           services: JSON.stringify(services.map((s) => s.id)),
+          amount_paid: deposit,
+          deposit_amount: deposit,
         },
       },
       { idempotencyKey }

@@ -14,6 +14,7 @@ export default function Checkout({
   services,
   remainder,
   hoop,
+  depositAmount,
 }) {
   const stripe = useStripe();
   const elements = useElements();
@@ -70,19 +71,37 @@ export default function Checkout({
 
   return (
     <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-8">
-      <div id="orderSumarry" className="col-start-1 lg:col-start-2">
-        <img src={`${hoop.feature_image}`} width={500} />
-        <div className="w-[full]">
-          <TotalBox
-            total={50}
-            className={"text-black font-bold border-none mt-8"}
-          />
+      <div className="flex flex-col gap-4 col-start-1 lg:col-start-2 lg:row-start-1 mx-auto my-4">
+        <img className="rounded-md" src={`${hoop.feature_image}`} width={500} />
+
+        <div
+          id="order_summary"
+          className="flex flex-col justify-self-start gap-2 text-black lg:col-start-2 border border-1 shadow-xs rounded-md p-4 lg:row-span-2"
+        >
+          <h2 className="text-black mx-auto">Order Summary:</h2>
+          <div className="flex justify-between">
+            <p>Model:</p>
+            <p className="text-black">{hoop.name}</p>
+          </div>
+
+          <div className="flex justify-between">
+            <p>Labor deposit:</p>
+            <p className="text-black">${depositAmount}</p>
+          </div>
+          <div className="flex justify-between">
+            <p>Hoop Cost:</p>
+            <p>${hoop.price}</p>
+          </div>
+          <div className="flex justify-between">
+            <p>Total:</p>
+            <p>${(Number(hoop.price) + Number(depositAmount)).toFixed(2)}</p>
+          </div>
         </div>
       </div>
       <form className="row-start-2 lg:row-start-1" onSubmit={onSubmit}>
         <CustomerFields form={form} handleChange={handleChange} />
 
-        <PaymentElement className="lg:col-start-2 lg:col-end-3" />
+        <PaymentElement className="lg:col-start-2 lg:col-end-3 lg:row-start-2" />
         <button
           className="bg-orange-500 w-[200px]"
           disabled={

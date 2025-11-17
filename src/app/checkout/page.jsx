@@ -16,7 +16,11 @@ export default async function CheckoutPage({ searchParams }) {
   const orderData = await getPIMetadata(pi);
   console.log("💳💥💳", orderData);
 
-  const { hoopId, remainder, services } = orderData;
+  const { hoopId, remainder, services, deposit_amount } = orderData;
+
+  // convert deposit amount into dollars
+
+  const depositAmount = (Number(deposit_amount) / 100).toFixed(2);
 
   console.log("📈📈📈📈📈📈📈📈", services);
 
@@ -42,6 +46,7 @@ export default async function CheckoutPage({ searchParams }) {
         services={selectedServices}
         remainder={remainder}
         hoop={hoop}
+        depositAmount={depositAmount}
         clientSecret={clientSecret}
         paymentIntentId={pi}
       ></CheckoutWrapper>

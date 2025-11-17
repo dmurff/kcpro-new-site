@@ -13,6 +13,7 @@ export default function CheckoutWrapper({
   services,
   remainder,
   hoop,
+  depositAmount,
 }) {
   if (!clientSecret) return "Preparing checkout...";
 
@@ -39,6 +40,7 @@ export default function CheckoutWrapper({
           services={services}
           remainder={remainder}
           hoop={hoop}
+          depositAmount={depositAmount}
         />
       </Elements>
     </>

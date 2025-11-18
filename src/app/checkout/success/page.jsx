@@ -4,6 +4,7 @@ import { fetchHoop } from "../../../../lib/data/hoops";
 import { fetchImages } from "../../../../lib/data/hoops";
 import SuccessClient from "@/app/components/SuccessClient";
 import { createCustomerAndJob } from "../../../../lib/db/createCustomerAndJob";
+// import { createMessage } from "../../../lib/twilio/send_sms";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
@@ -39,6 +40,9 @@ export default async function SuccessPage({ searchParams }) {
       selectedServiceIds,
     }
   );
+
+  // send comfirmation text
+  // createMessage();
 
   //   const hoop = await fetchHoop(hoopId);
   //   const hoopImage = await fetchImages(hoopId);

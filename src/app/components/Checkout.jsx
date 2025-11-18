@@ -101,7 +101,10 @@ export default function Checkout({
       <form className="row-start-2 lg:row-start-1" onSubmit={onSubmit}>
         <CustomerFields form={form} handleChange={handleChange} />
 
-        <PaymentElement className="lg:col-start-2 lg:col-end-3 lg:row-start-2" />
+        <PaymentElement
+          options={{ PaymentMethodOrder: ["card"] }}
+          className="lg:col-start-2 lg:col-end-3 lg:row-start-2"
+        />
         <button
           className="bg-orange-500 w-[200px]"
           disabled={

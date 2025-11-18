@@ -76,7 +76,7 @@ export default function Checkout({
 
         <div
           id="order_summary"
-          className="flex flex-col justify-self-start gap-2 text-black lg:col-start-2 border border-1 shadow-xs rounded-md p-4 lg:row-span-2"
+          className="flex flex-col justify-self-start gap-2 text-black lg:col-start-2 shadow-md rounded-md p-4 lg:row-span-2"
         >
           <h2 className="text-black mx-auto">Order Summary:</h2>
           <div className="flex justify-between">

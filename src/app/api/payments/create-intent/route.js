@@ -71,7 +71,7 @@ export async function POST(req) {
       {
         amount: finalSale,
         currency: "usd",
-        payment_method_types: ["card", "link"],
+        payment_method_types: ["card"],
         metadata: {
           hoopId,
           remainder,

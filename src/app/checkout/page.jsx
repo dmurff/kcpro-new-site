@@ -18,8 +18,6 @@ export default async function CheckoutPage({ searchParams }) {
 
   const { hoopId, remainder, services, deposit_amount } = orderData;
 
-  // convert deposit amount into dollars
-
   const depositAmount = (Number(deposit_amount) / 100).toFixed(2);
 
   console.log("📈📈📈📈📈📈📈📈", services);

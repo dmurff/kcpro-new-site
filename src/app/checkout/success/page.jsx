@@ -4,6 +4,7 @@ import { fetchHoop } from "../../../../lib/data/hoops";
 import { fetchImages } from "../../../../lib/data/hoops";
 import SuccessClient from "@/app/components/SuccessClient";
 import { createCustomerAndJob } from "../../../../lib/db/createCustomerAndJob";
+import { redirect } from "next/navigation";
 // import { createMessage } from "../../../lib/twilio/send_sms";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
@@ -26,21 +27,25 @@ export default async function SuccessPage({ searchParams }) {
   const hoopImage = await fetchImages(hoopId);
   //   await upsertCustomer({ name, email, phone, address, services });
   // use customer and job values as props to create a visual reinforcement of the service to be rendered or to pass data via email
-  const { customer, job, message } = await createCustomerAndJob(
-    {
-      name,
-      email,
-      phone,
-      address,
-    },
-    {
-      hoop_id: hoopId,
-      remainder_cents,
-      payment_intent_id: payment_intent,
-      selectedServiceIds,
-    }
-  );
 
+  try {
+    const { customer, job, message } = await createCustomerAndJob(
+      {
+        name,
+        email,
+        phone,
+        address,
+      },
+      {
+        hoop_id: hoopId,
+        remainder_cents,
+        payment_intent_id: payment_intent,
+        selectedServiceIds,
+      }
+    );
+  } catch (err) {
+    redirect(`/error?msg=order-failed&payment_intent_id=${payment_intent}`);
+  }
   // send comfirmation text
   // createMessage();
 

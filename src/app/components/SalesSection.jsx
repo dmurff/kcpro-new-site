@@ -30,7 +30,7 @@ export default function SalesSection() {
               </h2>
               <p className="text-lg/7 text-slate-600 font-light mt-8">
                 At checkout you will see a list of services we offer ranging
-                from current hoop removal to in ground assembly. Select the
+                from old hoop removal to in ground hoop installation. Select the
                 options that you need and proceed to checkout.
               </p>
             </div>

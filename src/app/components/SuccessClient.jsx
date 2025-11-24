@@ -19,8 +19,14 @@ export default function SuccessClient({ hoop, mainImage, totalDue }) {
         <p className="text-black text-center text-lg w-[50%] mx-auto">
           {`Congratulations! Your order for the ${hoop.name} has been
           successfully placed. You will recieve an email with scheduling
-          instructions. Upon completion the final installation fee of ${totalDue} will be due.`}
+          instructions. `}
         </p>
+        {totalDue && (
+          <p>
+            `Upon completion the final installation fee of ${totalDue} will be
+            due.`
+          </p>
+        )}
       </div>
     </>
   );

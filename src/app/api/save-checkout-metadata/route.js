@@ -17,6 +17,7 @@ export async function POST(req) {
 
   await stripe.paymentIntents.update(paymentIntentId, {
     metadata: newMetadata,
+    receipt_email: email,
   });
 
   const orderData = await stripe.paymentIntents.retrieve(paymentIntentId);

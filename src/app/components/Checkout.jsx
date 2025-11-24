@@ -60,6 +60,7 @@ export default function Checkout({
 
     const { error } = await stripe.confirmPayment({
       elements,
+      redirect: "always",
       confirmParams: {
         return_url: `${window.location.origin}/checkout/success`,
       },
@@ -67,6 +68,7 @@ export default function Checkout({
 
     if (error) setMsg(error.message || "Payment failed");
     setLoading(false);
+    return;
   };
 
   return (
@@ -102,7 +104,14 @@ export default function Checkout({
         <CustomerFields form={form} handleChange={handleChange} />
 
         <PaymentElement
-          options={{ PaymentMethodOrder: ["card"] }}
+          options={{
+            defaultValues: {
+              billingDetails: {
+                email: form.email || "",
+              },
+            },
+            PaymentMethodOrder: ["card", "link"],
+          }}
           className="lg:col-start-2 lg:col-end-3 lg:row-start-2"
         />
         <button

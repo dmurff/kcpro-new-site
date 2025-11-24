@@ -15,7 +15,13 @@ export default async function SuccessPage({ searchParams }) {
   const { payment_intent } = params;
 
   const paymentIntent = await stripe.paymentIntents.retrieve(payment_intent);
-  console.log("XXXXXXXXXXXXXXXX", paymentIntent.metadata);
+  // console.log("XXXXXXXXXXXXXXXX", paymentIntent.metadata);
+
+  // if (paymentIntent.status !== "succeeded") {
+  //   return redirect(
+  //     `/checkout?pi=${paymentIntent.id}&payment_intent_client_secret=${paymentIntent.client_secret}`
+  //   );
+  // }
 
   const { hoopId, remainder, name, email, phone, address, services } =
     paymentIntent.metadata;
@@ -44,8 +50,10 @@ export default async function SuccessPage({ searchParams }) {
       }
     );
   } catch (err) {
-    redirect(`/error?msg=order-failed&payment_intent_id=${payment_intent}`);
+    console.error("🔥 Crititcal error", err);
+    return;
   }
+
   // send comfirmation text
   // createMessage();
 
@@ -57,6 +65,11 @@ export default async function SuccessPage({ searchParams }) {
   const mainImage = hoopImage?.[1]?.image_url;
 
   return (
-    <SuccessClient hoop={hoop} mainImage={mainImage} totalDue={totalDue} />
+    <SuccessClient
+      hoop={hoop}
+      mainImage={mainImage}
+      totalDue={totalDue}
+      // job={job}
+    />
   );
 }

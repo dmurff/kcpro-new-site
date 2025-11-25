@@ -46,9 +46,6 @@ export default function Checkout({
 
     setLoading(true);
 
-    // Preserve state in localStorage for use after payment confirm and redirect
-    console.log("form state:", form);
-
     await fetch("/api/save-checkout-metadata", {
       method: "POST",
       headers: { "Content-Type": "application/json" },

@@ -15,16 +15,11 @@ export default async function SuccessPage({ searchParams }) {
   const { payment_intent } = params;
 
   const paymentIntent = await stripe.paymentIntents.retrieve(payment_intent);
-  // console.log("XXXXXXXXXXXXXXXX", paymentIntent.metadata);
-
-  // if (paymentIntent.status !== "succeeded") {
-  //   return redirect(
-  //     `/checkout?pi=${paymentIntent.id}&payment_intent_client_secret=${paymentIntent.client_secret}`
-  //   );
-  // }
 
   const { hoopId, remainder, name, email, phone, address, services } =
     paymentIntent.metadata;
+
+  console.log("🍷🍷✅:", services);
 
   const selectedServiceIds = JSON.parse(services);
   const remainder_cents = Number(remainder);

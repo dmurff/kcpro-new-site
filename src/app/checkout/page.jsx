@@ -24,7 +24,7 @@ export default async function CheckoutPage({ searchParams }) {
 
   const parsedServices = JSON.parse(services);
 
-  console.log("🚀🚀🚀🚀🚀", parsedServices);
+  // console.log("🚀🚀🚀🚀🚀", parsedServices);
 
   const selectedServices = await Promise.all(
     parsedServices.map((s) => fetchServices(s)).flat()

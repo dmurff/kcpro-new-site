@@ -47,7 +47,7 @@ export default function CustomerFields({ form, handleChange }) {
           placeholder="+1 (777) 777-7777"
         />
         <label htmlFor="address" className="mb-.5">
-          Address
+          Installation/Delivery Address
         </label>
         <input
           className="bg-zinc-200 rounded-lg p-3 focus:border focus:border-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-.75 focus:ring-blue-300"

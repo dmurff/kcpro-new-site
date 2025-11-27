@@ -21,7 +21,9 @@ export default async function SuccessPage({ searchParams }) {
 
   console.log("🍷🍷✅:", services);
 
+  // Stripe only stores strings so must convert the O's to true array's and numbers
   const selectedServiceIds = JSON.parse(services);
+
   const remainder_cents = Number(remainder);
 
   const hoop = await fetchHoop(hoopId);

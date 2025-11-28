@@ -4,6 +4,8 @@ import { useState, useEffect } from "react";
 import { createJob } from "../../../lib/api";
 
 export default function SuccessClient({ hoop, mainImage, totalDue }) {
+  const numTotal = Number(totalDue);
+
   return (
     <>
       <div className="flex flex-col w-full text-xl font-md text-black">
@@ -16,15 +18,21 @@ export default function SuccessClient({ hoop, mainImage, totalDue }) {
           src={mainImage}
           alt={hoop.name}
         />
-        <p className="text-black text-center text-lg w-[50%] mx-auto">
-          {`Congratulations! Your order for the ${hoop.name} has been
-          successfully placed. You will recieve an email with scheduling
-          instructions. `}
+        <p className="text-black text-center text-lg w-[80%] lg:w-[60%] mx-auto">
+          {`Contratulations! Your order for the ${hoop.name} was successful.`}{" "}
+          {numTotal
+            ? `You will recieve a confirmation email and scheduling instructions for services you selected.`
+            : `You will recieve a confirmation email and instructions for scheduling delivery of your hoop.`}
         </p>
-        {totalDue && (
-          <p>
-            `Upon completion the final installation fee of ${totalDue} will be
-            due.`
+
+        {Number(totalDue) ? (
+          <p className="text-black text-center text-lg w-[70%] lg:w-[60%] mx-auto">
+            Upon completion the final installation fee of ${totalDue} will be
+            due.
+          </p>
+        ) : (
+          <p className="text-black text-center text-lg w-[70%] lg:w-[60%] mx-auto">
+            You selected no additional services and owe nothing upon delivery.
           </p>
         )}
       </div>

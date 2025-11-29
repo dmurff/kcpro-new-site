@@ -58,7 +58,7 @@ const Navbar = () => {
                 <Link href="/about">About</Link>
               </li>
               <li className="border-b-2">
-                <Link href="/contact">Products</Link>
+                <Link href="/hoops">Hoops</Link>
               </li>
               <li className="border-b-2">
                 <Link href="/contractor-dashboard">Contractor</Link>
@@ -68,7 +68,8 @@ const Navbar = () => {
         </>
       )}
 
-      <nav className="fixed top-0 w-full z-40 flex flex-row justify-between pr-12 items-center h-18 bg-gray-900 text-white">
+      <nav className="fixed top-0 w-full z-40 flex flex-row justify-between pr-12 items-center h-18 bg-black/90 text-white">
+        {/* <nav className="fixed top-0 w-full z-40 flex flex-row justify-between pr-12 items-center h-18 bg-white text-black"> */}
         <div className="flex gap-x-8 ml-1">
           <div className="hidden lg:block">
             <Image
@@ -79,16 +80,16 @@ const Navbar = () => {
             />
           </div>
           <ul className="hidden lg:flex justify-center gap-x-8 items-center text-2xl mx-auto p-2">
-            <li className="hover:text-orange-500 hover:scale-1.5">
+            <li className="hover:text-orange-400 hover:scale-1.5">
               <Link href="/">Home</Link>
             </li>
-            <li className="hover:text-orange-500">
+            <li className="hover:text-orange-400">
               <Link href="/about">About</Link>
             </li>
-            <li className="hover:text-orange-500">
-              <Link href="/hoops">Products</Link>
+            <li className="hover:text-orange-400">
+              <Link href="/hoops">Hoops</Link>
             </li>
-            <li className="hover:text-orange-500">
+            <li className="hover:text-orange-400">
               <Link href="/contractor-dashboard">Contractor</Link>
             </li>
           </ul>
@@ -105,20 +106,20 @@ const Navbar = () => {
           </p>
         </div>
         <div className="flex gap-4 items-center ml-10">
-          <Link href="/">
+          {/* <Link href="/">
             <ShoppingCartIcon className="text-white w-[30px]" />
-          </Link>
-          <button
+          </Link> */}
+          {/* <button
             className="flex items-center bg-gray-700 hover:bg-gray-900 rounded-md p-2"
             onClick={handleLogin}
           >
             <FaGoogle className="text-white" />
-          </button>
+          </button> */}
           <Link
             href="/admin-dashboard/hoops"
-            className="text-cream items-center bg-orange-500 hover:bg-orange-100 hover:text-slate-950 hover:border-2 border-slate-950 rounded-md p-2"
+            className="text-gray-700 text-xl items-center bg-orange-400 hover:outline-none hover:text-slate-950 hover:bg-blue-100 rounded-md p-2 transition duration-150 ease-in"
           >
-            get a quote
+            Fast Book
           </Link>
         </div>
       </nav>

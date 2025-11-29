@@ -29,9 +29,9 @@ export default function HomepageMain() {
         </div>
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mx-auto max-w-2xl lg:mx-0">
-            <p className="text-base/7 font-semibold text-gray-500">
+            {/* <p className="text-base/7 font-semibold text-white">
               Are you ready to ball?
-            </p>
+            </p> */}
             <h2 className="mt-2 text-4xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-5xl">
               Basketball Goals
             </h2>
@@ -105,10 +105,11 @@ export default function HomepageMain() {
               className="max-w-xl text-base/7 text-gray-600 lg:col-span-7 scroll-mt-24"
               id="our-process"
             >
-              <p className="text-base/7 font-semibold text-gray-500 mt-16">
+              {/* <p className="text-base/7 font-semibold text-gray-500 mt-16"> */}
+              {/* <p className="text-base/7 font-semibold text-whit mt-16">
                 Why us?
-              </p>
-              <h2 className="-ml-1 mt-2 text-4xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-5xl">
+              </p> */}
+              <h2 className="-ml-1 mt-18 text-4xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-5xl">
                 Professional Service
               </h2>
               <ul

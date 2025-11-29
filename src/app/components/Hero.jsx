@@ -1,8 +1,10 @@
 export default async function Example() {
   return (
-    <div className="relative bg-gray-900">
-      <div className="relative aspect-[3/4] overflow-hidden bg-indigo-600 md:absolute md:left-0 md:h-full md:w-1/3 lg:w-1/2">
-        <div className="bg-indigo-900/10 inset-0 absolute z-10" />
+    // <div className="relative bg-gray-400">
+    <div className="relative bg-black/80">
+      {/* <div className="relative aspect-[3/4] overflow-hidden bg-indigo-100 md:absolute md:left-0 md:h-full md:w-1/3 lg:w-1/2"> */}
+      <div className="relative aspect-[3/4] overflow-hidden bg-indigo-100 md:absolute md:left-0 md:h-full md:w-1/3 lg:w-1/2">
+        <div className=" inset-0 absolute z-10" />
         <div
           className="absolute inset-0 bg-cover bg-center z-0"
           style={{ backgroundImage: "url('/images/hero-image.png')" }}
@@ -74,10 +76,10 @@ export default async function Example() {
           <div className="mt-8 flex gap-6">
             <a
               href="#"
-              className="z-20 inline-flex rounded-md bg-orange-500 px-3.5 py-2.5 text-sm font-semibold text-white hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 items-center"
+              className="z-20 inline-flex rounded-md bg-orange-400 px-3.5 py-2.5 text-sm font-semibold text-white hover:outline-2 hover:outline-orange-400 hover:bg-blue-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 items-center hover:text-gray-900"
             >
               {" "}
-              Shop hoops + install
+              Fast Book
             </a>
             <a
               href="#our-process"

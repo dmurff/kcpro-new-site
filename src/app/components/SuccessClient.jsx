@@ -9,9 +9,7 @@ export default function SuccessClient({ hoop, mainImage, totalDue }) {
   return (
     <>
       <div className="flex flex-col w-full text-xl font-md text-black">
-        <h1 className="text-3xl mb-8 mx-auto pt-8">
-          Your hoop order was placed!
-        </h1>
+        <h1 className="text-3xl text-green-700 mb-8 mx-auto pt-8">Success!</h1>
         <img
           className={"mx-auto mb-16"}
           width={300}
@@ -21,14 +19,13 @@ export default function SuccessClient({ hoop, mainImage, totalDue }) {
         <p className="text-black text-center text-lg w-[80%] lg:w-[60%] mx-auto">
           {`Contratulations! Your order for the ${hoop.name} was successful.`}{" "}
           {numTotal
-            ? `You will recieve a confirmation email and scheduling instructions for services you selected.`
-            : `You will recieve a confirmation email and instructions for scheduling delivery of your hoop.`}
+            ? `A confirmation email has been sent with scheduling instructions for services you selected.`
+            : `A confirmation email has been sent with instructions for scheduling delivery of your hoop.`}
         </p>
 
         {Number(totalDue) ? (
           <p className="text-black text-center text-lg w-[70%] lg:w-[60%] mx-auto">
-            Upon completion the final installation fee of ${totalDue} will be
-            due.
+            Upon completion your total due will be ${totalDue}.
           </p>
         ) : (
           <p className="text-black text-center text-lg w-[70%] lg:w-[60%] mx-auto">

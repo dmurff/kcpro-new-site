@@ -49,7 +49,7 @@ const Navbar = () => {
               </button>
             </div>
 
-            <ul className="flex flex-col gap-6 text-xl text-slate-800 font-semibold">
+            <ul className="flex flex-col gap-6 text-lg text-slate-800 font-semibold">
               <li className="border-b-2 border-dashed border-blue-100">
                 <Link href="/">Home</Link>
               </li>
@@ -68,7 +68,7 @@ const Navbar = () => {
         </>
       )}
 
-      <nav className="fixed top-0 w-full z-40 flex flex-row justify-between pr-12 items-center h-18 bg-black/90 text-white">
+      <nav className="absolute z-40 top-0 left-0 w-full flex flex-row justify-between pr-12 items-center h-18 bg-transparent text-white">
         {/* <nav className="fixed top-0 w-full z-40 flex flex-row justify-between pr-12 items-center h-18 bg-white text-black"> */}
         <div className="flex gap-x-8 ml-1">
           <div className="hidden lg:block">
@@ -79,7 +79,7 @@ const Navbar = () => {
               height={40}
             />
           </div>
-          <ul className="hidden lg:flex justify-center gap-x-8 items-center text-2xl mx-auto p-2">
+          <ul className="hidden lg:flex justify-center gap-x-8 items-center text-lg mx-auto p-2">
             <li className="hover:text-orange-400 hover:scale-1.5">
               <Link href="/">Home</Link>
             </li>
@@ -117,7 +117,7 @@ const Navbar = () => {
           </button> */}
           <Link
             href="/admin-dashboard/hoops"
-            className="text-gray-700 text-xl items-center bg-orange-400 hover:outline-none hover:text-slate-950 hover:bg-blue-100 rounded-md p-2 transition duration-150 ease-in"
+            className="text-white text-lg items-center bg-orange-400 hover:outline-none hover:text-gray-300 hover:bg-orange-600 rounded-md p-2 transition duration-150 ease-in"
           >
             Fast Book
           </Link>

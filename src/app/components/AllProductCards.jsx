@@ -4,19 +4,53 @@ import ProductCards from "./ProductCards";
 export default function AllProductCards({ products }) {
   console.log(products);
   return (
-    <section className="max-w-full mx-auto mt-18">
-      <div className="flex flex-col">
-        {products.map((p) => (
-          <div key={p.id} className="bg-black text-white">
-            <img src={p.feature_image}></img>
+    <section className="max-w-full mx-auto">
+      <div className="flex flex-row items-center bg-gradient-to-r from-black to-black/80 h-[500px]">
+        <div className="flex flex-col w-[50%] text-gray-300 text-center items-center justify-center p-6">
+          <div className="flex flex-col justify-items-start">
+            <h1 className="mt-2 text-4xl font-semibold tracking-tight text-white sm:text-5xl">
+              In Ground Hoops
+            </h1>
+            <p className="max-w-[200px] mt-8 text-left text-gray-300 text-base/7">
+              Choose from our line of hoops. We offer the finest models
+              available with unmatched curb appeal and durability.
+            </p>
           </div>
-        ))}
+        </div>
+
+        <div className="flex flex-col justify-center w-[50%]">
+          <div className="rounded-md">
+            <img
+              className="rounded-md"
+              width={500}
+              src="/images/render_hoops.png"
+            />
+          </div>
+        </div>
       </div>
-      {/* <ProductCards /> */}
-      <div className="w-full bg-black/80 p-8">
-        <h1 className="text-3xl text-center">
-          Take your game to the next level with an Ironclad Hoop
-        </h1>
+      <div>
+        <h2 className="text-lg text-center text-gray-900 mt-8">
+          We offer a wide range of in ground hoops for the perfect home
+          basketball experience.
+        </h2>
+      </div>
+      <div>
+        <h2 className="text-lg text-center text-gray-900 mt-8">
+          We offer a wide range of in ground hoops for the perfect home
+          basketball experience.
+        </h2>
+      </div>
+      <div>
+        <h2 className="text-lg text-center text-gray-900 mt-8">
+          We offer a wide range of in ground hoops for the perfect home
+          basketball experience.
+        </h2>
+      </div>
+      <div>
+        <h2 className="text-lg text-center text-gray-900 mt-8">
+          We offer a wide range of in ground hoops for the perfect home
+          basketball experience.
+        </h2>
       </div>
     </section>
   );

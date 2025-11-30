@@ -7,7 +7,7 @@ const OrderNow = ({
   text = "Add to cart",
 }) => {
   return (
-    <Link className={styling} href={"/"}>
+    <Link className={styling} href={"/hoops"}>
       {text}
     </Link>
   );

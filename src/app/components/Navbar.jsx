@@ -117,7 +117,7 @@ const Navbar = () => {
           </button> */}
           <Link
             href="/admin-dashboard/hoops"
-            className="text-white text-lg items-center bg-orange-400 hover:outline-none hover:text-gray-300 hover:bg-orange-600 rounded-md p-2 transition duration-150 ease-in"
+            className="text-white text-lg items-center bg-orange-400 hover:outline-none hover:text-gray-300 hover:bg-orange-600 rounded-md p-1 transition duration-150 ease-in"
           >
             Fast Book
           </Link>

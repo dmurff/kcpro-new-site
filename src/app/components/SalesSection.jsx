@@ -9,7 +9,7 @@ export default function SalesSection() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-y-0 md:gap-x-8 md:min-h-[800px]">
           {/* Block 1 */}
           <div className="p-6 pt-0 md:col-start-1 md:row-start-1">
-            <p className="text-blue-100 font-black text-2xl">01.</p>
+            <p className="text-orange-400 font-black text-2xl">01.</p>
             <h2 className="text-3xl lg:text-4xl text-slate-800 font-bold">
               Purchase your hoop
             </h2>
@@ -24,7 +24,7 @@ export default function SalesSection() {
           {/* Block 2 — goes to column 2, vertically centered */}
           <div className="p-6 md:col-start-2 md:row-start-2 flex items-center justify-center">
             <div>
-              <p className="text-blue-100 font-black text-2xl">02.</p>
+              <p className="text-orange-400 font-black text-2xl">02.</p>
               <h2 className="text-3xl lg:text-4xl text-slate-800 font-bold">
                 Select installation options
               </h2>
@@ -38,7 +38,7 @@ export default function SalesSection() {
 
           {/* Block 3 */}
           <div className="p-6 md:col-start-1 md:row-start-3">
-            <p className="text-blue-100 font-black text-2xl">03.</p>
+            <p className="text-orange-400 font-black text-2xl">03.</p>
             <h2 className="text-3xl lg:text-4xl text-slate-800 font-bold">
               Schedule your service
             </h2>
@@ -51,9 +51,9 @@ export default function SalesSection() {
           <div className="p-6 md:col-start-1 md:row-start-4">
             <OrderNow
               styling={
-                "bg-green-500 font-semibold text-white p-2 rounded-lg hover:bg-green-950 "
+                "bg-orange-400 font-semibold text-white p-2 rounded-lg hover:bg-orange-600 "
               }
-              text={"Browse Hoops"}
+              text={"Shop Hoops"}
             />
           </div>
         </div>

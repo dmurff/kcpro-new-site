@@ -6,7 +6,7 @@ import ProductCards from "../components/ProductCards";
 import AllProductCards from "../components/AllProductCards";
 
 export default async function Hoops() {
-  const hoops = await fetchAllHoops("GC-55-LG");
+  const hoops = await fetchAllHoops();
 
   return (
     <>

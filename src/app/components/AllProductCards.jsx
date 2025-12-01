@@ -4,7 +4,7 @@ export default function AllProductCards({ products }) {
   console.log(products);
   return (
     <>
-      <section className=" bg-gradient-to-r from-black to-black/60 h-[500px]">
+      <section className=" bg-gradient-to-r from-black/90 to-black/60 h-[500px]">
         <div className="grid grid-cols-1 lg:grid-cols-12">
           <div className="col-span-1 lg:col-span-6 text-gray-300 flex flex-col justify-center pt-26 lg:pt-18 px-4">
             <h1 className="mt-2 text-4xl font-semibold tracking-tight text-white sm:text-5xl">
@@ -31,14 +31,14 @@ export default function AllProductCards({ products }) {
           {products.map((p, i) => (
             <div
               key={p.id}
-              className="bg-black/90 shadow-xl text-blue-100 max-w-[500px] rounded-md shadow-lg border border-white/10"
+              className="bg-black/80 shadow-xl text-gray-300 max-w-[500px] rounded-md shadow-lg border-4 border-transparent hover:border-orange-500 hover:shadow-xl transition-all duration-500 cursor-pointer"
             >
               <img
                 src={`${p.feature_image}`}
-                className="w-full aspect-[4/3] object-cover rounded-t-md"
+                className="w-full aspect-[4/3] object-contain rounded-t-md"
               />
-              <div>
-                <ul className="grid grid-cols-2 gap-4 p-4">
+              <div className="bg-black/90">
+                <ul className="flex flex-col gap-4 p-4">
                   <li>Board Size: {p.backboard_size}"</li>
                   <li>Board Material: {p.backboard_material}</li>
                   <li>Post Dimension: {p.post_size}"</li>

@@ -1,4 +1,5 @@
 import ProductCards from "./ProductCards";
+import Link from "next/link";
 
 export default function AllProductCards({ products }) {
   console.log(products);
@@ -6,31 +7,32 @@ export default function AllProductCards({ products }) {
     <>
       <section className=" bg-gradient-to-r from-black/90 to-black/60 h-[500px]">
         <div className="grid grid-cols-1 lg:grid-cols-12">
-          <div className="col-span-1 lg:col-span-6 text-gray-300 flex flex-col justify-center pt-26 lg:pt-18 px-4">
+          <div className="col-span-1 lg:col-span-6 text-gray-300 mx-auto lg:mx-0 flex flex-col justify-center pt-26 lg:pt-18 px-4">
             <h1 className="mt-2 text-4xl font-semibold tracking-tight text-white sm:text-5xl">
               In Ground Hoops
             </h1>
-            <p className="max-w-lg mt-8 text-left font-semibold text-gray-300 text-base/7">
+            <p className="max-w-[250px] mt-8 text-left font-semibold text-gray-300 text-base/7">
               We offer the finest models available with unmatched curb appeal
               and durability.
             </p>
           </div>
 
           {/* Desktop image kept */}
-          <div className="hidden lg:block col-span-1 lg:col-span-6 flex justify-center items-center rounded-md pt-18 shadow-xl">
+          <div className="bg-transparent hidden lg:block col-span-1 lg:col-span-6 flex justify-center items-center rounded-md pt-18">
             <img
               className="rounded-md"
-              width={500}
-              src="/images/hero-image.png"
+              width={300}
+              src="/images/TPT-553-60-2.JPEG"
             />
           </div>
         </div>
       </section>
       <section className="grid grid-cols-1 lg:grid-cols-12 mt-8 px-6">
-        <div className="grid grid-cols-1 gap-4 lg:grid-cols-1 col-span-1 lg:col-start-1 lg:col-span-6 max-w-7xl mx-auto lg:mx-0">
+        <div className="grid grid-cols-1 gap-4 lg:grid-cols-3 col-span-1 lg:col-start-1 lg:col-span-8 max-w-7xl mx-auto lg:mx-0">
           {products.map((p, i) => (
-            <div
+            <Link
               key={p.id}
+              href={`/hoops/${p.id}`}
               className="bg-black/80 shadow-xl text-gray-300 max-w-[500px] rounded-md shadow-lg border-4 border-transparent hover:border-orange-500 hover:shadow-xl transition-all duration-500 cursor-pointer"
             >
               <img
@@ -47,7 +49,7 @@ export default function AllProductCards({ products }) {
                   <li>Install fee: {p.install_price}</li>
                 </ul>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </section>

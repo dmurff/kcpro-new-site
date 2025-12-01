@@ -41,6 +41,7 @@ export default function AddHoopForm({ initialValues = {}, mode, id = null }) {
             { method: "POST", body: uploadData }
           );
           const data = await res.json();
+          console.log("cloudResponse:💅💅💅💅💅💅💅💅💅💅", data);
           secureUrls.push(data.secure_url);
         }
       }
@@ -79,6 +80,7 @@ export default function AddHoopForm({ initialValues = {}, mode, id = null }) {
     }
 
     let updates = submitted;
+    console.log("JJJJJJJJJJJJJJJJ", updates);
 
     // If editing, only keep changed values
     let payload = submitted;

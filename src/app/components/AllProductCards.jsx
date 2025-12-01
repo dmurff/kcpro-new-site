@@ -10,7 +10,7 @@ export default function AllProductCards({ products }) {
             <h1 className="mt-2 text-4xl font-semibold tracking-tight text-white sm:text-5xl">
               In Ground Hoops
             </h1>
-            <p className="max-w-xl mt-8 text-left text-gray-300 text-base/7">
+            <p className="max-w-lg mt-8 text-left font-semibold text-gray-300 text-base/7">
               We offer the finest models available with unmatched curb appeal
               and durability.
             </p>
@@ -31,19 +31,20 @@ export default function AllProductCards({ products }) {
           {products.map((p, i) => (
             <div
               key={p.id}
-              className="bg-black/60 shadow-xl text-blue-100 max-w-[500px] rounded-md shadow-lg border border-white/10"
+              className="bg-black/90 shadow-xl text-blue-100 max-w-[500px] rounded-md shadow-lg border border-white/10"
             >
               <img
                 src={`${p.feature_image}`}
                 className="w-full aspect-[4/3] object-cover rounded-t-md"
               />
               <div>
-                <ul>
-                  <li>backboard: {p.backboard_size}</li>
-                  <li>backboard: {p.backboard_size}</li>
-                  <li>backboard: {p.backboard_size}</li>
-                  <li>backboard: {p.backboard_size}</li>
-                  <li>backboard: {p.backboard_size}</li>
+                <ul className="grid grid-cols-2 gap-4 p-4">
+                  <li>Board Size: {p.backboard_size}"</li>
+                  <li>Board Material: {p.backboard_material}</li>
+                  <li>Post Dimension: {p.post_size}"</li>
+                  <li>Height Min/Max: {p.adjustment_range}"</li>
+                  <li>Price: {p.price}</li>
+                  <li>Install fee: {p.install_price}</li>
                 </ul>
               </div>
             </div>

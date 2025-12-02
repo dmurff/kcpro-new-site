@@ -7,8 +7,8 @@ export default function AllProductCards({ products }) {
     <>
       <section className=" bg-gradient-to-r from-black/90 to-black/60 h-[500px]">
         <div className="grid grid-cols-1 lg:grid-cols-12">
-          <div className="col-span-1 lg:col-span-6 text-gray-300 mx-auto lg:mx-0 flex flex-col justify-center pt-26 lg:pt-18 px-4">
-            <h1 className="mt-2 text-4xl font-semibold tracking-tight text-white sm:text-5xl">
+          <div className="col-span-1 lg:col-span-6 text-gray-300 mx-auto lg:mx-0 flex flex-col justify-center mt-16 lg:pt-8 px-4">
+            <h1 className="mt-26 lg:mt-0 text-4xl font-semibold tracking-tight text-white sm:text-5xl">
               In Ground Hoops
             </h1>
             <p className="max-w-[250px] mt-8 text-left font-semibold text-gray-300 text-base/7">
@@ -27,7 +27,7 @@ export default function AllProductCards({ products }) {
           </div>
         </div>
       </section>
-      <section className="grid grid-cols-1 lg:grid-cols-12 mt-8 px-6">
+      <section className="bg-black/10 grid grid-cols-1 lg:grid-cols-12 p-8 px-6">
         <div className="grid grid-cols-1 gap-4 lg:grid-cols-3 col-span-1 lg:col-start-1 lg:col-span-8 max-w-7xl mx-auto lg:mx-0">
           {products.map((p, i) => (
             <Link

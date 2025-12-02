@@ -59,7 +59,12 @@ export default async function SuccessPage({ searchParams }) {
 
   const totalDue = (remainder / 100).toFixed(2);
 
-  const mainImage = hoopImage?.[1]?.image_url;
+  // hoop_images db lookup
+  // const mainImage = hoopImage?.[1]?.image_url;
+
+  // hoops db feature_image lookup
+  console.log("IMAGE DB data:", hoopImage);
+  const mainImage = hoopImage?.[0]?.feature_image?.[0];
 
   return (
     <SuccessClient

@@ -69,9 +69,13 @@ export default function Checkout({
   };
 
   return (
-    <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-8">
-      <div className="flex flex-col gap-4 col-start-1 lg:col-start-2 lg:row-start-1 mx-auto my-4">
-        <img className="rounded-md" src={`${hoop.feature_image}`} width={500} />
+    <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-8 px-6">
+      <div className="flex flex-col gap-4 col-start-1 lg:col-start-2 lg:row-start-1 mx-auto lg:my-4 my-0">
+        <img
+          className="bg-black/80 rounded-md max-h-[300px] object-contain"
+          src={`${hoop.feature_image}`}
+          width={500}
+        />
 
         <div
           id="order_summary"
@@ -109,10 +113,10 @@ export default function Checkout({
             },
             PaymentMethodOrder: ["card", "link"],
           }}
-          className="lg:col-start-2 lg:col-end-3 lg:row-start-2"
+          className="lg:col-start-2 lg:col-end-3 lg:row-start-2 lg:mt-6"
         />
         <button
-          className="bg-orange-500 w-[200px]"
+          className="block text-lg font-semibold bg-orange-400 w-[200px] hover:bg-orange-600 transition duration-1.5 ease-in rounded-md p-4 my-6 mx-auto lg:mx-0"
           disabled={
             !stripe ||
             loading ||

@@ -28,7 +28,7 @@ export default function AllProductCards({ products }) {
         </div>
       </section>
       <section className="bg-black/10 grid grid-cols-1 lg:grid-cols-12 p-8 px-6 lg:pt-24">
-        <div className="grid grid-cols-1 gap-4 lg:grid-cols-3 col-span-1 lg:col-start-1 lg:col-span-8 max-w-7xl mx-auto lg:mx-0">
+        <div className="grid grid-cols-1 gap-4 lg:grid-cols-3 col-span-1 lg:col-start-1 lg:col-span-12 max-w-7xl mx-auto lg:mx-0">
           {products.map((p, i) => (
             <Link
               key={p.id}

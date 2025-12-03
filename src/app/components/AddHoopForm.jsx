@@ -86,6 +86,11 @@ export default function AddHoopForm({ initialValues = {}, mode, id = null }) {
     let payload = submitted;
     if (mode === "edit") {
       payload = {};
+
+      // AI suggested hoop img file edit fix (don't understand this at all)
+      // delete submitted.feature_image; // ← ADD THIS
+      // delete submitted.image_gallery; // ← AND THIS
+
       for (const key in submitted) {
         const newVal = submitted[key];
         const oldVal = initialValues[key] ?? "";

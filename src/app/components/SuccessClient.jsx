@@ -8,7 +8,7 @@ export default function SuccessClient({ hoop, mainImage, totalDue }) {
 
   return (
     <>
-      <div className="flex flex-col w-full text-xl font-md text-black">
+      <div className="bg-black/20 flex flex-col w-full text-xl font-md text-black">
         <h1 className="text-3xl text-green-700 mb-8 mx-auto pt-8">Success!</h1>
         <img
           className={"mx-auto mb-16"}

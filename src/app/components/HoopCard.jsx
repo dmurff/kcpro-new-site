@@ -116,7 +116,7 @@ export default function HoopCard({
 
   console.log("🚀", hoop.id, hoop.name);
   return (
-    <div className="w-full bg-white py-20">
+    <div className="w-full bg-white py-0 lg:py-20">
       {/* <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8"> */}
       <div className="mx-auto w-full max-w-[1600px] px-4 sm:px-6 lg:px-8">
         <div className="lg:grid lg:grid-cols-2 lg:items-start lg:gap-x-8">

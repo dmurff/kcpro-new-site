@@ -5,6 +5,7 @@ export default function AllProductCards({ products }) {
   console.log(products);
   return (
     <>
+      {/* <section className=" bg-gradient-to-r from-blue-500/90 to-black/60 h-[500px]"> */}
       <section className=" bg-gradient-to-r from-black/90 to-black/60 h-[500px]">
         <div className="grid grid-cols-1 lg:grid-cols-12">
           <div className="col-span-1 lg:col-span-6 text-gray-300 mx-auto lg:mx-0 flex flex-col justify-center mt-16 lg:pt-8 px-6">
@@ -28,7 +29,7 @@ export default function AllProductCards({ products }) {
         </div>
       </section>
       <section className="bg-black/10 grid grid-cols-1 lg:grid-cols-12 p-8 px-6 lg:pt-24">
-        <div className="grid grid-cols-1 gap-4 lg:grid-cols-3 col-span-1 lg:col-start-1 lg:col-span-12 max-w-7xl mx-auto lg:mx-0">
+        <div className="grid grid-cols-1 gap-4 lg:grid-cols-4 col-span-1 lg:col-start-1 lg:col-span-12 max-w-7xl mx-auto lg:mx-0">
           {products.map((p, i) => (
             <Link
               key={p.id}

@@ -116,7 +116,7 @@ export default function Checkout({
           className="lg:col-start-2 lg:col-end-3 lg:row-start-2 lg:mt-6"
         />
         <button
-          className="block text-lg font-semibold bg-orange-400 w-[200px] hover:bg-orange-600 transition duration-1.5 ease-in rounded-md p-4 my-6 mx-auto lg:mx-0"
+          className="block text-lg font-semibold bg-orange-400 w-[200px] hover:bg-orange-600 transition duration-1.5 ease-in rounded-md p-4 mt-6 mx-auto lg:mx-0"
           disabled={
             !stripe ||
             loading ||
@@ -130,6 +130,13 @@ export default function Checkout({
         </button>
         {msg && <p>{msg}</p>}
       </form>
+
+      <div className="mx-auto lg:mx-0">
+        <p className="text-md text-black">
+          *** With a successful payment you will be emailed a
+          receipt/intructions for next steps.
+        </p>
+      </div>
     </div>
   );
 }

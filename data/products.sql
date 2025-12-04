@@ -78,7 +78,7 @@ created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     "postSize": "6 x 8",
     "adjustmentRange": "5.5-10",
     "anchorType": "Bolt-down",
-    "description": "This hoop brings the gymnasium home. Designed with serious players in mind the backboard has regulation dimensions. A great blend of performance and fun with a low minumum height setting!"
+    "description": "This hoop brings the gymnasium home. Designed with serious players in mind the backboard has regulation dimensions. A great blend of performance and fun with a low minimum height setting!"
   }
 ]
 // Our units were designed by Ironclad Sports Inc. with performance

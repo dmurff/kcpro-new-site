@@ -1,31 +1,34 @@
-"use client";
+"use server";
 
-import { useEffect, useState } from "react";
-import supabase from "/utils/supabaseClient";
+// import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { fetchProductCardData } from "../../../lib/data/hoops";
 
-export default function ProductCards() {
-  const [products, setProducts] = useState([]);
+export default async function ProductCards() {
+  const products = await fetchProductCardData();
+  // fetchHoops();
 
-  useEffect(() => {
-    const fetchHoops = async () => {
-      const { data, error } = await supabase
-        .from("hoops")
+  // const [products, setProducts] = useState([]);
 
-        .select(
-          "id, name, brand, model, price, feature_image, backboard_size, anchor_type, post_size, adjustment_range, install_price"
-        )
-        .eq("is_featured", true)
-        .order("price", { ascending: true });
+  // useEffect(() => {
+  //   const fetchHoops = async () => {
+  //     const { data, error } = await supabase
+  //       .from("hoops")
 
-      if (error) {
-        console.error("Fetch error", error);
-      }
-      setProducts(data);
-    };
-    fetchHoops();
-  }, []);
+  //       .select(
+  //         "id, name, brand, model, price, feature_image, backboard_size, anchor_type, post_size, adjustment_range, install_price"
+  //       )
+  //       .eq("is_featured", true)
+  //       .order("price", { ascending: true });
+
+  //     if (error) {
+  //       console.error("Fetch error", error);
+  //     }
+  //     setProducts(data);
+  //   };
+  //   fetchHoops();
+  // }, []);
 
   return (
     <div id="product-wrapper" className="bg-white mb-24">

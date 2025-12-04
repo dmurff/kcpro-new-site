@@ -246,7 +246,7 @@ export default function HoopCard({
                 <button
                   onClick={handleCheckout}
                   type="button"
-                  className="flex max-w-xs flex-1 items-center justify-center rounded-md border border-transparent bg-orange-500 px-8 py-3 text-base font-medium text-white hover:bg-orange-600 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50 focus:outline-hidden sm:w-full shadow-lg"
+                  className="flex max-w-xs flex-1 items-center justify-center rounded-md border border-transparent bg-orange-400 px-8 py-3 text-base font-medium text-white hover:bg-orange-600 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50 focus:outline-hidden sm:w-full shadow-lg transition-all duration-1.5 ease-in"
                 >
                   Buy now
                 </button>

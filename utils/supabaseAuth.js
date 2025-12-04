@@ -1,19 +1,19 @@
-import supabase from "./supabaseClient";
+// import supabase from "./supabaseClient";
 
-export async function signUpWithEmail(credentials) {
-  const { email, password } = credentials;
+// export async function signUpWithEmail(credentials) {
+//   const { email, password } = credentials;
 
-  const { data, error } = await supabase.auth.signUp({
-    email,
-    password,
-  });
+//   const { data, error } = await supabase.auth.signUp({
+//     email,
+//     password,
+//   });
 
-  return { data, error };
-}
+//   return { data, error };
+// }
 
-export async function signInWithEmail(email, password) {
-  const { data, error } = await supabase.signInWithEmail({
-    email,
-    password,
-  });
-}
+// export async function signInWithEmail(email, password) {
+//   const { data, error } = await supabase.signInWithEmail({
+//     email,
+//     password,
+//   });
+// }

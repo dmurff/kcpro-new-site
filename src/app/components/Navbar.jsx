@@ -89,6 +89,9 @@ const Navbar = () => {
             <li className="hover:text-orange-400">
               <Link href="/hoops">Hoops</Link>
             </li>
+            <li className="hover:text-orange-400 hover:scale-1.5">
+              <Link href="/services">Services</Link>
+            </li>
             <li className="hover:text-orange-400">
               <Link href="/contractor-dashboard">Contractor</Link>
             </li>

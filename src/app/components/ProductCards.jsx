@@ -7,6 +7,8 @@ import { fetchProductCardData } from "../../../lib/data/hoops";
 
 export default async function ProductCards() {
   const products = await fetchProductCardData();
+
+  console.log("⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️", products);
   // fetchHoops();
 
   // const [products, setProducts] = useState([]);

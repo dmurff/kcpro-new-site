@@ -1,36 +1,12 @@
-"use server";
+// "use server";
 
 // import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { fetchProductCardData } from "../../../lib/data/hoops";
 
-export default async function ProductCards() {
-  const products = await fetchProductCardData();
-
+export default function ProductCards({ products }) {
   console.log("⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️", products);
-  // fetchHoops();
-
-  // const [products, setProducts] = useState([]);
-
-  // useEffect(() => {
-  //   const fetchHoops = async () => {
-  //     const { data, error } = await supabase
-  //       .from("hoops")
-
-  //       .select(
-  //         "id, name, brand, model, price, feature_image, backboard_size, anchor_type, post_size, adjustment_range, install_price"
-  //       )
-  //       .eq("is_featured", true)
-  //       .order("price", { ascending: true });
-
-  //     if (error) {
-  //       console.error("Fetch error", error);
-  //     }
-  //     setProducts(data);
-  //   };
-  //   fetchHoops();
-  // }, []);
 
   return (
     <div id="product-wrapper" className="bg-white mb-24">
@@ -40,17 +16,17 @@ export default async function ProductCards() {
           {products.map((product) => (
             <div
               key={product.id}
-              className="flex items-center group relative h-[650px] max-w-sm sm:w-full rounded-md shadow-xl border-4 border-transparent hover:border-orange-500 hover:shadow-xl transition-all duration-500 cursor-pointer"
+              className="flex items-center group relative h-[650px] max-w-sm sm:w-full bg-black/80 rounded-xl ring-1 ring-gray-900/5 backdrop-blur-sm hover:ring-orange-400 shadow-lg shadow-black/20 hover:shadow-orange-500/30 transition-all duration-500 cursor-pointer"
             >
               <Link href={`/hoops/${product.id}`}>
                 <Image
                   src={product.feature_image?.[0]}
                   alt={product.name}
                   fill
-                  className="block w-full h-full object-cover sm:object-scale-cover object-top"
+                  className="block w-full h-full object-cover rounded-xl sm:object-scale-cover object-top"
                 />
               </Link>
-              <div className="absolute w-full bottom-0 mt-4 flex flex-col gap-6 justify-between bg-black/10 p-6 rounded-t-md">
+              <div className="absolute w-full bottom-0 mt-4 flex flex-col gap-6 justify-between bg-black/10 p-6 rounded-b-xl">
                 <h3 className="text-xl font-medium text-white">
                   {product.name}
                   {/* <a href={product.href}>

@@ -2,7 +2,7 @@
 
 export default function TotalBox({
   total,
-  className = "text-slate-800 text-2xl font-bold border-1 p-2 shadow-md rounded-md",
+  className = "text-slate-800 text-2xl font-bold ring-green-800 p-2 shadow-md rounded-md",
 }) {
   return (
     <div className={className}>

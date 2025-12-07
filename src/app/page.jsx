@@ -4,7 +4,7 @@ import Hero from "@/app/components/Hero";
 import NewBaseForm from "@/app/components/NewBaseForm";
 import LeadForm from "@/app/components/LeadForm";
 import HomepageMain from "@/app/components/HomepageMain";
-import ProductCards from "@/app/components/ProductCards";
+import FeaturedProducts from "@/app/components/FeaturedProducts";
 import Navbar from "@/app/components/Navbar";
 import SalesSection from "@/app/components/SalesSection";
 import Footer from "@/app/components/Footer";
@@ -19,8 +19,8 @@ export default function Home() {
         <Hero />
         <HomepageMain />
         <SalesSection />
-        <ProductCards />
 
+        <FeaturedProducts />
         <NewBaseForm>
           <LeadForm />
         </NewBaseForm>

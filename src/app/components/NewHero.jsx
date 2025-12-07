@@ -1,4 +1,3 @@
-import ProductCards from "./ProductCards";
 import Link from "next/link";
 
 export default function NewHero({ products }) {
@@ -29,30 +28,55 @@ export default function NewHero({ products }) {
           />
         </div>
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="mx-auto max-w-2xl lg:mx-0">
+          <div className="mx-auto max-w-2xl lg:mx-0 mb-16">
             <h2 className="text-5xl font-semibold tracking-tight text-gray-900 sm:text-7xl">
               In Ground Hoops
             </h2>
             <p className="mt-8 text-lg font-medium text-pretty text-gray-600 sm:text-xl/8">
-              We offer the finest models available with unmatched curb appeal
-              and durability.
+              We offer high quality in ground hoops. Ironclad is the brand.
+              Based out of Hutchinson KS, Ironclad Sports Inc. has been an
+              industry leader in adjustable basketball goal innoations for over
+              30 years.
             </p>
           </div>
-          <div className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-6 sm:mt-20 lg:mx-0 lg:max-w-none lg:grid-cols-3 lg:gap-8">
+          {/*} ////// Content*/}
+          <div className="mt-20 grid grid-cols-1 lg:grid-cols-2 lg:gap-x-8 lg:gap-y-16 md:grid-cols-1">
+            <div className="lg:pr-8 outline ring-gray-400 shadow-lg rounded-md mx-auto p-8 md:mx-auto">
+              <h2 className="text-xl font-semibold bg-orange-400/70 tracking-tight text-pretty text-gray-900 inline-block">
+                60" Best Sellers
+              </h2>
+              <p className="mt-6 text-base/7 text-gray-600">
+                By far our most popular units are the Game Changer 60 and the
+                Triple Threat 60. These are the go to driveway hoops and will
+                work on any space regardless of size. All of our hoops are heavy
+                duty but these are the best option for 1-3+ car driveways.
+              </p>
+            </div>
+          </div>
+          ///////
+          {/* <div className="mx-auto mt-16 grid  grid-cols-1 gap-0 sm:mt-20 lg:mx-0 lg:max-w-none lg:grid-cols-2 lg:gap-8"> */}
+          <div className="mx-auto mt-16 grid grid-cols-1 sm:grid-cols-2 gap-8 lg:max-w-7xl">
             {products.map((p) => (
               <Link
                 key={p.id}
-                href="#"
-                className="flex flex-col gap-x-4 rounded-xl bg-black/80 p-6 ring-1 ring-gray-900/5 backdrop-blur-sm hover:ring-orange-400 shadow-lg shadow-black/20 hover:shadow-orange-500/30"
+                href={`/hoops/${p.id}`}
+                className=" flex flex-col  rounded-xl bg-black/80 p-6 ring-1 ring-gray-900/5 backdrop-blur-sm hover:ring-orange-400 shadow-lg shadow-black/20 hover:shadow-orange-500/30"
               >
                 <img
                   src={p.feature_image}
-                  width={300}
-                  className="object-contain max-h-[300px]"
+                  // width={300}
+                  className="object-contain max-h-[260px]"
                 />
-                <div className="text-base/7">
-                  <h3 className="font-semibold text-gray-100">{p.name}</h3>
-                  <p className="mt-2 text-gray-100">{p.description}</p>
+                <div className="text-base/7 text-lg">
+                  <h3 className="font-semibold text-gray-100 text-3xl">
+                    {p.name}
+                  </h3>
+                  <p className="mt-2 text-gray-100">
+                    Backboard {p.backboard_size}"
+                  </p>
+                  <p className="mt-2 text-gray-100">
+                    Height Range {p.adjustment_range}
+                  </p>
                   <p className="mt-2 text-gray-100">${p.price}</p>
                   <p className="mt-2 text-sm/6 font-semibold text-gray-100 hover:text-gray-300">
                     Learn more <span aria-hidden="true">→</span>
@@ -60,25 +84,9 @@ export default function NewHero({ products }) {
                 </div>
               </Link>
             ))}
-            <Link
-              href="/hoops"
-              className="flex gap-x-4 rounded-xl bg-blue-200 p-6 ring-1 ring-gray-900/5 backdrop-blur-sm hover:ring-blue-500 shadow-lg shadow-black/20 hover:shadow-blue-500/30"
-            >
-              <div className="text-base/7">
-                <h3 className="font-semibold text-gray-900">Best Value</h3>
-                <p className="mt-2 text-gray-700">
-                  Purchase a hoop and get $200 off installation plus free
-                  delivery.
-                </p>
-                <p className="mt-2 text-sm/6 font-semibold text-gray-700 hover:text-gray-950">
-                  Shop Hoops <span aria-hidden="true">→</span>
-                </p>
-              </div>
-            </Link>
           </div>
         </div>
       </div>
-      <ProductCards />
     </>
   );
 }

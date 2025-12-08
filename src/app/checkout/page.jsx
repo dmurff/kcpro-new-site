@@ -2,7 +2,7 @@
 // import { Elements } from "@stripe/react-stripe-js";
 // import { loadStripe } from "@stripe/stripe-js";
 import { fetchHoop } from "../../../lib/data/hoops";
-import { fetchServices } from "../../../lib/data/service";
+import { fetchServices } from "../../../lib/data/hoops";
 import CheckoutWrapper from "@/app/components/CheckoutWrapper";
 import { getPIMetadata } from "../../../lib/payment-intent/handlePI";
 

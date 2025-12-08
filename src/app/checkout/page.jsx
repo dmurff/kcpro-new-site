@@ -5,6 +5,7 @@ import { fetchHoop } from "../../../lib/data/hoops";
 import { fetchServices } from "../../../lib/data/hoops";
 import CheckoutWrapper from "@/app/components/CheckoutWrapper";
 import { getPIMetadata } from "../../../lib/payment-intent/handlePI";
+import { getPIObj } from "../../../lib/payment-intent/handlePI";
 
 export default async function CheckoutPage({ searchParams }) {
   // const { id, type } = searchParams;
@@ -29,10 +30,11 @@ export default async function CheckoutPage({ searchParams }) {
   const selectedServices = await Promise.all(
     parsedServices.map((s) => fetchServices(s)).flat()
   );
-  console.log("🚀🚀🚀🚀🚀", selectedServices);
+  console.log("💶🔨💶🔨", selectedServices);
 
   // fetch hoop to render order details
   const hoop = await fetchHoop(hoopId);
+  const selectedServiceIds = selectedServices.id;
 
   console.log("💶💶", payment_intent_client_secret);
 
@@ -41,7 +43,7 @@ export default async function CheckoutPage({ searchParams }) {
   return (
     <div>
       <CheckoutWrapper
-        services={selectedServices}
+        services={selectedServiceIds}
         remainder={remainder}
         hoop={hoop}
         depositAmount={depositAmount}

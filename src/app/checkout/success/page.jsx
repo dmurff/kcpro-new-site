@@ -28,6 +28,11 @@ export default async function SuccessPage({ searchParams }) {
 
   const hoop = await fetchHoop(hoopId);
   const hoopImage = await fetchImages(hoopId);
+
+  console.log(
+    "👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋",
+    selectedServiceIds
+  );
   //   await upsertCustomer({ name, email, phone, address, services });
   // use customer and job values as props to create a visual reinforcement of the service to be rendered or to pass data via email
 

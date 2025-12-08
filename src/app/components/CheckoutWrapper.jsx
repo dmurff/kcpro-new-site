@@ -17,6 +17,8 @@ export default function CheckoutWrapper({
 }) {
   if (!clientSecret) return "Preparing checkout...";
 
+  console.log("❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️", services);
+
   console.log("clientSecret:", clientSecret);
 
   return (

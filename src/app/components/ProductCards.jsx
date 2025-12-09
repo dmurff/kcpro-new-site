@@ -9,7 +9,7 @@ export default function ProductCards({ products }) {
   console.log("⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️", products);
 
   return (
-    <div className="relative isolate overflow-hidden bg-white py-24 sm:py-32 lg:py-16">
+    <div className="relative isolate overflow-hidden bg-white py-8 sm:py-32 lg:py-16">
       {/* <img
         alt=""
         src="/images/services_hero.png"
@@ -34,12 +34,18 @@ export default function ProductCards({ products }) {
         />
       </div>
       {/* <div className="h-px bg-gray-100 w-[90%] mx-auto" /> */}
-      <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
-        <div className=" mt-6 grid grid-cols-1 grid-rows-1 gap-x-2 gap-y-10 sm:grid-cols-2 lg:grid-cols-2 xl:gap-x-8 w-[75%] mx-auto">
+
+      <div className="mx-auto max-w-2xl px-4 py-1 sm:px-6 sm:py-1 lg:max-w-7xl lg:px-8">
+        <div className="flex justify-center items-center mb-16">
+          <h2 className="text-4xl text-white text-center bg-black/70 p-4 rounded-lg">
+            Best Sellers
+          </h2>
+        </div>
+        <div className=" mt-6 grid grid-cols-1 grid-rows-1 gap-x-2 gap-y-10 sm:grid-cols-2 lg:grid-cols-2 xl:gap-x-8 mx-auto">
           {products.map((product) => (
             <div
               key={product.id}
-              className="flex items-center group relative h-[650px] max-w-sm sm:w-full bg-black/80 rounded-xl ring-1 ring-gray-900/5 backdrop-blur-sm hover:ring-orange-400 shadow-lg shadow-black/20 hover:shadow-orange-500/30 transition-all duration-500 cursor-pointer"
+              className="flex lg:justify-center group relative h-[650px] sm:w-full bg-black/80 rounded-xl ring-1 ring-gray-900/5 backdrop-blur-sm hover:ring-orange-400 shadow-lg shadow-black/20 hover:shadow-orange-500/30 transition-all duration-500 cursor-pointer"
             >
               <Link href={`/hoops/${product.id}`}>
                 <Image
@@ -69,6 +75,20 @@ export default function ProductCards({ products }) {
               </div>
             </div>
           ))}
+        </div>
+        <div className="mt-2 flex py-10 items-center justify-center gap-x-6">
+          <Link
+            href="#"
+            className="rounded-md bg-orange-400 px-3.5 py-2.5 text-md font-semibold text-white shadow-xs hover:bg-orange-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+          >
+            See all hoops
+          </Link>
+          <a
+            href="#"
+            className="text-sm/6 font-semibold text-gray-900 hover:text-gray-600"
+          >
+            See other services <span aria-hidden="true">→</span>
+          </a>
         </div>
       </div>
     </div>

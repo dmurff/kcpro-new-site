@@ -61,8 +61,11 @@ const Navbar = ({}) => {
                 <Link href="/hoops">Hoops</Link>
               </li>
               <li className="border-b-2">
-                <Link href="/contractor-dashboard">Contractor</Link>
+                <Link href="/services">Services</Link>
               </li>
+              {/* <li className="border-b-2">
+                <Link href="/contractor-dashboard">Contractor</Link>
+              </li> */}
             </ul>
           </div>
         </>
@@ -80,21 +83,21 @@ const Navbar = ({}) => {
             />
           </div>
           <ul className="hidden lg:flex justify-center gap-x-8 items-center text-lg mx-auto p-2">
-            <li className="hover:text-orange-400 hover:scale-1.5">
+            <li className="hover:text-gray-400 hover:scale-1.5">
               <Link href="/">Home</Link>
             </li>
-            <li className="hover:text-orange-400">
+            <li className="hover:text-gray-400">
               <Link href="/about">About</Link>
             </li>
-            <li className="hover:text-orange-400">
+            <li className="hover:text-gray-400">
               <Link href="/hoops">Hoops</Link>
             </li>
-            <li className="hover:text-orange-400 hover:scale-1.5">
+            <li className="hover:text-gray-400 hover:scale-1.5">
               <Link href="/services">Services</Link>
             </li>
-            <li className="hover:text-orange-400">
+            {/* <li className="hover:text-gray-400">
               <Link href="/contractor-dashboard">Contractor</Link>
-            </li>
+            </li> */}
           </ul>
           <button
             className="lg:hidden text-2xl text-white p-4"

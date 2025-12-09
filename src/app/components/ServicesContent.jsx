@@ -38,6 +38,21 @@ export default function ServicesContent({ services }) {
           </p>
         </div>
         <div className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-6 sm:mt-20 lg:mx-0 lg:max-w-none lg:grid-cols-3 lg:gap-8">
+          <Link
+            href="/hoops"
+            className="flex gap-x-4 rounded-xl bg-blue-200 p-6 ring-1 ring-gray-900/5 backdrop-blur-sm hover:ring-blue-500 shadow-lg shadow-black/20 hover:shadow-blue-500/30"
+          >
+            <div className="text-base/7">
+              <h3 className="font-semibold text-gray-900">Best Value</h3>
+              <p className="mt-2 text-gray-700">
+                Purchase a hoop and get $200 off installation plus free
+                delivery.
+              </p>
+              <p className="mt-2 text-sm/6 font-semibold text-gray-700 hover:text-gray-950">
+                Shop Hoops <span aria-hidden="true">→</span>
+              </p>
+            </div>
+          </Link>
           {services.map((s) => (
             <Link
               key={s.id}
@@ -56,7 +71,7 @@ export default function ServicesContent({ services }) {
               </div>
             </Link>
           ))}
-          <Link
+          {/* <Link
             href="/hoops"
             className="flex gap-x-4 rounded-xl bg-blue-200 p-6 ring-1 ring-gray-900/5 backdrop-blur-sm hover:ring-blue-500 shadow-lg shadow-black/20 hover:shadow-blue-500/30"
           >
@@ -70,7 +85,7 @@ export default function ServicesContent({ services }) {
                 Shop Hoops <span aria-hidden="true">→</span>
               </p>
             </div>
-          </Link>
+          </Link> */}
         </div>
       </div>
     </div>

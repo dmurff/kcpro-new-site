@@ -21,9 +21,9 @@ export default function Home() {
         <Hero />
         <HomepageMain />
         {/* <SalesSection /> */}
-        <HomepageCta />
+        {/* <HomepageCta /> */}
         <FeaturedProducts />
-        <HomePageOffer />
+        {/* <HomePageOffer /> */}
         {/* <NewBaseForm>
           <LeadForm />
         </NewBaseForm> */}

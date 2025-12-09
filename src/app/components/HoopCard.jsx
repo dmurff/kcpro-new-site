@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-// import { StarIcon, FireIcon, ArrowRightIcon } from "@heroicons/react/20/solid";
+import { InformationCircleIcon } from "@heroicons/react/24/outline";
 import OrderNow from "../components/OrderNow";
 import Toggle from "../components/Toggle";
 import TotalBox from "./TotalBox";
@@ -17,6 +17,11 @@ import {
 } from "@headlessui/react";
 import { StarIcon } from "@heroicons/react/20/solid";
 import { HeartIcon, MinusIcon, PlusIcon } from "@heroicons/react/24/outline";
+
+// information Icon
+{
+  /* <InformationCircleIcon className="w-6 h-6 text-gray-500" /> */
+}
 
 const product = {
   name: "",
@@ -211,6 +216,9 @@ export default function HoopCard({
                 </h3> */}
                 <div className=" p-2 mb-6">
                   <h3 className="text-gray-900 text-xl">Add a service</h3>
+                  <span>
+                    <InformationCircleIcon className="h-6 w-6 text-gray-400" />
+                  </span>
                   <p className="text-gray-900">(25% deposit at checkout)</p>
                 </div>
 

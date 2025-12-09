@@ -78,13 +78,13 @@ export default function ProductCards({ products }) {
         </div>
         <div className="mt-2 flex py-10 items-center justify-center gap-x-6">
           <Link
-            href="#"
+            href="/hoops"
             className="rounded-md bg-orange-400 px-3.5 py-2.5 text-md font-semibold text-white shadow-xs hover:bg-orange-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
           >
             See all hoops
           </Link>
           <a
-            href="#"
+            href="/services"
             className="text-sm/6 font-semibold text-gray-900 hover:text-gray-600"
           >
             See other services <span aria-hidden="true">→</span>

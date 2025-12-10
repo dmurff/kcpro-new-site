@@ -143,7 +143,7 @@ export default async function ServicePage({ params }) {
                     <figcaption className="mt-6 flex gap-x-4">
                       <img
                         alt=""
-                        src="/images/render_hoops.png"
+                        src="/images/gc60pavers.png"
                         className="size-6 flex-none rounded-full bg-gray-50"
                       />
                       <div className="text-sm/6">
@@ -165,8 +165,8 @@ export default async function ServicePage({ params }) {
                 <figure className="mt-16">
                   <img
                     alt=""
-                    src="/images/render_hoops.png"
-                    className="aspect-video rounded-xl bg-gray-50 object-cover"
+                    src="/images/gc60pavers.png"
+                    className="aspect-video rounded-xl bg-gray-50 object-contain"
                   />
                   <figcaption className="mt-4 flex gap-x-2 text-sm/6 text-gray-500">
                     <InformationCircleIcon

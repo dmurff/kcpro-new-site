@@ -6,10 +6,12 @@ import {
 
 import Link from "next/link";
 
-const serviceDetails = {
-  description:
-    "A full install is exactly what is sounds like. We handle every aspect of your hoop installation. Below we break everything down so you know what to expect.",
-};
+const serviceDetails = [
+  {
+    description:
+      "A full install is exactly what is sounds like. We handle every aspect of your hoop installation. Below we break everything down so you know what to expect.",
+  },
+];
 
 export default async function ServicePage({ params }) {
   const slug = params.slug;

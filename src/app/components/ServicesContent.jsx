@@ -36,6 +36,23 @@ export default function ServicesContent({ services }) {
             all have one thing in common. Upfront pricing, transparent services,
             and no hidden fees — ever.
           </p>
+
+          <div className="mt-24">
+            <ul className="mt-8 text-lg font-medium text-pretty text-gray-600 sm:text-xl/8">
+              <li>
+                <span className="text-xl font-bold">Step 1:</span> At service
+                checkout select the jobs you need.
+              </li>
+              <li>
+                <span className="text-xl font-bold">Step 2:</span> At service
+                checkout select the jobs you need.
+              </li>
+              <li>
+                <span className="text-xl font-bold">Step 3:</span> At service
+                checkout select the jobs you need.
+              </li>
+            </ul>
+          </div>
         </div>
         <div className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-6 sm:mt-20 lg:mx-0 lg:max-w-none lg:grid-cols-3 lg:gap-8">
           <Link

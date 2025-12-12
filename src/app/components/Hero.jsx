@@ -1,7 +1,7 @@
 export default async function Example() {
   return (
     // <div className="relative bg-gray-400">
-    <div className="relative bg-black/80">
+    <div className="relative bg-black/80 mt-18">
       {/* <div className="relative aspect-[3/4] overflow-hidden bg-indigo-100 md:absolute md:left-0 md:h-full md:w-1/3 lg:w-1/2"> */}
       <div className="relative aspect-[3/4] overflow-hidden bg-indigo-100 md:absolute md:left-0 md:h-full md:w-1/3 lg:w-1/2">
         <div className=" inset-0 absolute z-10" />

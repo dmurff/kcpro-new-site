@@ -71,7 +71,7 @@ const Navbar = ({}) => {
         </>
       )}
 
-      <nav className="absolute z-40 top-0 left-0 w-full flex flex-row justify-between pr-12 items-center h-18 bg-neutral-800 text-white">
+      <nav className="absolute z-40 top-0 left-0 w-full flex flex-row justify-between pr-12 items-center h-18 bg-black/80 text-white">
         {/* <nav className="fixed top-0 w-full z-40 flex flex-row justify-between pr-12 items-center h-18 bg-white text-black"> */}
         <div className="flex gap-x-8 ml-1">
           <div className="hidden lg:block">

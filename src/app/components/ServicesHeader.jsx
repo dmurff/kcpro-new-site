@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function () {
   return (
     <div className="mx-auto lg:mx-0 bg-black/90 mt-18 p-8">
@@ -11,7 +13,7 @@ export default function () {
           and no hidden fees — ever.
         </p>
 
-        <div className="flex flex-row gap-4 mt-16 ">
+        <div className="flex flex-row gap-4 mt-16 mb-16">
           {/* <Link
               href="#"
               className="bg-orange-400 hover:bg-orange-500 text-white text-sm text-base/7 p-2 rounded-xl"
@@ -25,23 +27,23 @@ export default function () {
               Explore Services
             </Link> */}
 
-          <a
+          <Link
             href="#"
             className=" inline-flex rounded-md bg-orange-400 px-3.5 py-2.5 text-sm font-semibold text-white hover:outline-orange-600 hover:bg-orange-600 focus-visible:outline-2 focus-visible:outline-offset-2 items-center hover:text-gray-300 transition duration-150 ease-in"
           >
             {" "}
             Fast Book
-          </a>
-          <a
+          </Link>
+          <Link
             href="#serviceCards"
             className=" inline-flex rounded-md bg-transparent border-2 outline-blue-100 px-3.5 py-2.5 text-sm font-semibold text-white hover:bg-blue-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 hover:border-blue-100 hover:text-slate-800 transition duration-300 ease-in-out"
           >
             {" "}
-            Not sure? Learn our process
+            Not sure? Check out our services
             <span className="ml-2" aria-hidden="true">
               ↓
             </span>
-          </a>
+          </Link>
 
           {/* <ul className="mt-8 text-lg font-medium text-pretty text-gray-600 sm:text-xl/8">
               <li>

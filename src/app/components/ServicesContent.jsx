@@ -29,11 +29,12 @@ export default function ServicesContent({ services }) {
           />
         </div>
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className=" font-semibold text-gray-900 text-base/7 p-2 rounded-xl">
+          <div className=" text-gray-900 text-base/7 p-2 rounded-xl">
             <p>
-              How it works: Select a service to see what’s included and what to
-              expect. A 25% deposit (capped at $200) locks in your schedule.
-              Final payment is due upon completion.
+              <span className="font-semibold">How it works: </span> Select a
+              service to see what’s included and what to expect. A 25% deposit
+              (capped at $200) locks in your schedule. Final payment is due upon
+              completion.
             </p>
           </div>
           <div

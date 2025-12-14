@@ -9,6 +9,7 @@ import Link from "next/link";
 import { SERVICE_CONTENT } from "../../../../lib/data/serviceContent";
 import ServiceSlugCta from "@/app/components/ServiceSlugCta";
 import Testimonials from "@/app/components/Testimonials";
+import ServiceWhatToExpect from "@/app/components/ServiceWhatToExpect";
 
 const serviceDetails = [
   {
@@ -116,7 +117,7 @@ export default async function ServicePage({ params }) {
               ))}
             </ul>
           </div>
-          <div id="expectations" className="mb-10">
+          <div id="expectations" className="mb-24">
             <h2 className="text-gray-900 text-3xl font-semibold mb-4">
               Timeline
             </h2>
@@ -131,6 +132,7 @@ export default async function ServicePage({ params }) {
               ))}
             </ul>
           </div>
+          <ServiceWhatToExpect content={content} />
         </div>
         <Testimonials />
         <ServiceSlugCta />

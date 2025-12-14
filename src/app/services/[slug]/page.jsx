@@ -61,6 +61,17 @@ export default async function ServicePage({ params }) {
             <p className="mt-8 text-lg font-medium text-pretty text-gray-600 sm:text-xl/8">
               {content.description}
             </p>
+            <button className="mt-10 group relative inline-flex items-center justify-center rounded-lg bg-black/80 px-6 py-3 text-white shadow transition-1.5 ease-in">
+              {/* Default text */}
+              <span className="transition-opacity duration-200 text-lg/8 group-hover:opacity-0">
+                Service Fee → ${service.price}
+              </span>
+
+              {/* Hover text */}
+              <span className="absolute transition-opacity text-lg/8 duration-200 opacity-0 group-hover:opacity-100">
+                Book →
+              </span>
+            </button>
           </div>
           {/* <div id="basicPage">
             <h2 className="text-4xl text-black font-bold">What we do</h2>
@@ -72,7 +83,10 @@ export default async function ServicePage({ params }) {
               </p>
             ))}
           </div> */}
-          <div id="expectations" className="mb-10">
+          {/* <p className="text-gray-300 font-bold text-2xl">Service Fee →</p>
+            <p className="text-gray-200 text-xl/8">${service.price}.00</p> */}
+
+          <div id="expectations" className="mt-24 mb-10">
             <h2 className="text-gray-900 text-3xl font-semibold mb-4">
               Service Scope
             </h2>
@@ -92,7 +106,7 @@ export default async function ServicePage({ params }) {
               Not Included in Service
             </h2>
             <ul className="flex flex-col gap-4 text-gray-700 bg-gray-200/30 text-lg/7 rounded-xl w-fit p-6">
-              {content.notIncluded.map((n, i) => (
+              {content.notIncluded?.map((n, i) => (
                 <li key={i}>
                   <span>
                     <CheckCircleIcon width={20} className="inline mr-2" />
@@ -102,7 +116,7 @@ export default async function ServicePage({ params }) {
               ))}
             </ul>
           </div>
-          <div id="expectations">
+          <div id="expectations" className="mb-10">
             <h2 className="text-gray-900 text-3xl font-semibold mb-4">
               Timeline
             </h2>

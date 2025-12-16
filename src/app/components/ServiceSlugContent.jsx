@@ -22,13 +22,13 @@ export default function ServiceSlugContent({ serviceId, content, service }) {
 
   function handleSubmit() {
     startTransition(async () => {
-      const { clientSecret } = await createPaymentIntent({ serviceId });
+      const { clientSecret, paymentIntentId } = await createPaymentIntent({ serviceId });
 
       // router.push(
       //   `/checkout/serviceCheckout?clientSecret=${clientSecret}&serviceId=${serviceId}`
       // );
       window.location.href =
-  `/checkout/serviceCheckout?clientSecret=${clientSecret}&serviceId=${serviceId}`;
+  `/checkout/serviceCheckout?clientSecret=${clientSecret}&serviceId=${serviceId}&paymentIntentId=${paymentIntentId}`;
 
     });
   }

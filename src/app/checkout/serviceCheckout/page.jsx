@@ -8,7 +8,7 @@ import {fetchServices} from "../../../../lib/data/hoops"
 export default async function Page({ searchParams }) {
 
   
-  const { serviceId, clientSecret } = await searchParams;
+  const { serviceId, clientSecret, paymentIntentId } = await searchParams;
   
   // const service = await fetchServices(serviceId);
 
@@ -28,7 +28,7 @@ const remainder = price - deposit;
 
   return (
     <>
-      <ServiceCheckout clientSecret={clientSecret} service={service} deposit={deposit} remainder={remainder} />
+      <ServiceCheckout clientSecret={clientSecret} paymentIntentId={paymentIntentId}service={service} deposit={deposit} remainder={remainder} />
     </>
   );
 }

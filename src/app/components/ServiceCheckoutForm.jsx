@@ -6,23 +6,74 @@ import {
   PopoverButton,
   PopoverPanel,
 } from "@headlessui/react";
-import { Elements, PaymentElement } from "@stripe/react-stripe-js";
-import { loadStripe } from "@stripe/stripe-js";
-
-
-const stripe = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY);
-
-
-export default function ServiceCheckoutForm({service, clientSecret, deposit, remainder}) {
+import { PaymentElement, useElements, useStripe } from "@stripe/react-stripe-js";
+import {useState} from "react";
 
 
 
+export default function ServiceCheckoutForm({service, deposit, remainder,paymentIntentId}) {
 
-console.log(service.slug)
+const stripe = useStripe();
+const elements = useElements();
+const [loading, setLoading] = useState(false);
+const [msg, setMsg] = useState("");
+
+  const [form, setForm] = useState({
+    
+      name: "",
+      email: '',
+      phone: "",
+      address: "",
+      city: '',
+      state: '',
+      postalCode: '',
+
+    
+  })
+
+  const handleSubmit =async(e) => 
+    {
+e.preventDefault();
+if(!elements || !stripe ) {
+  return;
+}
+
+ if (!form.name || !form.email || !form.phone || !form.address) {
+      setMsg("Please fill in all the customer details before proceeding.");
+      return;
+    }
+
+    setLoading(true);
+
+    await fetch('/api/save-checkout-metadata', {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({
+        paymentIntentId,
+        ...form,
+      }),
+    });
+
+    const {error} = await stripe.confirmPayment({
+      elements,
+      redirect: "always",
+      confirmParams: {
+        return_url: `${window.location.origin}/checkout/serviceCheckout/success`
+      }
+    })
+
+    }
+
+ function handleChange(e) {
+  
+  setForm({...form, [e.target.name]:e.target.value})
+ }
+
+// console.log(service.slug)
 
 const serviceName = service.slug.replace('-', " ")
 
-console.log(serviceName)
+console.log(form);
   
   return (
     <>
@@ -81,22 +132,22 @@ console.log(serviceName)
               <dl className="hidden space-y-6 border-t border-gray-200 pt-6 text-sm font-medium text-gray-900 lg:block">
                 <div className="flex items-center justify-between">
                   <dt className="text-gray-600">Service Cost ({serviceName})</dt>
-                  <dd>${service.price}</dd>
+                  <dd>${service.price.toFixed(2)}</dd>
                 </div>
 
                 <div className="flex items-center justify-between">
                   <dt className="text-gray-600">Deposit Due</dt>
-                  <dd>${deposit}</dd>
+                  <dd>${deposit.toFixed(2)}</dd>
                 </div>
 
                 <div className="flex items-center justify-between">
                   <dt className="text-gray-600">Due On Completion</dt>
-                  <dd>${remainder}</dd>
+                  <dd>${remainder.toFixed(2)}</dd>
                 </div>
 
                 <div className="flex items-center justify-between border-t border-gray-200 pt-6">
                   <dt className="text-base">Due Today</dt>
-                  <dd className="text-base">${deposit}</dd>
+                  <dd className="text-base">${deposit.toFixed(2)}</dd>
                 </div>
               </dl>
 
@@ -105,7 +156,7 @@ console.log(serviceName)
                   <div className="mx-auto max-w-lg">
                     <PopoverButton className="flex w-full items-center py-6 font-medium">
                       <span className="mr-auto text-base">Due Today</span>
-                      <span className="mr-2 text-base">${deposit}</span>
+                      <span className="mr-2 text-base">${deposit.toFixed(2)}</span>
                       <ChevronUpIcon
                         aria-hidden="true"
                         className="size-5 text-gray-500"
@@ -125,17 +176,17 @@ console.log(serviceName)
                   <dl className="mx-auto max-w-lg space-y-6">
                     <div className="flex items-center justify-between">
                       <dt className="text-gray-600">Service Cost</dt>
-                      <dd>${service.price}</dd>
+                      <dd>${service.price.toFixed(2)}</dd>
                     </div>
 
                     <div className="flex items-center justify-between">
                       <dt className="text-gray-600">Deposit</dt>
-                      <dd>${deposit}</dd>
+                      <dd>${deposit.toFixed(2)}</dd>
                     </div>
 
                     <div className="flex items-center justify-between">
                       <dt className="text-gray-600">Due On Completion</dt>
-                      <dd>${remainder}</dd>
+                      <dd>${remainder.toFixed(2)}</dd>
                     </div>
                   </dl>
                 </PopoverPanel>
@@ -143,7 +194,7 @@ console.log(serviceName)
             </div>
           </section>
 
-          <form className="px-4 pt-16 pb-36 sm:px-6 lg:col-start-1 lg:row-start-1 lg:px-0 lg:pb-16">
+          <form onSubmit={handleSubmit}className="px-4 pt-16 pb-36 sm:px-6 lg:col-start-1 lg:row-start-1 lg:px-0 lg:pb-16">
             <div className="mx-auto max-w-lg lg:max-w-none">
               <section aria-labelledby="contact-info-heading">
                 <h2
@@ -155,69 +206,65 @@ console.log(serviceName)
 
                 <div className="mt-6">
                   <label
-                    htmlFor="email-address"
+                    htmlFor="name"
                     className="block text-sm/6 font-medium text-gray-700"
                   >
                     Name
                   </label>
                   <div className="mt-2">
                     <input
+                    onChange={handleChange}
+                    value={form.name}
                       id="name"
                       name="name"
                       type="text"
-                      className="block w-full rounded-md bg-white px-3 py-2 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+
+
+                      className="block w-full rounded-md bg-white px-3 py-2 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-orange-600 sm:text-sm/6"
                     />
                   </div>
                   <label
-                    htmlFor="email-address"
+                    htmlFor="email"
                     className="block text-sm/6 font-medium text-gray-700"
                   >
                     Email address
                   </label>
                   <div className="mt-2">
                     <input
-                      id="email-address"
-                      name="email-address"
+                    onChange={handleChange}
+                    value={form.email}
+                      id="email"
+                      name="email"
                       type="email"
-                      //   autoComplete="email"
-                      className="block w-full rounded-md bg-white px-3 py-2 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+
+
+
+                      className="block w-full rounded-md bg-white px-3 py-2 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-orange-600 sm:text-sm/6"
                     />
                   </div>
                   <label
-                    htmlFor="email-address"
+                    htmlFor="phone"
                     className="block text-sm/6 font-medium text-gray-700"
                   >
                     Phone
                   </label>
                   <div className="mt-2">
                     <input
+                    onChange={handleChange}
+                    value={form.phone}
                       id="phone"
                       name="phone"
                       type="text"
+
                       //   autoComplete="email"
-                      className="block w-full rounded-md bg-white px-3 py-2 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+                      className="block w-full rounded-md bg-white px-3 py-2 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-orange-600 sm:text-sm/6"
                     />
                   </div>
                 </div>
               </section>
 
               <section aria-labelledby="payment-heading" className="mt-10">
-                <Elements
-        stripe={stripe}
-        options={{
-          clientSecret,
-          appearance: {
-            theme: "flat",
-            variables: { colorPrimaryText: "#262626" },
-          },
-          layout: {
-            type: "tabs",
-            defaultCollapsed: false,
-          },
-        }}
-      >
-                <PaymentElement  />
-      </Elements>
+                
               </section>
 
               <section aria-labelledby="shipping-heading" className="mt-10">
@@ -240,11 +287,13 @@ console.log(serviceName)
                     </label>
                     <div className="mt-2">
                       <input
+                      onChange={handleChange}
+                      value={form.address}
                         id="address"
                         name="address"
                         type="text"
                         autoComplete="street-address"
-                        className="block w-full rounded-md bg-white px-3 py-2 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+                        className="block w-full rounded-md bg-white px-3 py-2 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-orange-600 sm:text-sm/6"
                       />
                     </div>
                   </div>
@@ -260,11 +309,13 @@ console.log(serviceName)
                     </label>
                     <div className="mt-2">
                       <input
+                      onChange={handleChange}
+                      value={form.city}
                         id="city"
                         name="city"
                         type="text"
                         autoComplete="address-level2"
-                        className="block w-full rounded-md bg-white px-3 py-2 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+                        className="block w-full rounded-md bg-white px-3 py-2 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-orange-600 sm:text-sm/6"
                       />
                     </div>
                   </div>
@@ -278,11 +329,13 @@ console.log(serviceName)
                     </label>
                     <div className="mt-2">
                       <input
-                        id="region"
-                        name="region"
+                      onChange={handleChange}
+                      value={form.state}
+                        id="state"
+                        name="state"
                         type="text"
                         autoComplete="address-level1"
-                        className="block w-full rounded-md bg-white px-3 py-2 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+                        className="block w-full rounded-md bg-white px-3 py-2 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-orange-600 sm:text-sm/6"
                       />
                     </div>
                   </div>
@@ -296,15 +349,20 @@ console.log(serviceName)
                     </label>
                     <div className="mt-2">
                       <input
-                        id="postal-code"
-                        name="postal-code"
+                      onChange={handleChange}
+                      value={form.postalCode}
+                        id="postalCode"
+                        name="postalCode"
                         type="text"
-                        autoComplete="postal-code"
-                        className="block w-full rounded-md bg-white px-3 py-2 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+                        // autoComplete="postalCode"
+                        className="block w-full rounded-md bg-white px-3 py-2 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-orange-600 sm:text-sm/6"
                       />
                     </div>
                   </div>
+                 
                 </div>
+                 <PaymentElement  className="mt-6"/>
+                 
               </section>
 
              
@@ -312,12 +370,14 @@ console.log(serviceName)
               <div className="mt-10 border-t border-gray-200 pt-6 sm:flex sm:items-center sm:justify-between">
                 <button
                   type="submit"
-                  className="w-full rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-xs hover:bg-indigo-700 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50 focus:outline-hidden sm:order-last sm:ml-6 sm:w-auto"
+                  className="w-full rounded-md border border-transparent bg-orange-600 px-4 py-2 text-sm font-medium text-white shadow-xs hover:bg-orange-700 focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 focus:ring-offset-gray-50 focus:outline-hidden sm:order-last sm:ml-6 sm:w-auto"
                 >
                   Continue
                 </button>
                 <p className="mt-4 text-center text-sm text-gray-500 sm:mt-0 sm:text-left">
-                  You won't be charged until the next step.
+                  *** With a successful payment you will be emailed a receipt/intructions for next steps.
+
+
                 </p>
               </div>
             </div>

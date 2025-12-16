@@ -6,9 +6,24 @@ import {
   PopoverButton,
   PopoverPanel,
 } from "@headlessui/react";
-import { PaymentElement } from "@stripe/react-stripe-js";
+import { Elements, PaymentElement } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
 
-export default function ServiceCheckoutForm() {
+
+const stripe = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY);
+
+
+export default function ServiceCheckoutForm({service, clientSecret, deposit, remainder}) {
+
+
+
+
+console.log(service.slug)
+
+const serviceName = service.slug.replace('-', " ")
+
+console.log(serviceName)
+  
   return (
     <>
       <div className="bg-white">
@@ -65,32 +80,32 @@ export default function ServiceCheckoutForm() {
 
               <dl className="hidden space-y-6 border-t border-gray-200 pt-6 text-sm font-medium text-gray-900 lg:block">
                 <div className="flex items-center justify-between">
-                  <dt className="text-gray-600">Subtotal</dt>
-                  <dd>$320.00</dd>
+                  <dt className="text-gray-600">Service Cost ({serviceName})</dt>
+                  <dd>${service.price}</dd>
                 </div>
 
                 <div className="flex items-center justify-between">
-                  <dt className="text-gray-600">Shipping</dt>
-                  <dd>$15.00</dd>
+                  <dt className="text-gray-600">Deposit Due</dt>
+                  <dd>${deposit}</dd>
                 </div>
 
                 <div className="flex items-center justify-between">
-                  <dt className="text-gray-600">Taxes</dt>
-                  <dd>$26.80</dd>
+                  <dt className="text-gray-600">Due On Completion</dt>
+                  <dd>${remainder}</dd>
                 </div>
 
                 <div className="flex items-center justify-between border-t border-gray-200 pt-6">
-                  <dt className="text-base">Total</dt>
-                  <dd className="text-base">$361.80</dd>
+                  <dt className="text-base">Due Today</dt>
+                  <dd className="text-base">${deposit}</dd>
                 </div>
               </dl>
 
               <Popover className="fixed inset-x-0 bottom-0 flex flex-col-reverse text-sm font-medium text-gray-900 lg:hidden">
-                <div className="relative z-10 border-t border-gray-200 bg-white px-4 sm:px-6">
+                <div className="relative z-1000 border-t border-gray-200 bg-white px-4 sm:px-6">
                   <div className="mx-auto max-w-lg">
                     <PopoverButton className="flex w-full items-center py-6 font-medium">
-                      <span className="mr-auto text-base">Total</span>
-                      <span className="mr-2 text-base">$361.80</span>
+                      <span className="mr-auto text-base">Due Today</span>
+                      <span className="mr-2 text-base">${deposit}</span>
                       <ChevronUpIcon
                         aria-hidden="true"
                         className="size-5 text-gray-500"
@@ -109,18 +124,18 @@ export default function ServiceCheckoutForm() {
                 >
                   <dl className="mx-auto max-w-lg space-y-6">
                     <div className="flex items-center justify-between">
-                      <dt className="text-gray-600">Subtotal</dt>
-                      <dd>$320.00</dd>
+                      <dt className="text-gray-600">Service Cost</dt>
+                      <dd>${service.price}</dd>
                     </div>
 
                     <div className="flex items-center justify-between">
-                      <dt className="text-gray-600">Shipping</dt>
-                      <dd>$15.00</dd>
+                      <dt className="text-gray-600">Deposit</dt>
+                      <dd>${deposit}</dd>
                     </div>
 
                     <div className="flex items-center justify-between">
-                      <dt className="text-gray-600">Taxes</dt>
-                      <dd>$26.80</dd>
+                      <dt className="text-gray-600">Due On Completion</dt>
+                      <dd>${remainder}</dd>
                     </div>
                   </dl>
                 </PopoverPanel>
@@ -187,7 +202,22 @@ export default function ServiceCheckoutForm() {
               </section>
 
               <section aria-labelledby="payment-heading" className="mt-10">
-                <PaymentElement />
+                <Elements
+        stripe={stripe}
+        options={{
+          clientSecret,
+          appearance: {
+            theme: "flat",
+            variables: { colorPrimaryText: "#262626" },
+          },
+          layout: {
+            type: "tabs",
+            defaultCollapsed: false,
+          },
+        }}
+      >
+                <PaymentElement  />
+      </Elements>
               </section>
 
               <section aria-labelledby="shipping-heading" className="mt-10">
@@ -195,26 +225,11 @@ export default function ServiceCheckoutForm() {
                   id="shipping-heading"
                   className="text-lg font-medium text-gray-900"
                 >
-                  Shipping address
+                  Address
                 </h2>
 
                 <div className="mt-6 grid grid-cols-1 gap-x-4 gap-y-6 sm:grid-cols-3">
-                  <div className="sm:col-span-3">
-                    <label
-                      htmlFor="company"
-                      className="block text-sm/6 font-medium text-gray-700"
-                    >
-                      Company
-                    </label>
-                    <div className="mt-2">
-                      <input
-                        id="company"
-                        name="company"
-                        type="text"
-                        className="block w-full rounded-md bg-white px-3 py-2 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
-                      />
-                    </div>
-                  </div>
+                  
 
                   <div className="sm:col-span-3">
                     <label
@@ -234,22 +249,7 @@ export default function ServiceCheckoutForm() {
                     </div>
                   </div>
 
-                  <div className="sm:col-span-3">
-                    <label
-                      htmlFor="apartment"
-                      className="block text-sm/6 font-medium text-gray-700"
-                    >
-                      Apartment, suite, etc.
-                    </label>
-                    <div className="mt-2">
-                      <input
-                        id="apartment"
-                        name="apartment"
-                        type="text"
-                        className="block w-full rounded-md bg-white px-3 py-2 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
-                      />
-                    </div>
-                  </div>
+                 
 
                   <div>
                     <label
@@ -274,7 +274,7 @@ export default function ServiceCheckoutForm() {
                       htmlFor="region"
                       className="block text-sm/6 font-medium text-gray-700"
                     >
-                      State / Province
+                      State 
                     </label>
                     <div className="mt-2">
                       <input
@@ -307,54 +307,7 @@ export default function ServiceCheckoutForm() {
                 </div>
               </section>
 
-              <section aria-labelledby="billing-heading" className="mt-10">
-                <h2
-                  id="billing-heading"
-                  className="text-lg font-medium text-gray-900"
-                >
-                  Billing information
-                </h2>
-
-                <div className="mt-6 flex gap-3">
-                  <div className="flex h-5 shrink-0 items-center">
-                    <div className="group grid size-4 grid-cols-1">
-                      <input
-                        defaultChecked
-                        id="same-as-shipping"
-                        name="same-as-shipping"
-                        type="checkbox"
-                        className="col-start-1 row-start-1 appearance-none rounded-sm border border-gray-300 bg-white checked:border-indigo-600 checked:bg-indigo-600 indeterminate:border-indigo-600 indeterminate:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:checked:bg-gray-100 forced-colors:appearance-auto"
-                      />
-                      <svg
-                        fill="none"
-                        viewBox="0 0 14 14"
-                        className="pointer-events-none col-start-1 row-start-1 size-3.5 self-center justify-self-center stroke-white group-has-disabled:stroke-gray-950/25"
-                      >
-                        <path
-                          d="M3 8L6 11L11 3.5"
-                          strokeWidth={2}
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          className="opacity-0 group-has-checked:opacity-100"
-                        />
-                        <path
-                          d="M3 7H11"
-                          strokeWidth={2}
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          className="opacity-0 group-has-indeterminate:opacity-100"
-                        />
-                      </svg>
-                    </div>
-                  </div>
-                  <label
-                    htmlFor="same-as-shipping"
-                    className="text-sm font-medium text-gray-900"
-                  >
-                    Same as shipping information
-                  </label>
-                </div>
-              </section>
+             
 
               <div className="mt-10 border-t border-gray-200 pt-6 sm:flex sm:items-center sm:justify-between">
                 <button

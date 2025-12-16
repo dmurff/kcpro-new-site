@@ -24,9 +24,12 @@ export default function ServiceSlugContent({ serviceId, content, service }) {
     startTransition(async () => {
       const { clientSecret } = await createPaymentIntent({ serviceId });
 
-      router.push(
-        `/checkout/serviceCheckout?clientSecret=${clientSecret}&serviceId=${serviceId}`
-      );
+      // router.push(
+      //   `/checkout/serviceCheckout?clientSecret=${clientSecret}&serviceId=${serviceId}`
+      // );
+      window.location.href =
+  `/checkout/serviceCheckout?clientSecret=${clientSecret}&serviceId=${serviceId}`;
+
     });
   }
   return (

@@ -17,7 +17,7 @@ export default async function Page({ searchParams }) {
 // FORCE serialization
 const service = JSON.parse(JSON.stringify(rawService));
 
-    console.log("🐦🐦🐦🐦🐦🕰️🕰️🕰️🕰️🕰️", service);
+    // console.log("🐦🐦🐦🐦🐦🕰️🕰️🕰️🕰️🕰️", service);
 
     const price = service.price;
 

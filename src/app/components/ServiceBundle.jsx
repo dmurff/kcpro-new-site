@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import { useState } from "react";
 
@@ -10,6 +12,8 @@ export default function ServiceBundle({ services }) {
       [id]: !prev[id],
     }));
   };
+
+  console.log(selectedIds);
 
   return (
     <div className="relative isolate overflow-hidden bg-white py-24 sm:py-32">
@@ -70,14 +74,16 @@ export default function ServiceBundle({ services }) {
               <button
                 key={s.id}
                 onClick={() => handleClick(s.id)}
-                className="flex gap-x-4 rounded-xl bg-gray-200/30 p-6 ring-1 ring-gray-900/5 backdrop-blur-sm hover:ring-orange-400 shadow-lg shadow-black/20 hover:shadow-orange-500/30"
+                className={`flex gap-x-4 rounded-xl backdrop-blur-sm p-6 shadow-lg ring-1 ${
+                  isSelected
+                    ? "hover:shadow-orange-500/30 bg-black/80 text-gray-400 ring:orange-500"
+                    : "bg-gray-200/30 hover:ring-orange-400 text-gray-700 ring-gray-900/5 shadow-black/20"
+                }`}
               >
                 <div className="text-base/7">
-                  <h3 className="font-semibold text-gray-900">
-                    {s.display_name}
-                  </h3>
-                  <p className="mt-2 text-gray-700">{s.description}</p>
-                  <p className="mt-2 text-gray-700">${s.price}</p>
+                  <h3 className="font-semibold ">{s.display_name}</h3>
+                  <p className="mt-2 ">{s.description}</p>
+                  <p className="mt-2 ">${s.price}</p>
                   <p className="mt-2 text-sm/6 font-semibold text-gray-400 hover:text-gray-950">
                     Learn more <span aria-hidden="true">→</span>
                   </p>

@@ -1,0 +1,27 @@
+INSERT INTO services (
+  slug,
+  display_name,
+  description,
+  price,
+  service_group,
+  is_active,
+  is_visible_in_ui
+) VALUES
+(
+  'dirt-haul',
+  'Dirt Haul Away',
+  'Removal and disposal of excess dirt generated during excavation.',
+  150,
+  'addon',
+  true,
+  true
+),
+(
+  'box-disposal',
+  'Box & Packaging Disposal',
+  'Removal and disposal of all packaging materials after installation.',
+  75,
+  'addon',
+  true,
+  true
+);

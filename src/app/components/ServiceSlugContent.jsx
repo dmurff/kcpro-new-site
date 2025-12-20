@@ -33,7 +33,7 @@ export default function ServiceSlugContent({ serviceId, content, service }) {
   //   });
   // }
   function handleSubmit() {
-    router.push(`/services/bundle?service=${service}`);
+    router.push(`/services/bundle?service_id=${service.id}`);
     //     window.location.href =
     // `/checkout/serviceCheckout?clientSecret=${clientSecret}&serviceId=${serviceId}&paymentIntentId=${paymentIntentId}`;
     // });

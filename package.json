@@ -25,6 +25,7 @@
     "react-dom": "^19.0.0",
     "react-form-hook": "^0.0.1",
     "react-hook-form": "^7.60.0",
+    "react-hot-toast": "^2.6.0",
     "react-icons": "^5.5.0",
     "stripe": "^18.4.0",
     "twilio": "^5.10.6"

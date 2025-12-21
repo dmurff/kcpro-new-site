@@ -1,20 +1,39 @@
 "use client";
 
 import Link from "next/link";
-import { ServerClient } from "postmark";
+// import { ServerClient } from "postmark";
 import { useState } from "react";
 import toast from "react-hot-toast";
 
+import OrderSummary from './OrderSummary';
+
 export default function ServiceBundle({ services, primaryServiceId }) {
   const [addonIds, setAddonIds] = useState([]);
-  //   const [laborIds, setLaborIds] = useState([]);
+  const [isPending, setIsPending] = useState(false); 
 
-  //   const handleClick = (id) => {
-  //     setSelectedIds((prev) => ({
-  //       ...prev,
-  //       [id]: !prev[id],
-  //     }));
-  //   };
+   function onCheckout () {
+     setIsPending(true);
+
+  const params = new URLSearchParams({
+    primaryServiceId,
+    addonIds: addonIds.join(","), // 👈 important
+  });
+ console.log(params)
+
+
+  window.location.href =
+    `/checkout/serviceCheckout?${params.toString()}`;
+    
+  }
+
+
+
+  const primaryService = services.find((s)=> s.id === primaryServiceId)
+  const selectedAddons = services.filter((s) => addonIds.includes(s.id))
+  const serviceTotal = primaryService.price + (selectedAddons.reduce((acc, s)=> acc + s.price, 0))
+  const deposit = Math.min(serviceTotal * .25, 200).toFixed(2)
+  const remainder = serviceTotal - deposit;
+
 
   const handleClick = (service) => {
     if (service.id === primaryServiceId) {
@@ -65,7 +84,7 @@ export default function ServiceBundle({ services, primaryServiceId }) {
           className="aspect-1097/845 w-274.25 bg-linear-to-tr from-bg-gray-400 to-gray-600 opacity-15"
         />
       </div>
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-6 lg:px-8 mb-16">
         <div className=" text-gray-900 text-base/7 p-2 rounded-xl">
           <h2 className="font-semibold bg-orange-2text-xl font-semibold bg-orange-400/70 tracking-tight text-pretty text-gray-900 inline-block text-2xl mb-2">
             Service Add-ons{" "}
@@ -117,11 +136,13 @@ export default function ServiceBundle({ services, primaryServiceId }) {
                 }`}
               >
                 <div className="text-base/7">
+
                   {isPrimary && (
                     <span className="inline-block mb-2 text-xs font-semibold uppercase text-orange-400">
                       Primary Service
                     </span>
                   )}
+
 
                   <h3 className="font-semibold ">{s.display_name}</h3>
                   <p className="mt-2 ">{s.description}</p>
@@ -134,7 +155,9 @@ export default function ServiceBundle({ services, primaryServiceId }) {
             );
           })}
         </div>
+
       </div>
+      <OrderSummary onCheckout={onCheckout} isPending={isPending} primaryService={primaryService} selectedAddons={selectedAddons} serviceTotal={serviceTotal} deposit={deposit} remainder={remainder} />
     </div>
   );
 }

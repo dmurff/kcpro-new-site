@@ -11,7 +11,7 @@ import {useState} from "react";
 
 
 
-export default function ServiceCheckoutForm({service, deposit, remainder,paymentIntentId}) {
+export default function ServiceCheckoutForm({services, deposit, remainder, total, paymentIntentId}) {
 
 const stripe = useStripe();
 const elements = useElements();
@@ -71,7 +71,7 @@ if(!elements || !stripe ) {
 
 // console.log(service.slug)
 
-const serviceName = service.slug.replace('-', " ")
+
 
 console.log(form);
   
@@ -103,36 +103,20 @@ console.log(form);
                 Order summary
               </h2>
 
-              <ul
-                role="list"
-                className="divide-y divide-gray-200 text-sm font-medium text-gray-900"
-              >
-                {/* {products.map((product) => (
-                  <li
-                    key={product.id}
-                    className="flex items-start space-x-4 py-6"
-                  >
-                    <img
-                      alt={product.imageAlt}
-                      src={product.imageSrc}
-                      className="size-20 flex-none rounded-md object-cover"
-                    />
-                    <div className="flex-auto space-y-1">
-                      <h3>{product.name}</h3>
-                      <p className="text-gray-500">{product.color}</p>
-                      <p className="text-gray-500">{product.size}</p>
-                    </div>
-                    <p className="flex-none text-base font-medium">
-                      {product.price}
-                    </p>
-                  </li>
-                ))} */}
-              </ul>
+              
 
               <dl className="hidden space-y-6 border-t border-gray-200 pt-6 text-sm font-medium text-gray-900 lg:block">
+                
+                {services.map(s => ( <div key={s.id} className="flex items-center justify-between">
+                  <dt className="text-gray-600">{s.display_name}</dt>
+                  <dd>${s.price.toFixed(2)}</dd>
+                </div>))}
+                <div className=" border-t border-gray-200 pt-6">
+               </div>
+               
                 <div className="flex items-center justify-between">
-                  <dt className="text-gray-600">Service Cost ({serviceName})</dt>
-                  <dd>${service.price.toFixed(2)}</dd>
+                  <dt className="text-gray-600">Service Cost</dt>
+                  <dd>${total.toFixed(2)}</dd>
                 </div>
 
                 <div className="flex items-center justify-between">
@@ -176,7 +160,7 @@ console.log(form);
                   <dl className="mx-auto max-w-lg space-y-6">
                     <div className="flex items-center justify-between">
                       <dt className="text-gray-600">Service Cost</dt>
-                      <dd>${service.price.toFixed(2)}</dd>
+                      <dd>${total.toFixed(2)}</dd>
                     </div>
 
                     <div className="flex items-center justify-between">

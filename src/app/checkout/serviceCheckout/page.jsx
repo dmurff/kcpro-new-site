@@ -3,32 +3,48 @@
 export const dynamic = "force-dynamic";
 
 import ServiceCheckout from "../../components/ServiceCheckout";
-import {fetchServices} from "../../../../lib/data/hoops"
+// import {fetchSelectedServices} from "../../../../lib/data/service"
+import createPaymentIntent from "../../../../lib/serivces/service-payment-intent/handlePaymentIntent";
+
 
 export default async function Page({ searchParams }) {
 
-  
-  const { serviceId, clientSecret, paymentIntentId } = await searchParams;
-  
-  // const service = await fetchServices(serviceId);
+   const { primaryServiceId, addonIds } = searchParams;
 
-  const rawService = await fetchServices(serviceId);
+  const addonIdArray = addonIds ? addonIds.split(",") : [];
+  const serviceIds = [primaryServiceId, ...addonIdArray];
+
+  const {
+    clientSecret,
+    paymentIntentId,
+    services,
+    deposit,
+    remainder,
+    total,
+  } = await createPaymentIntent({ serviceIds });
+
+  
+
+  
+
+  // console.log('⚠️⚠️',rawServices)
 
 // FORCE serialization
-const service = JSON.parse(JSON.stringify(rawService));
+// const serviceIds = JSON.parse(JSON.stringify(rawServices));
 
-    // console.log("🐦🐦🐦🐦🐦🕰️🕰️🕰️🕰️🕰️", service);
 
-    const price = service.price;
+    // const totalPrice = services.reduce((acc, s)=> acc + s.price, 0 );
 
-    const deposit = Math.min(price * .25, 200);
-const remainder = price - deposit;
+   
+
+
+  
 
 
 
   return (
     <>
-      <ServiceCheckout clientSecret={clientSecret} paymentIntentId={paymentIntentId}service={service} deposit={deposit} remainder={remainder} />
+      <ServiceCheckout clientSecret={clientSecret} paymentIntentId={paymentIntentId}services={services} total={total} deposit={deposit} remainder={remainder} />
     </>
   );
 }

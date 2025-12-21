@@ -10,7 +10,6 @@ import { useRouter } from "next/navigation";
 import Testimonials from "./Testimonials";
 import ServiceWhatToExpect from "./ServiceWhatToExpect";
 // import { SERVICE_CONTENT } from "../../../lib/data/serviceContent";
-import createPaymentIntent from "../../../lib/serivces/service-payment-intent/handlePaymentIntent";
 
 import { useTransition } from "react";
 

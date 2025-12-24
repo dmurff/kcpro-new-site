@@ -29,7 +29,9 @@ export async function POST(req) {
     case "payment_intent.succeeded": {
       const paymentIntent = event.data.object;
       console.log('✅ ', paymentIntent);
-      // So here is where I call the business DB logic? 
+      // So here is where I call the business DB logic
+        
+
       // handle success
       break;
     }

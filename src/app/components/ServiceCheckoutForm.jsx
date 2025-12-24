@@ -8,10 +8,11 @@ import {
 } from "@headlessui/react";
 import { PaymentElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import {useState} from "react";
+import {createCheckoutSession} from '../../../lib/db/createCheckoutSession'
 
 
 
-export default function ServiceCheckoutForm({services, deposit, remainder, total, paymentIntentId}) {
+export default function  ServiceCheckoutForm({services, deposit, remainder, total, paymentIntentId}) {
 
 const stripe = useStripe();
 const elements = useElements();
@@ -45,14 +46,29 @@ if(!elements || !stripe ) {
 
     setLoading(true);
 
-    await fetch('/api/save-checkout-metadata', {
-      method: "POST",
-      headers: {"Content-Type": "application/json"},
-      body: JSON.stringify({
-        paymentIntentId,
-        ...form,
-      }),
+    // await fetch('/api/save-checkout-metadata', {
+    //   method: "POST",
+    //   headers: {"Content-Type": "application/json"},
+    //   body: JSON.stringify({
+    //     paymentIntentId,
+    //     ...form,
+    //   }),
+    // });
+
+    const checkoutData = {
+      payment_intent_id: paymentIntentId,
+      ...form,
+    }
+
+  
+
+    await fetch('/api/checkout-session', {
+      method: 'POST',
+      headers: {"Content-Type": "application/json" },
+      body: JSON.stringify(checkoutData)
     });
+
+    // await createCheckoutSession(checkoutData);
 
     const {error} = await stripe.confirmPayment({
       elements,

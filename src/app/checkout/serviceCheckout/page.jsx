@@ -9,7 +9,7 @@ import createPaymentIntent from "../../../../lib/serivces/service-payment-intent
 
 export default async function Page({ searchParams }) {
 
-   const { primaryServiceId, addonIds } = searchParams;
+   const { primaryServiceId, addonIds } = await searchParams;
 
   const addonIdArray = addonIds ? addonIds.split(",") : [];
   const serviceIds = [primaryServiceId, ...addonIdArray];

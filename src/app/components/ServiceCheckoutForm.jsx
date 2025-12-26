@@ -62,13 +62,17 @@ if(!elements || !stripe ) {
 
   
 
-    await fetch('/api/checkout-session', {
+    const res = await fetch('/api/checkout-session', {
       method: 'POST',
       headers: {"Content-Type": "application/json" },
       body: JSON.stringify(checkoutData)
     });
 
-    // await createCheckoutSession(checkoutData);
+
+
+const result = await res.json();
+console.log(result)
+
 
     const {error} = await stripe.confirmPayment({
       elements,

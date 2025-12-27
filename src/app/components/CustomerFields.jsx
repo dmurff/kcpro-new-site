@@ -59,6 +59,44 @@ export default function CustomerFields({ form, handleChange }) {
           onChange={handleChange}
           placeholder="Street address"
         />
+        <label htmlFor="address" className="mb-.5">
+city        </label>
+        <input
+          className="bg-zinc-200 rounded-lg p-3 focus:border focus:border-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-.75 focus:ring-blue-300"
+          type="text"
+          name="city"
+          id="city"
+          required
+          value={form.city}
+          onChange={handleChange}
+          placeholder="city"
+        />
+        <label htmlFor="state" className="mb-.5">
+State        
+</label>
+        <input
+          className="bg-zinc-200 rounded-lg p-3 focus:border focus:border-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-.75 focus:ring-blue-300"
+          type="text"
+          name="state"
+          id="state"
+          required
+          value={form.state}
+          onChange={handleChange}
+          placeholder="State"
+        />
+        <label htmlFor="postalCode" className="mb-.5">
+          Postal Code
+        </label>
+        <input
+          className="bg-zinc-200 rounded-lg p-3 focus:border focus:border-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-.75 focus:ring-blue-300"
+          type="text"
+          name="postalCode"
+          id="postalCode"
+          required
+          value={form.postalCode}
+          onChange={handleChange}
+          placeholder="postal code"
+        />
       </div>
     </div>
   );

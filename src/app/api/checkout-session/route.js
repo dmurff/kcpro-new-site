@@ -10,10 +10,9 @@ export async function POST(req){
     const body = await req.json();
 
     console.log(body)
-    const checkoutData = body
 
     const payload = {
-        payment_intent_id: body.payment_intent_id,
+        payment_intent_id: body.paymentIntentId,
         name: body.name,
         email: body.email,
         phone: body.phone,
@@ -21,9 +20,14 @@ export async function POST(req){
         city: body.city,
         state: body.state,
         postal_code: body.postalCode,
+        remainder_cents: body.remainder_cents,
+        total_cents: body.totalCents,
+        deposit_cents: body.deposit,
+        hoop_id: body.hoopId,
+        selected_service_ids: body.services,
+
     }
 
-    console.log('❤️❤️❤️🔨🔨🔨',checkoutData);
 
      const {data, error } = await supabase.from('checkout_sessions').insert(payload).select().single()
 

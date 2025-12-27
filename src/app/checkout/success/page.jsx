@@ -36,25 +36,25 @@ export default async function SuccessPage({ searchParams }) {
   //   await upsertCustomer({ name, email, phone, address, services });
   // use customer and job values as props to create a visual reinforcement of the service to be rendered or to pass data via email
 
-  try {
-    const { customer, job, message } = await createCustomerAndJob(
-      {
-        name,
-        email,
-        phone,
-        address,
-      },
-      {
-        hoop_id: hoopId,
-        remainder_cents,
-        payment_intent_id: payment_intent,
-        selectedServiceIds,
-      }
-    );
-  } catch (err) {
-    console.error("🔥 Crititcal error", err);
-    return;
-  }
+  // try {
+  //   const { customer, job, message } = await createCustomerAndJob(
+  //     {
+  //       name,
+  //       email,
+  //       phone,
+  //       address,
+  //     },
+  //     {
+  //       hoop_id: hoopId,
+  //       remainder_cents,
+  //       payment_intent_id: payment_intent,
+  //       selectedServiceIds,
+  //     }
+  //   );
+  // } catch (err) {
+  //   console.error("🔥 Crititcal error", err);
+  //   return;
+  // }
 
   // send comfirmation text
   // createMessage();

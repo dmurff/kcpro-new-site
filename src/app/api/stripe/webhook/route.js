@@ -1,5 +1,7 @@
 import Stripe from "stripe";
 import { NextResponse } from "next/server";
+import { createCustomerAndJob } from "../../../../../lib/db/createCustomerAndJob";
+import {fetchCheckoutSession} from "../../../../../lib/data/checkoutSessions";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET;
@@ -30,9 +32,16 @@ export async function POST(req) {
       const paymentIntent = event.data.object;
       console.log('✅ ', paymentIntent);
       // So here is where I call the business DB logic
+
+      const paymentIntentId = paymentIntent.id
         
+console.log(paymentIntentId,'❤️🤣🤣🤣🤣🤣')
+
 
       // handle success
+      const checkoutData = await fetchCheckoutSession(paymentIntentId)
+
+      console.log(checkoutData, '🏀💶💶🏀')
       break;
     }
 

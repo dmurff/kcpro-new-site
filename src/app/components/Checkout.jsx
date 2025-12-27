@@ -26,6 +26,9 @@ export default function Checkout({
     email: "",
     phone: "",
     address: "",
+    city: "",
+    state: "",
+    postalCode: "",
   });
 
   console.log("SERVICES:", services, "REMAINDER:", remainder, "HOOP:", hoop);
@@ -39,20 +42,35 @@ export default function Checkout({
     if (!stripe || !elements) return;
 
     // customer data check
-    if (!form.name || !form.email || !form.phone || !form.address) {
+    if (!form.name || !form.email || !form.phone || !form.address || !form.city || !form.state || !form.postalCode) {
       setMsg("Please fill in all the customer details before proceeding.");
       return;
     }
 
     setLoading(true);
 
-    await fetch("/api/save-checkout-metadata", {
+    await fetch("/api/checkout-session", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        paymentIntentId,
-        ...form,
-      }),
+      body: JSON.stringify(
+        // paymentIntentId,
+        // depositAmount,
+        // remainder,
+        // hoop.id,
+        // services,
+        // totalCents: Number(remainder) + Number(depositAmount),
+        // ...form,
+        {
+    paymentIntentId,
+    depositCents: depositAmount,
+    remainderCents: remainder,
+    totalCents: Number(remainder) + Number(depositAmount),
+    hoopId: hoop.id,              // ✅ UUID ONLY
+    services,                     // array of UUIDs
+    ...form,
+  }
+
+      ),
     });
 
     const { error } = await stripe.confirmPayment({

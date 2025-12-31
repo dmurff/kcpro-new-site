@@ -14,6 +14,9 @@ import {useState} from "react";
 
 export default function  ServiceCheckoutForm({services, deposit, remainder, total, paymentIntentId}) {
 
+    console.log('🍕 SERVICES:',services)
+
+
 const stripe = useStripe();
 const elements = useElements();
 const [loading, setLoading] = useState(false);
@@ -55,8 +58,15 @@ if(!elements || !stripe ) {
     //   }),
     // });
 
+    const selectedServiceIds = services.map(s => s.id);
+
+
     const checkoutData = {
-      payment_intent_id: paymentIntentId,
+      paymentIntentId,
+      services: selectedServiceIds,
+      totalCents: Number(total * 100),
+      remainderCents: Number(remainder * 100),
+      depositCents: Number(deposit * 100),
       ...form,
     }
 
@@ -139,18 +149,18 @@ console.log(form);
                   <dd>${total.toFixed(2)}</dd>
                 </div>
 
-                <div className="flex items-center justify-between">
+                {/* <div className="flex items-center justify-between">
                   <dt className="text-gray-600">Deposit Due</dt>
                   <dd>${deposit.toFixed(2)}</dd>
-                </div>
+                </div> */}
 
                 <div className="flex items-center justify-between">
-                  <dt className="text-gray-600">Due On Completion</dt>
+                  <dt className="text-gray-600">Due On Job Completion</dt>
                   <dd>${remainder.toFixed(2)}</dd>
                 </div>
 
                 <div className="flex items-center justify-between border-t border-gray-200 pt-6">
-                  <dt className="text-base">Due Today</dt>
+                  <dt className="text-base">Deposit Due</dt>
                   <dd className="text-base">${deposit.toFixed(2)}</dd>
                 </div>
               </dl>

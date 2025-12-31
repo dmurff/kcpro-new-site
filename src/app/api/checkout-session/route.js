@@ -20,11 +20,14 @@ export async function POST(req){
         city: body.city,
         state: body.state,
         postal_code: body.postalCode,
+
         total_cents: body.totalCents,
         remainder_cents: body.remainderCents,
         deposit_cents: body.depositCents,
+
         hoop_id: body.hoopId,
         selected_service_ids: body.services,
+        
         checkout_total: body.checkoutTotal,
 
     }

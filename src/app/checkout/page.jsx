@@ -25,7 +25,7 @@ export default async function CheckoutPage({ searchParams }) {
 
   const parsedServices = JSON.parse(services);
 
-  // console.log("🚀🚀🚀🚀🚀", parsedServices);
+  console.log("🚀🚀🚀🚀🚀", parsedServices);
 
   const selectedServices = await Promise.all(
     parsedServices.map((s) => fetchServices(s)).flat()
@@ -34,11 +34,17 @@ export default async function CheckoutPage({ searchParams }) {
 
   // fetch hoop to render order details
   const hoop = await fetchHoop(hoopId);
-  const selectedServiceIds = selectedServices.id;
+  const selectedServiceIds = selectedServices.map(s => 
+    s.id
+  )
+
+  
 
   console.log("💶💶", payment_intent_client_secret);
 
   const clientSecret = payment_intent_client_secret;
+
+  console.log('🔨 SERVICES:', selectedServiceIds)
 
   return (
     <div>

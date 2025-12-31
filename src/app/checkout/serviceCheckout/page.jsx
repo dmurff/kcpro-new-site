@@ -4,7 +4,7 @@ export const dynamic = "force-dynamic";
 
 import ServiceCheckout from "../../components/ServiceCheckout";
 // import {fetchSelectedServices} from "../../../../lib/data/service"
-import createPaymentIntent from "../../../../lib/serivces/service-payment-intent/handlePaymentIntent";
+import createPaymentIntent from "../../../../lib/services/service-payment-intent/handlePaymentIntent";
 
 
 export default async function Page({ searchParams }) {

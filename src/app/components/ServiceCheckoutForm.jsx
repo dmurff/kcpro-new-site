@@ -8,7 +8,7 @@ import {
 } from "@headlessui/react";
 import { PaymentElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import {useState} from "react";
-import {createCheckoutSession} from '../../../lib/db/createCheckoutSession'
+// import {createCheckoutSession} from '../../../lib/db/createCheckoutSession'
 
 
 

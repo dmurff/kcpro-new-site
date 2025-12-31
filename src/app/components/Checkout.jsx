@@ -33,6 +33,8 @@ export default function Checkout({
 
   console.log("SERVICES:", services, "REMAINDER:", remainder, "HOOP:", hoop);
 
+  const checkoutTotal = (Number(hoop?.price) || 0) + Number(depositAmount);
+
   function handleChange(e) {
     setForm({ ...form, [e.target.name]: e.target.value });
   }
@@ -62,8 +64,10 @@ export default function Checkout({
         // ...form,
         {
     paymentIntentId,
-    depositCents: depositAmount,
+    
+    depositCents: Number(depositAmount * 100),
     remainderCents: remainder,
+    checkoutTotal: Number(checkoutTotal * 100),
     totalCents: Number(remainder) + Number(depositAmount),
     hoopId: hoop.id,              // ✅ UUID ONLY
     services,                     // array of UUIDs
@@ -106,16 +110,17 @@ export default function Checkout({
           </div>
 
           <div className="flex justify-between">
-            <p>Labor deposit:</p>
-            <p className="text-black">${depositAmount}</p>
+            <p>Order total:</p>
+            <p className="text-black">${Number(checkoutTotal) + Number(remainder / 100)} </p>
           </div>
+          
           <div className="flex justify-between">
-            <p>Hoop Cost:</p>
-            <p>${hoop.price}</p>
-          </div>
-          <div className="flex justify-between">
-            <p>Total:</p>
+            <p>Due today:</p>
             <p>${(Number(hoop.price) + Number(depositAmount)).toFixed(2)}</p>
+          </div>
+          <div className="flex justify-between">
+            <p>Due on completion:</p>
+            <p>${Number(remainder / 100)}</p>
           </div>
         </div>
       </div>

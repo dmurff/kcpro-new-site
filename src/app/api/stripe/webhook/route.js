@@ -54,6 +54,14 @@ console.log(paymentIntentId,'❤️🤣🤣🤣🤣🤣')
       // handle failure
       break;
     }
+    case 'payment_intent.payment_failed':
+  const failedIntent = event.data.object;
+  console.log(`❌ Payment failed: ${failedIntent.last_payment_error?.message}`);
+  // Optional: Send an email to yourself or the user saying "Hey, your payment didn't go through!"
+  break;
+
+
+    
 
     default:
       // ignore what you don’t care about

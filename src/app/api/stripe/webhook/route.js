@@ -42,6 +42,10 @@ console.log(paymentIntentId,'❤️🤣🤣🤣🤣🤣')
       const checkoutData = await fetchCheckoutSession(paymentIntentId)
 
       console.log(checkoutData, '🏀💶💶🏀')
+
+      // if(!checkoutData) return NextResponse.json({success: false});
+
+      await createCustomerAndJob(checkoutData)
       break;
     }
 

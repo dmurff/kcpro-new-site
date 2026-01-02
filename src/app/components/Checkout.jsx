@@ -50,7 +50,7 @@ export default function Checkout({
     }
 
     setLoading(true);
-
+try {
     await fetch("/api/checkout-session", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -86,8 +86,14 @@ export default function Checkout({
     });
 
     if (error) setMsg(error.message || "Payment failed");
-    setLoading(false);
-    return;
+
+    
+  } catch(err){
+    setMsg(err.message)
+  }
+    finally {
+      setLoading(false);
+    }
   };
 
   return (

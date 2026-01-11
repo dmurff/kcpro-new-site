@@ -7,14 +7,16 @@ import {PRODUCT_CONTENT} from '../../../../lib/data/productContent';
 export const revalidate = 60; // Page will re-generate in the background every 60 seconds
 
 export default async function ProductPage({ params }) {
-  const { slug } = params;
+  const { slug } = await params;
   // const [hoop, setHoop] = useState(null);
 
-  console.log("✅:", slug);
+  // console.log("✅:", slug);
 
   const hoop = await fetchHoopBySlug(slug);
 
   const id = hoop.id;
+
+  // console.log('ID',id)
   const gallery = await fetchImages(id);
 
   const content = PRODUCT_CONTENT[slug]

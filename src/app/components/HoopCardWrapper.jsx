@@ -5,7 +5,7 @@ import OrderNow from "./OrderNow";
 import { useRouter } from "next/navigation";
 import { v4 as uuidv4 } from "uuid";
 
-export default function HoopCardWrapper({ hoop, gallery, services }) {
+export default function HoopCardWrapper({ hoop, gallery, services, content }) {
   const router = useRouter();
 
   // must generate the idempotency key on the client before sending to the payment intent api
@@ -80,6 +80,7 @@ export default function HoopCardWrapper({ hoop, gallery, services }) {
         onToggle={handleToggle}
         total={total} // pass computed total from state down
         services={services}
+        content={content}
       />
     </>
   );

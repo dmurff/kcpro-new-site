@@ -160,7 +160,7 @@ export default function ServiceSlugContent({ serviceId, content, service }) {
           </h2>}
          
           {content.timeline?.length > 0 && (<ul className="flex flex-col gap-4 text-gray-700 bg-gray-200/30 rounded-xl text-lg/7 w-fit p-6">
-            {content.timeline?.map((t, i) => (
+            {content.timeline.map((t, i) => (
               <li key={i}>
                 <span>
                   <CheckCircleIcon width={20} className="inline mr-2" />

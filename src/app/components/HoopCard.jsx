@@ -23,73 +23,7 @@ import { HeartIcon, MinusIcon, PlusIcon } from "@heroicons/react/24/outline";
   /* <InformationCircleIcon className="w-6 h-6 text-gray-500" /> */
 }
 
-const product = {
-  name: "",
-  price: "$140",
-  rating: 4,
-  images: [],
-  colors: [
-    {
-      id: "washed-black",
-      name: "Washed Black",
-      classes: "bg-gray-700 checked:outline-gray-700",
-    },
-    {
-      id: "white",
-      name: "White",
-      classes: "bg-white checked:outline-gray-400",
-    },
-    {
-      id: "washed-gray",
-      name: "Washed Gray",
-      classes: "bg-gray-500 checked:outline-gray-500",
-    },
-  ],
-  description: `
-    <p>The Zip Tote Basket is the perfect midpoint between shopping tote and comfy backpack. With convertible straps, you can hand carry, should sling, or backpack this convenient and spacious bag. The zip top and durable canvas construction keeps your goods protected for all-day use.</p>
-  `,
-  details: [
-    {
-      name: "Specs",
-      items: [
-        `60" tempered glass backboard`,
-        `5" x 5" one-piece steel post`,
-        "Bolt-down anchor design for easy relocation",
-        "Adjustable between 7.5 and 10ft",
-        `Weather and UV resistant padding`,
-        "Removable handle to lock height settings",
-        "20 plus year lifespan guaratee",
-      ],
-    },
-    {
-      name: "Install details",
-      items: [
-        "On-site hoop placement assistance",
-        "We handle underground utility markings",
-        "All materials provided by us",
-        "2 week turnaround for standard installs",
-      ],
-    },
-    {
-      name: "Delivery",
-      items: [
-        "Free delivery in the Greater Kansas City area",
-        "International shipping available",
-        "Expedited shipping options",
-        "Signature required upon delivery",
-      ],
-    },
-    {
-      name: "Returns",
-      items: [
-        "Easy return requests",
-        "Pre-paid shipping label included",
-        "10% restocking fee for returns",
-        "60 day return window",
-      ],
-    },
-  ],
-};
+
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -116,6 +50,7 @@ export default function HoopCard({
   handleCheckout,
   selectedServices,
   services,
+  content,
 }) {
   if (!hoop) return null;
 
@@ -195,7 +130,7 @@ export default function HoopCard({
                     />
                   ))}
                 </div>
-                <p className="sr-only">{product.rating} out of 5 stars</p>
+                <p className="sr-only">{content.rating} out of 5 stars</p>
               </div>
             </div>
 
@@ -269,7 +204,9 @@ export default function HoopCard({
               </h2>
 
               <div className="divide-y divide-gray-200 border-t border-gray-200">
-                {product.details.map((detail) => (
+                {content.details?.length > 0 && (
+                  <>
+                {content.details.map((detail) => (
                   <Disclosure key={detail.name} as="div">
                     <h3>
                       <DisclosureButton className="group relative flex w-full items-center justify-between py-6 text-left">
@@ -301,7 +238,7 @@ export default function HoopCard({
                       </ul>
                     </DisclosurePanel>
                   </Disclosure>
-                ))}
+                ))} </>)}
               </div>
             </section>
           </div>

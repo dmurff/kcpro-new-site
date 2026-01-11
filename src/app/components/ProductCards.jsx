@@ -6,8 +6,7 @@ import Link from "next/link";
 import { fetchProductCardData } from "../../../lib/data/hoops";
 
 export default function ProductCards({ products }) {
-  console.log("⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️", products);
-
+console.log("Products:", products)
   return (
     <div className="relative isolate overflow-hidden bg-white py-8 sm:py-32 lg:py-16">
       {/* <img
@@ -47,7 +46,7 @@ export default function ProductCards({ products }) {
               key={product.id}
               className="flex lg:justify-center group relative h-[650px] sm:w-full bg-black/80 rounded-xl ring-1 ring-gray-900/5 backdrop-blur-sm hover:ring-orange-400 shadow-lg shadow-black/20 hover:shadow-orange-500/30 transition-all duration-500 cursor-pointer"
             >
-              <Link href={`/hoops/${product.id}`}>
+              <Link href={`/hoops/${product.slug}`}>
                 <Image
                   src={product.feature_image?.[0]}
                   alt={product.name}

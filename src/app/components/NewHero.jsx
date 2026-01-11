@@ -59,7 +59,7 @@ export default function NewHero({ products }) {
             {products.map((p) => (
               <Link
                 key={p.id}
-                href={`/hoops/${p.id}`}
+                href={`/hoops/${p.slug}`}
                 className=" flex flex-col  rounded-xl bg-black/80 p-6 ring-1 ring-gray-900/5 backdrop-blur-sm hover:ring-orange-400 shadow-lg shadow-black/20 hover:shadow-orange-500/30"
               >
                 <img

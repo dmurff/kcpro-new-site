@@ -1,9 +1,12 @@
-const AboutPage = () => {
+import AboutHeader from "../components/AboutHeader";
+import Navbar from "../components/Navbar";
+
+export default async function Page () {
   return (
-    <section>
-      <div></div>
-    </section>
+    <>
+    <Navbar/>
+    <AboutHeader/>
+    </>
   );
 };
 
-export default AboutPage;

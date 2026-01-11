@@ -137,6 +137,8 @@ export default function ServiceSlugContent({ serviceId, content, service }) {
           </ul>
         </div>
         <div id="expectations" className="mb-10">
+          {content.notIncluded?.length > 0 &&(
+            <>
           <h2 className="text-gray-900 text-3xl font-semibold mb-4">
             Not Included in Service
           </h2>
@@ -150,13 +152,15 @@ export default function ServiceSlugContent({ serviceId, content, service }) {
               </li>
             ))}
           </ul>
+          </>)}
         </div>
         <div id="expectations" className="mb-24">
-          <h2 className="text-gray-900 text-3xl font-semibold mb-4">
+          {content.timeline &&  <h2 className="text-gray-900 text-3xl font-semibold mb-4">
             Timeline
-          </h2>
-          <ul className="flex flex-col gap-4 text-gray-700 bg-gray-200/30 rounded-xl text-lg/7 w-fit p-6">
-            {content.timeline.map((t, i) => (
+          </h2>}
+         
+          {content.timeline?.length > 0 && (<ul className="flex flex-col gap-4 text-gray-700 bg-gray-200/30 rounded-xl text-lg/7 w-fit p-6">
+            {content.timeline?.map((t, i) => (
               <li key={i}>
                 <span>
                   <CheckCircleIcon width={20} className="inline mr-2" />
@@ -164,9 +168,10 @@ export default function ServiceSlugContent({ serviceId, content, service }) {
                 {t.step} → {t.text}
               </li>
             ))}
-          </ul>
+          </ul> )}
         </div>
-        <ServiceWhatToExpect content={content} />
+        {content.ServiceWhatToExpect?.length > 0 && 
+        <ServiceWhatToExpect content={content} />}
       </div>
       <Testimonials />
       <div className="mx-auto max-w-7xl px-6 py-16 sm:py-16 lg:flex lg:items-center lg:justify-between lg:px-8">

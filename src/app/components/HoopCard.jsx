@@ -254,7 +254,7 @@ export default function HoopCard({
                 <button
                   onClick={handleCheckout}
                   type="button"
-                  className="flex max-w-xs flex-1 items-center justify-center rounded-md border border-transparent bg-orange-400 px-8 py-3 text-base font-medium text-white hover:bg-orange-600 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50 focus:outline-hidden sm:w-full shadow-lg transition-all duration-1.5 ease-in"
+                  className="flex max-w-xs flex-1 items-center justify-center rounded-md border border-transparent bg-orange-400 px-8 py-3 text-base font-medium text-white hover:bg-orange-600 focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 focus:ring-offset-gray-50 focus:outline-hidden sm:w-full shadow-lg transition-all duration-1.5 ease-in"
                 >
                   Buy now
                 </button>
@@ -273,7 +273,7 @@ export default function HoopCard({
                   <Disclosure key={detail.name} as="div">
                     <h3>
                       <DisclosureButton className="group relative flex w-full items-center justify-between py-6 text-left">
-                        <span className="text-sm font-medium text-gray-900 group-data-open:text-indigo-600">
+                        <span className="text-sm font-medium text-gray-900 group-data-open:text-orange-600">
                           {detail.name}
                         </span>
                         <span className="ml-6 flex items-center">
@@ -283,7 +283,7 @@ export default function HoopCard({
                           />
                           <MinusIcon
                             aria-hidden="true"
-                            className="hidden size-6 text-indigo-400 group-hover:text-indigo-500 group-data-open:block"
+                            className="hidden size-6 text-orange-400 group-hover:text-orange-500 group-data-open:block"
                           />
                         </span>
                       </DisclosureButton>

@@ -1,18 +1,23 @@
-import { fetchHoop } from "../../../../lib/data/hoops";
+import { fetchHoopBySlug } from "../../../../lib/data/hoops";
 import { fetchImages } from "../../../../lib/data/hoops";
 import { fetchHoopBuyServices } from "../../../../lib/data/service";
 import HoopCardWrapper from "@/app/components/HoopCardWrapper";
+import {PRODUCT_CONTENT} from '../../../../lib/data/productContent';
 
 export const revalidate = 60; // Page will re-generate in the background every 60 seconds
 
 export default async function ProductPage({ params }) {
-  const { id } = params;
+  const { slug } = params;
   // const [hoop, setHoop] = useState(null);
 
-  console.log("✅:", id);
+  console.log("✅:", slug);
 
-  const hoop = await fetchHoop(id);
+  const hoop = await fetchHoopBySlug(slug);
+
+  const id = hoop.id;
   const gallery = await fetchImages(id);
+
+  const content = PRODUCT_CONTENT[slug]
 
   /// fetchBuyServices related to relavent hoop buying services only not miscellaneous services
   const services = await fetchHoopBuyServices();
@@ -21,7 +26,7 @@ export default async function ProductPage({ params }) {
     <>
       {/* <Navbar /> */}
 
-      <HoopCardWrapper hoop={hoop} gallery={gallery} services={services} />
+      <HoopCardWrapper hoop={hoop} content={content} gallery={gallery} services={services} />
     </>
   );
 }

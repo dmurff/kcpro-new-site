@@ -22,6 +22,12 @@ const navigation = {
     { name: "Privacy policy", href: "#" },
     // { name: "License", href: "#" },
   ],
+
+  hoops: [
+{name: "Shop Hoops", href: '/hoops'}
+  ],
+
+
   //   social: [
   //     {
   //       name: "Facebook",
@@ -125,11 +131,26 @@ export default function Footer() {
                 </ul>
               </div>
             </div>
-            <div className="md:grid md:grid-cols-2 md:gap-8">
+            <div className="md:grid md:grid-cols-3 md:gap-8">
               <div>
                 <h3 className="text-sm/6 font-semibold text-white">Company</h3>
                 <ul role="list" className="mt-6 space-y-4">
                   {navigation.company.map((item) => (
+                    <li key={item.name}>
+                      <a
+                        href={item.href}
+                        className="text-sm/6 text-gray-200 hover:text-white"
+                      >
+                        {item.name}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+                </div>
+              <div className="mt-10 md:mt-0">
+                <h3 className="text-sm/6 font-semibold text-white">Hoops</h3>
+                <ul role="list" className="mt-6 space-y-4">
+                  {navigation.hoops.map((item) => (
                     <li key={item.name}>
                       <a
                         href={item.href}
@@ -156,9 +177,10 @@ export default function Footer() {
                   ))}
                 </ul>
               </div>
+              </div>
             </div>
           </div>
-          <div className="mt-10 xl:mt-0">
+          {/* <div className="mt-10 xl:mt-0">
             <h3 className="text-sm/6 font-semibold text-white">
               Subscribe to our newsletter
             </h3>
@@ -187,8 +209,8 @@ export default function Footer() {
                 </button>
               </div>
             </form>
-          </div>
-        </div>
+          </div> */}
+        {/* </div>  */}
         <div className="mt-16 border-t border-gray-900/10 pt-8 sm:mt-20 md:flex md:items-center md:justify-between lg:mt-24">
           {/* <div className="flex gap-x-6 md:order-2">
             {navigation.social.map((item) => (

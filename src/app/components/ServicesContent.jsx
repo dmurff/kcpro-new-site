@@ -30,12 +30,19 @@ export default function ServicesContent({ services }) {
         </div>
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className=" text-gray-900 text-base/7 p-2 rounded-xl">
-            <p>
-              <span className="font-semibold">How it works: </span> Select a
+             <p className="text-lg/7 text-gray-800 font-light mt-2 mb-8">
+              Choose a service below to see what's included. From there you book the service. Only select your main service here. 
+            </p>
+            <p className="text-lg/7 text-gray-800 font-light mt-8">
+               When booking you select additional services before proceeding to the deposit checkout. With a succesfull deposit you will receive a time stamped spot in our job queue. We will send information and reach out with a comfirmation.
+            </p>
+            <p className="text-lg/7 text-gray-800 font-light mt-8">
+               Select a
               service to see what’s included and what to expect. A 25% deposit
               (capped at $200) locks in your schedule. Final payment is due upon
               completion.
             </p>
+
           </div>
           <div
             id="serviceCards"

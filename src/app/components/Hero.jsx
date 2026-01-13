@@ -82,7 +82,7 @@ export default async function Example() {
               Fast Book
             </a>
             <a
-              href="#our-process"
+              href="/services"
               className="z-20 inline-flex rounded-md bg-transparent border-2 outline-blue-100 px-3.5 py-2.5 text-sm font-semibold text-white hover:bg-blue-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 hover:border-blue-100 hover:text-slate-800 transition duration-300 ease-in-out"
             >
               {" "}

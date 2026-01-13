@@ -1,5 +1,5 @@
 import { supabaseServer as supabase } from "../../../lib/supabase/server";
-import Navbar from "./../components/Navbar";
+import HoopsNavbar from "./../components/HoopsNavbar";
 import { fetchAllHoops } from "../../../lib/data/hoops.js";
 import AllProducts from "../components/AllProducts";
 import NewHero from "../components/NewHero";
@@ -11,7 +11,7 @@ export default async function Hoops() {
 
   return (
     <>
-      <Navbar />
+      <HoopsNavbar />
       <NewHero products={products} />
       {/* <AllProducts products={products} /> */}
 

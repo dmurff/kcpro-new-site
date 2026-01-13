@@ -1,11 +1,15 @@
 import AboutHeader from "../components/AboutHeader";
-import Navbar from "../components/Navbar";
+import ServiceNavbar from "../components/ServiceNavbar";
+import AboutContent from '../components/AboutContent';
+import Footer from '../components/Footer';
 
 export default async function Page () {
   return (
     <>
-    <Navbar/>
+    <ServiceNavbar/>
     <AboutHeader/>
+    <AboutContent/>
+    <Footer/>
     </>
   );
 };

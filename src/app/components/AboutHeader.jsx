@@ -5,9 +5,9 @@ export default function AboutHeader () {
     return (
         <div className="mx-auto lg:mx-0 bg-black/90 mt-18 p-8">
       <div className="max-w-2xl">
-        <h2 className="text-5xl font-semibold tracking-tight text-white sm:text-7xl mx-auto lg:mx-0">
+        <h1 className="text-5xl font-semibold tracking-tight text-white sm:text-7xl mx-auto lg:mx-0">
           About Us
-        </h2>
+        </h1>
         <p className="mt-8 text-lg font-medium text-pretty text-gray-200 sm:text-xl/8">
          We specialize in basketball hoop sales and installation in the Kansas City area.
         </p>

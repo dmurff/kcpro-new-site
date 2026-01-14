@@ -1,3 +1,6 @@
+export const dynamic = "force-dynamic";
+
+
 import { fetchAllServices } from "../../../lib/data/service";
 import ServiceNavbar from "../components/ServiceNavbar";
 import Footer from "../components/Footer";

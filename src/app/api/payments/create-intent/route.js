@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import Stripe from "stripe";
-import createSupabseServer from "../../../../lib/supabase/server";
+import createSupabseServer from "../../../../lib/supabase/server.js";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 

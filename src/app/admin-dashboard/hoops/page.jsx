@@ -1,7 +1,7 @@
 export const dynamic = "force-dynamic";
 
 import AddHoopForm from "../../components/AddHoopForm";
-import createSupabaseServer from "../../../lib/supabase/server";
+import createSupabaseServer from "../../../lib/supabase/server.js";
 import Link from "next/link";
 
 export default async function AdminDashboard() {

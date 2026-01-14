@@ -1,3 +1,6 @@
+export const dynamic = "force-dynamic";
+
+
 import supabase from "./../../../utils/supabaseServer";
 import EditHoopList from "../components/EditHoopList";
 import updateHoop from "./actions";

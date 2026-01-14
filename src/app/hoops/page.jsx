@@ -1,3 +1,6 @@
+export const dynamic = "force-dynamic";
+
+
 import { supabaseServer as supabase } from "../../../lib/supabase/server";
 import HoopsNavbar from "./../components/HoopsNavbar";
 import { fetchAllHoops } from "../../../lib/data/hoops.js";

@@ -1,3 +1,6 @@
+export const dynamic = "force-dynamic";
+
+
 import AddHoopForm from "../../components/AddHoopForm";
 import { supabaseServer as supabase } from "../../../../lib/supabase/server";
 import { NextResponse } from "next/server";

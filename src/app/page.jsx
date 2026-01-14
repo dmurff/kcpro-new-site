@@ -1,5 +1,8 @@
 // import Image from "next/image";
 // "use client";
+export const dynamic = "force-dynamic";
+
+
 import Hero from "@/app/components/Hero";
 import NewBaseForm from "@/app/components/NewBaseForm";
 import LeadForm from "@/app/components/LeadForm";

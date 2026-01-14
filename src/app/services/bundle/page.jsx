@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import { fetchAllServices } from "../../../../lib/data/service";
 import ServiceBundle from "../../components/ServiceBundle";
 

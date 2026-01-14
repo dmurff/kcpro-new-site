@@ -1,16 +1,9 @@
 "use server";
 
-import { createClient } from "@supabase/supabase-js";
-
-function supabaseServer() {
-  return createClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL,
-    process.env.SUPABASE_SERVICE_ROLE_KEY // server-only
-  );
-}
+import createSupabaseServer from "../../../lib/supabase/server";
 
 export async function createHoop(data) {
-  const sb = supabaseServer();
+  const sb = createSupabaseServer();
 
   const row = {
     name: data.name,
@@ -42,7 +35,7 @@ export async function createHoop(data) {
 }
 
 export async function updateHoop(id, data) {
-  const sb = supabaseServer();
+  const sb = createSupabaseServer();
 
   console.log(id, data);
 
@@ -72,7 +65,7 @@ export async function updateHoop(id, data) {
 }
 
 export async function addHoopGallery(hoopId, urls) {
-  const sb = supabaseServer();
+  const sb = createSupabaseServer();
 
   const { data, error } = await sb.from("hoop_images").insert(
     urls.map(({ url, order_index }) => ({

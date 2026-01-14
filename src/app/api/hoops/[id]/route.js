@@ -1,7 +1,8 @@
-import supabase from "../../../../../utils/supabaseServer";
+import createSupabaseServer from "../../../lib/supabase/server";
 import { NextResponse } from "next/server";
 
 export async function GET(req, { params }) {
+  const supabase = createSupabaseServer();
   try {
     const { id } = params;
 

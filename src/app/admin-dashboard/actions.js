@@ -1,6 +1,6 @@
 "use server";
 
-import createSupabaseServer from "../../../lib/supabase/server";
+import createSupabaseServer from "../../lib/supabase/server";
 
 export async function createHoop(data) {
   const sb = createSupabaseServer();

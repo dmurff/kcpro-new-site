@@ -1,12 +1,11 @@
 export const dynamic = "force-dynamic";
 
-
 import AddHoopForm from "../../components/AddHoopForm";
-import { supabaseServer as supabase } from "../../../../lib/supabase/server";
-import { NextResponse } from "next/server";
+import createSupabaseServer from "../../../lib/supabase/server";
 import Link from "next/link";
 
 export default async function AdminDashboard() {
+  const supabase = createSupabaseServer();
   const { data: hoops, error } = await supabase.from("hoops").select("*");
 
   console.log(hoops);

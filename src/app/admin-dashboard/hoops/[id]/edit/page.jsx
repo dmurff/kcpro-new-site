@@ -1,5 +1,5 @@
 import AddHoopForm from "@/app/components/AddHoopForm";
-import { supabaseServer as supabase } from "../../../../../../lib/supabase/server";
+import createSupabaseServer from "../../../../../lib/supabase/server";
 import { updateHoop } from "../../../actions";
 
 export default async function EditHoop({ params }) {

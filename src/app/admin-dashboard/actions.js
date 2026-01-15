@@ -1,6 +1,6 @@
 "use server";
 
-import createSupabaseServer from "../../lib/supabase/server.js";
+import { supabaseServer as supabase } from "../../lib/supabase/server.js";
 
 export async function createHoop(data) {
   const sb = createSupabaseServer();
@@ -35,8 +35,6 @@ export async function createHoop(data) {
 }
 
 export async function updateHoop(id, data) {
-  const sb = createSupabaseServer();
-
   console.log(id, data);
 
   const row = {
@@ -58,7 +56,7 @@ export async function updateHoop(id, data) {
     description: data.description,
   };
 
-  const { error } = await sb.from("hoops").update(row).eq("id", id);
+  const { error } = await supabase.from("hoops").update(row).eq("id", id);
   if (error) throw new Error(error.message);
 
   return { success: true };

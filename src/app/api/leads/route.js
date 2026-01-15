@@ -1,9 +1,8 @@
 "use server";
-import createSupabaseServer from "../../../lib/supabase/serve.js";
+import { supabaseServer as supabase } from "../../../lib/supabase/serve.js";
 import { NextResponse } from "next/server";
 
 export async function POST(req) {
-  const supabase = createSupabaseServer();
   const data = await req.json();
 
   if (!data) {

@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import createSupabaseServer from "../../../lib/supabase/server.js";
+import { supabaseServer as supabase } from "../../../lib/supabase/server.js";
 import cloudinary from "../../../../utils/cloudinary";
 import { Readable } from "stream";
 
@@ -75,7 +75,6 @@ export async function POST(req) {
 // get data
 
 export async function GET(req) {
-  const supabase = createSupabaseServer();
   console.log(req);
   const { data, error } = await supabase.from("hoops").select("*");
 

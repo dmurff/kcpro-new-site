@@ -1,12 +1,11 @@
 // api is safe so no need for server-only or use server
 
-import createSupabaseServer from "../../../lib/supabase/server.js";
+import { supabaseServer as supabase } from "../../../lib/supabase/server.js";
 import Stripe from "stripe";
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 import { NextResponse } from "next/server";
 export async function POST(req) {
-  const supabase = createSupabaseServer();
   try {
     const body = await req.json();
 

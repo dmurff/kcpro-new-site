@@ -1,5 +1,5 @@
 "use server";
-import { supabaseServer as supabase } from "../../../lib/supabase/serve.js";
+import { supabaseServer as supabase } from "../../../../lib/supabase/server";
 import { NextResponse } from "next/server";
 
 export async function POST(req) {

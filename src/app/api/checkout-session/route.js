@@ -1,6 +1,6 @@
 // api is safe so no need for server-only or use server
 
-import { supabaseServer as supabase } from "../../../lib/supabase/server.js";
+import { supabaseServer as supabase } from "../../../../lib/supabase/server";
 import Stripe from "stripe";
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 

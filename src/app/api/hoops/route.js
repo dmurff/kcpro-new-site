@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { supabaseServer as supabase } from "../../../lib/supabase/server.js";
+import { supabaseServer as supabase } from "../../../../lib/supabase/server";
 import cloudinary from "../../../../utils/cloudinary";
 import { Readable } from "stream";
 

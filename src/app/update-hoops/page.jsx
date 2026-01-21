@@ -1,6 +1,6 @@
 export const dynamic = "force-dynamic";
 
-import { supabaseServer as supabase } from "./../../lib/supabase/server";
+import { supabaseServer as supabase } from "./../../../lib/supabase/server";
 import EditHoopList from "../components/EditHoopList";
 import updateHoop from "./actions";
 

@@ -1,11 +1,10 @@
 import { NextResponse } from "next/server";
 import Stripe from "stripe";
-import createSupabseServer from "../../../../../lib/supabase/server";
+import {supabaseServer as supabase} from "../../../../../lib/supabase/server";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 export async function POST(req) {
-  const supabase = createSupabseServer();
 
   const body = await req.json();
   const hoopId = body.hoop;

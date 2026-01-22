@@ -2,6 +2,8 @@ import Stripe from "stripe";
 import { NextResponse } from "next/server";
 import { createCustomerAndJob } from "../../../../../lib/db/createCustomerAndJob";
 import {fetchCheckoutSession} from "../../../../../lib/data/checkoutSessions";
+export const runtime = "nodejs";
+
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET;
@@ -71,5 +73,7 @@ console.log(paymentIntentId,'❤️🤣🤣🤣🤣🤣')
 
 
   // 5. Always acknowledge receipt
-  return NextResponse.json({ received: true });
+  // return NextResponse.json({ received: true });
+  return new Response("OK", { status: 200 });
+
 }

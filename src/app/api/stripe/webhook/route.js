@@ -17,6 +17,12 @@ export async function POST(req) {
 
   let event;
 
+  console.log("ENV CHECK:", {
+  hasSecret: !!process.env.STRIPE_WEBHOOK_SECRET,
+  prefix: process.env.STRIPE_WEBHOOK_SECRET?.slice(0, 6),
+  length: process.env.STRIPE_WEBHOOK_SECRET?.length,
+});
+
   // 3. Verify + construct Stripe event
   try {
     event = stripe.webhooks.constructEvent(

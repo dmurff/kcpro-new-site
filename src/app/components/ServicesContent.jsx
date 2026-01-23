@@ -49,7 +49,7 @@ export default function ServicesContent({ services }) {
             className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-6 sm:mt-20 lg:mx-0 lg:max-w-none lg:grid-cols-3 lg:gap-8"
           >
             <Link
-              href="/hoops"
+              href="/hoops?pricingContext=best-value"
               className="flex gap-x-4 rounded-xl bg-blue-200 p-6 ring-1 ring-gray-900/5 backdrop-blur-sm hover:ring-blue-500 shadow-lg shadow-black/20 hover:shadow-blue-500/30"
             >
               <div className="text-base/7">

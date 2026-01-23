@@ -29,9 +29,9 @@ export default function NewHero({ products }) {
         </div>
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mx-auto max-w-2xl lg:mx-0 mb-16">
-            <h2 className="text-5xl font-semibold tracking-tight text-gray-900 sm:text-7xl">
+            <h1 className="text-5xl font-semibold tracking-tight text-gray-900 sm:text-7xl">
               In Ground Hoops
-            </h2>
+            </h1>
             <p className="mt-8 text-lg font-medium text-pretty text-gray-600 sm:text-xl/8">
               We offer high quality in ground hoops. Ironclad is the brand.
               Based out of Hutchinson KS, Ironclad Sports Inc. has been an
@@ -43,7 +43,7 @@ export default function NewHero({ products }) {
           <div className="mt-20 grid grid-cols-1 lg:grid-cols-2 lg:gap-x-8 lg:gap-y-16 md:grid-cols-1">
             <div className="lg:pr-8 outline ring-gray-400 shadow-lg rounded-md mx-auto p-8 md:mx-auto">
               <h2 className="text-xl font-semibold bg-orange-400/70 tracking-tight text-pretty text-gray-900 inline-block">
-                60" Best Sellers
+                60" Hoops
               </h2>
               <p className="mt-6 text-base/7 text-gray-600">
                 By far our most popular units are the Game Changer 60 and the

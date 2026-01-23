@@ -7,9 +7,9 @@ import NewHero from "../components/NewHero";
 import ProductCards from "../components/ProductCards";
 import Footer from "../components/Footer";
 
-export default async function Hoops(params) {
+export default async function Hoops(searchParams) {
   const products = await fetchAllHoops();
-const pricingContext = await params.pricingContext;
+const pricingContext = await searchParams.pricingContext;
 console.log(pricingContext, "🏀❤️👋💶💶")
 
   return (

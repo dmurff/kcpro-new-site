@@ -2,13 +2,15 @@
 // import { useState, useEffect } from "react";
 
 export default function Toggle({
-  service_cost,
-  service_name,
+  
   onToggle,
   checked,
   service,
 }) {
   // const [checked, setChecked] = useState(false);
+
+  const fullInstallDiscount = 200;
+  const partialInstallDiscount = 100;
 
   const handleChange = (e) => {
     const newChecked = e.target.checked; // true/false
@@ -16,11 +18,23 @@ export default function Toggle({
     onToggle(service.name, service.price, newChecked); // sends info up
   };
 
+  let displayPrice = service.price;
+
+  if(service.name.includes('installation')) {
+displayPrice -= 200;
+  }
+
+  if(service.name.includes('hoop_assembly') || service.name.includes('hoop_concrete')){
+    displayPrice -= 100;
+  }
+
   return (
     <>
+    
       <p className="text-sm font-medium text-gray-600">
         Add {service.name.replace(/_/g, " ")}{" "}
-        <span className="ml-4 font-semibold">${service.price}</span>
+
+        <span className="ml-4 font-semibold"> ${displayPrice} </span>
       </p>
       <div className="flex flex-row items-center gap-8">
         <div className="group relative inline-flex w-11 shrink-0 rounded-full bg-gray-200 p-0.5 inset-ring inset-ring-gray-900/5 outline-offset-2 outline-blue-400 transition-colors duration-200 ease-in-out has-checked:bg-blue-400 has-focus-visible:outline-2">

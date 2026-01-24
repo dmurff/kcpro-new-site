@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-export default function NewHero({ products }) {
+export default function NewHero({ products, pricingContext }) {
   return (
     <>
       <div className="relative isolate overflow-hidden bg-white py-24 sm:py-32">
@@ -59,7 +59,7 @@ export default function NewHero({ products }) {
             {products.map((p) => (
               <Link
                 key={p.id}
-                href={`/hoops/${p.slug}`}
+                href={`/hoops/${p.slug}?pricingContext=${pricingContext}`}
                 className=" flex flex-col  rounded-xl bg-black/80 p-6 ring-1 ring-gray-900/5 backdrop-blur-sm hover:ring-orange-400 shadow-lg shadow-black/20 hover:shadow-orange-500/30"
               >
                 <img

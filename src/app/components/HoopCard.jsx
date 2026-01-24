@@ -52,6 +52,9 @@ export default function HoopCard({
   services,
   content,
 }) {
+
+
+
   if (!hoop) return null;
 
   console.log("🚀", hoop.id, hoop.name);

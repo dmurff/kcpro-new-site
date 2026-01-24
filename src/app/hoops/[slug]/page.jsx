@@ -8,9 +8,10 @@ export const revalidate = 60; // Page will re-generate in the background every 6
 
 export default async function ProductPage({ params }) {
   const { slug } = await params;
+ 
   // const [hoop, setHoop] = useState(null);
 
-  // console.log("✅:", slug);
+  
 
   const hoop = await fetchHoopBySlug(slug);
 

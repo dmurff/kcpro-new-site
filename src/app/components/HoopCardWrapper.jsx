@@ -8,6 +8,8 @@ import { v4 as uuidv4 } from "uuid";
 export default function HoopCardWrapper({ hoop, gallery, services, content }) {
   const router = useRouter();
 
+  
+
   // must generate the idempotency key on the client before sending to the payment intent api
   const generateIdempotencyKey = () => {
     return uuidv4();

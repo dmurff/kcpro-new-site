@@ -5,7 +5,7 @@ import OrderNow from "./OrderNow";
 import { useRouter } from "next/navigation";
 import { v4 as uuidv4 } from "uuid";
 
-export default function HoopCardWrapper({ hoop, gallery, services, content }) {
+export default function HoopCardWrapper({ hoop, gallery, services, content}) {
   const router = useRouter();
 
   
@@ -17,17 +17,32 @@ export default function HoopCardWrapper({ hoop, gallery, services, content }) {
 
   const [selectedServices, setSelectedServices] = useState({});
 
+            console.log('>>>>>>>>>>>>>>>>>>>>>>>>>>>',selectedServices)
+
+
   // toggle update state handler
-  const handleToggle = (serviceName, cost, checked) => {
+  const handleClick = (serviceName, cost, checked) => {
     setSelectedServices((prev) => {
       if (checked) {
-        return { ...prev, [serviceName]: cost };
+               
+
+
+        return { ...prev, [serviceName]: cost }
+        
+        
+        
+    
       } else {
         const { [serviceName]: _, ...rest } = prev;
         return rest;
       }
     });
+
+
   };
+
+  
+  
 
   const servicesTotal = Object.values(selectedServices).reduce(
     (sum, v) => sum + v,
@@ -79,7 +94,7 @@ export default function HoopCardWrapper({ hoop, gallery, services, content }) {
         handleCheckout={handleCheckout}
         hoop={hoop}
         gallery={gallery}
-        onToggle={handleToggle}
+        handleClick={handleClick}
         total={total} // pass computed total from state down
         services={services}
         content={content}

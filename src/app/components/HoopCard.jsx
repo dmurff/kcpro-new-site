@@ -2,8 +2,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { InformationCircleIcon } from "@heroicons/react/24/outline";
 import OrderNow from "../components/OrderNow";
-import Toggle from "../components/Toggle";
+// import Toggle from "../components/Toggle";
 import TotalBox from "./TotalBox";
+import ServiceCards from "./ServiceCards";
 
 import {
   Disclosure,
@@ -45,12 +46,13 @@ export default function HoopCard({
   // onCheckout,
   // children,
   gallery,
-  onToggle,
+  // onToggle,
   total,
   handleCheckout,
   selectedServices,
   services,
   content,
+  handleClick,
 }) {
 
 
@@ -160,14 +162,15 @@ export default function HoopCard({
                   <p className="text-gray-900">(25% deposit at checkout)</p>
                 </div>
 
-                {services.map((service) => (
+                {/* {services.map((service) => (
                   <Toggle
                     key={service.id}
                     service={service}
                     onToggle={onToggle}
                     checked={!!selectedServices[service.name]}
                   />
-                ))}
+                ))} */}
+                <ServiceCards services={services} handleClick={handleClick} selectedServices={selectedServices} />
                 {/* <Toggle
                   service_name={"installation"}
                   service_cost={hoop.install_price}

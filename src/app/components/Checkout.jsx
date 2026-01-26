@@ -68,7 +68,7 @@ try {
     depositCents: Number(depositAmount * 100),
     remainderCents: remainder,
     checkoutTotal: Number(checkoutTotal * 100),
-    totalCents: Number(remainder) + Number(depositAmount),
+    // totalCents: Number(remainder) + Number(depositAmount),
     hoopId: hoop.id,              // ✅ UUID ONLY
     services,                     // array of UUIDs
     ...form,

@@ -6,7 +6,6 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 export async function POST(req) {
 
-  let hoopDiscount = 0;
   let serviceDiscount = 0;
 
   const body = await req.json();
@@ -28,9 +27,7 @@ export async function POST(req) {
   }
 
 // add a hoop purchase discount if the hoop id returns a hoop from db
-  if(data) {
- hoopDiscount = 200 * 100;
-  }
+ 
 
 
 
@@ -57,24 +54,33 @@ export async function POST(req) {
       if(s.name.includes('hoop_concrete')){
      serviceDiscount += 100;
       }
-     })
+
+      if(s.name.includes('installation')){
+        serviceDiscount +=200;
+      }
+      
+     }
+    
+    )
   }
 
   // Add up the service prices
 
   let serviceTotal = services.reduce(
-    (sum, service) => sum + service.price,
+    (sum, service) => sum + Number(service.price),
     0
   );
 
-  if(serviceDiscount) {
-    serviceTotal = Math.round(Number(serviceTotal - serviceDiscount))
-  };
+  // subtract discount
+  serviceTotal -= Number(serviceDiscount)
+
+  // if(serviceDiscount) {
+  //   serviceTotal = Math.round(Number(serviceTotal - serviceDiscount))
+  // };
 
   // service deposit at 25%
-  const deposit = Math.round(Number(Math.min(serviceTotal * 0.25, 200)) * 100);
+  const deposit = Number(Math.min(serviceTotal * 0.25, 200)) ;
 
-  const remainder = serviceTotal * 100 - deposit;
 
  
 
@@ -83,20 +89,26 @@ export async function POST(req) {
   
   
   // ✅ 2. Convert hoop price to cents (assuming it's in dollars)
-  let price = Math.round(Number(data.price) * 100);
+  const  price = Number(data.price) ;
 
-   if (hoopDiscount) {
-  price = Math.round(Number(price - hoopDiscount))
-  }
+  //  if (serviceDiscount) {
+  // price = Math.round(Number(price - serviceDiscount))
+  // }
 
   if (isNaN(price) || price <= 0) {
     return NextResponse.json({ error: "Invalid price" }, { status: 400 });
   }
 
-  const finalSale = Math.round(Number(price + deposit));
+  const sale = Number(price + deposit);
 
+  const finalSale = sale * 100
+  // const remainder = serviceTotal * 100 - deposit;
+  console.log('💶💶💶💶💶💶💶💶💶💶💶💶💶💶💶💶', serviceTotal, deposit)
+  let remainder = Number(serviceTotal - deposit);
+remainder *= 100;
   
-
+const depositCents = Math.round(Number(deposit * 100))
+console.log('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>:::::', finalSale, remainder, deposit)
   
   try {
     const paymentIntent = await stripe.paymentIntents.create(
@@ -108,8 +120,8 @@ export async function POST(req) {
           hoopId,
           remainder,
           services: JSON.stringify(services.map((s) => s.id)),
-          amount_paid: deposit,
-          deposit_amount: deposit,
+          amount_paid: depositCents,
+          deposit_amount: depositCents,
         },
       },
       { idempotencyKey }

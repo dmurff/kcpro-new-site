@@ -8,7 +8,7 @@ import {
 } from "@headlessui/react";
 import { PaymentElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import {useState} from "react";
-// import {createCheckoutSession} from '../../../lib/db/createCheckoutSession'
+
 
 
 
@@ -64,7 +64,7 @@ if(!elements || !stripe ) {
     const checkoutData = {
       paymentIntentId,
       services: selectedServiceIds,
-      totalCents: Number(total * 100),
+      // totalCents: Number(total * 100),
       remainderCents: Number(remainder * 100),
       depositCents: Number(deposit * 100),
       ...form,

@@ -49,6 +49,23 @@ export default function Checkout({
       return;
     }
 
+///////////////////////////////
+ // 🔒 MOBILE SAFARI SCROLL PIN (THIS IS THE FIX)
+  const scrollContainer = document.getElementById("checkout-scroll");
+  const scrollY = scrollContainer?.scrollTop ?? window.scrollY;
+
+  document.activeElement?.blur();
+
+  requestAnimationFrame(() => {
+    if (scrollContainer) {
+      scrollContainer.scrollTop = scrollY;
+    } else {
+      window.scrollTo(0, scrollY);
+    }
+  });
+
+
+/////////////////////////
     setLoading(true);
 try {
     await fetch("/api/checkout-session", {
@@ -97,6 +114,14 @@ try {
   };
 
   return (
+    <div
+  id="checkout-scroll"
+  style={{
+    height: "100vh",
+    overflowY: "auto",
+    WebkitOverflowScrolling: "touch",
+  }}
+>
     <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-8 px-6">
       <div className="flex flex-col gap-4 col-start-1 lg:col-start-2 lg:row-start-1 mx-auto lg:my-4 my-0">
         <img
@@ -132,7 +157,7 @@ try {
       </div>
       <form className="row-start-2 lg:row-start-1" onSubmit={onSubmit}>
         <CustomerFields form={form} handleChange={handleChange} />
-
+<div style={{ minHeight: 350 }}>
         <PaymentElement
           options={{
             defaultValues: {
@@ -144,6 +169,7 @@ try {
           }}
           className="lg:col-start-2 lg:col-end-3 lg:row-start-2 lg:mt-6"
         />
+        </div>
         <button
           className="block text-lg font-semibold bg-orange-400 w-[200px] hover:bg-orange-600 transition duration-1.5 ease-in rounded-md p-4 mt-6 mx-auto lg:mx-0"
           disabled={
@@ -170,6 +196,7 @@ try {
           receipt/intructions for next steps.
         </p>
       </div>
+    </div>
     </div>
   );
 }

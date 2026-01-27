@@ -50,7 +50,17 @@ export default function HoopCardWrapper({ hoop, gallery, services, content}) {
   );
 
   // Calculate service fee (deposit amount capped at 200 or 25%)
-  const depositDue = Math.min(servicesTotal * 0.25, 200);
+
+  // calculate discount to reflect for total box deposit
+
+
+  // discount applied to the total box
+  let discount = 0;
+if("installation" in selectedServices){
+  discount = 200;
+}
+
+  const depositDue = Math.min((servicesTotal - discount) * 0.25, 200);
 
   // Need to attach the remainder into the job table in supabase and add to the data payload
   const remainder = servicesTotal - depositDue;

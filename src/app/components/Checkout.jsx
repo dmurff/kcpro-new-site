@@ -157,7 +157,11 @@ try {
         >
           {loading ? "Processing..." : "Pay"}
         </button>
-        {msg && <p>{msg}</p>}
+        {/* {msg && <p>{msg}</p>} */}
+        {/* To this */}
+<p className={`mt-2 text-red-500 min-h-[1.5rem] ${msg ? "opacity-100" : "opacity-0"}`}>
+  {msg || " "}
+</p>
       </form>
 
       <div className="mx-auto lg:mx-0">

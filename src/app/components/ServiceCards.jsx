@@ -24,7 +24,7 @@ const nextSelected = !wasSelected;
 
 
   return (
-    <div className="grid sm:grid-cols-1 grid-cols-3 gap-4">
+    <div className="grid lg:grid-cols-3 gap-4">
             {services.map((s) => {
           // 1. compute booleans FIRST (plain JS, not JSX)
   const installationSelected = Object.hasOwn(selectedServices, 'installation');

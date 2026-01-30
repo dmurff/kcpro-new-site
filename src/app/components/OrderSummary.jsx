@@ -11,7 +11,6 @@ export default function OrderSummary({
 }) {
   if (!primaryService) return null;
 
-
   return (
     <div className=" lg:sticky lg:top-24">
       <div className="rounded-xl bg-gray-50 p-6 ring-1 ring-gray-200">
@@ -55,15 +54,17 @@ export default function OrderSummary({
         </div>
 
         <button
-
-
           onClick={onCheckout}
           disabled={isPending}
           className={`mt-6 w-full rounded-md px-4 py-3 text-sm font-semibold text-white
-    ${isPending ? "bg-orange-400 cursor-not-allowed" : "bg-orange-600 hover:bg-orange-700"}
+    ${
+      isPending
+        ? "bg-orange-400 cursor-not-allowed"
+        : "bg-orange-600 hover:bg-orange-700"
+    }
   `}
->
-  {isPending ? "Redirecting…" : "Proceed to Checkout"}
+        >
+          {isPending ? "Redirecting…" : "Proceed to Checkout"}
         </button>
       </div>
     </div>

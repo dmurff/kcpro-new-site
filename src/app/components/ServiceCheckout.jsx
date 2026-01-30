@@ -5,10 +5,17 @@ import { Elements } from "@stripe/react-stripe-js";
 
 const stripe = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY);
 
-export default function ServiceCheckout({ clientSecret, services, deposit, total, remainder,paymentIntentId}) {
+export default function ServiceCheckout({
+  clientSecret,
+  services,
+  deposit,
+  total,
+  remainder,
+  paymentIntentId,
+}) {
   return (
     <>
-<Elements
+      <Elements
         stripe={stripe}
         options={{
           clientSecret,
@@ -22,10 +29,15 @@ export default function ServiceCheckout({ clientSecret, services, deposit, total
           },
         }}
       >
-               
-      
-        <ServiceCheckoutForm paymentIntentId={paymentIntentId} services={services} deposit={deposit} total={total} remainder={remainder}/>
-    </Elements>
+        <ServiceCheckoutForm
+          paymentIntentId={paymentIntentId}
+          clientSecret={clientSecret}
+          services={services}
+          deposit={deposit}
+          total={total}
+          remainder={remainder}
+        />
+      </Elements>
     </>
   );
 }

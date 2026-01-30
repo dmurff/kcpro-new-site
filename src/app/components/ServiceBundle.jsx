@@ -4,36 +4,63 @@ import Link from "next/link";
 // import { ServerClient } from "postmark";
 import { useState } from "react";
 import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
-import OrderSummary from './OrderSummary';
+import OrderSummary from "./OrderSummary";
 
 export default function ServiceBundle({ services, primaryServiceId }) {
   const [addonIds, setAddonIds] = useState([]);
-  const [isPending, setIsPending] = useState(false); 
+  const [isPending, setIsPending] = useState(false);
 
-   function onCheckout () {
-     setIsPending(true);
+  const router = useRouter();
 
-  const params = new URLSearchParams({
-    primaryServiceId,
-    addonIds: addonIds.join(","), // 👈 important
-  });
- console.log(params)
+  const onCheckout = async function () {
+    setIsPending(true);
 
+    // const params = new URLSearchParams({
+    //   primaryServiceId,
+    //   addonIds: addonIds.join(","), // 👈 important
+    // });
+    // console.log(params);
 
-  window.location.href =
-    `/checkout/serviceCheckout?${params.toString()}`;
-    
-  }
+    ///// new code for api call
 
+    const addonIdArray = addonIds;
+    const bundledIds = [primaryServiceId, ...addonIdArray];
 
+    const res = await fetch("/api/payments/create-service-intent", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        bundledIds,
+      }),
+    });
 
-  const primaryService = services.find((s)=> s.id === primaryServiceId)
-  const selectedAddons = services.filter((s) => addonIds.includes(s.id))
-  const serviceTotal = primaryService.price + (selectedAddons.reduce((acc, s)=> acc + s.price, 0))
-  const deposit = Math.min(serviceTotal * .25, 200).toFixed(2)
+    const { paymentIntentId, total, deposit, remainder, serviceIds } =
+      await res.json();
+
+    console.log("JJJJJJJJJJJJJJJ", serviceIds);
+
+    // console.log("zzzzzzzzzzzzzzzz", serviceIdsString);
+
+    const params = new URLSearchParams({
+      pi: paymentIntentId,
+      serviceIds,
+      total: String(total),
+      deposit: String(deposit),
+      remainder: String(remainder),
+    });
+
+    router.push(`/checkout/serviceCheckout?${params.toString()}`);
+    // window.location.href = `/checkout/serviceCheckout?${params.toString()}`;
+  };
+
+  const primaryService = services.find((s) => s.id === primaryServiceId);
+  const selectedAddons = services.filter((s) => addonIds.includes(s.id));
+  const serviceTotal =
+    primaryService.price + selectedAddons.reduce((acc, s) => acc + s.price, 0);
+  const deposit = Math.min(serviceTotal * 0.25, 200).toFixed(2);
   const remainder = serviceTotal - deposit;
-
 
   const handleClick = (service) => {
     if (service.id === primaryServiceId) {
@@ -136,13 +163,11 @@ export default function ServiceBundle({ services, primaryServiceId }) {
                 }`}
               >
                 <div className="text-base/7">
-
                   {isPrimary && (
                     <span className="inline-block mb-2 text-xs font-semibold uppercase text-orange-400">
                       Primary Service
                     </span>
                   )}
-
 
                   <h3 className="font-semibold ">{s.display_name}</h3>
                   <p className="mt-2 ">{s.description}</p>
@@ -155,9 +180,16 @@ export default function ServiceBundle({ services, primaryServiceId }) {
             );
           })}
         </div>
-
       </div>
-      <OrderSummary onCheckout={onCheckout} isPending={isPending} primaryService={primaryService} selectedAddons={selectedAddons} serviceTotal={serviceTotal} deposit={deposit} remainder={remainder} />
+      <OrderSummary
+        onCheckout={onCheckout}
+        isPending={isPending}
+        primaryService={primaryService}
+        selectedAddons={selectedAddons}
+        serviceTotal={serviceTotal}
+        deposit={deposit}
+        remainder={remainder}
+      />
     </div>
   );
 }

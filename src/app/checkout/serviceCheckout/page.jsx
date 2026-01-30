@@ -14,6 +14,8 @@ export default async function Page({ searchParams }) {
   // const  params  = await searchParams;
   const filters = await searchParams;
 
+  if (!pi) throw new Error("Missing pi in query string");
+
   const pi = filters.pi;
   const totalStr = filters.total;
   const depositStr = filters.deposit;

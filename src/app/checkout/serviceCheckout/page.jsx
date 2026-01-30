@@ -2,6 +2,7 @@
 
 export const dynamic = "force-dynamic";
 import Stripe from "stripe";
+import {redirect} from "next/navigation"
 
 import ServiceCheckout from "../../components/ServiceCheckout";
 import { fetchSelectedServices } from "../../../../lib/data/service";

@@ -12,10 +12,13 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 export default async function Page({ searchParams }) {
   //  const { primaryServiceId, addonIds } = await searchParams;
   // const  params  = await searchParams;
+
+
+
   const filters = await searchParams;
 
   const pi = filters.pi;
-  if (!pi) throw new Error("Missing pi in query string");
+ 
   const totalStr = filters.total;
   const depositStr = filters.deposit;
   const remainderStr = filters.remainder;
@@ -31,6 +34,13 @@ export default async function Page({ searchParams }) {
   console.log("🕰️🕰️", total);
 
   const paymentIntent = await stripe.paymentIntents.retrieve(pi);
+
+  // Check if this has already been paid
+if (paymentIntent.status === "succeeded") {
+   // Instead of showing the form, redirect them to success 
+   // or show a "This order is already processed" message.
+   redirect("/checkout/success"); 
+}
 
   const clientSecret = paymentIntent.client_secret;
 

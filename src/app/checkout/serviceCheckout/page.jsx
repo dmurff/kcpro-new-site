@@ -4,9 +4,10 @@ export const dynamic = "force-dynamic";
 import Stripe from "stripe";
 import {redirect} from "next/navigation"
 
+import {getJobByPI} from '../../../../lib/data/jobs.js';
 import ServiceCheckout from "../../components/ServiceCheckout";
 import { fetchSelectedServices } from "../../../../lib/data/service";
-import createPaymentIntent from "../../../../lib/services/service-payment-intent/handlePaymentIntent";
+
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
@@ -32,9 +33,22 @@ export default async function Page({ searchParams }) {
 
   const serviceIdsArr = serviceIdsString.split(",");
 
+  // Here I need to check the database for the pi id and if it exists redirect to the payment succeeded message
+
   console.log("🕰️🕰️", total);
 
   const paymentIntent = await stripe.paymentIntents.retrieve(pi);
+
+  const jobExists = await getJobByPI(pi);
+
+  if (jobExists?.deposit_payment_intent_id === pi) 
+
+
+  if(!jobExists) return ;
+
+  if(jobExists){redirect("/checkout/serviceCheckout/success"); 
+
+  }
 
   // Check if this has already been paid
 if (paymentIntent.status === "succeeded") {

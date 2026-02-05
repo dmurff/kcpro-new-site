@@ -53,7 +53,6 @@ export default function NewHero({ products, pricingContext }) {
               </p>
             </div>
           </div>
-          ///////
           {/* <div className="mx-auto mt-16 grid  grid-cols-1 gap-0 sm:mt-20 lg:mx-0 lg:max-w-none lg:grid-cols-2 lg:gap-8"> */}
           <div className="mx-auto mt-16 grid grid-cols-1 sm:grid-cols-2 gap-8 lg:max-w-7xl">
             {products.map((p) => (

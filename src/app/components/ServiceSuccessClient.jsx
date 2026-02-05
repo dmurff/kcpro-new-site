@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { useState, useEffect } from "react";
-import { createJob } from "../../../lib/api";
+import Link from 'next/link';
 
 export default function ServiceSuccessClient({ job, customer, pi }) {
 const [service, setService] = useState();
@@ -47,15 +47,24 @@ console.log("SEARCHING DB FOR PI:", pi);
 
   return (
     <>
+ 
     {!status && 
-     <div className="bg-white flex flex-col w-full text-xl font-md text-black">
+     <div className="bg-white flex flex-col w-full text-xl font-md text-black justify-center">
     <p className="text-3xl text-black"> Order Processing...</p>
     </div>
     }
     {status &&
-       <div className="bg-white flex flex-col w-full text-xl font-md text-black">
-        <h1 className="text-3xl text-green-700 mb-8 mx-auto pt-8 mb-8">Success!</h1>
-      <p className='text-xl text-black mx-auto'>Thank you for choosing KC Pro Assembly. We will reach out to schedule shortly.</p>
+       <div className="bg-white flex flex-col w-full text-xl text-center font-md text-black mb-8">
+        <h1 className="text-3xl text-orange-400 mb-8 mx-auto pt-8 mb-8">Success!</h1>
+      <p className='text-xl text-black mx-auto mb-16'>Thank you for choosing KC Pro Assembly. We will reach out to schedule shortly.</p>
+       <Link 
+              href="/" 
+              className='w-full block bg-black text-md hover:bg-zinc-800 text-white font-semibold py-4 px-7 transition-all'
+              // className="mx-auto bg-black hover:bg-gray-800 text-white font-semibold py-4 px-8 rounded-xl transition-all"
+            >
+              Back to Home
+            </Link>
+       
         </div>}
        {/*
         <img
@@ -81,6 +90,8 @@ console.log("SEARCHING DB FOR PI:", pi);
           </p>
         )}
       </div> */}
+
+     
     </>
   );
 }

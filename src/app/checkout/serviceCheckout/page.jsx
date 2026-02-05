@@ -37,49 +37,33 @@ export default async function Page({ searchParams }) {
 
   console.log("🕰️🕰️", total);
 
-  const paymentIntent = await stripe.paymentIntents.retrieve(pi);
 
   const jobExists = await getJobByPI(pi);
 
-  if (jobExists?.deposit_payment_intent_id === pi) 
+
+  
 
 
-  if(!jobExists) return ;
 
-  if(jobExists){redirect("/checkout/serviceCheckout/success"); 
+
+  if(jobExists){
+    
+   
+    
+   { redirect(`/checkout/serviceCheckout/success?pi=${pi}`); }
 
   }
 
-  // Check if this has already been paid
-if (paymentIntent.status === "succeeded") {
-   // Instead of showing the form, redirect them to success 
-   // or show a "This order is already processed" message.
-   redirect("/checkout/success"); 
-}
+  const paymentIntent = await stripe.paymentIntents.retrieve(pi);
+ 
 
   const clientSecret = paymentIntent.client_secret;
 
-  // const addonIdArray = addonIds ? addonIds.split(",") : [];
-  // const serviceIds = [primaryServiceId, ...addonIdArray];
+  
 
   const services = await fetchSelectedServices(serviceIdsArr);
 
-  // const {
-  //   clientSecret,
-  //   paymentIntentId,
-  //   services,
-  //   deposit,
-  //   remainder,
-  //   total,
-  // } = await createPaymentIntent({ serviceIds });
-
-  // console.log('⚠️⚠️',rawServices)
-
-  // FORCE serialization
-  // const serviceIds = JSON.parse(JSON.stringify(rawServices));
-
-  // const totalPrice = services.reduce((acc, s)=> acc + s.price, 0 );
-
+ 
   return (
     <>
       <ServiceCheckout

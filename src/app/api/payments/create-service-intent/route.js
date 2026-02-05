@@ -10,7 +10,11 @@ export async function POST(req) {
   const { bundledIds } = body;
   console.log("💥💥", bundledIds);
 
-  const response = await createPaymentIntent({ bundledIds });
+  // Idempotency key extraction
+  const idempotencyKey = req.headers.get("idempotency-key");
+
+
+  const response = await createPaymentIntent({ bundledIds, idempotencyKey });
 
   console.log(
     ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>",

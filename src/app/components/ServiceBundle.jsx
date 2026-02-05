@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
+import {v4 as uuidv4} from "uuid";
 
 import OrderSummary from "./OrderSummary";
 
@@ -13,6 +14,10 @@ export default function ServiceBundle({ services, primaryServiceId }) {
   const [isPending, setIsPending] = useState(false);
 
   const router = useRouter();
+
+  const generateIdempotencyKey = () => {
+    return uuidv4();
+  };
 
   const onCheckout = async function () {
     setIsPending(true);
@@ -27,10 +32,13 @@ export default function ServiceBundle({ services, primaryServiceId }) {
 
     const addonIdArray = addonIds;
     const bundledIds = [primaryServiceId, ...addonIdArray];
+    const idempotencyKey = generateIdempotencyKey();
 
     const res = await fetch("/api/payments/create-service-intent", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "application/json",
+        "Idempotency-Key" : idempotencyKey,
+       },
       body: JSON.stringify({
         bundledIds,
       }),

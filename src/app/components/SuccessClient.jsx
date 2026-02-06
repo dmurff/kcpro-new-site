@@ -2,6 +2,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { createJob } from "../../../lib/api";
+// import Image from 'next/image';
 
 export default function SuccessClient({ hoop, mainImage, totalDue }) {
   const numTotal = Number(totalDue);

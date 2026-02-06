@@ -47,9 +47,7 @@ export default function ServiceBundle({ services, primaryServiceId }) {
     const { paymentIntentId, total, deposit, remainder, serviceIds } =
       await res.json();
 
-    console.log("JJJJJJJJJJJJJJJ", serviceIds);
 
-    // console.log("zzzzzzzzzzzzzzzz", serviceIdsString);
 
     const params = new URLSearchParams({
       pi: paymentIntentId,

@@ -3,7 +3,7 @@ export const dynamic = "force-dynamic";
 import { fetchAllServices } from "../../../../lib/data/service";
 import ServiceBundle from "../../components/ServiceBundle";
 
-export default async function ({ searchParams }) {
+export default async function BundlePage({ searchParams }) {
   const services = await fetchAllServices();
 
   const { service_id } = await searchParams;

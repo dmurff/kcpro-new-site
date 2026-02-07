@@ -38,18 +38,15 @@ export async function POST(req) {
   switch (event.type) {
     case "payment_intent.succeeded": {
       const paymentIntent = event.data.object;
-      console.log('✅ ', paymentIntent);
       // So here is where I call the business DB logic
 
       const paymentIntentId = paymentIntent.id
         
-console.log(paymentIntentId,'❤️🤣🤣🤣🤣🤣')
 
 
       // handle success
       const checkoutData = await fetchCheckoutSession(paymentIntentId)
 
-      console.log(checkoutData, '🏀💶💶🏀')
 
       // if(!checkoutData) return NextResponse.json({success: false});
 

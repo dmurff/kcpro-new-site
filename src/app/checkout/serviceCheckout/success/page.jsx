@@ -13,9 +13,9 @@ export default async function Page({searchParams}){
 
 const filters = await searchParams;
 
-
+console.log('💶💶🔨💶🔨💶',filters);
 const pi = filters.payment_intent;
-
+const clientSecret = filters.payment_intent_client_secret;
 
 
 

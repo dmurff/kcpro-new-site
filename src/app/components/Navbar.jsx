@@ -71,7 +71,7 @@ const Navbar = ({}) => {
         </>
       )}
 
-      <nav className="absolute z-40 top-0 left-0 w-full flex flex-row justify-between pr-12 items-center h-18 bg-black/80 text-white">
+      <nav className="absolute z-40 top-0 left-0 w-full flex flex-row justify-between pr-8 items-center h-18 bg-black/80 text-white">
         {/* <nav className="fixed top-0 w-full z-40 flex flex-row justify-between pr-12 items-center h-18 bg-white text-black"> */}
         <div className="flex gap-x-8 ml-1">
           <div className="hidden lg:block">
@@ -111,7 +111,7 @@ const Navbar = ({}) => {
             KC PRO ASSEMBLY
           </p>
         </div>
-        <div className="flex gap-4 items-center ml-10">
+        <div className="flex gap-4 items-center ml-2">
           {/* <Link href="/">
             <ShoppingCartIcon className="text-white w-[30px]" />
           </Link> */}

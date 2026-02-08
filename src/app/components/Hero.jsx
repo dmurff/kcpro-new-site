@@ -1,7 +1,9 @@
+import Link from "next/link";
+
 export default async function Example() {
   return (
     // <div className="relative bg-gray-400">
-    <div className="relative bg-black/80 mt-18">
+    <div className="relative bg-black/80 mt-18 overflow-hidden">
       {/* <div className="relative aspect-[3/4] overflow-hidden bg-indigo-100 md:absolute md:left-0 md:h-full md:w-1/3 lg:w-1/2"> */}
       <div className="relative aspect-[3/4] overflow-hidden bg-indigo-100 md:absolute md:left-0 md:h-full md:w-1/3 lg:w-1/2">
         <div className=" inset-0 absolute z-10" />
@@ -74,23 +76,21 @@ export default async function Example() {
             and precision.
           </p>
           <div className="mt-8 flex gap-6">
-            <a
+            <Link
               href="/services"
               className="z-20 inline-flex rounded-md bg-orange-400 px-3.5 py-2.5 text-sm font-semibold text-white hover:outline-orange-600 hover:bg-orange-600 focus-visible:outline-2 focus-visible:outline-offset-2 items-center hover:text-gray-300 transition duration-150 ease-in"
             >
-              {" "}
               Fast Book
-            </a>
-            <a
+            </Link>
+            <Link
               href="#our-process"
               className="z-20 inline-flex rounded-md bg-transparent border-2 outline-blue-100 px-3.5 py-2.5 text-sm font-semibold text-white hover:bg-blue-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 hover:border-blue-100 hover:text-slate-800 transition duration-300 ease-in-out"
             >
-              {" "}
               Not sure? Learn our process
               <span className="ml-2" aria-hidden="true">
                 ↓
               </span>
-            </a>
+            </Link>
           </div>
         </div>
       </div>

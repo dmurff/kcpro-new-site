@@ -8,6 +8,7 @@ const navigation = {
   ],
   support: [
     { name: "Contact Us", href: "/contact" },
+    { name: "Privacy Policy", href: "/privacy-policy" },
     // { name: "Documentation", href: "#" },
     // { name: "Guides", href: "#" },
   ],
@@ -208,7 +209,7 @@ export default function Footer() {
             </form>
           </div> */}
         {/* </div>  */}
-        <div className="mt-16 border-t border-gray-900/10 pt-8 sm:mt-20 md:flex md:items-center md:justify-between lg:mt-24">
+        <div className="mt-4 border-t border-gray-900/10 pt-8 sm:mt-20 md:flex md:items-center md:justify-between lg:mt-24">
           {/* <div className="flex gap-x-6 md:order-2">
             {navigation.social.map((item) => (
               <a
@@ -221,7 +222,7 @@ export default function Footer() {
               </a>
             ))}
           </div> */}
-          <p className="mt-8 text-sm/6 text-gray-200 md:order-1 md:mt-0">
+          <p className="mt-2 text-sm/6 text-gray-200 md:order-1 md:mt-0">
             &copy; {new Date().getFullYear()} KC Pro Assembly, LLC. All rights
             reserved.
           </p>

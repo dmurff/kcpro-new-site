@@ -25,6 +25,11 @@ const nextConfig = {
         destination: "/hoops",
         permanent: true,
       },
+      {
+        source: "/basketball-hoop-installation",
+        destination: "/services",
+        permanent: true,
+      },
     ];
   },
 };

@@ -43,7 +43,10 @@ export default function SmsConsentContent() {
             Message &amp; data rates may apply. Reply <strong>STOP</strong> to
             unsubscribe or <strong>HELP</strong> for assistance. Consent is not
             a condition of purchase. View our{" "}
-            <Link href="/privacy-policy" className="text-[#0a66c2] underline">
+            <Link
+              href="/privacy-policy"
+              className="text-gray-700 font-semibold hover:text-gray-400"
+            >
               Privacy Policy
             </Link>{" "}
             for details.

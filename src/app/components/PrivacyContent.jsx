@@ -105,10 +105,12 @@ export default function PrivacyContent() {
             By providing your phone number, you agree to receive service-related
             text messages from KC Pro Assembly. Message &amp; data rates may
             apply. You may opt out at any time by replying <strong>STOP</strong>
-            ; for assistance, reply <strong>HELP</strong>. Our disclosure is
-            available at{" "}
-            <Link href="/sms-consent" className="text-[#0a66c2] underline">
-              kcproassembly.com/sms-consent
+            ; for assistance, reply <strong>HELP</strong>. View{" "}
+            <Link
+              href="/sms-consent"
+              className="text-gray-700 font-semibold hover:text-gray-400"
+            >
+              SMS Consent
             </Link>
             .
           </p>

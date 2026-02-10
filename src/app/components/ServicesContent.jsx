@@ -1,10 +1,15 @@
 import Link from "next/link";
+import {
+  CheckCircleIcon,
+  InformationCircleIcon,
+  NumberedListIcon,
+} from "@heroicons/react/24/solid";
 
 export default function ServicesContent({ services }) {
   return (
     // <div className="relative isolate overflow-hidden bg-black/80 py-24 sm:py-32">
     <>
-      <div className="relative isolate overflow-hidden bg-white py-24 sm:py-32">
+      <div className="relative isolate overflow-hidden bg-white py-24 sm:py-32 mt-0">
         <img
           alt=""
           src="/images/services_hero.png"
@@ -30,19 +35,37 @@ export default function ServicesContent({ services }) {
         </div>
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className=" text-gray-900 text-base/7 p-2 rounded-xl">
-             <p className="text-lg/7 text-gray-800 font-light mt-2 mb-8">
-              Choose a service below to see what's included. From there you book the service. Only select your main service here. 
-            </p>
-            <p className="text-lg/7 text-gray-800 font-light mt-8">
-               When booking you select additional services before proceeding to the deposit checkout. With a succesfull deposit you will receive a time stamped spot in our job queue. We will send information and reach out with a comfirmation.
-            </p>
-            <p className="text-lg/7 text-gray-800 font-light mt-8">
-               Select a
-              service to see what’s included and what to expect. A 25% deposit
-              (capped at $200) locks in your schedule. Final payment is due upon
-              completion.
-            </p>
-
+            <h1 className="text-4xl text-gray-800 font-bold mt-2 mb-12">
+              Professional Hoop Services in Kansas City
+            </h1>
+            <h2 className="text-xl text-gray-800 font-semibold mt-8">
+              How it works
+            </h2>
+            {/* <h2 className="text-lg/7 text-gray-800 font-light mt-8">
+              When booking you select additional services before proceeding to
+              the deposit checkout. With a succesfull deposit you will receive a
+              time stamped spot in our job queue. We will send information and
+              reach out with a comfirmation.
+            </h2> */}
+            <ul className="flex flex-col">
+              <li className="flex items-start lg:items-center gap-4 text-gray-800 text-lg mt-4">
+                <CheckCircleIcon className="w-[20px] mt-1 lg:mt-0 flex-shrink-0" />
+                Click on the primary service you are interested in.
+              </li>
+              <li className="flex items-start lg:items-center gap-4 text-gray-800 text-lg mt-4">
+                <CheckCircleIcon className="w-[20px] mt-1 lg:mt-0 flex-shrink-0" />
+                If the service details match your needs, click to book it.
+              </li>
+              <li className="flex items-start lg:items-center gap-4 text-gray-800 text-lg mt-4">
+                <CheckCircleIcon className="w-[20px] mt-1 lg:mt-0 flex-shrink-0" />
+                Need more than one service? Before checkout you can bundle
+                additional services.
+              </li>
+              <li className="flex items-start lg:items-center gap-4 text-gray-800 text-lg mt-4">
+                <CheckCircleIcon className="w-[20px] mt-1 lg:mt-0 flex-shrink-0" />
+                Proceed to checkout and pay deposit (25% capped at $200).
+              </li>
+            </ul>
           </div>
           <div
             id="serviceCards"

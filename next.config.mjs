@@ -6,29 +6,26 @@ const nextConfig = {
 
   async redirects() {
     return [
-      {source: '/home-1',
-        destination: '/',
+      { source: "/home-1", destination: "/", permanent: true },
+
+      {
+        source: "/residential",
+        destination: "/services",
         permanent: true,
       },
 
       {
-        source: '/residential',
-        destination: '/services',
+        source: "/goals",
+        destination: "/hoops",
         permanent: true,
       },
 
       {
-        source: '/goals',
-        destination: '/hoops',
+        source: "/basketball-goals-for-sale",
+        destination: "/hoops",
         permanent: true,
       },
-
-      {
-        source: '/basketball-goals-for-sale',
-        destination: '/hoops',
-        permanent: true,
-      },
-    ]
+    ];
   },
 };
 

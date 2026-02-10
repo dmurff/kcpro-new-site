@@ -6,7 +6,7 @@ import Link from "next/link";
 import { fetchProductCardData } from "../../../lib/data/hoops";
 
 export default function ProductCards({ products }) {
-console.log("Products:", products)
+  console.log("Products:", products);
   return (
     <div className="relative isolate overflow-hidden bg-white py-8 sm:py-32 lg:py-16">
       {/* <img
@@ -70,6 +70,12 @@ console.log("Products:", products)
                   <p className="text-sm font-bold text-white">
                     {`$ ${product.price}`}
                   </p>
+                  <Link
+                    href={`/hoops/${product.slug}`}
+                    className="block mt-4 p-1 text-sm/6 font-semibold text-gray-300 hover:text-white"
+                  >
+                    Learn more <span aria-hidden="true">→</span>
+                  </Link>
                 </div>
               </div>
             </div>

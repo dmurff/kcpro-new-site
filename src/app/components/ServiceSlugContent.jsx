@@ -50,7 +50,7 @@ export default function ServiceSlugContent({ serviceId, content, service }) {
             clipPath:
               "polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)",
           }}
-          className="aspect-1097/845 w-274.25 bg-linear-to-tr from-orange-400 to-orange-600/70 opacity-15"
+          className="aspect-1097/845 w-274.25 bg-linear-to-tr from-gray-400 to-gray-600/10"
         />
       </div>
       <div className="absolute -top-52 left-1/2 -z-10 -translate-x-1/2 transform-gpu blur-3xl sm:-top-112 sm:ml-16 sm:translate-x-0">
@@ -59,7 +59,7 @@ export default function ServiceSlugContent({ serviceId, content, service }) {
             clipPath:
               "polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)",
           }}
-          className="aspect-1097/845 w-274.25 bg-linear-to-tr from-bg-orange-400 to-orange-600 opacity-15"
+          className="aspect-1097/845 w-274.25 bg-linear-to-tr from-gray-400 to-gray-600/20"
         />
       </div>
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -137,41 +137,47 @@ export default function ServiceSlugContent({ serviceId, content, service }) {
           </ul>
         </div>
         <div id="expectations" className="mb-10">
-          {content.notIncluded?.length > 0 &&(
+          {content.notIncluded?.length > 0 && (
             <>
-          <h2 className="text-gray-900 text-3xl font-semibold mb-4">
-            Not Included in Service
-          </h2>
-          <ul className="flex flex-col gap-4 text-gray-700 bg-gray-200/30 text-lg/7 rounded-xl w-fit p-6">
-            {content.notIncluded?.map((n, i) => (
-              <li key={i}>
-                <span>
-                  <CheckCircleIcon width={20} className="inline mr-2" />
-                </span>
-                {n}
-              </li>
-            ))}
-          </ul>
-          </>)}
+              <h2 className="text-gray-900 text-3xl font-semibold mb-4">
+                Not Included in Service
+              </h2>
+              <ul className="flex flex-col gap-4 text-gray-700 bg-gray-200/30 text-lg/7 rounded-xl w-fit p-6">
+                {content.notIncluded?.map((n, i) => (
+                  <li key={i}>
+                    <span>
+                      <CheckCircleIcon width={20} className="inline mr-2" />
+                    </span>
+                    {n}
+                  </li>
+                ))}
+              </ul>
+            </>
+          )}
         </div>
         <div id="expectations" className="mb-24">
-          {content.timeline &&  <h2 className="text-gray-900 text-3xl font-semibold mb-4">
-            Timeline
-          </h2>}
-         
-          {content.timeline?.length > 0 && (<ul className="flex flex-col gap-4 text-gray-700 bg-gray-200/30 rounded-xl text-lg/7 w-fit p-6">
-            {content.timeline.map((t, i) => (
-              <li key={i}>
-                <span>
-                  <CheckCircleIcon width={20} className="inline mr-2" />
-                </span>
-                {t.step} → {t.text}
-              </li>
-            ))}
-          </ul> )}
+          {content.timeline && (
+            <h2 className="text-gray-900 text-3xl font-semibold mb-4">
+              Timeline
+            </h2>
+          )}
+
+          {content.timeline?.length > 0 && (
+            <ul className="flex flex-col gap-4 text-gray-700 bg-gray-200/30 rounded-xl text-lg/7 w-fit p-6">
+              {content.timeline.map((t, i) => (
+                <li key={i}>
+                  <span>
+                    <CheckCircleIcon width={20} className="inline mr-2" />
+                  </span>
+                  {t.step} → {t.text}
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
-        {content.ServiceWhatToExpect?.length > 0 && 
-        <ServiceWhatToExpect content={content} />}
+        {content.ServiceWhatToExpect?.length > 0 && (
+          <ServiceWhatToExpect content={content} />
+        )}
       </div>
       <Testimonials />
       <div className="mx-auto max-w-7xl px-6 py-16 sm:py-16 lg:flex lg:items-center lg:justify-between lg:px-8">

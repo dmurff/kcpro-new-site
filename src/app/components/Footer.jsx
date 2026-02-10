@@ -7,14 +7,13 @@ const navigation = {
     { name: "Hoop Assembly", href: "/services" },
   ],
   support: [
-    { name: "Contact Us", href: "#" },
+    { name: "Contact Us", href: "/contact" },
     // { name: "Documentation", href: "#" },
     // { name: "Guides", href: "#" },
   ],
   company: [
     { name: "About Us", href: "/about" },
     // { name: "Blog", href: "#" },
-   
   ],
   // legal: [
   //   { name: "Terms of service", href: "#" },
@@ -22,10 +21,7 @@ const navigation = {
   //   // { name: "License", href: "#" },
   // ],
 
-  hoops: [
-{name: "Shop Hoops", href: '/hoops'}
-  ],
-
+  hoops: [{ name: "Shop Hoops", href: "/hoops" }],
 
   //   social: [
   //     {
@@ -145,7 +141,7 @@ export default function Footer() {
                     </li>
                   ))}
                 </ul>
-                </div>
+              </div>
               <div className="mt-10 md:mt-0">
                 <h3 className="text-sm/6 font-semibold text-white">Hoops</h3>
                 <ul role="list" className="mt-6 space-y-4">
@@ -162,25 +158,26 @@ export default function Footer() {
                 </ul>
               </div>
               {navigation.legal?.length > 0 && (
-              <div className="mt-10 md:mt-0">
-                <h3 className="text-sm/6 font-semibold text-white">Legal</h3>
-                <ul role="list" className="mt-6 space-y-4">
-                  {navigation.legal?.map((item) => (
-                    <li key={item.name}>
-                      <a
-                        href={item.href}
-                        className="text-sm/6 text-gray-200 hover:text-white"
-                      >
-                        {item.name}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div> )}
-              </div>
+                <div className="mt-10 md:mt-0">
+                  <h3 className="text-sm/6 font-semibold text-white">Legal</h3>
+                  <ul role="list" className="mt-6 space-y-4">
+                    {navigation.legal?.map((item) => (
+                      <li key={item.name}>
+                        <a
+                          href={item.href}
+                          className="text-sm/6 text-gray-200 hover:text-white"
+                        >
+                          {item.name}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
             </div>
           </div>
-          {/* <div className="mt-10 xl:mt-0">
+        </div>
+        {/* <div className="mt-10 xl:mt-0">
             <h3 className="text-sm/6 font-semibold text-white">
               Subscribe to our newsletter
             </h3>

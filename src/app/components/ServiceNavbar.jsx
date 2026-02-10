@@ -73,7 +73,7 @@ export default function ServiceNavbar() {
 
       <nav className="absolute z-40 top-0 left-0 w-full flex flex-row justify-between pr-8 items-center h-18 bg-black/90 text-white">
         {/* <nav className="fixed top-0 w-full z-40 flex flex-row justify-between pr-12 items-center h-18 bg-white text-black"> */}
-        <div className="flex gap-x-8 ml-1">
+        <div className="flex gap-x-4 lg:gap-x-6 ml-0">
           <div className="hidden lg:block">
             <Image
               src="/images/nav-logo.png"

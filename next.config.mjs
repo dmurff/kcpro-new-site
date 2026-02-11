@@ -27,8 +27,8 @@ const nextConfig = {
       },
       {
         source: "/basketball-hoop-installation",
-        destination: "/services",
-        permanent: true,
+        destination: "/services/full-installation",
+        permanent: false,
       },
       {
         source: "/privacy",
@@ -43,11 +43,36 @@ const nextConfig = {
       {
         source: "/new-gallery",
         destination: "/hoops",
-        permanent: true,
+        permanent: false,
       },
       {
         source: "/gc55md",
-        destination: "/gc55-md",
+        destination: "/hoops/gc55-md",
+        permanent: true,
+      },
+      {
+        source: "/tpt553md",
+        destination: "/hoops/tpt553-lg",
+        permanent: false,
+      },
+      {
+        source: "/tpt553lg",
+        destination: "/hoops/tpt553-lg",
+        permanent: true,
+      },
+      {
+        source: "/gc55lg",
+        destination: "/hoops/gc55-lg",
+        permanent: true,
+      },
+      {
+        source: "/fc664xl",
+        destination: "/hoops/fch664-xl",
+        permanent: true,
+      },
+      {
+        source: "/fc684xxl",
+        destination: "/hoops/fch684-xxl",
         permanent: true,
       },
     ];

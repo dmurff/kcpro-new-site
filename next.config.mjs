@@ -30,6 +30,26 @@ const nextConfig = {
         destination: "/services",
         permanent: true,
       },
+      {
+        source: "/privacy",
+        destination: "/privacy-policy",
+        permanent: true,
+      },
+      {
+        source: "/home-1-1",
+        destination: "/services",
+        permanent: true,
+      },
+      {
+        source: "/new-gallery",
+        destination: "/hoops",
+        permanent: true,
+      },
+      {
+        source: "/gc55md",
+        destination: "/gc55-md",
+        permanent: true,
+      },
     ];
   },
 };

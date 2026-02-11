@@ -24,8 +24,6 @@ import { HeartIcon, MinusIcon, PlusIcon } from "@heroicons/react/24/outline";
   /* <InformationCircleIcon className="w-6 h-6 text-gray-500" /> */
 }
 
-
-
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
@@ -54,9 +52,6 @@ export default function HoopCard({
   content,
   handleClick,
 }) {
-
-
-
   if (!hoop) return null;
 
   console.log("🚀", hoop.id, hoop.name);
@@ -69,37 +64,46 @@ export default function HoopCard({
           <TabGroup className="flex flex-col-reverse">
             {/* Image selector */}
             <div className="mx-auto mt-6 hidden w-full max-w-2xl sm:block lg:max-w-none">
-              <TabList className="grid grid-cols-4 gap-6">
-                {gallery.map((image) => (
-                  <Tab
-                    key={image.id}
-                    className="group relative flex h-24 cursor-pointer items-center justify-center rounded-md bg-white text-sm font-medium text-gray-900 uppercase hover:bg-gray-50 focus:ring-3 focus:ring-orange-500/50 focus:ring-offset-4 focus:outline-hidden"
-                  >
-                    <span className="sr-only">{hoop.model}</span>
-                    <span className="absolute inset-0 overflow-hidden rounded-md">
-                      <img
-                        alt={image.alt_text || `Image of ${hoop.model}`}
-                        src={image.image_url}
-                        className="size-full object-cover"
+              {/* <div className="mx-auto mt-6 hidden w-full max-w-[500px] sm:block lg:max-w-none"> */}
+              <div className="w-[75%]">
+                <TabList className="grid grid-cols-4 gap-6">
+                  {gallery.map((image) => (
+                    <Tab
+                      key={image.id}
+                      className="group relative flex h-24 cursor-pointer items-center justify-center rounded-md bg-white text-sm font-medium text-gray-900 uppercase hover:bg-gray-50 focus:ring-3 focus:ring-orange-500/50 focus:ring-offset-4 focus:outline-hidden"
+                    >
+                      <span className="sr-only">{hoop.model}</span>
+                      <span className="absolute inset-0 overflow-hidden rounded-md">
+                        <Image
+                          height={300}
+                          width={300}
+                          alt={image.alt_text || `Image of ${hoop.model}`}
+                          src={image.image_url}
+                          className="size-full object-cover"
+                        />
+                      </span>
+                      <span
+                        aria-hidden="true"
+                        className="pointer-events-none absolute inset-0 rounded-md ring-2 ring-transparent ring-offset-2 group-data-selected:ring-orange-500"
                       />
-                    </span>
-                    <span
-                      aria-hidden="true"
-                      className="pointer-events-none absolute inset-0 rounded-md ring-2 ring-transparent ring-offset-2 group-data-selected:ring-orange-500"
-                    />
-                  </Tab>
-                ))}
-              </TabList>
+                    </Tab>
+                  ))}
+                </TabList>
+              </div>
             </div>
 
             <TabPanels>
               {gallery.map((image) => (
                 <TabPanel key={image.id}>
-                  <img
-                    alt={`image of ${hoop.model}`}
-                    src={image.image_url}
-                    className="max-h-full max-w-full object-contain sm:rounded-lg"
-                  />
+                  <div className="relative w-full aspect-square sm:aspect-[4/3] overflow-hidden sm:rounded-lg bg-white">
+                    <Image
+                      width={600}
+                      height={600}
+                      alt={`image of ${hoop.model}`}
+                      src={image.image_url}
+                      className="max-h-full max-w-full object-contain sm:rounded-lg"
+                    />
+                  </div>
                 </TabPanel>
               ))}
             </TabPanels>
@@ -170,7 +174,11 @@ export default function HoopCard({
                     checked={!!selectedServices[service.name]}
                   />
                 ))} */}
-                <ServiceCards services={services} handleClick={handleClick} selectedServices={selectedServices} />
+                <ServiceCards
+                  services={services}
+                  handleClick={handleClick}
+                  selectedServices={selectedServices}
+                />
                 {/* <Toggle
                   service_name={"installation"}
                   service_cost={hoop.install_price}
@@ -212,39 +220,41 @@ export default function HoopCard({
               <div className="divide-y divide-gray-200 border-t border-gray-200">
                 {content.details?.length > 0 && (
                   <>
-                {content.details.map((detail) => (
-                  <Disclosure key={detail.name} as="div">
-                    <h3>
-                      <DisclosureButton className="group relative flex w-full items-center justify-between py-6 text-left">
-                        <span className="text-sm font-medium text-gray-900 group-data-open:text-orange-600">
-                          {detail.name}
-                        </span>
-                        <span className="ml-6 flex items-center">
-                          <PlusIcon
-                            aria-hidden="true"
-                            className="block size-6 text-gray-400 group-hover:text-gray-500 group-data-open:hidden"
-                          />
-                          <MinusIcon
-                            aria-hidden="true"
-                            className="hidden size-6 text-orange-400 group-hover:text-orange-500 group-data-open:block"
-                          />
-                        </span>
-                      </DisclosureButton>
-                    </h3>
-                    <DisclosurePanel className="pb-6">
-                      <ul
-                        role="list"
-                        className="list-disc space-y-1 pl-5 text-sm/6 text-gray-700 marker:text-gray-300"
-                      >
-                        {detail.items.map((item) => (
-                          <li key={item} className="pl-2">
-                            {item}
-                          </li>
-                        ))}
-                      </ul>
-                    </DisclosurePanel>
-                  </Disclosure>
-                ))} </>)}
+                    {content.details.map((detail) => (
+                      <Disclosure key={detail.name} as="div">
+                        <h3>
+                          <DisclosureButton className="group relative flex w-full items-center justify-between py-6 text-left">
+                            <span className="text-sm font-medium text-gray-900 group-data-open:text-orange-600">
+                              {detail.name}
+                            </span>
+                            <span className="ml-6 flex items-center">
+                              <PlusIcon
+                                aria-hidden="true"
+                                className="block size-6 text-gray-400 group-hover:text-gray-500 group-data-open:hidden"
+                              />
+                              <MinusIcon
+                                aria-hidden="true"
+                                className="hidden size-6 text-orange-400 group-hover:text-orange-500 group-data-open:block"
+                              />
+                            </span>
+                          </DisclosureButton>
+                        </h3>
+                        <DisclosurePanel className="pb-6">
+                          <ul
+                            role="list"
+                            className="list-disc space-y-1 pl-5 text-sm/6 text-gray-700 marker:text-gray-300"
+                          >
+                            {detail.items.map((item) => (
+                              <li key={item} className="pl-2">
+                                {item}
+                              </li>
+                            ))}
+                          </ul>
+                        </DisclosurePanel>
+                      </Disclosure>
+                    ))}{" "}
+                  </>
+                )}
               </div>
             </section>
           </div>

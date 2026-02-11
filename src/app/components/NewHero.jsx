@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export default function NewHero({ products, pricingContext }) {
   return (
@@ -55,34 +56,48 @@ export default function NewHero({ products, pricingContext }) {
           </div>
           {/* <div className="mx-auto mt-16 grid  grid-cols-1 gap-0 sm:mt-20 lg:mx-0 lg:max-w-none lg:grid-cols-2 lg:gap-8"> */}
           <div className="mx-auto mt-16 grid grid-cols-1 sm:grid-cols-2 gap-8 lg:max-w-7xl">
-            {products.map((p) => (
-              <Link
-                key={p.id}
-                href={`/hoops/${p.slug}?pricingContext=${pricingContext}`}
-                className=" flex flex-col  rounded-xl bg-black/80 p-6 ring-1 ring-gray-900/5 backdrop-blur-sm hover:ring-orange-400 shadow-lg shadow-black/20 hover:shadow-orange-500/30"
-              >
-                <img
-                  src={p.feature_image}
-                  // width={300}
-                  className="object-contain max-h-[260px]"
-                />
-                <div className="text-base/7 text-lg">
-                  <h3 className="font-semibold text-gray-100 text-3xl">
-                    {p.name}
-                  </h3>
-                  <p className="mt-2 text-gray-100">
-                    Backboard {p.backboard_size}"
-                  </p>
-                  <p className="mt-2 text-gray-100">
-                    Height Range {p.adjustment_range}
-                  </p>
-                  <p className="mt-2 text-gray-100">${p.price}</p>
-                  <p className="mt-2 text-sm/6 font-semibold text-gray-100 hover:text-gray-300">
-                    Learn more <span aria-hidden="true">→</span>
-                  </p>
-                </div>
-              </Link>
-            ))}
+            {products.map((p) => {
+              // href in case query params don't exist
+              const href = pricingContext
+                ? `/hoops/${p.slug}?pricingContext=${pricingContext}`
+                : `/hoops/${p.slug}`;
+
+              const imageStr = p.feature_image[0];
+
+              return (
+                <Link
+                  key={p.id}
+                  // href={`/hoops/${p.slug}?pricingContext=${pricingContext}`}
+                  href={href}
+                  className=" flex flex-col  rounded-xl bg-black/80 p-6 ring-1 ring-gray-900/5 backdrop-blur-sm hover:ring-orange-400 shadow-lg shadow-black/20 hover:shadow-orange-500/30"
+                >
+                  {/* <img */}
+                  <Image
+                    alt={`picture of ${p.slug}`}
+                    width={500}
+                    height={500}
+                    src={imageStr}
+                    className="object-contain max-h-[260px]"
+                  />
+
+                  <div className="text-base/7 text-lg">
+                    <h3 className="font-semibold text-gray-100 text-3xl">
+                      {p.name}
+                    </h3>
+                    <p className="mt-2 text-gray-100">
+                      Backboard {p.backboard_size}"
+                    </p>
+                    <p className="mt-2 text-gray-100">
+                      Height Range {p.adjustment_range}
+                    </p>
+                    <p className="mt-2 text-gray-100">${p.price}</p>
+                    <p className="mt-2 text-sm/6 font-semibold text-gray-100 hover:text-gray-300">
+                      Learn more <span aria-hidden="true">→</span>
+                    </p>
+                  </div>
+                </Link>
+              );
+            })}
           </div>
         </div>
       </div>

@@ -39,7 +39,7 @@ function classNames(...classes) {
 //   });
 // };
 
-export default function HoopCard({
+export default function HoopCardNextImage({
   hoop,
   // onCheckout,
   // children,
@@ -56,46 +56,92 @@ export default function HoopCard({
 
   console.log("🚀", hoop.id, hoop.name);
   return (
-    <div className="w-full bg-white py-8 lg:py-20">
+    <div className="w-full bg-white py-0 lg:pb-20 mt-0">
       {/* <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8"> */}
       <div className="mx-auto w-full max-w-[1600px] px-4 sm:px-6 lg:px-8">
-        <div className="lg:grid lg:grid-cols-2 lg:items-start lg:gap-x-8">
+        <div className="lg:grid lg:grid-cols-2 lg:items-start lg:gap-x-8 lg:py-16">
           {/* Image gallery */}
           <TabGroup className="flex flex-col-reverse">
             {/* Image selector */}
-            <div className="mx-auto mt-6 hidden w-full max-w-2xl sm:block lg:max-w-none">
-              <TabList className="grid grid-cols-4 max-w-3/4 gap-6">
-                {gallery.map((image) => (
-                  <Tab
-                    key={image.id}
-                    className="group relative flex h-24 cursor-pointer items-center justify-center rounded-md bg-white text-sm font-medium text-gray-900 uppercase hover:bg-gray-50 focus:ring-3 focus:ring-orange-500/50 focus:ring-offset-4 focus:outline-hidden"
-                  >
-                    <span className="sr-only">{hoop.model}</span>
-                    <span className="absolute inset-0 overflow-hidden rounded-md">
-                      <img
-                        alt={image.alt_text || `Image of ${hoop.model}`}
-                        src={image.image_url}
-                        className="size-full object-cover"
+            {/* <div className="mx-auto mt-6 hidden w-full max-w-2xl sm:block lg:max-w-none"> */}
+            <div className="mx-auto mt-6 w-full max-w-2xl sm:block lg:max-w-none">
+              {/* <div className="mx-auto mt-6 hidden w-full max-w-[500px] sm:block lg:max-w-none"> */}
+              <div className="">
+                <TabList className="grid grid-cols-4 lg:grid-cols-4 gap-6 mt-0">
+                  {gallery.map((image) => (
+                    <Tab
+                      key={image.id}
+                      className="group relative flex h-24 cursor-pointer items-center justify-center rounded-md bg-white text-sm font-medium text-gray-900 uppercase hover:bg-gray-50 focus:ring-3 focus:ring-orange-500/50 focus:ring-offset-4 focus:outline-hidden"
+                    >
+                      <span className="sr-only">{hoop.model}</span>
+                      <span className="absolute inset-0 overflow-hidden rounded-md">
+                        <Image
+                          height={300}
+                          width={300}
+                          alt={image.alt_text || `Image of ${hoop.model}`}
+                          src={image.image_url}
+                          className="size-full object-cover"
+                        />
+                      </span>
+                      <span
+                        aria-hidden="true"
+                        className="pointer-events-none absolute inset-0 rounded-md ring-2 ring-transparent ring-offset-2 group-data-selected:ring-orange-500"
                       />
-                    </span>
-                    <span
-                      aria-hidden="true"
-                      className="pointer-events-none absolute inset-0 rounded-md ring-2 ring-transparent ring-offset-2 group-data-selected:ring-orange-500"
-                    />
-                  </Tab>
-                ))}
-              </TabList>
+                    </Tab>
+                  ))}
+                </TabList>
+              </div>
+
+              {/* Trying new layout  */}
+              {/* <div className="mt-0 w-full flex justify-start">
+                <TabList className="flex gap-3 overflow-x-auto max-w-3/4 lg:w-[full] pb-2 snap-x snap-mandatory">
+                  {gallery.map((image) => (
+                    <Tab
+                      key={image.id}
+                      className="relative shrink-0 snap-start h-20 w-20 overflow-hidden rounded-lg bg-white ring-2 ring-transparent data-[selected]:ring-orange-500"
+                    >
+                      <Image
+                        src={image.image_url}
+                        alt={image.alt_text || `Image of ${hoop.model}`}
+                        fill
+                        sizes="80px"
+                        className="object-cover"
+                      />
+                    </Tab>
+                  ))}
+                </TabList>
+              </div> */}
             </div>
 
             <TabPanels>
               {gallery.map((image) => (
                 <TabPanel key={image.id}>
+                  {/* <div className="relative w-full aspect-square aspect-[4/3] lg:aspect-[4/5] overflow-hidden sm:rounded-lg bg-white mt-2">
+                    <Image
+                      width={600}
+                      height={600}
+                      alt={`image of ${hoop.model}`}
+                      src={image.image_url}
+                      className="max-h-full max-w-full object-contain sm:rounded-lg"
+                    />
+                  </div> */}
                   <img
                     alt={`image of ${hoop.model}`}
                     src={image.image_url}
                     className="max-h-full max-w-full object-contain sm:rounded-lg"
                   />
                 </TabPanel>
+                // <TabPanel key={image.id}>
+                //   <div className="relative w-full aspect-square bg-white sm:rounded-lg overflow-hidden">
+                //     <Image
+                //       src={image.image_url}
+                //       alt={image.alt_text || `Image of ${hoop.model}`}
+                //       fill
+                //       sizes="(min-width: 1024px) 50vw, 100vw"
+                //       className="object-contain"
+                //     />
+                //   </div>
+                // </TabPanel>
               ))}
             </TabPanels>
           </TabGroup>

@@ -1,11 +1,15 @@
 "use client";
-
+import {
+  CheckCircleIcon,
+  InformationCircleIcon,
+  NumberedListIcon,
+} from "@heroicons/react/24/solid";
 import Link from "next/link";
 // import { ServerClient } from "postmark";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
-import {v4 as uuidv4} from "uuid";
+import { v4 as uuidv4 } from "uuid";
 
 import OrderSummary from "./OrderSummary";
 
@@ -36,9 +40,10 @@ export default function ServiceBundle({ services, primaryServiceId }) {
 
     const res = await fetch("/api/payments/create-service-intent", {
       method: "POST",
-      headers: { "Content-Type": "application/json",
-        "Idempotency-Key" : idempotencyKey,
-       },
+      headers: {
+        "Content-Type": "application/json",
+        "Idempotency-Key": idempotencyKey,
+      },
       body: JSON.stringify({
         bundledIds,
       }),
@@ -46,8 +51,6 @@ export default function ServiceBundle({ services, primaryServiceId }) {
 
     const { paymentIntentId, total, deposit, remainder, serviceIds } =
       await res.json();
-
-
 
     const params = new URLSearchParams({
       pi: paymentIntentId,
@@ -71,14 +74,14 @@ export default function ServiceBundle({ services, primaryServiceId }) {
   const handleClick = (service) => {
     if (service.id === primaryServiceId) {
       toast.success(
-        "This service is already selected as your primary job. Select add ons or proceed to checkout"
+        "This service is already selected as your primary job. Select add ons or proceed to checkout",
       );
       return;
     }
 
     if (service.service_group === "primary") {
       toast.error(
-        "To change your main service, start from that service’s page."
+        "To change your main service, start from that service’s page.",
       );
       return;
     }
@@ -86,7 +89,7 @@ export default function ServiceBundle({ services, primaryServiceId }) {
     setAddonIds((prev) =>
       prev.includes(service.id)
         ? prev.filter((id) => id !== service.id)
-        : [...prev, service.id]
+        : [...prev, service.id],
     );
   };
 
@@ -122,11 +125,30 @@ export default function ServiceBundle({ services, primaryServiceId }) {
           <h2 className="font-semibold bg-orange-2text-xl font-semibold bg-orange-400/70 tracking-tight text-pretty text-gray-900 inline-block text-2xl mb-2">
             Service Add-ons{" "}
           </h2>{" "}
-          <p>
+          {/* <p>
             Select add on services if you need them or proceed to checkout. A
             25% deposit (capped at $200) locks in your schedule. Final payment
             is due upon completion.
-          </p>
+          </p> */}
+          <ul className="flex flex-col">
+            <li className="flex items-start lg:items-center gap-4 text-gray-800 text-lg mt-4">
+              <CheckCircleIcon className="w-[20px] mt-1 lg:mt-0 flex-shrink-0" />
+              Your chosen primary service is highlighted below
+            </li>
+            <li className="flex items-start lg:items-center gap-4 text-gray-800 text-lg mt-4">
+              <CheckCircleIcon className="w-[20px] mt-1 lg:mt-0 flex-shrink-0" />
+              You can select additional services if you need them
+            </li>
+            <li className="flex items-start lg:items-center gap-4 text-gray-800 text-lg mt-4">
+              <CheckCircleIcon className="w-[20px] mt-1 lg:mt-0 flex-shrink-0" />
+              Some services are not available if they conflict with your primary
+              service
+            </li>
+            <li className="flex items-start lg:items-center gap-4 text-gray-800 text-lg mt-4">
+              <CheckCircleIcon className="w-[20px] mt-1 lg:mt-0 flex-shrink-0" />
+              Proceed to checkout at the bottom of the page
+            </li>
+          </ul>
         </div>
         <div
           id="serviceCards"
@@ -164,8 +186,8 @@ export default function ServiceBundle({ services, primaryServiceId }) {
                   isPrimary
                     ? "bg-black/80 text-white ring-orange-500 cursor-not-allowed"
                     : isAddonSelected
-                    ? "bg-black/80 ring-orange-400 hover:shadow-orange-500/30 text-white"
-                    : "bg-gray-200/30 hover:ring-orange-300 ring-gray-900/5"
+                      ? "bg-black/80 ring-orange-400 hover:shadow-orange-500/30 text-white"
+                      : "bg-gray-200/30 hover:ring-orange-300 ring-gray-900/5"
                 }`}
               >
                 <div className="text-base/7">

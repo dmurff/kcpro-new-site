@@ -46,6 +46,10 @@ export async function saveHoop(formData) {
 
 export async function updateHoop(id, data) {
   console.log(id, data);
+  const supabase = createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL,
+    process.env.SUPABASE_SERVICE_ROLE_KEY,
+  );
 
   const row = {
     name: data.name,

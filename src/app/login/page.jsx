@@ -1,20 +1,30 @@
-import AcmeLogo from "../../ui/acme-logo";
-import LoginForm from "../../login-form";
-import { Suspense } from "react";
+"use client";
+import { signIn, signOut } from "next-auth/react";
+import Link from "next/link";
 
-export default function LoginPage() {
+export default function LoginButton() {
   return (
-    <main className="flex items-center justify-center md:h-screen">
-      <div className="relative mx-auto flex w-full max-w-[400px] flex-col space-y-2.5 p-4 md:-mt-32">
-        <div className="flex h-20 w-full items-end rounded-lg bg-blue-500 p-3 md:h-36">
-          <div className="w-32 text-white md:w-36">
-            <AcmeLogo />
-          </div>
-        </div>
-        <Suspense>
-          <LoginForm />
-        </Suspense>
+    <>
+      <div className="flex gap-6 p-4">
+        <button
+          className="text-black text-2xl bg-blue-300"
+          onClick={() =>
+            signIn("google", { callbackUrl: "/admin-dashboard/hoops" })
+          }
+        >
+          Login
+        </button>
+
+        <button
+          onClick={() => signOut({ callbackUrl: "/login" })}
+          className="text-red-500 text-2xl font-semibold bg-blue-300"
+        >
+          Sign Out
+        </button>
       </div>
-    </main>
+      <Link className="text-black text-2xl bg-blue-300" href="/">
+        home
+      </Link>
+    </>
   );
 }

@@ -1,6 +1,7 @@
 import { Geist, Geist_Mono, Inter } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "react-hot-toast";
+import AuthProvider from "./components/AuthProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,8 +25,10 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <head>{/* <script src="https://cdn.tailwindcss.com"></script> */}</head>
       <body className={`${inter.className} antialiased`}>
-        <Toaster position="top-center" />
-        {children}
+        <AuthProvider>
+          <Toaster position="top-center" />
+          {children}
+        </AuthProvider>
       </body>
     </html>
   );

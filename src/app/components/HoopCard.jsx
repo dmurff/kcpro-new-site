@@ -151,7 +151,13 @@ export default function HoopCard({
               ))}
             </TabPanels>
           </TabGroup>
-
+          <div className="flex gap-2 lg:hidden mt-4 items-center">
+            <div className="flex">
+              <DevicePhoneMobileIcon className="w-[20px] text-black" />
+              <ArrowPathIcon className="w-[20px] text-black" />
+            </div>
+            <p className="text-black text-xs">Flip Phone to see more photos!</p>
+          </div>
           {/* Product info */}
           <div className="mt-10 px-4 sm:mt-16 sm:px-0 lg:mt-0">
             <h1 className="text-3xl font-bold tracking-tight text-gray-900">
@@ -201,13 +207,12 @@ export default function HoopCard({
                 {/* <h3 className="text-sm font-medium text-gray-600">
                   Add a service
                 </h3> */}
-                <div className=" p-2 mb-6">
+                <div className="flex gap-4 p-2 mb-2">
                   <h3 className="text-gray-900 text-xl">Add a service</h3>
 
                   <button type="button" onClick={handleModalClick}>
-                    <InformationCircleIcon className="h-6 w-6 text-gray-400" />
+                    <InformationCircleIcon className="h-6 w-6 text-gray-400 hover:text-black hover:font-semibold" />
                   </button>
-                  <p className="text-gray-900">(25% deposit at checkout)</p>
                 </div>
 
                 {/* {services.map((service) => (

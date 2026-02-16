@@ -5,10 +5,8 @@ import OrderNow from "./OrderNow";
 import { useRouter } from "next/navigation";
 import { v4 as uuidv4 } from "uuid";
 
-export default function HoopCardWrapper({ hoop, gallery, services, content}) {
+export default function HoopCardWrapper({ hoop, gallery, services, content }) {
   const router = useRouter();
-
-  
 
   // must generate the idempotency key on the client before sending to the payment intent api
   const generateIdempotencyKey = () => {
@@ -16,49 +14,41 @@ export default function HoopCardWrapper({ hoop, gallery, services, content}) {
   };
 
   const [selectedServices, setSelectedServices] = useState({});
+  const [modal, setModal] = useState(false);
 
-            console.log('>>>>>>>>>>>>>>>>>>>>>>>>>>>',selectedServices)
+  const handleModalClick = () => {
+    console.log("clicked", modal);
+    setModal((prev) => !prev);
+  };
 
+  console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>", selectedServices);
 
   // toggle update state handler
   const handleClick = (serviceName, cost, checked) => {
     setSelectedServices((prev) => {
       if (checked) {
-               
-
-
-        return { ...prev, [serviceName]: cost }
-        
-        
-        
-    
+        return { ...prev, [serviceName]: cost };
       } else {
         const { [serviceName]: _, ...rest } = prev;
         return rest;
       }
     });
-
-
   };
-
-  
-  
 
   const servicesTotal = Object.values(selectedServices).reduce(
     (sum, v) => sum + v,
-    0
+    0,
   );
 
   // Calculate service fee (deposit amount capped at 200 or 25%)
 
   // calculate discount to reflect for total box deposit
 
-
   // discount applied to the total box
   let discount = 0;
-if("installation" in selectedServices){
-  discount = 200;
-}
+  if ("installation" in selectedServices) {
+    discount = 200;
+  }
 
   const depositDue = Math.min((servicesTotal - discount) * 0.25, 200);
 
@@ -93,7 +83,7 @@ if("installation" in selectedServices){
     // console.log(clientSecret);
     // Redirect client-side
     router.push(
-      `/checkout?payment_intent_client_secret=${clientSecret}&pi=${paymentIntentId}`
+      `/checkout?payment_intent_client_secret=${clientSecret}&pi=${paymentIntentId}`,
     );
   };
 
@@ -108,6 +98,8 @@ if("installation" in selectedServices){
         total={total} // pass computed total from state down
         services={services}
         content={content}
+        modal={modal}
+        handleModalClick={handleModalClick}
       />
     </>
   );

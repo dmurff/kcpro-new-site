@@ -1,6 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
-import { InformationCircleIcon } from "@heroicons/react/24/outline";
+import {
+  InformationCircleIcon,
+  DevicePhoneMobileIcon,
+  ArrowPathIcon,
+} from "@heroicons/react/24/outline";
 import OrderNow from "../components/OrderNow";
 // import Toggle from "../components/Toggle";
 import TotalBox from "./TotalBox";
@@ -51,12 +55,60 @@ export default function HoopCard({
   services,
   content,
   handleClick,
+  modal,
+  handleModalClick,
 }) {
   if (!hoop) return null;
 
   console.log("🚀", hoop.id, hoop.name);
   return (
-    <div className="w-full bg-white py-8 lg:py-20">
+    <div className="relative w-full bg-white py-8 lg:py-20">
+      {modal && (
+        <div
+          className="fixed inset-0 z-[100] opacity-100 flex flex-col items-center justify-center bg-black/70 p-4"
+          onClick={handleModalClick}
+        >
+          <div
+            className="bg-white relative rounded-lg"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="bg-white flex flex justify-between gap-10">
+              <button
+                type="button"
+                onClick={handleModalClick}
+                className="absolute top-2 right-2 text-gray-500 hover:text-black font-bold text-xl"
+              >
+                ✕
+              </button>
+            </div>
+            <div
+              id="infoModal"
+              className="m-8 p-4 overflow-y-auto max-h-[calc(85vh-64px)]"
+            >
+              <h3 className="text-gray-900 font-semibold text-2xl mb-8">
+                Service Deposit
+              </h3>
+              <p className="text-md text-black bg-white lg:max-w-2xl mt-8 mb-4">
+                When you buy a hoop you have the option to add on services. When
+                adding services you will notice the total increasing. This is
+                the cost of the hoop and your deposit for services added
+                together. Your service deposit will never exceed $200. Upon
+                completion of the services the remainder will be due.
+              </p>
+              <div className="px-5 py-4 border-t lg:hidden">
+                <button
+                  type="button"
+                  onClick={handleModalClick}
+                  className="w-full rounded-md bg-orange-400 px-4 py-3 text-white font-medium hover:bg-orange-600"
+                >
+                  Got it
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8"> */}
       <div className="mx-auto w-full max-w-[1600px] px-4 sm:px-6 lg:px-8">
         <div className="lg:grid lg:grid-cols-2 lg:items-start lg:gap-x-8">
@@ -151,9 +203,10 @@ export default function HoopCard({
                 </h3> */}
                 <div className=" p-2 mb-6">
                   <h3 className="text-gray-900 text-xl">Add a service</h3>
-                  <span>
+
+                  <button type="button" onClick={handleModalClick}>
                     <InformationCircleIcon className="h-6 w-6 text-gray-400" />
-                  </span>
+                  </button>
                   <p className="text-gray-900">(25% deposit at checkout)</p>
                 </div>
 

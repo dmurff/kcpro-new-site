@@ -20,6 +20,7 @@
     "next": "^15.5.9",
     "next-auth": "^4.24.11",
     "next-cloudinary": "^6.16.0",
+    "posthog-js": "^1.351.3",
     "postmark": "^4.0.5",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",

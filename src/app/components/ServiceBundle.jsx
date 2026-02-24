@@ -13,7 +13,11 @@ import { v4 as uuidv4 } from "uuid";
 
 import OrderSummary from "./OrderSummary";
 
-export default function ServiceBundle({ services, primaryServiceId }) {
+export default function ServiceBundle({
+  services,
+  primaryServiceId,
+  serviceName,
+}) {
   const [addonIds, setAddonIds] = useState([]);
   const [isPending, setIsPending] = useState(false);
 

@@ -255,6 +255,20 @@ export default function Example() {
           ))}
         </div>
       </div>
+      <div className="mt-16 flex py-10 items-center justify-center gap-x-6">
+        <Link
+          href="/hoops"
+          className="rounded-md bg-orange-400 px-3.5 py-2.5 text-md font-semibold text-white shadow-xs hover:bg-orange-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+        >
+          See all hoops
+        </Link>
+        <a
+          href="/services"
+          className="text-sm/6 font-semibold text-gray-900 hover:text-gray-600  rounded-md px-3 py-2 shadow-xs hover:bg-orange-600 hover:border-orange-600 hover:text-white transition-all transition-1.5"
+        >
+          See all services <span aria-hidden="true">→</span>
+        </a>
+      </div>
     </div>
   );
 }

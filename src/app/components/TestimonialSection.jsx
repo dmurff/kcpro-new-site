@@ -1,4 +1,6 @@
 import { StarIcon } from "@heroicons/react/20/solid";
+import Link from "next/link";
+import { FcGoogle } from "react-icons/fc";
 
 export default function TestimonialSection() {
   return (
@@ -22,33 +24,41 @@ export default function TestimonialSection() {
             </svg>
             <blockquote className="text-xl/8 font-semibold text-gray-900 sm:text-2xl/9">
               <p>
-                These guys did a great job. They inspected our driveway and made
-                the perfect recommendation for a goal. They even showed us a
-                picture gallery of their installations of the goal we purchased
-                so we could see what the goal would look like. We bought the
-                goal and they took care of everything else. The install was done
-                carefully and professionally. A quality goal costs a little more
-                but if you want a solid, sturdy, professional level goal you
-                will absolutely get that with these guys.
+                Outstanding Service. They installed a quality basketball goal in
+                our driveway and handled the utilities, digging the hole,
+                pouring the foundation and installing the goal. For a stress
+                free experience, hire these guys! Highly recommended!
               </p>
             </blockquote>
           </div>
           <div className="col-end-1 w-16 lg:row-span-4 lg:w-72">
             <img
               alt=""
-              src="images/brianJohnson.png"
+              src="images/trainStation.png"
               className="rounded-xl bg-indigo-20 lg:rounded-3xl"
             />
           </div>
           <figcaption className="text-base lg:col-start-1 lg:row-start-3">
-            <div className="font-semibold text-gray-900">Brian Johnson</div>
-            <div className="mt-1 text-gray-500">Google Review</div>
+            <div className="font-semibold text-gray-900">Brandon LaBarge</div>
             <div className="mt-1 flex gap-1 text-yellow-500 h-[15px]">
               <StarIcon />
               <StarIcon />
               <StarIcon />
               <StarIcon />
               <StarIcon />
+            </div>
+            <div className="flex gap-2 items-center mt-2">
+              <FcGoogle className="h-[20px]" />
+
+              <Link
+                href="https://share.google/a4r0TKwfEiTHSNVMM"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <p className="mt-1 text-gray-900 hover:text-gray-300 text-xs">
+                  See review in google
+                </p>
+              </Link>
             </div>
           </figcaption>
         </figure>

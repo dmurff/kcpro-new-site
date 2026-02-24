@@ -1,11 +1,13 @@
 import { FcGoogle } from "react-icons/fc";
 import { StarIcon } from "@heroicons/react/20/solid";
+import Link from "next/link";
 
 const featuredTestimonial = {
   body: "These guys did a great job. They inspected our driveway and made the perfect recommendation for a goal. They even showed us a picture gallery of their installations of the goal we purchased so we could see what the goal would look like. We bought the goal and they took care of everything else. The install was done carefully and professionally. A quality goal costs a little more but if you want a solid, sturdy, professional level goal you will absolutely get that with these guys.",
   author: {
     name: "Brian Johnson",
-    // handle: "brennagoyette",
+    href: "https://share.google/oz97e4RMBTAHef8wV",
+
     imageUrl: "/images/brianJohnson.png",
   },
 };
@@ -16,7 +18,8 @@ const testimonials = [
         body: "I contacted David to install a basketball goal I bought from a store in Olathe. He delivered the goal and installed it in my driveway. He was very professional and responsive throughout the process and the job was done well. I would recommend him to anyone. Thanks for being a pleasure to work with.",
         author: {
           name: "Nick Collison",
-          //   handle: "lesliealexander",
+          href: "https://share.google/5rWftp27lBQJM8E2E",
+
           imageUrl: "/images/N-name-tag.png",
         },
       },
@@ -24,7 +27,8 @@ const testimonials = [
         body: "We just had a new basketball goal installed and are very pleased with KC Pro Assembly. I talked with David over the phone and he helped us determine the best goal for our space, budget, and needs. We ordered the goal through KC Pro Assembly and they handled the installation seamlessly and professionally. We would definitely use KC Pro Assembly again in the future.",
         author: {
           name: "Robyn McGee",
-          //   handle: "michaelfoster",
+          href: "https://share.google/jlOT8R1zPjY5zpm1W",
+
           imageUrl: "/images/R-name-tag.png",
         },
       },
@@ -32,7 +36,8 @@ const testimonials = [
         body: "Outstanding Service. They installed a quality basketball goal in our driveway and handled the utilities, digging the hole, pouring the foundation and installing the goal. For a stress free experience, hire these guys! Highly recommended!",
         author: {
           name: "Brandon LaBarge",
-          //   handle: "driesvincent",
+          href: "https://share.google/a4r0TKwfEiTHSNVMM",
+
           imageUrl: "images/trainStation.png",
         },
       },
@@ -42,7 +47,7 @@ const testimonials = [
         body: "Really impressed with KC Pro Assembly. The basketball goal we had had for years rusted and was about to fall over. I met David and was very impressed with his knowledge about our needs. We purchased the Ironclad Triple Threat 60, and it is perfect.",
         author: {
           name: "Karen Dillon",
-          //   handle: "lindsaywalton",
+          href: "https://share.google/SfIfcH2RcqzXUUU3P",
           imageUrl: "images/karen-dillon.jpg",
         },
       },
@@ -50,7 +55,8 @@ const testimonials = [
         body: "David with KC Pro Assembly installed a replacement backboard and hoop for us. He was efficient with his time and did a super job on the install. Thanks David!",
         author: {
           name: "Ben Warner",
-          //   handle: "courtneyhenry",
+          href: "https://share.google/Swew2k7RByA8XqEve",
+
           imageUrl: "images/benW.png",
         },
       },
@@ -62,7 +68,8 @@ const testimonials = [
         body: "Would absolutely recommend KC Pro Assembly! They installed a basketball goal for us and did a great job. No hiccups or delays, very smooth and easy process. David and his team were great to work with.",
         author: {
           name: "KRK Watson",
-          //   handle: "tomcook",
+          href: "https://share.google/biKqjw1aB13vihSM0",
+
           imageUrl: "images/K-name-tag.png",
         },
       },
@@ -70,7 +77,7 @@ const testimonials = [
         body: "Super easy to work everything out quickly over text and then phone if needed. Great crews out to pour the concrete and then install once that was dried. Would recommend to anyone in KC area. My son has been throwing down sick dunks all day.",
         author: {
           name: "Jeff Holman",
-          //   handle: "whitneyfrancis",
+          href: "https://share.google/vrMLHCUYaL46QoiqB",
           imageUrl: "images/J-name-tag.png",
         },
       },
@@ -80,7 +87,8 @@ const testimonials = [
         body: "David did a great job on the installation. He came out late and got the goal installed after a scheduling issue. My kids appreciated it!",
         author: {
           name: "Michael Wondra",
-          //   handle: "leonardkrasner",
+          href: "https://share.google/474v31InxT3oAYKVI",
+
           imageUrl: "images/M-name-tag.png",
         },
       },
@@ -88,7 +96,8 @@ const testimonials = [
         body: "Did a fantastic job of setting up our basketball goal. Really appreciate their speed and professionalism.",
         author: {
           name: "Soren Petro",
-          //   handle: "floydmiles",
+          href: "https://share.google/Xqsprry570Iy9eMXT",
+
           imageUrl: "images/soren-petro.png",
         },
       },
@@ -96,7 +105,8 @@ const testimonials = [
         body: "David was great to work with. I believe we had a challenging installation in the winter and putting it through concrete pavers. They did not charge me extra and did an excellent job. They know how to install basketball goals better than you. They`re worth the money.",
         author: {
           name: "P K",
-          //   handle: "emilyselman",
+          href: "https://share.google/sgU7dUatHmPVkDbdN",
+
           imageUrl: "images/P-name-tag.png",
         },
       },
@@ -166,6 +176,15 @@ export default function Example() {
                   <StarIcon />
                   <StarIcon />
                 </div>
+                <Link
+                  href={featuredTestimonial.author.href ?? "#"}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <p className="text-gray-900 hover:text-gray-300">
+                    See review in google
+                  </p>
+                </Link>
               </div>
               {/* <img
                 alt=""
@@ -217,6 +236,15 @@ export default function Example() {
                             <StarIcon />
                             <StarIcon />
                           </div>
+                          <Link
+                            href={testimonial.author.href ?? "#"}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            <p className="text-gray-900 hover:text-gray-300">
+                              See review in google
+                            </p>
+                          </Link>
                         </div>
                       </figcaption>
                     </figure>

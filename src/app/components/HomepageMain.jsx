@@ -126,9 +126,8 @@ export default function HomepageMain() {
                       We learn your space.
                     </strong>{" "}
                     Whether you already bought a hoop and only need installation
-                    or bought form our store, the first step is to learn about
-                    your space and your needs. Our experience helps us ask the
-                    right questions.
+                    or buy form our store, we meet on site and help pick the
+                    perfect place for your hoop install.
                   </span>
                 </li>
                 <li className="flex gap-x-3">
@@ -140,10 +139,8 @@ export default function HomepageMain() {
                     <strong className="font-semibold text-gray-900">
                       We do it right.
                     </strong>{" "}
-                    We hold ourselves to the highest standards and strive for
-                    perfection. Upon job confirmation we will handle everything
-                    including underground utility markings. Safety is a top
-                    priority.
+                    Our installers are in-ground hoop specialists. You can trust
+                    us to do the job by the book.
                   </span>
                 </li>
                 <li className="flex gap-x-3">
@@ -155,9 +152,9 @@ export default function HomepageMain() {
                     <strong className="font-semibold text-gray-900">
                       We do it fast.
                     </strong>{" "}
-                    We've seen it all and this translates to speed. We aim for a
-                    two-week turnaround from purchase. This includes an industry
-                    standard 4-7 day concrete curing period.
+                    We aim for a two-week turnaround from purchase. This
+                    includes an industry standard 3 business day wait on 811
+                    utility locates and a 4-7 day concrete curing period.
                   </span>
                 </li>
                 <li className="flex gap-x-3">

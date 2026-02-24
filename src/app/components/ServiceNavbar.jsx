@@ -53,16 +53,19 @@ export default function ServiceNavbar() {
               <li className="border-b-2 border-dashed border-blue-100">
                 <Link href="/">Home</Link>
               </li>
-
-              <li className="border-b-2">
-                <Link href="/about">About</Link>
-              </li>
               <li className="border-b-2">
                 <Link href="/hoops">Hoops</Link>
               </li>
               <li className="border-b-2">
                 <Link href="/services">Services</Link>
               </li>
+              <li className="border-b-2">
+                <Link href="/about">About</Link>
+              </li>
+              <li className="border-b-2">
+                <Link href="/testimonials">Testimonials</Link>
+              </li>
+
               {/* <li className="border-b-2">
                 <Link href="/contractor-dashboard">Contractor</Link>
               </li> */}
@@ -86,18 +89,19 @@ export default function ServiceNavbar() {
             <li className="hover:text-gray-400 hover:scale-1.5">
               <Link href="/">Home</Link>
             </li>
-            <li className="hover:text-gray-400">
-              <Link href="/about">About</Link>
-            </li>
+
             <li className="hover:text-gray-400">
               <Link href="/hoops">Hoops</Link>
             </li>
             <li className="hover:text-gray-400 hover:scale-1.5">
               <Link href="/services">Services</Link>
             </li>
-            {/* <li className="hover:text-gray-400">
-              <Link href="/contractor-dashboard">Contractor</Link>
-            </li> */}
+            <li className="hover:text-gray-400">
+              <Link href="/about">About</Link>
+            </li>
+            <li className="hover:text-gray-400">
+              <Link href="/testimonials">Testimonials</Link>
+            </li>
           </ul>
           <button
             className="lg:hidden text-2xl text-white p-4"

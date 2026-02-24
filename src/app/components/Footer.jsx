@@ -14,7 +14,7 @@ const navigation = {
   ],
   company: [
     { name: "About Us", href: "/about" },
-    // { name: "Blog", href: "#" },
+    { name: "Testimonials", href: "/testimonials" },
   ],
   // legal: [
   //   { name: "Terms of service", href: "#" },

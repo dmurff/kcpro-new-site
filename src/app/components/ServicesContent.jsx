@@ -50,16 +50,16 @@ export default function ServicesContent({ services }) {
             <ul className="flex flex-col">
               <li className="flex items-start lg:items-center gap-4 text-gray-800 text-lg mt-4">
                 <CheckCircleIcon className="w-[20px] mt-1 lg:mt-0 flex-shrink-0" />
-                Click on the primary service you are interested in.
+                Click on a service to research it.
               </li>
               <li className="flex items-start lg:items-center gap-4 text-gray-800 text-lg mt-4">
                 <CheckCircleIcon className="w-[20px] mt-1 lg:mt-0 flex-shrink-0" />
-                If the service details match your needs, click to book it.
+                If it fits your needs book it.
               </li>
               <li className="flex items-start lg:items-center gap-4 text-gray-800 text-lg mt-4">
                 <CheckCircleIcon className="w-[20px] mt-1 lg:mt-0 flex-shrink-0" />
-                Need more than one service? Before checkout you can bundle
-                additional services.
+                Need more than one service? You can bundle add on services
+                during the booking process.
               </li>
               <li className="flex items-start lg:items-center gap-4 text-gray-800 text-lg mt-4">
                 <CheckCircleIcon className="w-[20px] mt-1 lg:mt-0 flex-shrink-0" />

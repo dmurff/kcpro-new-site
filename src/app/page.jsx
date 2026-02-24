@@ -1,12 +1,12 @@
 // import Image from "next/image";
 export const dynamic = "force-dynamic";
 
-
 import Hero from "@/app/components/Hero";
 import HomepageMain from "@/app/components/HomepageMain";
 import FeaturedProducts from "@/app/components/FeaturedProducts";
 import Navbar from "@/app/components/Navbar";
 import Footer from "@/app/components/Footer";
+import TestimonialSection from "./components/TestimonialSection";
 // import NewBaseForm from "@/app/components/NewBaseForm";
 // import LeadForm from "@/app/components/LeadForm";
 // import SalesSection from "@/app/components/SalesSection";
@@ -24,6 +24,7 @@ export default function Home() {
         <HomepageMain />
         {/* <SalesSection /> */}
         {/* <HomepageCta /> */}
+        <TestimonialSection />
         <FeaturedProducts />
         {/* <HomePageOffer /> */}
         {/* <NewBaseForm>

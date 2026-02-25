@@ -4,6 +4,8 @@ import {
   InformationCircleIcon,
   NumberedListIcon,
 } from "@heroicons/react/24/solid";
+import { IoMdCheckmarkCircle } from "react-icons/io";
+
 import Link from "next/link";
 // import { ServerClient } from "postmark";
 import { useState } from "react";
@@ -20,6 +22,7 @@ export default function ServiceBundle({
 }) {
   const [addonIds, setAddonIds] = useState([]);
   const [isPending, setIsPending] = useState(false);
+  const [selectedServices, setSelectedServices] = useState([serviceName]);
 
   const router = useRouter();
 
@@ -39,8 +42,10 @@ export default function ServiceBundle({
     ///// new code for api call
 
     const addonIdArray = addonIds;
-    const bundledIds = [primaryServiceId, ...addonIdArray];
+    const serviceNames = selectedServices;
     const idempotencyKey = generateIdempotencyKey();
+
+    console.log("🔨👋👋👋👋👋👋👋👋👋👋👋", serviceNames);
 
     const res = await fetch("/api/payments/create-service-intent", {
       method: "POST",
@@ -49,7 +54,7 @@ export default function ServiceBundle({
         "Idempotency-Key": idempotencyKey,
       },
       body: JSON.stringify({
-        bundledIds,
+        serviceNames,
       }),
     });
 
@@ -76,25 +81,27 @@ export default function ServiceBundle({
   const remainder = serviceTotal - deposit;
 
   const handleClick = (service) => {
-    if (service.id === primaryServiceId) {
-      toast.success(
-        "This service is already selected as your primary job. Select add ons or proceed to checkout",
-      );
-      return;
-    }
-
-    if (service.service_group === "primary") {
-      toast.error(
-        "To change your main service, start from that service’s page.",
-      );
-      return;
-    }
-
     setAddonIds((prev) =>
       prev.includes(service.id)
         ? prev.filter((id) => id !== service.id)
         : [...prev, service.id],
     );
+    const exists = selectedServices.includes(service.name);
+
+    // toast OUTSIDE setState
+    if (exists) toast.error("Service Removed", { duration: 1000 });
+    else toast.success("Service Added!", { duration: 1000 });
+
+    setSelectedServices((prev) =>
+      prev.includes(service.name)
+        ? prev.filter((n) => n !== service.name)
+        : [...prev, service.name],
+    );
+
+    // if (selectedServices.some((n) => !n.includes(service.name))) {
+    //   toast.error("Service Conflict.");
+    //   return;
+    // }
   };
 
   //   console.log(selectedIds);
@@ -175,41 +182,88 @@ export default function ServiceBundle({
             </div>
           </Link>
           {services.map((s) => {
-            const isPrimary = s.id === primaryServiceId;
+            // const isPrimary = s.id === primaryServiceId;
+            const selected = selectedServices.includes(s.name);
             const isAddonSelected = addonIds.includes(s.id);
-            return (
-              <button
-                key={s.id}
-                onClick={() => handleClick(s)}
-                // className={`flex gap-x-4 rounded-xl backdrop-blur-sm p-6 shadow-lg ring-1 ${
-                //   isSelected
-                //     ? "hover:shadow-orange-500/30 bg-black/80 text-gray-400 ring:orange-500"
-                //     : "bg-gray-200/30 hover:ring-orange-400 text-gray-700 ring-gray-900/5 shadow-black/20"
-                // }`}
-                className={`flex gap-x-4 text-gray-900 rounded-xl backdrop-blur-sm p-6 shadow-lg ring-1 transition ${
-                  isPrimary
-                    ? "bg-black/80 text-white ring-orange-500 cursor-not-allowed"
-                    : isAddonSelected
-                      ? "bg-black/80 ring-orange-400 hover:shadow-orange-500/30 text-white"
-                      : "bg-gray-200/30 hover:ring-orange-300 ring-gray-900/5"
-                }`}
-              >
-                <div className="text-base/7">
-                  {isPrimary && (
-                    <span className="inline-block mb-2 text-xs font-semibold uppercase text-orange-400">
-                      Primary Service
-                    </span>
-                  )}
 
-                  <h3 className="font-semibold ">{s.display_name}</h3>
-                  <p className="mt-2 ">{s.description}</p>
-                  <p className="mt-2 ">${s.price}</p>
-                  <p className="mt-2 text-sm/6 font-semibold text-gray-400 hover:text-gray-950">
-                    Learn more <span aria-hidden="true">→</span>
-                  </p>
-                </div>
-              </button>
+            const fullInstall = selectedServices.some((n) =>
+              n.includes("installation"),
             );
+            const concrete = selectedServices.some((n) =>
+              n.includes("concrete"),
+            );
+            const assembly = selectedServices.some((n) =>
+              n.includes("assembly"),
+            );
+
+            const isFullCard = s.name.includes("installation");
+            const isConcreteCard = s.name.includes("concrete");
+            const isAssemblyCard = s.name.includes("assembly");
+
+            const disabled =
+              (fullInstall && (isConcreteCard || isAssemblyCard)) ||
+              (concrete && (isFullCard || isAssemblyCard)) ||
+              (assembly && (isConcreteCard || isFullCard));
+
+            if (disabled) {
+              return (
+                <button
+                  key={s.id}
+                  onClick={() => handleClick(s)}
+                  disabled={disabled}
+                  // className={`flex gap-x-4 rounded-xl backdrop-blur-sm p-6 shadow-lg ring-1 ${
+                  //   isSelected
+                  //     ? "hover:shadow-orange-500/30 bg-black/80 text-gray-400 ring:orange-500"
+                  //     : "bg-gray-200/30 hover:ring-orange-400 text-gray-700 ring-gray-900/5 shadow-black/20"
+                  // }`}
+                  className="flex gap-x-4 text-gray-300 rounded-xl backdrop-blur-sm p-6 shadow-lg ring-1 transition 
+                        bg-gray-200/30 hover:ring-orange-300 ring-gray-900/5 cursor"
+                >
+                  <div className="text-base/7">
+                    {selected && (
+                      <span className="inline-block mb-2 text-xs font-semibold uppercase text-orange-400"></span>
+                    )}
+
+                    <h3 className="font-semibold ">{s.display_name}</h3>
+                    <p className="mt-2 ">{s.description}</p>
+                    <p className="mt-2 ">${s.price}</p>
+                    <p className="mt-2 text-sm/6 font-semibold text-red-400/40">
+                      Service Conflict
+                    </p>
+                  </div>
+                </button>
+              );
+            } else {
+              return (
+                <button
+                  key={s.id}
+                  onClick={() => handleClick(s)}
+                  // className={`flex gap-x-4 rounded-xl backdrop-blur-sm p-6 shadow-lg ring-1 ${
+                  //   isSelected
+                  //     ? "hover:shadow-orange-500/30 bg-black/80 text-gray-400 ring:orange-500"
+                  //     : "bg-gray-200/30 hover:ring-orange-400 text-gray-700 ring-gray-900/5 shadow-black/20"
+                  // }`}
+                  className={`flex gap-x-4 text-gray-900 rounded-xl backdrop-blur-sm p-6 shadow-lg ring-1 transition ${
+                    selected
+                      ? "bg-black/80 text-white ring-orange-500"
+                      : "bg-gray-200/30 hover:ring-orange-300 ring-gray-900/5"
+                  }`}
+                >
+                  <div className="text-base/7">
+                    {selected && (
+                      <IoMdCheckmarkCircle className="inline-block h-[30px] text-green-500" />
+                    )}
+
+                    <h3 className="font-semibold ">{s.display_name}</h3>
+                    <p className="mt-2 ">{s.description}</p>
+                    <p className="mt-2 ">${s.price}</p>
+                    {/* <p className="mt-2 text-sm/6 font-semibold text-gray-400 hover:text-gray-950">
+                      Learn more <span aria-hidden="true">→</span>
+                    </p> */}
+                  </div>
+                </button>
+              );
+            }
           })}
         </div>
       </div>

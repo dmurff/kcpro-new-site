@@ -3,7 +3,7 @@ import { supabaseServer as supabase } from "../../../../../lib/supabase/server";
 import Stripe from "stripe";
 import { NextResponse } from "next/server";
 import createPaymentIntent from "../../../../../lib/services/service-payment-intent/handlePaymentIntent";
-import { getServiceIdsByName } from "../../../../../lib/data/service";
+import { getServicesByName } from "../../../../../lib/data/service";
 export async function POST(req) {
   const body = await req.json();
 
@@ -11,22 +11,17 @@ export async function POST(req) {
 
   console.log("💥💥", serviceNames);
 
-  const serviceObs = await getServiceIdsByName(serviceNames);
-
-  console.log("zzzzzzzzzzzzzzz", serviceObs);
+  const serviceObs = await getServicesByName(serviceNames);
 
   const services = serviceObs.map((s) => s.id);
 
-  console.log("HHHHHHHHHHHHHHHHHHHHHHHHHHHH", services);
+  // Array of service objects
+  const backendChosenServices = serviceObs;
+
   // Idempotency key extraction
   const idempotencyKey = req.headers.get("idempotency-key");
 
   const response = await createPaymentIntent({ services, idempotencyKey });
-
-  console.log(
-    ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>",
-    response,
-  );
 
   return NextResponse.json({
     clientSecret: response.clientSecret,
@@ -35,5 +30,6 @@ export async function POST(req) {
     total: response.total,
     remainder: response.remainder,
     deposit: response.deposit,
+    backendChosenServices,
   });
 }

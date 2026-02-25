@@ -58,8 +58,16 @@ export default function ServiceBundle({
       }),
     });
 
-    const { paymentIntentId, total, deposit, remainder, serviceIds } =
-      await res.json();
+    const {
+      paymentIntentId,
+      total,
+      deposit,
+      remainder,
+      serviceIds,
+      backendChosenservices,
+    } = await res.json();
+
+    console.log("CHOSEN SERVICES", backendChosenservices);
 
     const params = new URLSearchParams({
       pi: paymentIntentId,
@@ -73,19 +81,27 @@ export default function ServiceBundle({
     // window.location.href = `/checkout/serviceCheckout?${params.toString()}`;
   };
 
-  const primaryService = services.find((s) => s.id === primaryServiceId);
-  const selectedAddons = services.filter((s) => addonIds.includes(s.id));
-  const serviceTotal =
-    primaryService.price + selectedAddons.reduce((acc, s) => acc + s.price, 0);
-  const deposit = Math.min(serviceTotal * 0.25, 200).toFixed(2);
+  // const primaryService = services.find((s) => s.id === primaryServiceId);
+  // const selectedAddons = services.filter((s) => addonIds.includes(s.id));
+
+  // const serviceTotal = primaryServiceId.reduce((acc, s) => acc + s.price, 0);
+  // const deposit = Math.min(serviceTotal * 0.25, 200).toFixed(2);
+  // const remainder = serviceTotal - deposit;
+
+  const chosenServices = selectedServices
+    .map((name) => services.find((s) => s.name === name))
+    .filter(Boolean);
+
+  const serviceTotal = chosenServices.reduce((acc, s) => acc + s.price, 0);
+  const deposit = Math.min(serviceTotal * 0.25, 200);
   const remainder = serviceTotal - deposit;
 
   const handleClick = (service) => {
-    setAddonIds((prev) =>
-      prev.includes(service.id)
-        ? prev.filter((id) => id !== service.id)
-        : [...prev, service.id],
-    );
+    // setAddonIds((prev) =>
+    //   prev.includes(service.id)
+    //     ? prev.filter((id) => id !== service.id)
+    //     : [...prev, service.id],
+    // );
     const exists = selectedServices.includes(service.name);
 
     // toast OUTSIDE setState
@@ -270,11 +286,12 @@ export default function ServiceBundle({
       <OrderSummary
         onCheckout={onCheckout}
         isPending={isPending}
-        primaryService={primaryService}
-        selectedAddons={selectedAddons}
+        // primaryService={primaryService}
+        // selectedAddons={selectedAddons}
         serviceTotal={serviceTotal}
         deposit={deposit}
         remainder={remainder}
+        chosenServices={chosenServices}
       />
     </div>
   );

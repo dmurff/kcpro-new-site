@@ -233,7 +233,7 @@ export default function ServiceBundle({
                   //     : "bg-gray-200/30 hover:ring-orange-400 text-gray-700 ring-gray-900/5 shadow-black/20"
                   // }`}
                   className="flex gap-x-4 text-gray-300 rounded-xl backdrop-blur-sm p-6 shadow-lg ring-1 transition 
-                        bg-gray-200/30 hover:ring-orange-300 ring-gray-900/5 cursor"
+                        bg-gray-200/30 hover:ring-orange-300 ring-gray-900/5"
                 >
                   <div className="text-base/7">
                     {selected && (
@@ -259,7 +259,7 @@ export default function ServiceBundle({
                   //     ? "hover:shadow-orange-500/30 bg-black/80 text-gray-400 ring:orange-500"
                   //     : "bg-gray-200/30 hover:ring-orange-400 text-gray-700 ring-gray-900/5 shadow-black/20"
                   // }`}
-                  className={`flex gap-x-4 text-gray-900 rounded-xl backdrop-blur-sm p-6 shadow-lg ring-1 transition ${
+                  className={`flex gap-x-4 text-gray-900 rounded-xl backdrop-blur-sm p-6 shadow-lg ring-1 transition hover:cursor-pointer ${
                     selected
                       ? "bg-black/80 text-white ring-orange-500"
                       : "bg-gray-200/30 hover:ring-orange-300 ring-gray-900/5"

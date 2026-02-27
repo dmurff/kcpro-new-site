@@ -366,7 +366,7 @@ export default function ServiceCheckoutForm({
               <div className="mt-10 border-t border-gray-200 pt-6 sm:flex sm:items-center sm:justify-between">
                 <button
                   type="submit"
-                  className="w-full rounded-md border border-transparent bg-orange-600 px-4 py-2 text-sm font-medium text-white shadow-xs hover:bg-orange-700 focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 focus:ring-offset-gray-50 focus:outline-hidden sm:order-last sm:ml-6 sm:w-auto"
+                  className="w-full rounded-md border border-transparent bg-orange-600 px-4 py-2 text-sm font-medium text-white shadow-xs hover:bg-orange-700 focus:ring-2 focus:ring-orange-500 focus:ring-offset-2 focus:ring-offset-gray-50 focus:outline-hidden sm:order-last sm:ml-6 sm:w-auto hover:cursor-pointer"
                 >
                   Continue
                 </button>

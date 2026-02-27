@@ -56,11 +56,11 @@ export default function OrderSummary({
         <button
           onClick={onCheckout}
           disabled={isPending}
-          className={`mt-6 w-full rounded-md px-4 py-3 text-sm font-semibold text-white
+          className={`mt-6 w-full rounded-md px-4 py-3 text-sm font-semibold text-white 
     ${
       isPending
         ? "bg-orange-400 cursor-not-allowed"
-        : "bg-orange-600 hover:bg-orange-700"
+        : "bg-orange-600 hover:bg-orange-700 hover:cursor-pointer"
     }
   `}
         >

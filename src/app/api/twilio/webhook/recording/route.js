@@ -17,10 +17,16 @@ export async function POST(req) {
   const options = {
     method: "POST",
     headers: {
-      Authorization: "Token adbc90289cfc8a33f529e9c244364d3ed15705a9",
+      Authorization: `Token ${process.env.DEEPGRAM_API_KEY}`,
       "Content-Type": "application/json",
     },
-    body: `{"url":"${recordingUrl}"}`,
+    body: JSON.stringify({
+      url: `${recordingUrl}`,
+      auth: {
+        username: process.env.TWILIO_ACCOUNT_SID,
+        password: process.env.TWILIO_AUTH_TOKEN,
+      },
+    }),
   };
 
   try {

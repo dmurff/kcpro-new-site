@@ -1,22 +1,22 @@
-import "server-only";
+// import "server-only";
 
-import Twilio from "twilio";
+// import Twilio from "twilio";
 
-const sid = process.env.TWILIO_ACCOUNT_SID;
-const token = process.env.TWILIO_AUTH_TOKEN;
+// const sid = process.env.TWILIO_ACCOUNT_SID;
+// const token = process.env.TWILIO_AUTH_TOKEN;
 
-const client = Twilio(sid, token);
+// const client = Twilio(sid, token);
 
 // export async function GET(req) {
 //   return new Response("dimitri is a turd burglar", { status: 200 });
 // }
 
 export async function POST(req) {
-  const formData = await req.formData();
+  //   const formData = await req.formData();
 
-  const payload = Object.fromEntries(formData);
+  //   const payload = Object.fromEntries(formData);
 
-  console.log(payload);
+  //   console.log(payload);
   // Must return TwiML or Twilio throws an error
   const twiml = `
     <?xml version="1.0" encoding="UTF-8"?>

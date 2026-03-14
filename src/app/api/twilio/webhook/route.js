@@ -8,7 +8,7 @@ const token = process.env.TWILIO_AUTH_TOKEN;
 const client = Twilio(sid, token);
 
 export async function GET(req) {
-  return new Response("webhook is alive", { status: 200 });
+  return new Response("dimitri is a turd", { status: 200 });
 }
 
 export async function POST(req) {

@@ -20,8 +20,7 @@ export async function POST(req) {
   // Must return TwiML or Twilio throws an error
   const callbackUrl =
     "https://www.kcproassembly.com/api/twilio/webhook/recording";
-  const twiml = `
-    <?xml version="1.0" encoding="UTF-8"?>
+  const twiml = `<?xml version="1.0" encoding="UTF-8"?>
     <Response>
       <Say>Thanks for calling KC Pro Assembly. This call may be recorded.</Say>
       <Dial record="record-from-answer"
@@ -29,8 +28,7 @@ export async function POST(req) {
         recordingStatusCallbackEvent="in-progress completed absent">
         <Number>+18167392375</Number>
       </Dial>
-    </Response>
-  `;
+    </Response>`;
 
   return new Response(twiml, {
     headers: { "Content-Type": "text/xml" },

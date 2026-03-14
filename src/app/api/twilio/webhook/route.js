@@ -7,7 +7,7 @@ const token = process.env.TWILIO_AUTH_TOKEN;
 
 const client = Twilio(sid, token);
 
-export default async function POST(req) {
+export async function POST(req) {
   const formData = await req.formData();
 
   const payload = Object.fromEntries(formData);

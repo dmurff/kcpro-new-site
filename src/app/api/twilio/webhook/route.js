@@ -8,7 +8,23 @@ const token = process.env.TWILIO_AUTH_TOKEN;
 const client = Twilio(sid, token);
 
 export default async function POST(req) {
-  const payload = await req.body;
+  const formData = await req.formData();
+
+  const payload = Object.fromEntries(formData);
 
   console.log(payload);
+  // Must return TwiML or Twilio throws an error
+  const twiml = `
+    <?xml version="1.0" encoding="UTF-8"?>
+    <Response>
+      <Say>Thanks for calling KC Pro Assembly. This call may be recorded.</Say>
+      <Dial record="record-from-answer">
+        <Number>+18167392375</Number>
+      </Dial>
+    </Response>
+  `;
+
+  return new Response(twiml, {
+    headers: { "Content-Type": "text/xml" },
+  });
 }

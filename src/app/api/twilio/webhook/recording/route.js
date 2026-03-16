@@ -1,85 +1,5 @@
-// import "server-only";
-
-// export async function POST(req) {
-//   const request = await req.formData();
-
-//   const recordingObj = Object.fromEntries(request);
-
-//   //   console.log(recordingObj);
-
-//   const recordingUrl = recordingObj.RecordingUrl;
-
-//   console.log(recordingUrl);
-
-//   // post url to deepgram to get transcription
-
-//   const url = "https://api.deepgram.com/v1/listen";
-//   const options = {
-//     method: "POST",
-//     headers: {
-//       Authorization: `Token ${process.env.DEEPGRAM_API_KEY}`,
-//       "Content-Type": "application/json",
-//     },
-//     body: JSON.stringify({
-//       url: `${recordingUrl}`,
-//       auth: {
-//         username: process.env.TWILIO_ACCOUNT_SID,
-//         password: process.env.TWILIO_AUTH_TOKEN,
-//       },
-//     }),
-//   };
-
-//   try {
-//     const response = await fetch(url, options);
-//     const data = await response.json();
-//     console.log(data);
-//   } catch (error) {
-//     console.error(error);
-//   }
-
-//   return new Response("success", { status: 200 });
-// }
 import "server-only";
-
-// export async function POST(req) {
-//   const request = await req.formData();
-
-//   const recordingObj = Object.fromEntries(request);
-
-//   //   console.log(recordingObj);
-
-//   const recordingUrl = recordingObj.RecordingUrl;
-
-//   console.log(recordingUrl);
-
-//   // post url to deepgram to get transcription
-
-//   const url = "https://api.deepgram.com/v1/listen";
-//   const options = {
-//     method: "POST",
-//     headers: {
-//       Authorization: `Token ${process.env.DEEPGRAM_API_KEY}`,
-//       "Content-Type": "application/json",
-//     },
-//     body: JSON.stringify({
-//       url: `${recordingUrl}`,
-//       auth: {
-//         username: process.env.TWILIO_ACCOUNT_SID,
-//         password: process.env.TWILIO_AUTH_TOKEN,
-//       },
-//     }),
-//   };
-
-//   try {
-//     const response = await fetch(url, options);
-//     const data = await response.json();
-//     console.log(data);
-//   } catch (error) {
-//     console.error(error);
-//   }
-
-//   return new Response("success", { status: 200 });
-// }
+import { summarizeTranscript } from "../../../../../../lib/ai/summarize.js";
 
 export async function POST(req) {
   const request = await req.formData();
@@ -116,7 +36,8 @@ export async function POST(req) {
 
     const data = await response.json();
     const transcript = data.results.channels[0].alternatives[0].transcript;
-    console.log(transcript);
+    const summary = await summarizeTranscript(transcript);
+    console.log(summary);
   } catch (error) {
     console.error(error);
   }

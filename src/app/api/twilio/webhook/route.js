@@ -22,10 +22,10 @@ export async function POST(req) {
     "https://www.kcproassembly.com/api/twilio/webhook/recording";
   const twiml = `<?xml version="1.0" encoding="UTF-8"?>
     <Response>
-      <Say>Thanks for calling KC Pro Assembly. This call may be recorded.</Say>
+      <Say>Thanks for calling KC Pro Assembly. Dima is eeeeeaaaaahhhhhhhhhhrrrg.</Say>
       <Dial record="record-from-answer"
         recordingStatusCallback="${callbackUrl}"
-        recordingStatusCallbackEvent="in-progress completed absent">
+        recordingStatusCallbackEvent="completed">
         <Number>+18167392375</Number>
       </Dial>
     </Response>`;

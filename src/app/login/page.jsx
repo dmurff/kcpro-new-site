@@ -9,7 +9,7 @@ export default function LoginButton() {
         <button
           className="text-black text-2xl bg-blue-300"
           onClick={() =>
-            signIn("google", { callbackUrl: "/admin-dashboard/hoops" })
+            signIn("google", { callbackUrl: "/admin-dashboard/dashboard" })
           }
         >
           Login

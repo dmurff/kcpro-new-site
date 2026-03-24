@@ -17,6 +17,9 @@ export default async function AdminDashboard() {
             <Link href="/">Home</Link>
           </li>
           <li className="hover:bg-blue-100 hover:text-gray-900">
+            <Link href="/admin-dashboard/dashboard">Dashboard</Link>
+          </li>
+          <li className="hover:bg-blue-100 hover:text-gray-900">
             <Link href="/admin-dashboard/hoops/new">Add Hoop</Link>
           </li>
         </ul>

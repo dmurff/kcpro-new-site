@@ -26,7 +26,7 @@ export default async function JobsView({ jobs, customers, jobType }) {
                   href={`/admin-dashboard/dashboard/jobs/${j.id}`}
                   key={j.id}
                   id={j.id}
-                  className="grid grid-cols-4 gap-2 text-gray-900 bg-gray-100 mb-2 p-2 hover:cursor-pointer hover:focus-ring-indigo-500 hover:bg-gray-500"
+                  className="grid grid-cols-4 gap-2 text-gray-900 bg-gray-100 mb-2 p-2 hover:cursor-pointer hover:focus-ring-indigo-500 hover:bg-indigo-100"
                 >
                   <div>
                     <h3 className=" font-semibold">Customer</h3>

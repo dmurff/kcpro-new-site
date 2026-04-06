@@ -1,5 +1,6 @@
 import { getJobById } from "../../../../../../lib/data/jobs";
 import { getCustomerById } from "../../../../../../lib/data/customers";
+import FullJobView from "../../../../components/FullJobView";
 
 export default async function JobDetailed({ params }) {
   const { id } = await params;
@@ -12,10 +13,5 @@ export default async function JobDetailed({ params }) {
 
   const customer = await getCustomerById(job.customer_id);
 
-  return (
-    <div className="text-4xl text-black font-semibold">
-      <h3 className="text-xl">{customer.name}</h3>
-      <p className="text-lg text-black">{job.address}</p>
-    </div>
-  );
+  return <FullJobView customer={customer} job={job} />;
 }

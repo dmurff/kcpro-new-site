@@ -72,6 +72,11 @@ export default function FullJobView({ customer, job }) {
           <div
             className="fixed inset-0 z-50 flex bg-black/50 w-full items-center justify-center"
             onClick={() => {
+              if (step === "action") {
+                setShowModal(false);
+                setStep("confirm");
+              }
+
               setShowModal(false);
             }}
           >

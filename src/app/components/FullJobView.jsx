@@ -1,5 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
+import DashBoardStatusField from "../components/DashBoardStatusField";
+import { change811Status } from "@/app/actions/jobStatusChanges.js";
 export default function FullJobView({ customer, job }) {
   const hoopStatus = job.hoop_ordered;
   const displayPhone = customer.phone.replace(
@@ -7,35 +9,47 @@ export default function FullJobView({ customer, job }) {
     "$1-$2-$3",
   );
 
+  const jobId = job.id;
+
   const [step, setStep] = useState("confirm");
   const [pendingField, setPendingField] = useState(null);
   const [showModal, setShowModal] = useState(false);
+  const [orderStatus, setOrderStatus] = useState(!!"");
+  const [selectedValue, setSelectedValue] = useState(true);
 
-  function handleUpdateClick(field) {
+  async function handleUpdateClick(field) {
+    console.log("handleUpdateClick called with:", field);
     setPendingField(field);
     setShowModal(true);
+    console.log(pendingField);
 
-    console.log(showModal);
+    // console.log(showModal);
+    // console.log(orderStatus);
+    // await change811Status(field);
   }
+
+  useEffect(() => {
+    console.log("Status Changed:", orderStatus);
+  }, [orderStatus]);
   return (
     <>
-      <div className="max-w-7xl mx-auto px-8 border border-blue-500">
+      <div className="max-w-7xl mx-auto px-8">
         <div className="grid grid-cols-3 text-black mt-16">
-          <div className="border border-red-500 p-6">
+          <div className=" p-6">
             <h3 className="font-semibold text-2xl mb-4">Customer</h3>
             <p className="text-xl">{customer.name}</p>
             <p className=" text-lg text-black">{job.address}</p>
             <p className=" text-lg text-black">{displayPhone}</p>
           </div>
-          <div className="border border-red-500 p-6">
+          <div className=" p-6">
             <h3 className="font-semibold text-2xl mb-4">Notes</h3>
             <button className="bg-indigo-500 p-2 rounded-md text-white hover:bg-indigo-700">
               View Notes
             </button>
           </div>
-          <div className="border border-red-500 p-6">
+          <div className=" p-6">
             <h3 className="font-semibold  text-2xl mb-4">Job Status</h3>
-            <div className="grid grid-cols-3 items-center gap-4 mb-4">
+            {/* <div className="grid grid-cols-3 items-center gap-4 mb-4">
               <p className="col-start-1">Hoop Ordered: </p>
               <p className="col-start-2 text-sm text-black justify-self-center">
                 {String(hoopStatus)}
@@ -43,9 +57,26 @@ export default function FullJobView({ customer, job }) {
               <button className="text-xs bg-indigo-500 p-1 rounded-md text-white hover:bg-indigo-700">
                 update
               </button>
-            </div>
-            <div className="grid grid-cols-3 items-center gap-4 mb-4">
-              <p>811 Called: </p>
+            </div> */}
+            {/* <div className="grid grid-cols-3 items-center gap-4 mb-4"> */}
+            <div className=" mb-4">
+              <DashBoardStatusField
+                onClick={() => handleUpdateClick("utilities_called")}
+                label={"Utilities Called:"}
+                status={job.utilities_called}
+              />
+              <DashBoardStatusField
+                onClick={() => handleUpdateClick("hoop_ordered")}
+                label={"Hoop Ordered:"}
+                status={job.hoop_ordered}
+              />
+              <DashBoardStatusField
+                // May need a different onClick handler
+                onClick={() => handleUpdateClick("anchor_set_at")}
+                label={"Anchor Set"}
+                status={job.anchor_set_at}
+              />
+              {/* <p>811 Called: </p>
 
               <p className="justify-self-center text-sm text-black">
                 {String(job.utilities_called)}
@@ -53,8 +84,10 @@ export default function FullJobView({ customer, job }) {
               <button className="text-xs bg-indigo-500 p-1 rounded-md text-white hover:bg-indigo-700">
                 update
               </button>
-            </div>
-            <div className="grid grid-cols-3 gap-4 items-center mb-4">
+            </div> */}
+              {/* hoop order status field */}
+
+              {/* <div className="grid grid-cols-3 items-center gap-4 mb-4">
               <p>Hoop Ordered: </p>
               <p className="justify-self-center text-sm text-black">
                 {String(hoopStatus)}
@@ -65,6 +98,7 @@ export default function FullJobView({ customer, job }) {
               >
                 update
               </button>
+            </div> */}
             </div>
           </div>
         </div>
@@ -108,11 +142,32 @@ export default function FullJobView({ customer, job }) {
               )}
               {step === "action" && (
                 <div className="flex gap-4 items-center justify-center">
-                  <button className="p-2 w-20 bg-indigo-500 text-white text-md shadow-lg hover:bg-indigo-700 rounded-md">
-                    Hoop Ordered
-                  </button>
-                  <button className="p-2 w-20 bg-indigo-500 text-white text-md shadow-lg hover:bg-indigo-700 rounded-md">
-                    Order Hoop
+                  <select
+                    value={orderStatus}
+                    className="text-black bg-indigo-300"
+                    onChange={(e) => setOrderStatus(e.target.value === "true")}
+                  >
+                    <option id="ordered" type="radio" value="true">
+                      ordered
+                    </option>
+                    <option id="notOrdered" type="radio" value="false">
+                      not ordered
+                    </option>
+                  </select>
+                  <button
+                    type="submit"
+                    className="bg-indigo-500 w-20 text-white"
+                    onClick={async () => {
+                      setShowModal(false);
+                      setStep("confirm");
+                      await change811Status({
+                        pendingField,
+                        orderStatus,
+                        jobId,
+                      });
+                    }}
+                  >
+                    submit
                   </button>
                 </div>
               )}

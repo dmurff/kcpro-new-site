@@ -4,7 +4,7 @@ import Link from "next/link";
 export default async function JobsView({ jobs, customers, jobType }) {
   return (
     <>
-      <div className="">
+      <div className="mx-auto p-10">
         {jobs &&
           jobs
             .sort((a, b) => new Date(a.created_at) - new Date(b.created_at))
@@ -42,6 +42,16 @@ export default async function JobsView({ jobs, customers, jobType }) {
                   <div>
                     <h3 className=" font-semibold">Order Date</h3>
                     <p>{formatDate(j.created_at)}</p>
+                  </div>
+                  <div>
+                    <h3 className="font-semibold">811 Called</h3>
+
+                    <p>{String(j.utilities_called)}</p>
+                  </div>
+                  <div>
+                    <h3 className=" font-semibold">Hoop Ordered</h3>
+
+                    <p>{String(j.hoop_ordered)}</p>
                   </div>
                   <div>
                     <h3 className=" font-semibold">Due</h3>

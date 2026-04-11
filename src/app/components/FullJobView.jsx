@@ -34,7 +34,7 @@ export default function FullJobView({ customer, job }) {
   return (
     <>
       <div className="max-w-7xl mx-auto px-8">
-        <div className="grid grid-cols-3 text-black mt-16">
+        <div className="grid grid-cols-3 text-black mt-16 bg-gray-200 border border-1 border-gray-300 rounded-md shadow-lg">
           <div className=" p-6">
             <h3 className="font-semibold text-2xl mb-4">Customer</h3>
             <p className="text-xl">{customer.name}</p>
@@ -43,9 +43,12 @@ export default function FullJobView({ customer, job }) {
           </div>
           <div className=" p-6">
             <h3 className="font-semibold text-2xl mb-4">Notes</h3>
-            <button className="bg-indigo-500 p-2 rounded-md text-white hover:bg-indigo-700">
+            <a
+              href={`/admin-dashboard/dashboard/jobs/${job.id}/notes`}
+              className="bg-indigo-500 p-2 rounded-md text-white hover:bg-indigo-700"
+            >
               View Notes
-            </button>
+            </a>
           </div>
           <div className=" p-6">
             <h3 className="font-semibold  text-2xl mb-4">Job Status</h3>

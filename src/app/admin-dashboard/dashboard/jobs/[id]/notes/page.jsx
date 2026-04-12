@@ -49,8 +49,7 @@ export default async function Notes() {
                         </p>
                         <p className="text-blue-100">{parsed.customerType}</p>
                         <p className="text-blue-100">
-                          Follow Up Needed:
-                          {String(parsed.followUpNeeded)}
+                          Follow Up Needed: {String(parsed.followUpNeeded)}
                         </p>
                         <p className="text-blue-100">
                           Details: {parsed.additionalNotes}

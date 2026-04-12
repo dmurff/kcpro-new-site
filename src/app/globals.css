@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
+  --background: #ededed;
   --foreground: #171717;
 }
 
@@ -28,7 +28,6 @@ html,
 body {
   padding: 0;
   margin: 0;
- 
 }
 
 body {

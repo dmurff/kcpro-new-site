@@ -41,16 +41,27 @@ export default function FullJobView({ customer, job }) {
             <p className=" text-lg text-black">{job.address}</p>
             <p className=" text-lg text-black">{displayPhone}</p>
           </div>
-          <div className=" p-6">
-            <h3 className="font-semibold text-2xl mb-4">Notes</h3>
-            <a
-              href={`/admin-dashboard/dashboard/jobs/${job.id}/notes`}
-              className="bg-indigo-500 p-2 rounded-md text-white hover:bg-indigo-700"
-            >
-              View Notes
-            </a>
+          <div className="flex flex-col justify-between p-6">
+            <div className="flex items-center justify-between">
+              <h3 className="font-semibold text-2xl">Notes {">"}</h3>
+              <a
+                href={`/admin-dashboard/dashboard/jobs/${job.id}/notes`}
+                className="bg-indigo-500 p-2 rounded-md text-white hover:bg-indigo-700"
+              >
+                View Notes
+              </a>
+            </div>
+            <div className="flex justify-between items-center">
+              <h3 className="font-semibold text-2xl">Message Customer {">"}</h3>
+              <a
+                href={`/admin-dashboard/dashboard/jobs/${job.id}/sms`}
+                className="bg-indigo-500 p-2 rounded-md text-white hover:bg-indigo-700"
+              >
+                Send Text
+              </a>
+            </div>
           </div>
-          <div className=" p-6">
+          <div className="p-6">
             <h3 className="font-semibold  text-2xl mb-4">Job Status</h3>
             {/* <div className="grid grid-cols-3 items-center gap-4 mb-4">
               <p className="col-start-1">Hoop Ordered: </p>

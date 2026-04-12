@@ -12,7 +12,7 @@ export default function DashboardLayout({ children }) {
             <Link href="/admin-dashboard/dashboard/customers">Customers</Link>
           </li>
           <li className="hover:text-gray-900 hover:cursor-pointer transition delay-100 duration-200 ease-in-out">
-            Services
+            <Link href="/admin-dashboard/hoops">Messenger</Link>
           </li>
           <li className="hover:text-gray-900 hover:cursor-pointer transition delay-100 duration-200 ease-in-out">
             <Link href="/admin-dashboard/hoops">Add/Edit Hoop</Link>

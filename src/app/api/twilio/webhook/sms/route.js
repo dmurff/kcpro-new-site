@@ -1,5 +1,5 @@
 import "server-only";
-import handleSms from "../../../../../../lib/data/handleSms.js";
+import { handleSms } from "../../../../../../lib/data/handleSms.js";
 
 export async function POST(req) {
   const formData = await req.formData();

@@ -54,7 +54,7 @@ export default function FullJobView({ customer, job }) {
             <div className="flex justify-between items-center">
               <h3 className="font-semibold text-2xl">Message Customer {">"}</h3>
               <a
-                href={`/admin-dashboard/dashboard/jobs/${job.id}/sms`}
+                href={`/admin-dashboard/dashboard/sms`}
                 className="bg-indigo-500 p-2 rounded-md text-white hover:bg-indigo-700"
               >
                 Send Text

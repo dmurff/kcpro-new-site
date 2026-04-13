@@ -1,4 +1,4 @@
-import supabase from "../../../../../../../utils/supabaseServer";
+import supabase from "../../../../../utils/supabaseServer";
 import SmsTimeStamp from "@/app/components/SmsTimeStamp";
 
 export default async function Sms() {

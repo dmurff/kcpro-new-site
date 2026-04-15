@@ -1,6 +1,7 @@
 import "server-only";
 import twilio from "twilio";
 import { handleSms } from "../../../../../../lib/data/handleSms.js";
+import { revalidatePath } from "next/cache";
 
 export async function POST(req) {
   try {

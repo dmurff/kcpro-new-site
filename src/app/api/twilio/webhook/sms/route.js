@@ -25,6 +25,8 @@ export async function POST(req) {
 
     await handleSms(payload);
 
+    revalidatePath(`/admin-dashboard/dashboard/sms`);
+
     return new Response("", { status: 200 });
   } catch (err) {
     if (err) {

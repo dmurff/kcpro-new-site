@@ -23,7 +23,7 @@ export async function POST(req) {
       return new Response("Unauthorized", { status: 403 });
     }
 
-    handleSms(payload);
+    await handleSms(payload);
 
     return new Response("", { status: 200 });
   } catch (err) {

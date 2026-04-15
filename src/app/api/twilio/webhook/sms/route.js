@@ -3,26 +3,32 @@ import twilio from "twilio";
 import { handleSms } from "../../../../../../lib/data/handleSms.js";
 
 export async function POST(req) {
-  const formData = await req.formData();
-  const payload = Object.fromEntries(formData);
-  console.log("Webhook hit!!!!!", payload);
+  try {
+    const formData = await req.formData();
+    const payload = Object.fromEntries(formData);
+    console.log("Webhook hit!!!!!", payload);
 
-  const twilioSignature = req.headers.get("x-twilio-signature");
-  const url = "https://www.kcproassembly.com/api/twilio/webhook/sms";
-  const authToken = process.env.TWILIO_AUTH_TOKEN;
+    const twilioSignature = req.headers.get("x-twilio-signature");
+    const url = "https://www.kcproassembly.com/api/twilio/webhook/sms";
+    const authToken = process.env.TWILIO_AUTH_TOKEN;
 
-  const isValid = twilio.validateRequest(
-    authToken,
-    twilioSignature,
-    url,
-    payload,
-  );
+    const isValid = twilio.validateRequest(
+      authToken,
+      twilioSignature,
+      url,
+      payload,
+    );
 
-  if (!isValid) {
-    return new Response("Unauthorized", { status: 403 });
+    if (!isValid) {
+      return new Response("Unauthorized", { status: 403 });
+    }
+
+    handleSms(payload);
+
+    return new Response("", { status: 200 });
+  } catch (err) {
+    if (err) {
+      return new Response(err.message, { status: 403 });
+    }
   }
-
-  handleSms(payload);
-
-  return new Response("", { status: 200 });
 }

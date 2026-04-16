@@ -13,7 +13,7 @@ export default async function Sms() {
           key={m.id}
           className="max-w-7xl p-6 bg-[#ededed] mx-auto text-black"
         >
-          {m.body}{" "}
+          <p className="bg-indigo-300 rounded-m p-2">{m.body} </p>
           <SmsTimeStamp time={new Date(m.created_at).toLocaleString()} />
         </div>
       ))}

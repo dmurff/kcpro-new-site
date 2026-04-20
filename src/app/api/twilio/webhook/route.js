@@ -13,13 +13,14 @@ import "server-only";
 
 export async function POST(req) {
   //   const formData = await req.formData();
+  const formData = await req.formData();
+  const payload = Object.fromEntries(formData);
 
   //   const payload = Object.fromEntries(formData);
 
   //   console.log(payload);
   // Must return TwiML or Twilio throws an error
-  const callbackUrl =
-    "https://www.kcproassembly.com/api/twilio/webhook/recording";
+  const callbackUrl = `https://www.kcproassembly.com/api/twilio/webhook/recording?from=${encodeURIComponent(payload.From)}`;
   const twiml = `<?xml version="1.0" encoding="UTF-8"?>
     <Response>
       <Dial record="record-from-answer"

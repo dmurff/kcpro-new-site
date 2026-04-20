@@ -5,6 +5,10 @@ export async function POST(req) {
   const request = await req.formData();
   const recordingObj = Object.fromEntries(request);
   const recordingUrl = recordingObj.RecordingUrl;
+
+  const url = new URL(req.url);
+  const fromNumber = url.searchParams.get("from");
+  console.log(fromNumber);
   console.log(recordingUrl);
 
   try {

@@ -40,7 +40,7 @@ export async function POST(req) {
 
     const data = await response.json();
     const transcript = data.results.channels[0].alternatives[0].transcript;
-    const summary = await summarizeTranscript(transcript);
+    const summary = await summarizeTranscript(transcript, fromNumber);
     console.log(summary);
   } catch (error) {
     console.error(error);

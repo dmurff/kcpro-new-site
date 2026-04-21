@@ -6,7 +6,8 @@ export default function GenerateNoteButton({ n }) {
   const [note, setNote] = useState("...");
   async function handleClick() {
     const res = await formatNote(n);
-    setNote(res);
+    const resParsed = JSON.parse(res);
+    setNote(resParsed);
   }
   return (
     <div>

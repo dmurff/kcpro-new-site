@@ -8,6 +8,8 @@ export default function GenerateNoteButton({ n }) {
     const res = await formatNote(n);
     const resParsed = JSON.parse(res);
     setNote(resParsed);
+
+    console.log(note);
   }
   return (
     <div>
@@ -17,7 +19,7 @@ export default function GenerateNoteButton({ n }) {
       >
         Generate Note
       </button>
-      <div className="text-black bg-indigo-300">{note}</div>
+      <div className="text-black bg-indigo-300"></div>
     </div>
   );
 }

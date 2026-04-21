@@ -62,8 +62,6 @@ export default async function Notes({ params }) {
                     ) : (
                       <p className="text-blue-100">{n.content}</p>
                     )}
-
-                    <GenerateNoteButton n={n} />
                   </div>
                   <div className="border-3 border-red-500 mb-6"></div>
                 </div>
@@ -71,7 +69,9 @@ export default async function Notes({ params }) {
             })}
           </div>
         </div>
-        <div className="bg-gray-400 w-3xl h-30 mb-2 mx-auto"></div>
+        <div className="bg-gray-400 w-3xl h-30 mb-2 mx-auto">
+          <GenerateNoteButton n={notes} />
+        </div>
         <div className="bg-gray-400 w-3xl h-30 mb-2 mx-auto"></div>
         <div className="bg-gray-400 w-3xl h-30 mb-2 mx-auto"></div>
         <div className="bg-gray-400 w-3xl h-30 mb-2 mx-auto"></div>

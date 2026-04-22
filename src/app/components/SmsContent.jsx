@@ -2,9 +2,14 @@
 import SmsTimeStamp from "@/app/components/SmsTimeStamp";
 import { useState, useEffect } from "react";
 import { supabase } from "../../../lib/supabase/client";
+import ChatTextArea from "@/app/components/ChatTextArea";
 
 export default function SmsContent({ messages }) {
   const [messageList, setMessageList] = useState(messages);
+
+  function handleSubmit(sentMessage) {
+    console.log(sentMessage);
+  }
 
   useEffect(() => {
     const channel = supabase
@@ -40,6 +45,7 @@ export default function SmsContent({ messages }) {
           <SmsTimeStamp time={new Date(m.created_at).toLocaleString()} />
         </div>
       ))}
+      <ChatTextArea handleSubmit={handleSubmit} />
     </div>
   );
 }

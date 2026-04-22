@@ -9,7 +9,7 @@ export default function GenerateNoteButton({ n }) {
     const resParsed = JSON.parse(res);
     setNote(resParsed);
 
-    console.log(note);
+    console.log("CLient NOte", note);
   }
   return (
     <div>
@@ -19,7 +19,12 @@ export default function GenerateNoteButton({ n }) {
       >
         Generate Note
       </button>
-      <div className="text-black bg-indigo-300"></div>
+      <div className="text-black bg-indigo-300">
+        <h1 className="text-gray-900 font-semibold text-2xl p-2">
+          Action needed
+        </h1>
+        <p className="text-gray-900 text-md p-2">{note.action_needed}</p>
+      </div>
     </div>
   );
 }

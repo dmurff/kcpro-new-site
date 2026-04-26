@@ -9,19 +9,21 @@ export default function HoopCardWrapper({ hoop, gallery, services, content }) {
   const router = useRouter();
 
   // must generate the idempotency key on the client before sending to the payment intent api
-  const generateIdempotencyKey = () => {
-    return uuidv4();
-  };
+  // const generateIdempotencyKey = () => {
+  //   return uuidv4();
+  // };
+
+  const [idempotencyKey] = useState(() => uuidv4());
 
   const [selectedServices, setSelectedServices] = useState({});
   const [modal, setModal] = useState(false);
 
   const handleModalClick = () => {
-    console.log("clicked", modal);
+    // console.log("clicked", modal);
     setModal((prev) => !prev);
   };
 
-  console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>", selectedServices);
+  // console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>", selectedServices);
 
   // toggle update state handler
   const handleClick = (serviceName, cost, checked) => {
@@ -67,7 +69,7 @@ export default function HoopCardWrapper({ hoop, gallery, services, content }) {
       services: serviceNames,
       remainder_due: remainder,
     };
-    const idempotencyKey = generateIdempotencyKey();
+    // const idempotencyKey = generateIdempotencyKey();
     const res = await fetch("/api/payments/create-intent", {
       method: "POST",
       headers: {

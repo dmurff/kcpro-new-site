@@ -4,22 +4,21 @@ import { useState, useEffect } from "react";
 import { supabase } from "../../../lib/supabase/client";
 import ChatTextArea from "@/app/components/ChatTextArea";
 
-export default function SmsContent({ messages }) {
+export default function SmsContent({ messages, customer }) {
   const [messageList, setMessageList] = useState(messages);
 
-  function handleSubmit(sentMessage) {
-    console.log(sentMessage);
-  }
+  console.log("CUSTOMER:", customer);
 
   useEffect(() => {
     const channel = supabase
-      .channel("messages")
+      .channel(`messages-${customer}`)
       .on(
         "postgres_changes",
         {
           event: "INSERT",
           schema: "public",
           table: "messages",
+          filter: `customer_id=eq.${customer}`,
         },
         (payload) => {
           setMessageList((prev) => [...prev, payload.new]);
@@ -45,7 +44,7 @@ export default function SmsContent({ messages }) {
           <SmsTimeStamp time={new Date(m.created_at).toLocaleString()} />
         </div>
       ))}
-      <ChatTextArea handleSubmit={handleSubmit} />
+      <ChatTextArea customer={customer} />
     </div>
   );
 }

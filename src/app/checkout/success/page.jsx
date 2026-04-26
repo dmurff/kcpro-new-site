@@ -19,7 +19,7 @@ export default async function SuccessPage({ searchParams }) {
   const { hoopId, remainder, name, email, phone, address, services } =
     paymentIntent.metadata;
 
-  console.log("🍷🍷✅:", services);
+  console.log("MADE IT TO CHECKOUT SUCCESS!!!!");
 
   // Stripe only stores strings so must convert the O's to true array's and numbers
   const selectedServiceIds = JSON.parse(services);
@@ -29,10 +29,6 @@ export default async function SuccessPage({ searchParams }) {
   const hoop = await fetchHoop(hoopId);
   const hoopImage = await fetchImages(hoopId);
 
-  console.log(
-    "👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋👋",
-    selectedServiceIds
-  );
   //   await upsertCustomer({ name, email, phone, address, services });
   // use customer and job values as props to create a visual reinforcement of the service to be rendered or to pass data via email
 

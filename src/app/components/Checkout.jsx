@@ -31,7 +31,7 @@ export default function Checkout({
     postalCode: "",
   });
 
-  console.log("SERVICES:", services, "REMAINDER:", remainder, "HOOP:", hoop);
+  console.log("MADE IT TO CHECKOUT:>>>");
 
   const checkoutTotal = (Number(hoop?.price) || 0) + Number(depositAmount);
 
@@ -44,61 +44,63 @@ export default function Checkout({
     if (!stripe || !elements) return;
 
     // customer data check
-    if (!form.name || !form.email || !form.phone || !form.address || !form.city || !form.state || !form.postalCode) {
+    if (
+      !form.name ||
+      !form.email ||
+      !form.phone ||
+      !form.address ||
+      !form.city ||
+      !form.state ||
+      !form.postalCode
+    ) {
       setMsg("Please fill in all the customer details before proceeding.");
       return;
     }
 
-
     setLoading(true);
-try {
-    await fetch("/api/checkout-session", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(
-        // paymentIntentId,
-        // depositAmount,
-        // remainder,
-        // hoop.id,
-        // services,
-        // totalCents: Number(remainder) + Number(depositAmount),
-        // ...form,
-        {
-    paymentIntentId,
-    
-    depositCents: Number(depositAmount * 100),
-    remainderCents: remainder,
-    checkoutTotal: Number(checkoutTotal * 100),
-    // totalCents: Number(remainder) + Number(depositAmount),
-    hoopId: hoop.id,              // ✅ UUID ONLY
-    services,                     // array of UUIDs
-    ...form,
-  }
+    try {
+      await fetch("/api/checkout-session", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(
+          // paymentIntentId,
+          // depositAmount,
+          // remainder,
+          // hoop.id,
+          // services,
+          // totalCents: Number(remainder) + Number(depositAmount),
+          // ...form,
+          {
+            paymentIntentId,
 
-      ),
-    });
+            depositCents: Number(depositAmount * 100),
+            remainderCents: remainder,
+            checkoutTotal: Number(checkoutTotal * 100),
+            // totalCents: Number(remainder) + Number(depositAmount),
+            hoopId: hoop.id, // ✅ UUID ONLY
+            services, // array of UUIDs
+            ...form,
+          },
+        ),
+      });
 
-    const { error } = await stripe.confirmPayment({
-      elements,
-      redirect: "always",
-      confirmParams: {
-        return_url: `${window.location.origin}/checkout/success`,
-      },
-    });
+      const { error } = await stripe.confirmPayment({
+        elements,
+        redirect: "always",
+        confirmParams: {
+          return_url: `${window.location.origin}/checkout/success`,
+        },
+      });
 
-    if (error) setMsg(error.message || "Payment failed");
-
-    
-  } catch(err){
-    setMsg(err.message)
-  }
-    finally {
+      if (error) setMsg(error.message || "Payment failed");
+    } catch (err) {
+      setMsg(err.message);
+    } finally {
       setLoading(false);
     }
   };
 
   return (
-   
     <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-8 px-6">
       <div className="flex flex-col gap-4 col-start-1 lg:col-start-2 lg:row-start-1 mx-auto lg:my-4 my-0">
         <img
@@ -119,9 +121,11 @@ try {
 
           <div className="flex justify-between">
             <p>Order total:</p>
-            <p className="text-black">${Number(checkoutTotal) + Number(remainder / 100)} </p>
+            <p className="text-black">
+              ${Number(checkoutTotal) + Number(remainder / 100)}{" "}
+            </p>
           </div>
-          
+
           <div className="flex justify-between">
             <p>Due today:</p>
             <p>${(Number(hoop.price) + Number(depositAmount)).toFixed(2)}</p>
@@ -145,7 +149,7 @@ try {
           }}
           className="lg:col-start-2 lg:col-end-3 lg:row-start-2 lg:mt-6"
         />
-        
+
         <button
           className="block text-lg font-semibold bg-orange-400 w-[200px] hover:bg-orange-600 transition duration-1.5 ease-in rounded-md p-4 mt-6 mx-auto lg:mx-0"
           disabled={
@@ -161,9 +165,11 @@ try {
         </button>
         {/* {msg && <p>{msg}</p>} */}
         {/* To this */}
-<p className={`mt-2 text-red-500 min-h-[1.5rem] ${msg ? "opacity-100" : "opacity-0"}`}>
-  {msg || " "}
-</p>
+        <p
+          className={`mt-2 text-red-500 min-h-[1.5rem] ${msg ? "opacity-100" : "opacity-0"}`}
+        >
+          {msg || " "}
+        </p>
       </form>
 
       <div className="mx-auto lg:mx-0">
@@ -173,6 +179,5 @@ try {
         </p>
       </div>
     </div>
-    
   );
 }

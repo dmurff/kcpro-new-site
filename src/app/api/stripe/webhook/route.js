@@ -1,9 +1,8 @@
 import Stripe from "stripe";
 import { NextResponse } from "next/server";
 import { createCustomerAndJob } from "../../../../../lib/db/createCustomerAndJob";
-import {fetchCheckoutSession} from "../../../../../lib/data/checkoutSessions";
+import { fetchCheckoutSession } from "../../../../../lib/data/checkoutSessions";
 export const runtime = "nodejs";
-
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET;
@@ -18,18 +17,14 @@ export async function POST(req) {
   let event;
 
   console.log("ENV CHECK:", {
-  hasSecret: !!process.env.STRIPE_WEBHOOK_SECRET,
-  prefix: process.env.STRIPE_WEBHOOK_SECRET?.slice(0, 6),
-  length: process.env.STRIPE_WEBHOOK_SECRET?.length,
-});
+    hasSecret: !!process.env.STRIPE_WEBHOOK_SECRET,
+    prefix: process.env.STRIPE_WEBHOOK_SECRET?.slice(0, 6),
+    length: process.env.STRIPE_WEBHOOK_SECRET?.length,
+  });
 
   // 3. Verify + construct Stripe event
   try {
-    event = stripe.webhooks.constructEvent(
-      rawBody,
-      signature,
-      endpointSecret
-    );
+    event = stripe.webhooks.constructEvent(rawBody, signature, endpointSecret);
   } catch (err) {
     return new NextResponse("Invalid signature", { status: 400 });
   }
@@ -40,17 +35,15 @@ export async function POST(req) {
       const paymentIntent = event.data.object;
       // So here is where I call the business DB logic
 
-      const paymentIntentId = paymentIntent.id
-        
-
+      const paymentIntentId = paymentIntent.id;
 
       // handle success
-      const checkoutData = await fetchCheckoutSession(paymentIntentId)
-
+      console.log("FETCHING SESSION!!!!!!!!!!");
+      const checkoutData = await fetchCheckoutSession(paymentIntentId);
 
       // if(!checkoutData) return NextResponse.json({success: false});
 
-      await createCustomerAndJob(checkoutData)
+      await createCustomerAndJob(checkoutData);
       break;
     }
 
@@ -59,24 +52,20 @@ export async function POST(req) {
       // handle failure
       break;
     }
-    case 'payment_intent.payment_failed':
-  const failedIntent = event.data.object;
-  console.log(`❌ Payment failed: ${failedIntent.last_payment_error?.message}`);
-  // Optional: Send an email to yourself or the user saying "Hey, your payment didn't go through!"
-  break;
-
-
-    
+    case "payment_intent.payment_failed":
+      const failedIntent = event.data.object;
+      console.log(
+        `❌ Payment failed: ${failedIntent.last_payment_error?.message}`,
+      );
+      // Optional: Send an email to yourself or the user saying "Hey, your payment didn't go through!"
+      break;
 
     default:
       // ignore what you don’t care about
       break;
   }
 
-
-
   // 5. Always acknowledge receipt
   // return NextResponse.json({ received: true });
   return new Response("OK", { status: 200 });
-
 }

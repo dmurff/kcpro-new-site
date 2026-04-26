@@ -4,7 +4,7 @@ import { Elements } from "@stripe/react-stripe-js";
 import Checkout from "./Checkout";
 
 const stripePromise = loadStripe(
-  process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
+  process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY,
 );
 
 export default function CheckoutWrapper({
@@ -17,9 +17,7 @@ export default function CheckoutWrapper({
 }) {
   if (!clientSecret) return "Preparing checkout...";
 
-  console.log("❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️❤️", services);
-
-  console.log("clientSecret:", clientSecret);
+  console.log("MADE IT TO CHECKOUTWRAPPER", paymentIntentId);
 
   return (
     <>

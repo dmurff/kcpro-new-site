@@ -8,7 +8,7 @@ export default function FullJobView({ customer, job }) {
     /(\d{3})(\d{3})(\d{4})/,
     "$1-$2-$3",
   );
-
+  console.log("CUSTOMER", customer);
   const jobId = job.id;
 
   const [step, setStep] = useState("confirm");
@@ -54,7 +54,7 @@ export default function FullJobView({ customer, job }) {
             <div className="flex justify-between items-center">
               <h3 className="font-semibold text-2xl">Message Customer {">"}</h3>
               <a
-                href={`/admin-dashboard/dashboard/sms`}
+                href={`/admin-dashboard/dashboard/sms?customer=${customer.id}`}
                 className="bg-indigo-500 p-2 rounded-md text-white hover:bg-indigo-700"
               >
                 Send Text

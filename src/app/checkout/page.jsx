@@ -11,40 +11,28 @@ export default async function CheckoutPage({ searchParams }) {
   // const { id, type } = searchParams;
 
   const params = await searchParams;
-  console.log("client:", params);
+
   const { payment_intent_client_secret, pi } = params;
 
   const orderData = await getPIMetadata(pi);
-  console.log("💳💥💳", orderData);
 
   const { hoopId, remainder, services, deposit_amount } = orderData;
 
-  const depositAmount = (Number(deposit_amount) / 100).toFixed(2);
+  console.log("ORDERDATA222222", orderData);
 
-  console.log("📈📈📈📈📈📈📈📈", services);
+  const depositAmount = (Number(deposit_amount) / 100).toFixed(2);
 
   const parsedServices = JSON.parse(services);
 
-  console.log("🚀🚀🚀🚀🚀", parsedServices);
-
   const selectedServices = await Promise.all(
-    parsedServices.map((s) => fetchServices(s)).flat()
+    parsedServices.map((s) => fetchServices(s)).flat(),
   );
-  console.log("💶🔨💶🔨", selectedServices);
 
   // fetch hoop to render order details
   const hoop = await fetchHoop(hoopId);
-  const selectedServiceIds = selectedServices.map(s => 
-    s.id
-  )
-
-  
-
-  console.log("💶💶", payment_intent_client_secret);
+  const selectedServiceIds = selectedServices.map((s) => s.id);
 
   const clientSecret = payment_intent_client_secret;
-
-  console.log('🔨 SERVICES:', selectedServiceIds)
 
   return (
     <div>

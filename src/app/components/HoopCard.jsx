@@ -60,7 +60,6 @@ export default function HoopCard({
 }) {
   if (!hoop) return null;
 
-  console.log("🚀", hoop.id, hoop.name);
   return (
     <div className="relative w-full bg-white py-8 lg:py-20">
       {modal && (

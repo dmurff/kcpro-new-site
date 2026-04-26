@@ -78,7 +78,7 @@ export default function ServiceCheckoutForm({
     });
 
     const result = await res.json();
-    console.log(result);
+    console.log("RESUUUUULTTTTTT", result);
 
     const { error } = await stripe.confirmPayment({
       elements,

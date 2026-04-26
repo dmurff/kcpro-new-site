@@ -5,17 +5,23 @@ import Stripe from "stripe";
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 import { NextResponse } from "next/server";
+import { normalizePhone } from "../../../../lib/normalizePhone.js";
+
 export async function POST(req) {
+  console.log("MADE IT TO CHECKOUT-SESSION!!!!!");
   try {
     const body = await req.json();
 
-    console.log(body);
+    const formattedNumber = normalizePhone(body.phone);
+
+    console.log("FORMATTEDnUMBER:::::", formattedNumber);
 
     const payload = {
       payment_intent_id: body.paymentIntentId,
       name: body.name,
       email: body.email,
-      phone: body.phone,
+      // phone: body.phone,
+      phone: formattedNumber,
       address: body.address,
       city: body.city,
       state: body.state,
@@ -44,7 +50,7 @@ export async function POST(req) {
 
     // So I run the metadata update logic here?
     const paymentIntent = await stripe.paymentIntents.retrieve(
-      body.paymentIntentId
+      body.paymentIntentId,
     );
 
     const newMetadata = {

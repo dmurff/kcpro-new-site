@@ -25,7 +25,7 @@ export default function SmsContent({ messages, customer }) {
         },
       )
       .subscribe((status, err) => {
-        console.log("CHANNEL STATUS 📨".status, err);
+        console.log("CHANNEL STATUS 📨", status, err);
       });
 
     return () => {

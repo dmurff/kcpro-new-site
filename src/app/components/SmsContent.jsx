@@ -24,7 +24,9 @@ export default function SmsContent({ messages, customer }) {
           setMessageList((prev) => [...prev, payload.new]);
         },
       )
-      .subscribe();
+      .subscribe((status, err) => {
+        console.log("CHANNEL STATUS 📨".status, err);
+      });
 
     return () => {
       supabase.removeChannel(channel);

@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import DashBoardStatusField from "../components/DashBoardStatusField";
 import { change811Status } from "@/app/actions/jobStatusChanges.js";
+// import DashboardSelector from "../components/DashboardSelector";
 export default function FullJobView({ customer, job }) {
   const hoopStatus = job.hoop_ordered;
   const displayPhone = customer.phone.replace(
@@ -16,6 +17,8 @@ export default function FullJobView({ customer, job }) {
   const [showModal, setShowModal] = useState(false);
   const [orderStatus, setOrderStatus] = useState(!!"");
   const [selectedValue, setSelectedValue] = useState(true);
+  const [jobStatus, setJobStatus] = useState(job.status);
+  // const [selectorType, setSelectorType] = useState("");
 
   async function handleUpdateClick(field) {
     console.log("handleUpdateClick called with:", field);
@@ -83,13 +86,23 @@ export default function FullJobView({ customer, job }) {
                 onClick={() => handleUpdateClick("hoop_ordered")}
                 label={"Hoop Ordered:"}
                 status={job.hoop_ordered}
+                // selectorType={selectorType}
               />
               <DashBoardStatusField
                 // May need a different onClick handler
                 onClick={() => handleUpdateClick("anchor_set_at")}
                 label={"Anchor Set"}
                 status={job.anchor_set_at}
+                // selectorType={selectorType}
               />
+              {/* <DashBoardStatusField
+                // May need a different onClick handler
+                onClick={() => handleUpdateClick("status")}
+                label={"Job Status"}
+                status={job.status}
+                selectorType={selectorType}
+              /> */}
+
               {/* <p>811 Called: </p>
 
               <p className="justify-self-center text-sm text-black">

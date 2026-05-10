@@ -21,12 +21,13 @@ export default async function JobsView({ jobs, customers, jobType }) {
                 });
               };
 
+              console.log("JJJJJJJOOOOOOBBBBBBSSSSS:", j);
               return (
                 <Link
                   href={`/admin-dashboard/dashboard/jobs/${j.id}`}
                   key={j.id}
                   id={j.id}
-                  className="grid grid-cols-4 gap-2 text-gray-900 bg-gray-100 mb-2 p-2 hover:cursor-pointer hover:focus-ring-indigo-500 hover:bg-indigo-100"
+                  className="grid lg:grid-cols-4 gap-4 lg:gap-2 text-gray-900 bg-gray-100 mb-4 p-2 hover:cursor-pointer hover:focus-ring-indigo-500 hover:bg-indigo-100 rounded-md shadow-md"
                 >
                   <div>
                     <h3 className=" font-semibold">Customer</h3>

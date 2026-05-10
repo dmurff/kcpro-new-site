@@ -7,6 +7,9 @@ export async function GET(req) {
     return new Response("Unauthorized", { status: 401 });
   }
 
-  await cronJobSummary();
+  const result = await cronJobSummary();
+
+  console.log("ROUTE HIT", result);
+
   return new Response("Success", { status: 200 });
 }

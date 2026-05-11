@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import supabase from "../../../../../utils/supabaseServer";
 import JobsView from "../../../components/JobsView";
 import { getAllCustomers } from "../../../../../lib/data/customers";

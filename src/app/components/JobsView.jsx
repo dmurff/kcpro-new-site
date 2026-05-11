@@ -2,6 +2,13 @@ import supabase from "../../../utils/supabaseServer";
 import Link from "next/link";
 
 export default async function JobsView({ jobs, customers, jobType }) {
+  console.log("🎯 JobsView received:", {
+    jobsCount: jobs?.length,
+    customersCount: customers?.length,
+    jobTypeCount: jobType?.length,
+    lastJob: jobs?.[jobs.length - 1],
+    firstJob: jobs?.[0],
+  });
   return (
     <>
       <div className="mx-auto p-10">
@@ -21,7 +28,6 @@ export default async function JobsView({ jobs, customers, jobType }) {
                 });
               };
 
-              console.log("JJJJJJJOOOOOOBBBBBBSSSSS:", j);
               return (
                 <Link
                   href={`/admin-dashboard/dashboard/jobs/${j.id}`}

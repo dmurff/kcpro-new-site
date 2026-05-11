@@ -1,5 +1,6 @@
 import supabase from "../../../../../utils/supabaseServer";
 import SmsContent from "@/app/components/SmsContent";
+export const dynamic = "force-dynamic";
 
 export default async function Sms({ searchParams }) {
   const { customer, jobId } = await searchParams;

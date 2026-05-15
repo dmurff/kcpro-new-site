@@ -10,7 +10,8 @@ export default async function Sms({ searchParams }) {
   const { data, error } = await supabase
     .from("messages")
     .select("*")
-    .eq("customer_id", customer);
+    .eq("customer_id", customer)
+    .order("created_at", { ascending: true });
 
   if (!data) {
     console.log(error, error.message);

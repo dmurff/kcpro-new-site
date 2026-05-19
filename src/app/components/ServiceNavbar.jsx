@@ -3,7 +3,7 @@ import Link from "next/link";
 import { FaGoogle } from "react-icons/fa";
 import { ShoppingCartIcon } from "@heroicons/react/24/outline";
 import { useState, useEffect } from "react";
-import { signInWithEmail } from "../../../utils/supabaseAuth";
+// import { signInWithEmail } from "../../../utils/supabaseAuth";
 import Image from "next/image";
 
 export default function ServiceNavbar() {

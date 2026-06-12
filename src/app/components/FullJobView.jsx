@@ -6,9 +6,10 @@ import { change811Status } from "@/app/actions/jobStatusChanges.js";
 export default function FullJobView({ customer, job }) {
   const hoopStatus = job.hoop_ordered;
   const displayPhone = customer.phone.replace(
-    /(\d{3})(\d{3})(\d{4})/,
+    /^\+1(\d{3})(\d{3})(\d{4})$/,
     "$1-$2-$3",
   );
+
   console.log("CUSTOMER", customer);
   const jobId = job.id;
 

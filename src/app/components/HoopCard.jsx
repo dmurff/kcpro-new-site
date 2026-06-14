@@ -7,7 +7,7 @@ import {
 } from "@heroicons/react/24/outline";
 import OrderNow from "../components/OrderNow";
 // import Toggle from "../components/Toggle";
-import TotalBox from "./TotalBox";
+// import TotalBox from "./TotalBox";
 import ServiceCards from "./ServiceCards";
 
 import {
@@ -256,7 +256,7 @@ export default function HoopCard({
                   Buy now
                 </button>
                 {/* {here is where the total box will go} */}
-                <TotalBox total={total} />
+                {/* <TotalBox total={total} /> */}
               </div>
             </div>
 

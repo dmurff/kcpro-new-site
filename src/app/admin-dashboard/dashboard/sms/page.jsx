@@ -8,7 +8,7 @@ export default async function Sms({ searchParams }) {
   console.log("PAGE LOaded");
   console.log(jobId);
 
-  console.log(customer);
+  console.log(customerId);
 
   const { data, error } = await supabase
     .from("messages")

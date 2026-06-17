@@ -9,13 +9,13 @@ export async function POST(req) {
   //   const request = await req.json();
   //   console.log(request);
   try {
-    const { message, customer } = await req.json();
-    console.log(message, customer);
+    const { message, customerId } = await req.json();
+    console.log(message, customerId);
 
     const { data: customerData, error } = await supabase
       .from("customers")
       .select("*")
-      .eq("id", customer)
+      .eq("id", customerId)
       .single();
 
     console.log(customerData.name);

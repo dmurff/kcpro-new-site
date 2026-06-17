@@ -3,7 +3,7 @@ import SmsContent from "@/app/components/SmsContent";
 export const dynamic = "force-dynamic";
 
 export default async function Sms({ searchParams }) {
-  const { customer, jobId } = await searchParams;
+  const { customerId, jobId } = await searchParams;
 
   console.log("PAGE LOaded");
   console.log(jobId);
@@ -13,7 +13,7 @@ export default async function Sms({ searchParams }) {
   const { data, error } = await supabase
     .from("messages")
     .select("*")
-    .eq("customer_id", customer)
+    .eq("customer_id", customerId)
     .order("created_at", { ascending: true });
 
   if (!data) {
@@ -27,7 +27,7 @@ export default async function Sms({ searchParams }) {
 
   return (
     <>
-      <SmsContent messages={messages} customer={customer} />
+      <SmsContent messages={messages} customerId={customerId} />
     </>
   );
 }

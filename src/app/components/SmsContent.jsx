@@ -5,7 +5,7 @@ import { supabase } from "../../../lib/supabase/client";
 import ChatTextArea from "@/app/components/ChatTextArea";
 import { summarizeMessages } from "../../../lib/ai/summarizeMessages";
 
-export default function SmsContent({ messages, customer }) {
+export default function SmsContent({ messages, customerId }) {
   const [messageList, setMessageList] = useState(messages);
 
   console.log("CUSTOMER:", messageList);
@@ -14,14 +14,14 @@ export default function SmsContent({ messages, customer }) {
 
   useEffect(() => {
     const channel = supabase
-      .channel(`messages-${customer}`)
+      .channel(`messages-${customerId}`)
       .on(
         "postgres_changes",
         {
           event: "INSERT",
           schema: "public",
           table: "messages",
-          filter: `customer_id=eq.${customer}`,
+          filter: `customer_id=eq.${customerId}`,
         },
         async (payload) => {
           setMessageList((prev) => [...prev, payload.new]);
@@ -70,7 +70,7 @@ export default function SmsContent({ messages, customer }) {
           );
         }
       })}
-      <ChatTextArea customer={customer} />
+      <ChatTextArea customerId={customerId} />
     </div>
   );
 }

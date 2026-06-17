@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 
-export default function ChatTextArea({ customer }) {
+export default function ChatTextArea({ customerId }) {
   const [msg, setMsg] = useState("");
   const [sending, setSending] = useState(false);
 
@@ -17,7 +17,7 @@ export default function ChatTextArea({ customer }) {
       const res = await fetch("/api/sms/send", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message: trimmed, customer }),
+        body: JSON.stringify({ message: trimmed, customerId }),
       });
 
       if (!res.ok) throw new Error("send error");

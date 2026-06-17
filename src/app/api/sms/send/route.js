@@ -46,6 +46,8 @@ export async function POST(req) {
         twilio_sid: smsSend.sid,
       });
 
+    console.log("3 - after insert:", { data, insertError });
+
     if (insertError) {
       console.error("Twilio sent message but insert failed", insertError, {
         sid: smsSend.sid,

@@ -23,7 +23,7 @@ export default async function Sms({ searchParams }) {
 
   const messages = data;
 
-  console.log("data::::::", data, "CUSTOMER:", customer);
+  console.log("data::::::", data, "CUSTOMER:", customerId);
 
   return (
     <>

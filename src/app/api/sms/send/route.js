@@ -48,7 +48,7 @@ export async function POST(req) {
 
     // console.log("3 - after insert:", { data, insertError });
 
-    const { data, error: insertError } = await supabase
+    const { data: insertedMsg, error: insertError } = await supabase
       .from("messages")
       .insert({
         from_number: "+19134233374",
@@ -71,7 +71,10 @@ export async function POST(req) {
       return Response.json({ success: false }, { status: 500 });
     }
 
-    return Response.json({ success: true }, { status: 200 });
+    return Response.json(
+      { success: true, message: insertedMsg },
+      { status: 200 },
+    );
   } catch (err) {
     console.error("FULL ROUTE ERROR:", {
       message: err?.message,

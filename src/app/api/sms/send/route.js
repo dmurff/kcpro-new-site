@@ -35,6 +35,19 @@ export async function POST(req) {
     console.log("2 - after Twilio:", smsSend.sid);
 
     // what do I do here? Do I check it for success to twilio? How do I know whether or not to proceed with inserting the message to supabase?
+    // const { data, error: insertError } = await supabase
+    //   .from("messages")
+    //   .insert({
+    //     from_number: "+19134233374",
+    //     to_number: customerData.phone,
+    //     customer_id: customerData.id,
+    //     body: message,
+    //     direction: "outbound",
+    //     twilio_sid: smsSend.sid,
+    //   });
+
+    // console.log("3 - after insert:", { data, insertError });
+
     const { data, error: insertError } = await supabase
       .from("messages")
       .insert({
@@ -44,7 +57,9 @@ export async function POST(req) {
         body: message,
         direction: "outbound",
         twilio_sid: smsSend.sid,
-      });
+      })
+      .select()
+      .single();
 
     console.log("3 - after insert:", { data, insertError });
 

@@ -33,7 +33,7 @@ export default async function JobsView({ jobs, customers, jobType }) {
                   href={`/admin-dashboard/dashboard/jobs/${j.id}`}
                   key={j.id}
                   id={j.id}
-                  className="grid lg:grid-cols-4 gap-4 lg:gap-2 text-white bg-black/80 mb-4 p-2 hover:cursor-pointer hover:focus-ring-blue-200 hover:bg-black/40 rounded-md shadow-md"
+                  className="grid lg:grid-cols-4 gap-4 lg:gap-2 text-white bg-black/80 mb-4 p-2 hover:cursor-pointer hover:focus-ring-blue-200 hover:bg-black/60 rounded-md shadow-md"
                 >
                   <div>
                     <h3 className=" font-semibold">Customer</h3>

@@ -1,8 +1,11 @@
 import supabase from "../../../../../../../utils/supabaseServer";
 import GenerateNoteButton from "@/app/components/GenerateNoteButton";
 
-export default async function Notes({ params }) {
+export default async function Notes({ params, searchParams }) {
   const { id } = await params;
+
+  const { customerId } = await searchParams;
+
   const { data: notes, error } = await supabase
     .from("notes")
     .select("*")
@@ -11,6 +14,17 @@ export default async function Notes({ params }) {
     console.log(error, error.message);
   }
   console.log(notes);
+
+  const { data: msgs, error: msgErr } = await supabase
+    .from("messsges")
+    .select("*")
+    .eq("customer_id", customerId);
+
+  if (msgErr) {
+    console.log("ERROR", msgErr.message);
+  }
+
+  console.log("messages", msgs);
 
   return (
     <div>

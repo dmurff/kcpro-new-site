@@ -49,7 +49,7 @@ export default function FullJobView({ customer, job }) {
             <div className="grid grid-cols-2 items-center justify-between">
               <h3 className="font-semibold text-2xl">Notes {">"}</h3>
               <a
-                href={`/admin-dashboard/dashboard/jobs/${job.id}/notes`}
+                href={`/admin-dashboard/dashboard/jobs/${job.id}/notes?customer=${customer.id}`}
                 className="bg-indigo-500 p-2 rounded-md text-center text-white hover:bg-indigo-700"
               >
                 View Notes
@@ -58,7 +58,7 @@ export default function FullJobView({ customer, job }) {
             <div className="grid grid-cols-2 justify-between gap-4 items-center">
               <h3 className="font-semibold text-2xl">Message Customer {">"}</h3>
               <a
-                href={`/admin-dashboard/dashboard/sms?customer=${customer.id}&jobId=${jobId}`}
+                href={`/admin-dashboard/dashboard/sms?customerId=${customer.id}&jobId=${jobId}`}
                 className="bg-indigo-500 p-2 rounded-md text-center text-white hover:bg-indigo-700"
               >
                 Send Text
